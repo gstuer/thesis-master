@@ -1,0 +1,6 @@
+# JabRef
+*.bak
+*.sav
+
+# PowerPoint
+~$*.pptx
