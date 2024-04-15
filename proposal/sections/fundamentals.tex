@@ -1,12 +1,42 @@
 \chapter{Fundamentals}
 \label{ch:fundamentals}
+The purpose of this chapter is to introduce, define, and describe the fundamental terms and concepts of this thesis proposal.
+Moreover, this chapter provides an introduction into the foundational literature.
+The terms and concepts defined within this chapter are assumed to be known in the following chapters. 
+
+At the beginning of this chapter in \autoref{sec:itot} and \autoref{sec:ics} the concepts of information technology, operational technology, and industrial control systems are introduced.
+Moreover, this chapter defines the terms information security in \autoref{sec:security} and safety in \autoref{sec:safety} for the scope of the proposed thesis.
+Furthermore, this chapter provides an introduction for access control including the two general types of access control, namely discretionary and mandatory access control.
+The introduction of access control can be found in \autoref{sec:accesscontrol}.
+At the end of this chapter in \autoref{sec:securitypolicymodels} an overview of four different classes of security policy models is presented.
 \todo{Fundamentals, e.g Access Control (Role, Attribute \dots), Substations (IEDs, IEC61850, GOOSE/MMS/OpenVPN/Ethernet-Based/Analog \dots)}
 
 \section{Information Technology (IT) \& Operational Technology (OT)}
 \label{sec:itot}
+The term information technology (IT) encompasses the technological concepts and systems required to create, process, store, present, and communicate information.
+In the scope of IT, information is an abstract concept which is represented by so-called data or data objects \cite{Eckert2023}.
+The meaning of data originates from or is assigned to a data object by using a specific information interpretation rule.
+Data objects can be distinguished based on their abilities by being either passive or active.
+Passive data objects can only represent information for storage, whereas active data objects can store and process information.
+
+As stated by \citeauthor{Eckert2023} \cite{Eckert2023} an IT system is a dynamical technical system which is able to process and store information.
+An IT system is a part of a sociotechnical system and provides information-based services to more abstract social, economical or political structures.
+Moreover, the users of an IT system may have different goals, levels of experience, and technical know-how.
+
+When shifting the scope from abstract information storage and processing to the interaction with the physical world, the term operational technology (OT) arises.
+As a consequence, OT describes the application and interactions of information storage and processing procedures in a physical environment.
+According to \citeauthor{Stouffer2023} \cite{Stouffer2023} OT encompasses systems and devices interacting with the physical environment directly or through managed devices.
+The systems and devices interact with the physical environment by detecting changes through monitoring or by causing changes through control of devices or processes.
+In the context of OT systems the term process refers to the part of a system producing an output, whereas a controller represents a part of a system that maintains the conformance with specifications.
+Besides the industrial control systems (ICS) further discussed in \autoref{sec:ics}, other examples of OT systems are building automation systems and transportation systems.
+
+Although the evolution from analog systems to OT systems by inserting IT into existing physical systems might provide new functionality and enhance system parameters like costs or performance, new challenges may arise \cite{Stouffer2023}.
+Especially the typical long life cycle of OT systems and their unique requirements regarding performance, reliability, security, safety, privacy, and environmental impact have to be taken into account when designing, operating, and maintaining OT systems.
+In the following the proposed thesis especially focuses on the security implications as well as the design and implementation of secure OT systems.
 
 \section{Industrial Control Systems (ICS)}
 \label{sec:ics}
+
 \subsection{Architectures}
 \subsubsection{Supervisory Control \& Data Acquisition (SCADA)}
 \subsubsection{Distributed Control System (DCS)}
@@ -52,6 +82,7 @@
 \subsection{Mandatory Access Control (MAC)}
 
 \section{Classes of Security Policy Models}
+\label{sec:securitypolicymodels}
 
 \subsection{Access Control Models}
 \subsubsection{Identity-Based Access Control (IBAC)}
