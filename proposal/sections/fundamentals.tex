@@ -36,8 +36,22 @@ In the following the proposed thesis especially focuses on the security implicat
 
 \section{Industrial Control Systems (ICS)}
 \label{sec:ics}
+The term industrial control system (ICS) encompasses different types of control systems consisting of monitoring, control and network components acting together to achieve an industrial objective \cite{Stouffer2015}.
+In the scope of the thesis proposal, an ICS represents a specific type of OT system that gathers, processes, and stores information while interacting with a physical environment to achieve an industrial objective.
+According to \citeauthor{Stouffer2015} \cite{Stouffer2015} the control in an ICS can be partially or fully automated.
+Moreover, an ICS can be configured to operate in three different modes:
+\begin{enumerate}
+    \item Manual Mode: The ICS is completely controlled by humans.
+    \item Open-Loop Control Mode: The output of the system process is controlled by established settings rather than process feedback.
+    \item Closed-Loop Control Mode: The ICS uses the process output as feedback to achieve the control objective.
+\end{enumerate}
 
 \subsection{Architectures}
+ICS as well as generic control systems consisting of multiple interconnected components can be classified regarding their control system architecture.
+According to \citeauthor{Galloway2013} \cite{Galloway2013} an ICS architecture, or architecture of an ICS network respectively, is typically deeper regarding the levels of hierarchy than a company network.
+Moreover, the technologies including devices as well as the communication links and protocols in an ICS network are often heterogeneous.
+\todo{Add Galloway2013 difference Company vs. ICS networks} 
+In the following sections the two main types of control system architectures are presented.
 \subsubsection{Supervisory Control \& Data Acquisition (SCADA)}
 \subsubsection{Distributed Control System (DCS)}
 
