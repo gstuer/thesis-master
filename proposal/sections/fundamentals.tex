@@ -50,12 +50,38 @@ Moreover, an ICS can be configured to operate in three different modes:
 ICS as well as generic control systems consisting of multiple interconnected components can be classified regarding their control system architecture.
 According to \citeauthor{Galloway2013} \cite{Galloway2013} an ICS architecture, or architecture of an ICS network respectively, is typically deeper regarding the levels of hierarchy than a company network.
 Moreover, the technologies including devices as well as the communication links and protocols in an ICS network are often heterogeneous.
-\todo{Add Galloway2013 difference Company vs. ICS networks} 
+
 In the following sections the two main types of control system architectures are presented.
+While these architectures introduce different and partially incompatible concepts, the approaches can be complementing when used on different levels of hierarchy of a complex ICS network.
+
 \subsubsection{Supervisory Control \& Data Acquisition (SCADA)}
+Supervisor control and data acquisition (SCADA) is a type of control system architecture.
+As stated by \citeauthor{bailey2003} \cite{bailey2003} SCADA refers to a combination of telemetry and data acquisition.
+The objective of SCADA is to collect data of a remote process, transfer it to a central site, process and analyze the data, and present it to a human operator via human machine interfaces (HMI).
+Moreover, SCADA enables sending of control actions back to the remote process.
+
+The collection of data from devices of a remote process and the delivery of control actions back to the remote devices requires a communication path between the central and remote site \cite{Stouffer2023}.
+In the scope of OT and ICS the central site is referred to as control center and the remote sites are referred to a field or field sites.
+Specialized network components at the field sites enable remote devices to communicate with the control center via telecommunication technologies.
+These specialized network components for ICS networks are further discussed in \autoref{sec:networkcomponents}.
+Examples for telecommunication technologies used for the communication are wide area networks (WAN), satellite, cellular, and radio technology.
+
+Although the SCADA approach not necessarily requires a communication network to exist but rather works via direct connection between remote devices and the central site, modern SCADA systems rely on bus-based field networks or Ethernet-based solutions \cite{bailey2003}.
+As a consequence, according to \citeauthor{bailey2003} the benefits of modern SCADA approaches are minimal required wiring, plug-and-play installation and replacement of devices, remote access to data from anywhere, easier large-scale data storage, and higher flexibility for visualization and incorporation of real data simulations.
+The disadvantages of modern SCADA approaches are the higher complexity of components, the functional limitations induced by the network components, the requirement of better trained employees, the higher reliance on communication networks, and the high prices of intelligent field equipment.
+
+\citeauthor{Stouffer2023} \cite{Stouffer2023} further described four basic communication topologies for modern SCADA networks that were initially introduced by the \citeauthor{aga2006} \cite{aga2006}.
+The four topologies introduced are point-to-point, series, series-star, and multi-drop.
+The point-to-point topology connects each field device using an individual communication channel.
+The series, series-star, and multi-drop topologies use daisy-chaining and switching to connect multiple devices using a single shared channel.
+The sharing of a single channel among multiple devices increases the efficiency and operation complexity but decreases the costs and system complexity.
+
 \subsubsection{Distributed Control System (DCS)}
 
 \subsection{Network Components}
+\label{sec:networkcomponents}
+\todo{Add Galloway2013 difference Company vs. ICS networks}
+\todo{Add NIST 800-82r3 difference between IT OT System Security}
 \todo{PLC, IED, RTU, Data Concentrator \dots}
 
 \subsection{Substations}
@@ -64,6 +90,7 @@ In the following sections the two main types of control system architectures are
 \section{Security}
 \label{sec:security}
 \todo{aka. Informationssicherheit!}
+\todo{Add NIST 800-82r3 difference between IT OT System Security}
 \subsection{Objective \& Goals}
 \todo{Describe Security Objective as in SecStam, Describe different importance w/in different domains (IT vs OT)}
 \subsubsection{Confidentiality}
