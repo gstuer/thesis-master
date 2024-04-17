@@ -19,7 +19,7 @@ The meaning of data originates from or is assigned to a data object by using a s
 Data objects can be distinguished based on their abilities by being either passive or active.
 Passive data objects can only represent information for storage, whereas active data objects can store and process information.
 
-As stated by \citeauthor{Eckert2023} \cite{Eckert2023} an IT system is a dynamical technical system which is able to process and store information.
+As stated by \citeauthor{Eckert2023} \cite{Eckert2023}, an IT system is a dynamical technical system which is able to process and store information.
 An IT system is a part of a sociotechnical system and provides information-based services to more abstract social, economical or political structures.
 Moreover, the users of an IT system may have different goals, levels of experience, and technical know-how.
 
@@ -51,19 +51,21 @@ ICS as well as generic control systems consisting of multiple interconnected com
 According to \citeauthor{Galloway2013} \cite{Galloway2013} an ICS architecture, or architecture of an ICS network respectively, is typically deeper regarding the levels of hierarchy than a company network.
 Moreover, the technologies including devices as well as the communication links and protocols in an ICS network are often heterogeneous.
 
-In the following sections the two main types of control system architectures are presented.
-While these architectures introduce different and partially incompatible concepts, the approaches can be complementing when used on different levels of hierarchy of a complex ICS network.
+In the following sections the main types of control system architectures and topologies are presented.
+While these architectures introduce different and partially incompatible concepts, the approaches can be complementing when used on different levels of hierarchy of a complex ICS network \cite{Stouffer2023}.
 
 \subsubsection{Supervisory Control \& Data Acquisition (SCADA)}
 Supervisor control and data acquisition (SCADA) is a type of control system architecture.
-As stated by \citeauthor{bailey2003} \cite{bailey2003} SCADA refers to a combination of telemetry and data acquisition.
+As stated by \citeauthor{bailey2003} \cite{bailey2003}, SCADA refers to a combination of telemetry and data acquisition.
 The objective of SCADA is to collect data of a remote process, transfer it to a central site, process and analyze the data, and present it to a human operator via human machine interfaces (HMI).
 Moreover, SCADA enables sending of control actions back to the remote process.
 
 The collection of data from devices of a remote process and the delivery of control actions back to the remote devices requires a communication path between the central and remote site \cite{Stouffer2023}.
-In the scope of OT and ICS the central site is referred to as control center and the remote sites are referred to a field or field sites.
-Specialized network components at the field sites enable remote devices to communicate with the control center via telecommunication technologies.
-These specialized network components for ICS networks are further discussed in \autoref{sec:networkcomponents}.
+In the scope of OT and ICS the central site is referred to as control center and the remote site is referred to as field or field site.
+Specialized network components at the field site enable remote devices to communicate with the control center via telecommunication technologies.
+These specialized network components at the field are referred to as gateways or remote terminal units (RTU).
+The gateways and RTUs communicate with a device at the control center also known as master terminal unit (MTU).
+The network components of an ICS network are further discussed in \autoref{sec:networkcomponents}.
 Examples for telecommunication technologies used for the communication are wide area networks (WAN), satellite, cellular, and radio technology.
 
 Although the SCADA approach not necessarily requires a communication network to exist but rather works via direct connection between remote devices and the central site, modern SCADA systems rely on bus-based field networks or Ethernet-based solutions \cite{bailey2003}.
@@ -77,12 +79,30 @@ The series, series-star, and multi-drop topologies use daisy-chaining and switch
 The sharing of a single channel among multiple devices increases the efficiency and operation complexity but decreases the costs and system complexity.
 
 \subsubsection{Distributed Control System (DCS)}
+A distributed control system (DCS) is a control system architecture without centralized remote control of the field site \cite{Stouffer2023}.
+Instead of controlling the field site remotely from a control center, a DCS realizes supervisory control of multiple process sub-systems at the field site.
+Therefore, a DCS is typically implemented for the control of a process and its sub-processes within the same geographic location.
+
+As stated by \citeauthor{Galloway2013} \cite{Galloway2013}, a DCS is a process-driven system rather than an event-driven system like SCADA.
+Moreover, the objective of a DCS is the control of integrated systems that are closely located, whereas SCADA focuses on independent systems with large geographical extent. 
+Due to the small geographical area and high interconnection within a DCS, the communication with control devices is more reliable and less prone to issues based on the data quality.
+
+\subsubsection{Programmable Logic Controller (PLC)}
+A programmable logic controller (PLC) is a control system component responsible for locally managing and controlling a certain process \cite{Stouffer2023}.
+Therefore, a PLC may represent the primary controller in a PLC-based topology for small OT systems.
+Moreover, PLCs can be used as building blocks to realize more complex hierarchical topologies like SCADA or DCS.
+In the latter case, a PLC may integrate or use the services and communication abilities of a remote terminal unit (RTU) further discussed in \autoref{sec:networkcomponents}.
+
+PLCs can provide fixed functionality or be modular.
+Fixed functionality PLCs may also be programmable but limited to certain I/O, processing or communication abilities.
+According to \citeauthor{Galloway2013} \cite{Galloway2013}, modularity of PLCs eases maintenance and grants more flexibility for the installation.
+A modular PLC generally consists of a power supply, processing modules, I/O modules, and communication modules.
 
 \subsection{Network Components}
 \label{sec:networkcomponents}
 \todo{Add Galloway2013 difference Company vs. ICS networks}
 \todo{Add NIST 800-82r3 difference between IT OT System Security}
-\todo{PLC, IED, RTU, Data Concentrator \dots}
+\todo{IED, RTU, Data Concentrator \dots}
 
 \subsection{Substations}
 \todo{Introduction: SS is OT, Definition \& Modelling via IEC61850, Availability \& Integrity over Confidentiality, typical communication in a scada system, commonly used protocols, possible attack vectors}
