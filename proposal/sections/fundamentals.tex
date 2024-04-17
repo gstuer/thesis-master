@@ -33,6 +33,7 @@ Besides the industrial control systems (ICS) further discussed in \autoref{sec:i
 Although the evolution from analog systems to OT systems by inserting IT into existing physical systems might provide new functionality and enhance system parameters like costs or performance, new challenges may arise \cite{Stouffer2023}.
 Especially the typical long life cycle of OT systems and their unique requirements regarding performance, reliability, security, safety, privacy, and environmental impact have to be taken into account when designing, operating, and maintaining OT systems.
 In the following the proposed thesis especially focuses on the security implications as well as the design and implementation of secure OT systems.
+\todo{800-82r3 OT System Design Considerations}
 
 \section{Industrial Control Systems (ICS)}
 \label{sec:ics}
@@ -47,12 +48,14 @@ Moreover, an ICS can be configured to operate in three different modes:
 \end{enumerate}
 
 \subsection{Architectures}
+\label{sec:architectures}
 ICS as well as generic control systems consisting of multiple interconnected components can be classified regarding their control system architecture.
 According to \citeauthor{Galloway2013} \cite{Galloway2013} an ICS architecture, or architecture of an ICS network respectively, is typically deeper regarding the levels of hierarchy than a company network.
 Moreover, the technologies including devices as well as the communication links and protocols in an ICS network are often heterogeneous.
 
 In the following sections the main types of control system architectures and topologies are presented.
 While these architectures introduce different and partially incompatible concepts, the approaches can be complementing when used on different levels of hierarchy of a complex ICS network \cite{Stouffer2023}.
+\todo{Add Galloway2013 difference Company vs. ICS networks}
 
 \subsubsection{Supervisory Control \& Data Acquisition (SCADA)}
 Supervisor control and data acquisition (SCADA) is a type of control system architecture.
@@ -100,9 +103,29 @@ A modular PLC generally consists of a power supply, processing modules, I/O modu
 
 \subsection{Network Components}
 \label{sec:networkcomponents}
-\todo{Add Galloway2013 difference Company vs. ICS networks}
-\todo{Add NIST 800-82r3 difference between IT OT System Security}
-\todo{IED, RTU, Data Concentrator \dots}
+An ICS consists of different components providing functionalities for the monitoring and control of industrial processes \cite{Stouffer2023}.
+As mentioned above, the field devices of an ICS interact with a physical environment to achieve an industrial control objective.
+These field devices include different types of sensors and actuators.
+
+As discussed in \autoref{sec:architectures}, ICS network architectures with certain topologies integrate multiple devices into a single complex centralized or distributed ICS system achieving a control objective.
+In order to integrate field devices like sensors and actuators into an ICS network, specialized network devices provide communication services.
+These provided services enable communication between devices at the same field site or to remote devices like a SCADA MTU. 
+
+\subsubsection{Remote Terminal Unit (RTU)}
+A remote terminal unit (RTU) is a network device at the field site that forwards information from connected field devices to other network devices and vice versa \cite{Stouffer2023}.
+As a consequence, an RTU acts as a gateway between field devices and network devices at a higher level of the network hierarchy.
+In other words, an RTU provides an interface for the physical environment to an ICS based on SCADA or DCS.
+According to \citeauthor{Galloway2013} \cite{Galloway2013}, an RTU is usually a special type of PLC. 
+
+\subsubsection{Intelligent Electronic Device (IED)}
+An intelligent electronic device (IED) is a network device with one or more processors capable of sending data to external sources or receiving data respectively \cite{aga2006}.
+As stated by \citeauthor{Stouffer2023} \cite{Stouffer2023}, an IED provides a direct interface for controlling and monitoring of field devices to a supervisory controller.
+Moreover, an IED can be distinguished from an RTU as it is able to act without direct instructions of a supervisory controller.
+
+According to \citeauthor{Stouffer2023}, the control timing requirements have to be considered when designing OT systems.
+Therefore, automated control devices are required to perform necessary control actions as human operators may not be reliable, consistent or fast enough.
+Especially in an ICS with large geographical extent, it may be required to perform computations close to the field devices to reduce or avoid communication latency.
+IEDs can provide the computational performance and features required to realize functionality with control timing requirements at the field.
 
 \subsection{Substations}
 \todo{Introduction: SS is OT, Definition \& Modelling via IEC61850, Availability \& Integrity over Confidentiality, typical communication in a scada system, commonly used protocols, possible attack vectors}
