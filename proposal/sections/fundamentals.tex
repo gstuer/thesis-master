@@ -132,10 +132,22 @@ IEDs can provide the computational performance and features required to realize 
 
 \section{Security}
 \label{sec:security}
-\todo{aka. Informationssicherheit!}
-\todo{Add NIST 800-82r3 difference between IT OT System Security}
+\citeauthor{Eckert2023} \cite{Eckert2023} states that security is a characteristic of an IT system.
+A secure IT system does not allow any system states leading to unauthorized information extraction or manipulation.
+Security in the scope of computer systems is also referred to as information security or IT security.
+
+Within the scope of OT the risks and priorities differ from IT systems \cite{Stouffer2023}.
+While security approaches for IT systems were developed and refined over the years, OT systems were often isolated and widely used proprietary solutions.
+As modern OT systems increasingly integrate IT technology for connectivity and remote access, proprietary solutions get replaced with widely available solutions.
+This leads to less isolation and a requirement for OT security solutions.
+According to \citeauthor{Stouffer2023}, precautions have to be taken when introducing OT security solutions resembling IT solutions due to the differing requirements of OT systems.
+\citeauthor{Stouffer2023} state that considerations for OT security have to include the special requirements regarding timeliness, performance, constrained resources, availability, communication protocols, and risk management.
+Moreover, they mention the physical effect an OT system has on its environment, its typically longer component lifecycle including the differing change management, and the geographical distribution of physical components.
+\todo{Describe NIST 800-82r3 difference between IT OT System Security more clearly}
+
 \subsection{Objective \& Goals}
 \todo{Describe Security Objective as in SecStam, Describe different importance w/in different domains (IT vs OT)}
+
 \subsubsection{Confidentiality}
 \subsubsection{Integrity}
 \subsubsection{Availability}
@@ -154,7 +166,15 @@ IEDs can provide the computational performance and features required to realize 
 
 \section{Safety}
 \label{sec:safety}
-\todo{aka. Funktionssicherheit!}
+While information security as described in \autoref{sec:security} serves the purpose of avoiding unauthorized access and manipulation of the system, the consequences for the environment due to an erroneous state of the system are not considered.
+Therefore, safety represents a characteristic of an IT system that is present if the system cannot transition into a functionally invalid state under possible operating conditions \cite{Eckert2023}.
+As a consequence, a safe system does not pose a threat to its physical environment including its human operators.
+
+As an OT system may be able to directly interact with its physical environment, safety requirements have to be considered in the OT system design \cite{Stouffer2023}.
+According to \citeauthor{Stouffer2023}, OT systems have to detect unsafe states and trigger actions to transition into safe states.
+Moreover, the impact of failures has to be considered and solutions to continue operations may be required.
+In order to continue operations, redundancy or the ability to operate in a degraded state can be used.
+Besides automatic procedures, human oversight and manual supervisory control are essential for safety-critical processes.
 
 \section{Access Control}
 \label{sec:accesscontrol}
