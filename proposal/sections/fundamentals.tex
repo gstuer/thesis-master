@@ -146,17 +146,57 @@ Moreover, they mention the physical effect an OT system has on its environment, 
 \todo{Describe NIST 800-82r3 difference between IT OT System Security more clearly}
 
 \subsection{Objective \& Goals}
-\todo{Describe Security Objective as in SecStam, Describe different importance w/in different domains (IT vs OT)}
+As state by the \citeauthor{nsa2009} \cite{nsa2009}, a security objective is a statement of intent to counter a given threat or enforce a given organizational security policy.
+Besides the overarching security objective of a system, so-called security goals or protection goals define the security requirements of a system.
+As stated by \citeauthor{Eckert2023} \cite{Eckert2023}, literature typically mentions three main security goals for IT systems.
+These goals are referred to as CIA which stands for confidentiality, integrity, and availability.
+The relative importance of a specific security goal depends on the concrete system and its environment.
+Therefore, within the scope of IT systems confidentiality and integrity may be more important than availability.
+The six security goals described by \citeauthor{Eckert2023} including CIA are discussed in the following sections.
+\todo{Source for more important goals?}
+
+According to \citeauthor{Stouffer2023} \cite{Stouffer2023}, the characteristics of an OT system may differ from the characteristics of an IT system.
+As a consequence, the relative importance of specific security goals may differ.
+Especially if the operation of an OT system has an impact on human health and safety or may cause environmental damage, the security goals integrity and availability may be prioritized over confidentiality of information.
 
 \subsubsection{Confidentiality}
+A system has the characteristic of confidentiality if it prevents unauthorized access or extraction of information \cite{Eckert2023}.
+In order to prohibit direct unauthorized access of sensitive information encryption techniques and access control as described in \autoref{sec:accesscontrol} is used.
+
+Moreover, besides preventing the direct access of information in an unauthorized manner, a system must be protected against leakage of data.
+This leakage can occur if multiple programs or processes communicate to provide a certain service.
+According to \citeauthor{Lampson1973} \cite{Lampson1973}, a program that is unable to leak data is called confined.
+The corresponding problem is referred to as confinement problem.
+
 \subsubsection{Integrity}
+A system has the characteristic of integrity if the system prevents undetected unauthorized or accidental manipulation of data \cite{Eckert2023}.
+If a manipulation cannot be prevented due to the environment, for example when data is exchanged using a shared network, the manipulation has to be detected by the system.
+As a consequence, a system with integrity always detects manipulation and never processes manipulated data.
+In order to detect manipulation, cryptographic hash functions can be used to verify the integrity of data.
+
 \subsubsection{Availability}
+A system satisfies the conditions of availability, if authenticated and authorized access to the services and data provided by the system is possible at any time \cite{Eckert2023}.
+An available system has to prevent accidentally and maliciously caused discontinuities and disturbances.
+
 \subsubsection{Authenticity}
+Authenticity is a characteristic of data objects or entities accessing data objects \cite{Eckert2023}.
+A data object or subject is authentic, if it is genuine and trustworthy.
+The authenticity of a subject can be proven using its unique identity and certain characteristics.
+The characteristics to prove the trustworthiness of a subject may include credentials like username and password or biometric information.
+The authenticity of a data object can be proven by verifying the corresponding source and originator.
+
 \subsubsection{Non-Repudiation}
+A system ensures non-repudiation by making it impossible for a subject or author of data respectively to dispute its authorship \cite{Eckert2023}.
+Non-repudiation can be realized within a system using digital signatures and mechanisms to audit and log user activity.
+
 \subsubsection{Privacy}
-\subsubsection{Anonymization}
-\subsubsection{Pseudonymization}
-\todo{see Eckert \& $https://www.ucl.ac.uk/data-protection/guidance-staff-students-and-researchers/practical-data-protection-guidance-notices/anonymisation-and$}
+The term privacy describes the ability of a person to control the usage of personal information \cite{Eckert2023}.
+Moreover, privacy requires special mechanisms for protection of personal information to prevent unauthorized access and fraudulent use.
+Besides techniques to ensure confidentiality and integrity, data anonymization and pseudonymization can be used.
+
+According to \citeauthor{Eckert2023} \cite{Eckert2023}, the term anonymization comprises techniques to change personal data in a certain way to make it impossible to infer the identity of a person from the personal data.
+Pseudonymization is a weaker form of anonymization allowing the processing of personal data as long as the identity of a person cannot be inferred from the personal data directly without the use of additional information.
+\todo{Describe anonym. and pseudonym. with examples.}
 
 \subsection{Levels \& Categories}
 \todo{see SecStammm -> Include security label to "label" entities according to their sec. level}
