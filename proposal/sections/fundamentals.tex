@@ -6,9 +6,9 @@ The terms and concepts defined within this chapter are assumed to be known in th
 
 At the beginning of this chapter in \autoref{sec:itot} and \autoref{sec:ics} the concepts of information technology, operational technology, and industrial control systems are introduced.
 Moreover, this chapter defines the terms information security in \autoref{sec:security} and safety in \autoref{sec:safety} for the scope of the proposed thesis.
-Furthermore, this chapter provides an introduction for access control including the two general types of access control, namely discretionary and mandatory access control.
+Furthermore, this chapter provides an introduction for access control including five access control models.
 The introduction of access control can be found in \autoref{sec:accesscontrol}.
-At the end of this chapter in \autoref{sec:securitypolicymodels} an overview of four different classes of security policy models is presented.
+%At the end of this chapter in \autoref{sec:securitypolicymodels} an overview of four different classes of security policy models is presented.
 \todo{Fundamentals, e.g Access Control (Role, Attribute \dots), Substations (IEDs, IEC61850, GOOSE/MMS/OpenVPN/Ethernet-Based/Analog \dots)}
 
 \section{Information Technology (IT) \& Operational Technology (OT)}
@@ -259,21 +259,42 @@ Moreover, each model has specific advantages and disadvantages.
 \todo{Explain Identification/Authorization/Authentication, see Access Control at $https://en.wikipedia.org/wiki/Information_security$}
 
 \subsection{Discretionary Access Control (DAC)}
+Discretionary access control (DAC) is an object-based access control model \cite{Eckert2023}.
+An owner has to monitor and control the access of other subjects to its own objects.
+The owner grants or denies the access to its own objects individually.
+Dependencies between objects have to be considered and solved for each object manually which may lead to inconsistencies.
+
+The \citeauthor{JTF2020} \cite{JTF2020} defines DAC as an access control policy that enables a subject, that has been granted access to information, to pass the information and its own privileges to other subjects.
+Moreover, a subject may choose the security attributes of newly created objects, change security attributes, and change rules governing access control.
 
 \subsection{Mandatory Access Control (MAC)}
+Mandatory access control (MAC) is a system-based access control model \cite{Eckert2023}.
+MAC specifies system-wide or global access policies.
+MAC can complement DAC and vice-versa.
+If the DAC grants access and the MAC does not, the access request is denied.
+Moreover, if the MAC grants access to an object the DAC can further restrict the access.
 
-\section{Classes of Security Policy Models}
-\label{sec:securitypolicymodels}
+The \citeauthor{JTF2020} \cite{JTF2020} defines MAC as an access control policy uniformly enforced over all subjects and objects within a system.
+Moreover, MAC is considered a non-discretionary access control prohibiting and preventing authorized subjects from passing information and privileges to unauthorized subjects.
 
-\subsection{Access Control Models}
-\subsubsection{Identity-Based Access Control (IBAC)}
-\subsubsection{Role-Based Access Control (RBAC)}
-\subsubsection{Attribute-Based Access Control (ABAC)}
+\subsection{Identity-Based Access Control (IBAC)}
 
-\subsection{Information Flow Models}
-\todo{Introduction + Chinese Wall Model}
+\subsection{Role-Based Access Control (RBAC)}
 
-\subsection{Multi-Level Security Models}
-\todo{Introduction + Bell-La Padula Model}
+\subsection{Attribute-Based Access Control (ABAC)}
 
-\subsection{Non-Interference Models}
+% \section{Classes of Security Policy Models}
+% \label{sec:securitypolicymodels}
+
+% \subsection{Access Control Models}
+% \subsubsection{Identity-Based Access Control (IBAC)}
+% \subsubsection{Role-Based Access Control (RBAC)}
+% \subsubsection{Attribute-Based Access Control (ABAC)}
+
+% \subsection{Information Flow Models}
+% \todo{Introduction + Chinese Wall Model}
+
+% \subsection{Multi-Level Security Models}
+% \todo{Introduction + Bell-La Padula Model}
+
+% \subsection{Non-Interference Models}
