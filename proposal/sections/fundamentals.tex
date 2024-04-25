@@ -278,6 +278,14 @@ The \citeauthor{JTF2020} \cite{JTF2020} defines MAC as an access control policy 
 Moreover, MAC is considered a non-discretionary access control prohibiting and preventing authorized subjects from passing information and privileges to unauthorized subjects.
 
 \subsection{Identity-Based Access Control (IBAC)}
+Identity-based access control (IBAC) is an access control model employing mechanisms that use the identities of subjects to take authorization decisions \cite{Hu2014}.
+In other words, as stated by the \citeauthor{CNSS2022} \cite{CNSS2022}, IBAC represents an access control assigning access authorizations to objects based on the user identity.
+
+An example of an IBAC mechanism capturing the identities of subjects and their access privileges is an access control list (ACL) \cite{Hu2014}.
+Each object is associated with an ACL containing privileges assigned to each subject and a representation of a subject identity like credentials.
+If a subject requests access to a specific object and the presented identity matches the ACL entry, the request is granted or denied as indicated by the ACL entry.
+As a consequence, an ACL makes authorization decision statically based on its entries prior to the access request.
+The static behavior of ACLs leads to the disadvantage that the entries have to be reevaluated and revoked regularly to avoid users accumulating privileges.
 
 \subsection{Role-Based Access Control (RBAC)}
 
