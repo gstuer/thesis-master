@@ -213,7 +213,7 @@ As a consequence, the degree of sensitivity denotes its need for protection.
 
 The security label is the concrete attribute associated with an object or subject indicating its security level or categories \cite{JTF2020}.
 In other words, each object and subject within the system is labeled according to its security levels or categories.
-The security labels of a subject are referred to as clearances, whereas the security labels of an object are referred to as classifications.
+The security labels of a subject are referred to as clearances, whereas the security labels of an object are referred to as classifications \cite{CNSS2022}.
 
 \subsection{Policy}
 According to \citeauthor{Anderson2002} \cite{Anderson2002}, a security policy is a set of documents or high-level specification stating the security goals and properties to be achieved by the security mechanisms of a system.
@@ -235,7 +235,27 @@ Besides automatic procedures, human oversight and manual supervisory control are
 
 \section{Access Control}
 \label{sec:accesscontrol}
-\todo{General introduction what AC is exactly. Including what is a subject, object, policy, label, maybe how the concept (-> "Reference Monitor") looks like.}
+As stated by the \citeauthor{NIST2022} \cite{NIST2022}, access control (AC) is the process of granting and denying specific requests to logical or physical services and resources.
+Based on the type of service or resource guarded by the access control, two types of access control can be distinguished.
+Physical access control supervises access requests of subjects to specific physical facilities like federal buildings or military establishments.
+Logical access control monitors and controls the access and usage of information and related information processing services.
+Within the scope of the thesis proposal, the term access control is going to be used to describe logical access control for IT and OT systems.
+
+In other words, as stated by \citeauthor{Hu2014} \cite{Hu2014}, logical access control protects objects like data, services, executable applications, or network devices from unauthorized operations.
+An operation is performed by a subject on a specific object.
+Operations include access, utilization, manipulation, and deletion of objects.
+An operation may also be referred to as action.
+In order to protect an object, the owners of the objects establish access control policies.
+These policies describe which subjects may perform certain operations on a specific object.
+
+The policies are enforced by logical components referred to as access control mechanisms (ACM).
+\citeauthor{Hu2014} state that the ACM receives the access request from the subject, decides whether the request should be granted or denied, and enforces the decision taken.
+The ACM takes the decision based on a framework called access control model.
+The access control model defines the functionalities and environment including subjects, objects, and rules for the ACM to take and enforce a decision.
+In the following sections, five different access control models are introduced.
+The access control models presented differ regarding their applicability and flexibility.
+Moreover, each model has specific advantages and disadvantages.
+\todo{General introduction how the concept (-> "Reference Monitor") looks like.}
 \todo{Explain Identification/Authorization/Authentication, see Access Control at $https://en.wikipedia.org/wiki/Information_security$}
 
 \subsection{Discretionary Access Control (DAC)}
