@@ -278,7 +278,7 @@ The \citeauthor{JTF2020} \cite{JTF2020} defines MAC as an access control policy 
 Moreover, MAC is considered a non-discretionary access control prohibiting and preventing authorized subjects from passing information and privileges to unauthorized subjects.
 
 \subsection{Identity-Based Access Control (IBAC)}
-Identity-based access control (IBAC) is an access control model employing mechanisms that use the identities of subjects to take authorization decisions \cite{Hu2014}.
+Identity-based access control (IBAC) is a user-centric access control model employing mechanisms that use the identities of subjects to take authorization decisions \cite{Hu2014}.
 In other words, as stated by the \citeauthor{CNSS2022} \cite{CNSS2022}, IBAC represents an access control assigning access authorizations to objects based on the user identity.
 
 An example of an IBAC mechanism capturing the identities of subjects and their access privileges is an access control list (ACL) \cite{Hu2014}.
@@ -288,8 +288,36 @@ As a consequence, an ACL makes authorization decision statically based on its en
 The static behavior of ACLs leads to the disadvantage that the entries have to be reevaluated and revoked regularly to avoid users accumulating privileges.
 
 \subsection{Role-Based Access Control (RBAC)}
+The role-based access control (RBAC) is a task-centric or responsibility-centric access control model \cite{Eckert2023}.
+Instead of assigning privileges to each subject individually, roles for different tasks or responsibilities within the system are created.
+These roles are assigned to subjects explicitly and subjects inherit the privileges of their roles.
+As stated by \citeauthor{Hu2014} \cite{Hu2014}, a role can be seen as a subject attribute evaluated by the ACM to take an access decision.
+
+According to the \citeauthor{JTF2020} \cite{JTF2020}, a role may apply to a single or multiple individuals.
+The privileges of a role reflect the permissions an individual requires within an organization and may be inherited through a role hierarchy.
 
 \subsection{Attribute-Based Access Control (ABAC)}
+The attribute-based access control (ABAC) is an access control model enabling access decisions based on attributes associated with subjects, objects, actions, and the environment of a system \cite{JTF2020}.
+In other words, as stated by \citeauthor{Hu2014} \cite{Hu2014}, in ABAC an access request of a subject to perform operations on objects is decided based on assigned attributes of the subject and object, environment conditions, and a set of policies.
+As a consequence, ABAC is also referred to as aspect-based access control (ABAC) \cite{Anderson2020} or policy-based access control (PBAC).
+
+Within the context of ABAC, an attribute is a characteristic containing information in the form of a name-value pair \cite{Hu2014}.
+A subject attribute describes the characteristics of a person or non-person entity like identity, clearance, or department.
+An object attribute describes the resource the access is requested for including the object classification, type, or owner.
+An operation or action attribute describes the function performed on an object by a subject.
+Operations include create, read, update, delete, or execute.
+The environment conditions or environment attributes describe the context of an access request.
+Environment conditions include dynamic characteristics like time of the day, day of the week, and request location of the subject.
+
+A policy represents a rule based on which an access decision is taken for specific attributes \cite{Hu2014}.
+As a consequence, a policy can be seen as a relationship between subject, object, environment, and operation attributes describing under which circumstances the ACM grants or denies an access request.
+
+According to \citeauthor{Hu2014} \cite{Hu2014}, RBAC and IBAC represent special cases of ABAC regarding their attributes used.
+An advantage of ABAC compared to different access control models is the higher flexibility regarding multifactor policy expression.
+Moreover, ABAC can take access control decisions based on ad-hoc knowledge and knowledge from separate infrastructure.
+This is possible due to ABAC taking decisions at request time by evaluating policies instead of static decision-making as found in IBAC and RBAC.
+As a consequence, pre-provisioning of requesting subjects in a multi-organization environment can be avoided.
+\todo{Describe/Present architcture of XACML based on RFC 2904 including PEP, PDP, and PIP}
 
 % \section{Classes of Security Policy Models}
 % \label{sec:securitypolicymodels}
