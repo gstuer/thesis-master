@@ -30,6 +30,24 @@ We propose extending the concept of authenticated communication within substatio
 Moreover, the proposed approach aims to extend the employed access control from identity-based to attribute-based authorization.
 As a consequence, more complex access control policies can be established within a substation or ICS in general.
 
+%%% Rodriguez2021 - A Fixed-Latency Architecture to Secure GOOSE and Sampled Value Messages in Substation Systems
+An authentication and encryption approach for substation communication using the protocols GOOSE and SV is presented by \citeauthor{Rodriguez2021} \cite{Rodriguez2021}.
+The authors state that GOOSE and SV messages are sensitive to not only availability and integrity but also confidentiality threats.
+Therefore, the authors present a hardware architecture for the encryption and authentication of GOOSE and SV packets at wire-speed conforming to IEC 62351:2020.
+The hardware architecture consists of six sections for packet processing that can be implemented using FPGAs.
+According to \citeauthor{Rodriguez2021}, the architecture design follows three main guidelines to face challenges within substations.
+Firstly, the architecture has to be modular to support future revisions of standards, algorithms, and protocols.
+Secondly, the architecture has to have high performance by making use of techniques like parallelization and pipelining.
+Lastly, the implementation in substation systems must be viable with regard to required area usage and computing power.
+The authors conducted the evaluation of the presented architecture using simulation-based and hardware-based timing results.
+As stated by the authors, the hardware implementation is able to process GOOSE and SV packets with a fixed latency in the order of microseconds.
+Consequently, the authors state that the presented hardware architecture is able to provide integrity and confidentiality without exceeding the maximum delivery time of three milliseconds introduced by IEC 61850 for GOOSE and SV packets.
+
+Besides securing the intra-substation communication based on the GOOSE and SV protocol, the thesis proposal extends the idea of providing integrity, authenticity, and confidentiality to inter-substation and remote communication.
+In order to achieve flexibility and interoperability with regard to different ICS environments including different protocols and algorithms used, the proposed approach is software-based instead of hardware-based.
+Moreover, the proposed approach does not rely on a symmetric-key algorithm but rather asymmetric-key algorithms.
+This is possible due to an increase in processing performance of IT and OT devices nowadays.
+
 \todo{PRIMARY: ABASS-SS Sec Papers BWSyncShare: Describe all 8 as a related work foundation for further papers!}
 \todo{SECONDARY: Review ABASS-ABAC Materials BWSyncShare papers and select fitting papers for rel. work}
 \todo{PAPER: ABAC or RBAC in Substation Context}
