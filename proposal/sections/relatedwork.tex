@@ -4,6 +4,7 @@ In the following section, the related work of the proposed thesis is presented.
 The introduced related work serves as a foundation for the proposed approach presented in \autoref{ch:approach}.
 Moreover, the similarities, differences, and applications of the related work within the scope of the proposed approach are going to be highlighted.
 \todo{Divide related work into sections: Secure communication within substations \& Access control in substations}
+\todo{Alternative division: ICT-based security layer/measures (e.g. enc/auth of messages) \& Domain-based security layer/measures (e.g. intrusion detection \& access control)}
 
 %%% Ishchenko2018 - Secure Communication of Intelligent Electronic Devices in Digital Substations
 An authenticated communication approach for network packets between IEDs and merging units is presented by \citeauthor{Ishchenko2018} \cite{Ishchenko2018}.
@@ -48,6 +49,26 @@ Besides securing the intra-substation communication based on the GOOSE and SV pr
 In order to achieve flexibility and interoperability with regard to different ICS environments including different protocols and algorithms used, the proposed approach is software-based instead of hardware-based.
 Moreover, the proposed approach does not rely on a symmetric-key algorithm but rather asymmetric-key algorithms.
 This is possible due to an increase in processing performance of IT and OT devices nowadays.
+
+%%% Hong2019 - Cyber Attack Resilient Distance Protection and Circuit Breaker Control for Digital Substations
+According to \citeauthor{Hong2019} \cite{Hong2019}, new technologies in substations lead to benefits including enhanced reliability, interoperability, and reduced engineering effort and costs.
+Besides the benefits, new technologies introduce vulnerabilities that may result in security breaches.
+As an example, the authors mention unauthorized remote access to substations through misconfigured security devices, such as firewalls.
+Moreover, the authors state that an adversary might not only intrude the substation from outside but also from the inside.
+From inside the substation, an adversary may inject false measurements into the process bus or gain access to the station bus to inject forged control signals or change the configuration of devices like IEDs.
+In order to protect substations against attacks, \citeauthor{Hong2019} present a domain-based collaborative mitigation approach.
+According to the authors, the goal of the approach is to enable substation devices to collaboratively defend against attacks.
+For this purpose, the authors propose a distributed security domain layer.
+The proposed approach can be employed independently or can complement existing information and communication technology (ICT) security approaches.
+As stated by the authors, ICT-based security approaches such as firewalls and intrusion detection systems rely exclusively on ICT domain knowledge, whereas the proposed approach relies on knowledge of the power system domain.
+As a consequence, new types of attacks as well as errors caused by substation operators can be detected and mitigated.
+\citeauthor{Hong2019} presented three attack scenarios that can be mitigated using the presented domain-based collaborative approach.
+The presented attack scenarios are an accidental or malicious IED configuration change, false sensor data injection, and false device command injection.
+Collaborating devices can block these attacks by validating sensor data and configuration changes based on measurements and metrics as well as predicting consequences of control actions.
+
+The approach presented in the thesis proposal is inspired by the usage of domain-specific knowledge to detect and block attacks.
+The proposed approach uses available domain-specific knowledge to design and implement a substation-specific security system.
+Moreover, the incremental framework of the proposed approach for the system design, threat analysis, and mitigation strategy design is based on the research framework presented by \citeauthor{Hong2019}.
 
 \todo{PRIMARY: ABASS-SS Sec Papers BWSyncShare: Describe all 8 as a related work foundation for further papers!}
 \todo{SECONDARY: Review ABASS-ABAC Materials BWSyncShare papers and select fitting papers for rel. work}
