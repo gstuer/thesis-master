@@ -72,7 +72,25 @@ The proposed approach uses available domain-specific knowledge to design and imp
 Moreover, the incremental framework of the proposed approach for the system design, threat analysis, and mitigation strategy design is based on the research framework presented by \citeauthor{Hong2019}.
 
 \section{Access Control in Substations}
-\todo{10.1109/SEGE.2018.8499306}
+%%% Ruland2018 - Firewall for Attribute-Based Access Control in Smart Grids (10.1109/SEGE.2018.8499306)
+An access control approach driven by ABAC policies for smart grid systems including substations is presented by \citeauthor{Ruland2018} \cite{Ruland2018}.
+As stated by the authors, communication security enables information confidentiality and integrity but does not protect against internal attacks.
+As a consequence, the authors present an access control approach to protect devices from unauthorized access.
+The presented access control approach is realized in the form of an access control firewall.
+The presented approach is based on an architecture that implements a split station bus.
+The split station bus serves the purpose of controlling access requests from devices of the outer bus to devices connected to the inner bus.
+The access control firewall connects the outer and inner station bus by processing access requests of connected devices.
+On the one hand, within the scope of substations, devices connected to the outer station bus include Human Machine Interfaces (HMI), station computers, and WAN gateways.
+On the other hand, the inner station bus connects IEDs and enables low-latency GOOSE or GSSE communication between them.
+The access control firewall enforces access request decisions based on ABAC policies.
+The ABAC policies used in the presented approach are defined, communicated, and evaluated using the eXtensible Access Control Markup Language (XACML) standard \cite{Oasis2013}.
+According to \citeauthor{Ruland2018}, the access request decisions are made by a Policy Decision Point (PDP) that can either be part of the access control firewall or be implemented as an external server on the outer station bus.
+
+The approach presented in the thesis proposal employs ABAC similarly to the access control approach presented by \citeauthor{Ruland2018}.
+Besides employing ABAC to secure the communication between devices on the station bus, the proposed approach controls access requests to any device within the substation that requires access control. 
+For this purpose, not a single but rather distributed ABAC firewall is used.
+As a consequence, the firewall does not represent a communication bottleneck or single point of failure of an ICS in the proposed approach.
+
 \todo{10.1109/ISCC.2013.6754936}
 \todo{10.1109/ICIT.2008.4608609}
 \todo{10.1109/PES.2006.1709324}
