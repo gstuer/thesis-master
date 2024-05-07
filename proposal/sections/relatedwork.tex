@@ -91,7 +91,22 @@ Besides employing ABAC to secure the communication between devices on the statio
 For this purpose, not a single but rather distributed ABAC firewall is used.
 As a consequence, the firewall does not represent a communication bottleneck or single point of failure of an ICS in the proposed approach.
 
-\todo{10.1109/ISCC.2013.6754936}
+%%% Burmester2013 - T-ABAC: An attribute-based access control model for real-time availability in highly dynamic systems (10.1109/ISCC.2013.6754936)
+A real-time capable ABAC approach is presented by \citeauthor{Burmester2013} \cite{Burmester2013}.
+The presented approach identifies the requirements of cyber-physical systems including confidentiality, integrity, and availability.
+In particular, according to the authors, employing ABAC in real-time availability scenarios can be challenging due to the dynamic and large event space determining the attribute values.
+In other words, resources may not be available in time leading to events threatening the system state not being addressed within strict time limits.
+For this purpose, the authors propose an extended ABAC model that is based on real-time attributes to support availability within the strict time constraints of cyber-physical systems.
+A real-time attribute represents an attribute whose value is time-dependent.
+The availability of a time-dependent attribute can be expressed with an availability label that is dynamically determined based on user and system events as well as the context of the requested service.
+An availability label is referred to as priority if it is associated to a subject attribute, congestion for an object attribute, and criticality for an environment attribute.
+The authors demonstrate the real-time ABAC approach for IP multicast in Trusted Computing (TC) compliant networks.
+Therefor, the authors propose a congestion control algorithm based on the real-time availability labels.
+The proposed algorithm guarantees that high priority packets are delivered timely.
+In case of a congestion, lower priority packets may be buffered or dropped to support the real-time requirement of high priority packets.
+As stated by the authors, the extended ABAC model is applicable to substation automation systems and medical cyber-physical systems.
+\todo{Describe similarities, differences, and applications of the paper and the proposed approach.}
+
 \todo{10.1109/ICIT.2008.4608609}
 \todo{10.1109/PES.2006.1709324}
 \todo{10.1016/j.is.2015.01.007}
