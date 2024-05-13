@@ -107,7 +107,28 @@ In case of a congestion, lower priority packets may be buffered or dropped to su
 As stated by the authors, the extended ABAC model is applicable to substation automation systems and medical cyber-physical systems.
 \todo{Describe similarities, differences, and applications of the paper and the proposed approach.}
 
-\todo{10.1016/j.is.2015.01.007}
+%%% Lee2015 - Role-based access control for substation automation systems using XACML (10.1016/j.is.2015.01.007)
+An IEC 61850 and IEC 62351 compliant RBAC approach for substations is presented by \citeauthor{Lee2015} \cite{Lee2015}.
+According to the authors, data collection and analysis are key drivers in smart grids leading to an increased requirement for data security and access control of substation devices.
+In order to address requirements such as confidentiality and integrity, the authors propose an RBAC approach based on IEC 62351 using XACML \cite{Oasis2013}.
+As stated by the authors, the communication within substations can either be classified as session-based TCP/IP client-server communication or Ethernet-based publisher-subscriber communication.
+The presented approach focuses on session-based access control for TCP/IP communication on the station bus of substations.
+As a consequence, the presented RBAC approach can be employed to process MMS communication between IEDs and devices at station level.
+The main contribution of \citeauthor{Lee2015} is an implementation of the presented RBAC approach.
+The presented implementation relies on a role-based client-server architecture.
+The architecture consists of two interconnected client-server pairs, namely an IEC 61850 client and server as well as a RBAC client and server.
+The IEC client sends a request including the client's role to the corresponding IEC server.
+The IEC server responds to permitted IEC client requests.
+Moreover, the IEC server acts as a Policy Enforcement Point (PEP) by delegating requests to an RBAC client.
+The RBAC client transforms an IEC request into an XACML request and sends it to the RBAC server for an access request decision.
+The RBAC server serves the purpose of making access request decisions by evaluating access control policies.
+An IED of a substation incorporates an IEC 61850 server and RBAC client.
+The implementation demonstrates the feasibility of RBAC for substations as prescribed by IEC 62351.
+Furthermore, as stated by the authors, the presented implementation is capable of processing and responding to MMS requests within the 500 millisecond time requirement for type 3 messages (low speed messages) prescribed by IEC 61850-5.
+
+Instead of exclusively relying on roles, the approach presented in the thesis proposal employs ABAC to enable the usage of fine-grained and flexible attribute-based access policies.
+Moreover, the goal of the proposed approach is to secure any communication within substations including type 1 messages (fast messages) and type 2 messages (medium speed messages) as described by IEC 61850-5.
+
 \todo{10.1016/j.jnca.2015.05.023}
 \todo{10.1109/PES.2006.1709324}
 \todo{10.1109/CIT.2006.63}
