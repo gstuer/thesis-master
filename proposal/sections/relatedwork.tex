@@ -130,7 +130,29 @@ Instead of exclusively relying on roles, the approach presented in the thesis pr
 Moreover, the goal of the proposed approach is to secure any communication within substations including type 1 messages (fast messages) and type 2 messages (medium speed messages) as described by IEC 61850-5.
 
 %%% Ma2006 - Constraint-Enabled Distributed RBAC for Subscription-Based Remote Network Services (10.1109/CIT.2006.63)
-\todo{10.1109/CIT.2006.63}
+A distributed RBAC approach for subscription-based remote network services is presented by \citeauthor{Ma2006} \cite{Ma2006a,Ma2006}.
+According to the authors, identity management for IBAC is a significant challenge for resource providers and subscribing institutions due to the high number of potential users in subscribing institutions.
+Furthermore, traditional RBAC approaches require a centralized administration of roles, users, and resources by a single organization.
+As a consequence, traditional RBAC and IBAC approaches do not work well in multi-organization distributed systems such as subscription-based remote network services.
+For this reason, \citeauthor{Ma2006} propose an approach called Distributed Role-based Access Control (DRBAC).
+DRBAC is a distributed authentication and role-based authorization framework.
+As stated by the authors, the distributed authentication is realized by delegating the authentication of users to the corresponding subscribing institutions by issuing authentication delegation certificates.
+The subscribing institutions use their existing authentication infrastructure to authenticate users and create digitally signed service access tickets (SAT).
+The resource provider is able to use the SAT to verify the legitimacy of requests.
+The role-based authorization approach of the DRBAC framework extends traditional RBAC by adding the concept of distributed roles shared by the resource provider and resource subscribers.
+The resource provider specifies the distributed roles and exports them to the subscribing institutions via distributed role certificates.
+The resource subscribers map their local roles to distributed roles to indirectly associate individual subjects with distributed roles.
+Therefore, distributed roles represent a middle layer in the DRBAC framework to abstract from subscriber-specific local roles and individual subject identities.
+As a consequence, DRBAC enables access control policies associated with distributed roles rather than subject identities leading to an increase in scalability and manageability of access control.
+The DRBAC policies are realized in the form of authorization policy certificates.
+Each DRBAC policy is associated to a certain distributed role and contains a domain-dependent resource operation permission.
+Moreover, the authors state that their DRBAC approach supports temporal, contextual, or cardinality constraints to enhance the semantic expressiveness of access control and enable the definition of higher-level organizational policies.
+
+The authentication and authorization approach employed in the thesis proposal is inspired by the concept of delegation presented by \citeauthor{Ma2006}.
+The authors demonstrate the delegation concept in a subscription-based remote network service environment, whereas the proposed approach uses authentication and authorization delegation in substations.
+Moreover, the proposed approach elevates the degree of abstraction of the presented delegation concept by decoupling it from the concrete access control model used.
+The proposed approach realizes authorization delegation via PDPs that make access control decisions for resource requests in place of other devices.
+Furthermore, authentication delegation is used for external resource requests in order to increase scalability and manageability.
 
 %%% Alcaraz2016 - Policy enforcement system for secure interoperable control in distributed Smart Grid systems (10.1016/j.jnca.2015.05.023)
 \todo{10.1016/j.jnca.2015.05.023}
