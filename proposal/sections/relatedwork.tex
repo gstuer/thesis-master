@@ -155,7 +155,26 @@ The proposed approach realizes authorization delegation via PDPs that make acces
 Furthermore, authentication delegation is used for external resource requests in order to increase scalability and manageability.
 
 %%% Alcaraz2016 - Policy enforcement system for secure interoperable control in distributed Smart Grid systems (10.1016/j.jnca.2015.05.023)
-\todo{10.1016/j.jnca.2015.05.023}
+A rule-based RBAC policy enforcement approach for smart grid systems is presented by \citeauthor{Alcaraz2016} \cite{Alcaraz2016}.
+According to the authors, the presented approach integrates into a smart grid system with supernode networking architecture.
+As stated by \citeauthor{Samuel2008} \cite{Samuel2008}, supernodes are servers at fixed locations responsible for handling data flows of a set of subscribers.
+In other words, supernodes represent proxies enabling peer-to-peer connections between devices of dynamic and heterogeneous networks.
+The policy enforcement approach presented by \citeauthor{Alcaraz2016} consists of three execution phases.
+The first phase is dedicated to the authentication.
+During the authentication phase a subject authenticates itself at an identity server within its own infrastructure.
+In case of a successful authentication, the identity server provides the subject with an authentication token.
+During the second phase the authorization takes place.
+In order to acquire an authorization token, the Policy Enforcement Point (PEP) of the subject infrastructure provides the authentication token and the desired type of action on the target object to a Policy Decision Point (PDP).
+The PDP of the presented approach consists of a validation manager and a Policy Decision Manager (PDM).
+The former one validates the authentication token as well as roles and permissions associated with the requesting subject, whereas the latter one evaluates the access request and creates the authorization token if it grants the request.
+Moreover, the presented PDM is based on a rule-based expert system and a context manager for the analysis of the subject, target object, and context of the request.   
+The last phase of the presented approach is referred to as interoperability.
+During the interoperability phase the PEP transparently applies the security policies as indicated by the authorization token and performs the action requested by the subject.
+
+The approach presented in the thesis proposal relies on a system model with an architecture similar to the approach presented by \citeauthor{Alcaraz2016}.
+Moreover, the two approaches resemble in their usage of authentication and authorization delegation as well as their awareness regarding the request context realized via PDP decision-making.
+Nevertheless, the approaches differ in their degree of dependence on specific access control models.
+The approach presented by \citeauthor{Alcaraz2016} depends on the subject-role associations of RBAC for decision-making as prescribed by IEC 62351-8, whereas the proposed approach supports more fine-grained and flexible ABAC policies.
 
 %%% Liu2006 - Study on PMI based access control of substation automation system (10.1109/PES.2006.1709324)
 \todo{10.1109/PES.2006.1709324}
