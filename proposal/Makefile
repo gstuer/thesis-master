@@ -1,5 +1,7 @@
 sources = thesis
 
+cleancompile: clean compile
+
 compile:
 	latexmk -pdf $(sources).tex
 
