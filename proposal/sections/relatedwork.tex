@@ -177,7 +177,15 @@ Nevertheless, the approaches differ in their degree of dependence on specific ac
 The approach presented by \citeauthor{Alcaraz2016} depends on the subject-role associations of RBAC for decision-making as prescribed by IEC 62351-8, whereas the proposed approach supports more fine-grained and flexible ABAC policies.
 
 %%% Liu2006 - Study on PMI based access control of substation automation system (10.1109/PES.2006.1709324)
-\todo{10.1109/PES.2006.1709324}
+An RBAC-based access control approach using Privilege Management Infrastructure (PMI) for IEC 61850 substations is presented by \citeauthor{Liu2006} \cite{Liu2006}.
+The presented access control system is realized in the form of a so-called access security agent component.
+According to the authors, the access security agent handles the authentication of subjects, parses role-based privileges from subject attribute certificates, provides certificate storage, and performs cryptographic computing.
+Besides the access control system architecture, the authors provide a 1-RTT authentication and attribute certificate exchange protocol relying on symmetric as well as asymmetric cryptography.
+Moreover, the authors present an algorithm for access privilege parsing to retrieve roles and access policies from attribute certificates.
+In the presented access control approach the parsed role-based access policies are used to establish identity-based access control matrices.
+An access control matrix of the presented approach controls the access to logical nodes of a substation IED.
+For this purpose, an access control matrix associates subject identities with permitted operations for each individual data object.
+\todo{Describe similarities, differences, and applications of the paper and the proposed approach.}
 
 %%% Elbez2019 - Authentication of GOOSE Messages under Timing Constraints in IEC 61850 Substations (10.14236/ewic/icscsr19.17)
 \todo{10.14236/ewic/icscsr19.17}
