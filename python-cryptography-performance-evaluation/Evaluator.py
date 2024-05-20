@@ -21,5 +21,5 @@ for encryptor in encryptors:
         decryptTime, decryptOutput = encryptor.decryptTimed(encryptOutput)
         encryptTimes.append(encryptTime)
         decryptTimes.append(decryptTime)
-    results.append({"algorithm": encryptor.identifier, "times_milliseconds_encrypt": encryptTimes, "times_milliseconds_decrypt": decryptTimes})
+    results.append({"algorithm": encryptor.identifier, "times_encrypt": encryptTimes, "times_decrypt": decryptTimes})
 print(results)

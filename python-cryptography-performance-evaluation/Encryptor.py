@@ -18,12 +18,12 @@ class Encryptor(Timeable):
         raise NotImplementedError()
 
     def encryptTimed(self, data):
-        time = self.executeTimedMilliseconds(lambda: self.encrypt(data))
+        time = self.executeTimed(lambda: self.encrypt(data))
         output = self.encrypt(data)
         return (time, output)
 
     def decryptTimed(self, data):
-        time = self.executeTimedMilliseconds(lambda: self.decrypt(data))
+        time = self.executeTimed(lambda: self.decrypt(data))
         output = self.decrypt(data)
         return (time, output)
 
