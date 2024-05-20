@@ -4,3 +4,6 @@
 
 # PowerPoint
 ~$*.pptx
+
+# Python
+__pycache__
