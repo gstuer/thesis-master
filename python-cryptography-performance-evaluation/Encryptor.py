@@ -2,6 +2,7 @@ import os
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import rsa,padding
 from cryptography.hazmat.primitives.ciphers import Cipher
+from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 from cryptography.hazmat.primitives.ciphers.algorithms import AES128,AES256
 from cryptography.hazmat.primitives.ciphers.modes import CBC
 
@@ -93,3 +94,31 @@ class AES256_CBC(Encryptor):
     def decrypt(self, data):
         decryptor = self.cipher.decryptor()
         return decryptor.update(data) + decryptor.finalize()
+
+class AES128_GCM(Encryptor):
+    def __init__(self):
+        super().__init__("AES128_GCM")
+        # Initialize cipher with key & vector
+        key = AESGCM.generate_key(bit_length=128)
+        self.cipher = AESGCM(key)
+        self.nonce = os.urandom(12)
+
+    def encrypt(self, data):
+        return self.cipher.encrypt(self.nonce, data, None)
+
+    def decrypt(self, data):
+        return self.cipher.decrypt(self.nonce, data, None)
+
+class AES256_GCM(Encryptor):
+    def __init__(self):
+        super().__init__("AES256_GCM")
+        # Initialize cipher with key & vector
+        key = AESGCM.generate_key(bit_length=256)
+        self.cipher = AESGCM(key)
+        self.nonce = os.urandom(12)
+
+    def encrypt(self, data):
+        return self.cipher.encrypt(self.nonce, data, None)
+
+    def decrypt(self, data):
+        return self.cipher.decrypt(self.nonce, data, None)
