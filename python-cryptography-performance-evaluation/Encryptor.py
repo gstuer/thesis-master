@@ -1,6 +1,9 @@
 import os
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import rsa,padding
+from cryptography.hazmat.primitives.ciphers import Cipher
+from cryptography.hazmat.primitives.ciphers.algorithms import AES128,AES256
+from cryptography.hazmat.primitives.ciphers.modes import CBC
 
 from Timeable import Timeable
 
@@ -58,3 +61,35 @@ class RSA4096_SHA512_OAEP(Encryptor):
 
     def decrypt(self, data):
         return self.privateKey.decrypt(data, self.padding)
+
+class AES128_CBC(Encryptor):
+    def __init__(self):
+        super().__init__("AES128_CBC")
+        # Initialize cipher with key & vector
+        key = os.urandom(16)
+        vector = os.urandom(16)
+        self.cipher = Cipher(AES128(key), CBC(vector))
+
+    def encrypt(self, data):
+        encryptor = self.cipher.encryptor()
+        return encryptor.update(data) + encryptor.finalize()
+
+    def decrypt(self, data):
+        decryptor = self.cipher.decryptor()
+        return decryptor.update(data) + decryptor.finalize()
+
+class AES256_CBC(Encryptor):
+    def __init__(self):
+        super().__init__("AES256_CBC")
+        # Initialize cipher with key & vector
+        key = os.urandom(32)
+        vector = os.urandom(16)
+        self.cipher = Cipher(AES256(key), CBC(vector))
+
+    def encrypt(self, data):
+        encryptor = self.cipher.encryptor()
+        return encryptor.update(data) + encryptor.finalize()
+
+    def decrypt(self, data):
+        decryptor = self.cipher.decryptor()
+        return decryptor.update(data) + decryptor.finalize()

@@ -1,12 +1,12 @@
-from Encryptor import RSA2048_SHA256_OAEP,RSA4096_SHA512_OAEP
+from Encryptor import RSA2048_SHA256_OAEP,RSA4096_SHA512_OAEP,AES128_CBC,AES256_CBC
 import os
 
 RANDOM_VALUE_AMOUNT = 100
-RANDOM_BYTES_PER_VALUE = 64
+RANDOM_BYTES_PER_VALUE = 128
 
 randomValues = [os.urandom(RANDOM_BYTES_PER_VALUE) for x in range(RANDOM_VALUE_AMOUNT)]
 results = []
-encryptors = [RSA2048_SHA256_OAEP(), RSA4096_SHA512_OAEP()]
+encryptors = [RSA2048_SHA256_OAEP(), RSA4096_SHA512_OAEP(), AES128_CBC(), AES256_CBC()]
 for encryptor in encryptors:
     # Dry run to avoid memory influence
     dryRunData = os.urandom(RANDOM_BYTES_PER_VALUE)
