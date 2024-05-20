@@ -28,10 +28,7 @@ class RSA2048_SHA256_OAEP(Encryptor):
     def __init__(self):
         super().__init__("RSA2048_SHA256_OAEP")
         # Initialize keys
-        self.privateKey = rsa.generate_private_key(
-            public_exponent=65537,
-            key_size=2048
-        )
+        self.privateKey = rsa.generate_private_key(public_exponent=65537, key_size=2048)
         self.publicKey = self.privateKey.public_key()
 
         # Initialize hash algorithm & padding
@@ -49,10 +46,7 @@ class RSA4096_SHA512_OAEP(Encryptor):
     def __init__(self):
         super().__init__("RSA4096_SHA512_OAEP")
         # Initialize keys
-        self.privateKey = rsa.generate_private_key(
-            public_exponent=65537,
-            key_size=4096
-        )
+        self.privateKey = rsa.generate_private_key(public_exponent=65537, key_size=4096)
         self.publicKey = self.privateKey.public_key()
 
         # Initialize hash algorithm & padding
