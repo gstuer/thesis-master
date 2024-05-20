@@ -33,6 +33,26 @@ We propose extending the concept of authenticated communication within substatio
 Moreover, the proposed approach aims to extend the employed access control from identity-based to attribute-based authorization.
 As a consequence, more complex access control policies can be established within a substation or ICS in general.
 
+%%% Elbez2019 - Authentication of GOOSE Messages under Timing Constraints in IEC 61850 Substations (10.14236/ewic/icscsr19.17)
+A review of IEC 62351 security recommendations with regard to message authentication and a comparison of viable authentication approaches for IEC 61850 substations is presented by \citeauthor{Elbez2019} \cite{Elbez2019}.
+As stated by the authors, ensuring integrity and authenticity of substation communication is critical.
+Similar to the approach presented by \citeauthor{Ishchenko2018}, the authors focus on Ethernet-based substation communication using the GOOSE protocol.
+In order to ensure integrity and authenticity of substation communication, the authors present two authentication schemes for GOOSE messages.
+Firstly, the authors present the digital signature authentication approach prescribed by IEC 62351.
+This approach is based on asymmetric cryptography using the RSA Probabilistic Signature Scheme with Appendix (RSASSA-PSS) algorithm.
+Secondly, the authors present a keyed Hash Message Authentication Code (HMAC).
+The HMAC approach is based on symmetric cryptography and uses a shared secret for signing and verification of GOOSE messages.
+According to the authors, the HMAC approach requires less computation time.
+On the one hand, this leads to HMAC being a more viable solution for message authentication under strict timing constraints.
+On the other hand, a prior key exchange is required to establish the shared secret for the GOOSE provider and each subscriber.
+\citeauthor{Elbez2019} identify the performance of the presented authentication approaches as key factor for GOOSE communication.
+As a consequence, the authors implemented the authentication approaches and compared the computational times.
+In addition to the presented implementations, computation times from three other papers were taken into account.
+According to \citeauthor{Elbez2019}, the presented computational times show that asymmetric cryptography solutions based on RSA and RSASSA-PSS are not suitable for the timing constraints of GOOSE messages.
+However, the authentication time of the HMAC approach is of the order of microseconds.
+Consequently, as stated by the authors, HMAC is a viable approach for the authentication and integrity of GOOSE messages.
+\todo{Describe similarities, differences, and applications of the paper and the proposed approach.}
+
 %%% Rodriguez2021 - A Fixed-Latency Architecture to Secure GOOSE and Sampled Value Messages in Substation Systems
 An authentication and encryption approach for substation communication using the protocols GOOSE and SV is presented by \citeauthor{Rodriguez2021} \cite{Rodriguez2021}.
 The authors state that GOOSE and SV messages are sensitive to not only availability and integrity but also confidentiality threats.
@@ -186,9 +206,6 @@ In the presented access control approach the parsed role-based access policies a
 An access control matrix of the presented approach controls the access to logical nodes of a substation IED.
 For this purpose, an access control matrix associates subject identities with permitted operations for each individual data object.
 \todo{Describe similarities, differences, and applications of the paper and the proposed approach.}
-
-%%% Elbez2019 - Authentication of GOOSE Messages under Timing Constraints in IEC 61850 Substations (10.14236/ewic/icscsr19.17)
-\todo{10.14236/ewic/icscsr19.17}
 
 \todo{Review ABASS-ABAC Materials BWSyncShare papers and select fitting papers for rel. work}
 \todo{PAPER: Encryption in Substation Context + Signing and Encrpytion in IOT or ICS + Signcryption with low resources}
