@@ -54,11 +54,11 @@
 \begin{frame}{SAS Communication}
     \begin{blueblock}{Station Bus}
         Transport-Layer-based Session-oriented Communication (e.g. MMS Protocol)
-        \\$\rightarrow$ Client-Server Messages (Unicast)
+        \\$\rightarrow$ Client-Server (Unicast)
     \end{blueblock}
     \begin{blueblock}{Process Bus}
         Data-Link-Layer-based Message-oriented Communication (e.g. GOOSE \& SV Protocol)
-        \\$\rightarrow$ Publisher-Subscriber Messages (Broadcast/Multicast)
+        \\$\rightarrow$ Publisher-Subscriber (Broadcast/Multicast)
     \end{blueblock}
     \begin{grayblock}{IEC 61850 Message Types \& Performance Classes}
         Requirements for messages in substations
@@ -67,8 +67,44 @@
     TODO Cite IEC 61850-5 and -8
 \end{frame}
 
-\begin{frame}{Requirements}
-    Security, Interoperability/Compatibility, Performance
+\begin{frame}[allowframebreaks]{Requirements \& Constraints}
+    \begin{columns}
+        \column{.5\textwidth}
+        \begin{blueblock}{Security}
+            \begin{itemize}
+                \item Confidentiality
+                \item Integrity
+                \item Authenticity
+                \item Non-Repudiation
+                \item Least Privilege Principle (PoLP)
+                \item Separation of Duties (SoD)
+                \item Privacy-Preservation
+            \end{itemize}
+            $\rightarrow$ Encryption, Authentication, \& Authorization
+        \end{blueblock}
+        \column{.5\textwidth}
+        \begin{blueblock}{Performance}
+            \begin{itemize}
+                \item Soft \& Firm Real-Time
+                \item CPU \& Memory
+                \item Energy \& Power
+            \end{itemize}
+            $\rightarrow$ Separation of Concerns \& Modularity
+        \end{blueblock}
+        \begin{blueblock}{Interoperability}
+             Existing Inter-/Intra-SAS Protocols \& SCADA Systems
+             \\$\rightarrow$ Compatibility \& Interchangeability
+        \end{blueblock}
+    \end{columns}
+    \framebreak
+    \begin{redblock}{Overarching Requirements for Operational Technology (OT)}
+        \begin{itemize}
+            \item Availability
+            \item Safety
+        \end{itemize}
+        Under any Circumstances: Continuing \& Safe Operation
+        \\$\rightarrow$ Fail-Operational before Fail-Safe
+    \end{redblock}
 \end{frame}
 
 \section{Related Work}
