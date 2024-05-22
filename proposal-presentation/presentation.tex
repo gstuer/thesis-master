@@ -47,11 +47,24 @@
 
 \section{System Model}
 \begin{frame}{Substation Automation System (SAS)}
-    Architecture, Layers, Busses
+    \centering
+	\includegraphics[width=0.8\textwidth]{./figures/substation_architecture.drawio.pdf}
 \end{frame}
 
 \begin{frame}{SAS Communication}
-    Protocols, Message Types, Bus-Relation
+    \begin{blueblock}{Station Bus}
+        Transport-Layer-based Session-oriented Communication (e.g. MMS Protocol)
+        \\$\rightarrow$ Client-Server Messages (Unicast)
+    \end{blueblock}
+    \begin{blueblock}{Process Bus}
+        Data-Link-Layer-based Message-oriented Communication (e.g. GOOSE \& SV Protocol)
+        \\$\rightarrow$ Publisher-Subscriber Messages (Broadcast/Multicast)
+    \end{blueblock}
+    \begin{grayblock}{IEC 61850 Message Types \& Performance Classes}
+        Requirements for messages in substations
+        \\Examples: GOOSE (Type 1A, 3ms), SV (Type 4, 3ms), MMS (Type 2/3/5, 100-10000ms)
+    \end{grayblock}
+    TODO Cite IEC 61850-5 and -8
 \end{frame}
 
 \begin{frame}{Requirements}
