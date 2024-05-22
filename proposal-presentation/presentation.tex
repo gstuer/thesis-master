@@ -40,6 +40,102 @@
 \tableofcontents
 \end{frame}
 
+\section{Motivation}
+\begin{frame}{Motivation}
+    Motivation Figure
+\end{frame}
+
+\section{System Model}
+\begin{frame}{Substation Automation System (SAS)}
+    Architecture, Layers, Busses
+\end{frame}
+
+\begin{frame}{SAS Communication}
+    Protocols, Message Types, Bus-Relation
+\end{frame}
+
+\begin{frame}{Requirements}
+    Security, Interoperability/Compatibility, Performance
+\end{frame}
+
+\section{Related Work}
+\begin{frame}{Related Work}
+    Message Authentication, Asym. Performance Evaluation, BitW- \& HW-Solutions, Access Control
+\end{frame}
+
+\begin{frame}{Research Questions}
+    Research Questions
+\end{frame}
+
+\section{Proposed Approach: SAZE}
+\begin{frame}{SAZE ("Sassy") Approach}
+    Overview: Describe parts Server-Aided Attribute-Based Access Control (Including Authentication and Authorization Delegation) with Zero-RTT Encryption (Asym./Sym.)
+\end{frame}
+
+\subsection{Server-Aided ABAC}
+\begin{frame}{Attribute-Based Access Control (ABAC)}
+    ABAC Definition
+    ABAC Benefit vs. traditional IBAC/RBAC solutions including RT-Attribute like network congestion
+    ABAC Requirements -> Authentication \& Authorization
+\end{frame}
+
+\begin{frame}{Traditional Authentication \& Authorization}
+    Figure with two nodes direct A/A
+\end{frame}
+
+\begin{frame}{Server-Aided ABAC}
+    ABAC Problem -> Performance/Computational Effort/Certificates for Attributes\dots
+    Idea -> Authentication and Authorization Delegation to Server => "Server-Aided ABAC"
+\end{frame}
+
+\begin{frame}{Server-Aided ABAC}
+    Figure with authentication \& authorization triangle 
+\end{frame}
+
+\subsection{Zero-RTT Encryption}
+\begin{frame}{Zero-RTT Encryption}
+    Problem: Enc. in substation -> Initialization vs. Communication Latency
+    Init Latency: Solvable via Zero-RTT solution -> Not straight forward because Ethernet-Based Communication Message-Based not Session-Based
+    Communication Latency: Overhead for Message encryption, transmission etc.
+\end{frame}
+
+\begin{frame}{Zero-RTT Encryption}
+    Problem: Enc. in substation -> Initialization vs. Communication Latency
+    Init Latency: Solvable via Zero-RTT solution -> Not straight forward because Ethernet-Based Communication Message-Based not Session-Based
+    -> Not applicable to non-cacheable authorizations
+    Communication Latency: Overhead for Message encryption, transmission etc.
+\end{frame}
+
+\begin{frame}{Asymmetric Cryptography in SAS}
+    Performance Remarks
+    Problem: Solid foundation for approach/framework but too much effort for low performance devices like MUs/IEDs/RTUs
+    Problem 2: Ethernet-based broadcast communication to multiple devices
+    Solution: Two alternatives SAV \& Cipher Change TLS Style
+\end{frame}
+
+\begin{frame}{TLS-Inspired Cipher Change (Alternative 1)}
+    Optional Untrusted Server-Aided Signing/Verifikation Encryption/Decryption Server
+    Literature to approaches
+    Figure with 2 nodes and PDP where initial OAT exchange is also DH key exchange/cipher change
+\end{frame}
+
+\begin{frame}{Server-Aided Asymmetric Cryptography (Alternative 2)}
+    Optional Untrusted Server-Aided Signing/Verifikation Encryption/Decryption Server
+    Literature to approaches
+    Figure with 2 nodes, PDP, and CryptoHelper
+\end{frame}
+
+\section{Evaluation}
+\begin{frame}{Evaluation Metrics}
+    Econ, Perf, Security
+\end{frame}
+
+\begin{frame}{Implementation}
+    2 Possible Implementations
+    Prototype Network (Testbed) with Raspberry Pi using real equipment or simulate SAS traffic -> Figure
+    Network Simulation
+\end{frame}
+
 \appendix
 \beginbackup
 
