@@ -118,7 +118,13 @@
 
 \section{Proposed Approach: SAZE}
 \begin{frame}{SAZE ("Sassy") Approach}
-    Overview: Describe parts Server-Aided Attribute-Based Access Control (Including Authentication and Authorization Delegation) with Zero-RTT Encryption (Asym./Sym.)
+    \begin{greenblock}{\textbf{S}erver-aided \textbf{A}BAC with \textbf{Z}ero-RTT \textbf{E}ncryption (SAZE)}
+        \begin{itemize}
+            \item Mandatory Access Control \& Encryption for SAS Communication
+            \item Transparent Security for IEC 61850 Devices (e.g. IED \& MU)
+        \end{itemize}
+    \end{greenblock}
+    %Overview: Describe parts Server-Aided Attribute-Based Access Control (Including Authentication and Authorization Delegation) with Zero-RTT Encryption (Asym./Sym.)
 \end{frame}
 
 \begin{frame}{SAZE Components}
@@ -138,8 +144,13 @@
     ABAC Requirements -> Authentication \& Authorization
 \end{frame}
 
-\begin{frame}{Traditional Authentication \& Authorization}
-    Figure with two nodes direct A/A
+\begin{frame}{Authorization, Authentication, \& Access Control}
+    \centering
+	\includegraphics[width=0.9\textwidth]{./figures/access_control_request_traditional.drawio.pdf}
+    \begin{redblock}{Problem}
+        TODO
+        Device responsible for policy management, policy enforcement, access control decisions, authentication of requestor\dots
+    \end{redblock}
 \end{frame}
 
 \begin{frame}{Server-Aided ABAC}
