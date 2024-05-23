@@ -159,7 +159,8 @@
 \end{frame}
 
 \begin{frame}{Server-Aided ABAC}
-    Figure with authentication \& authorization triangle 
+    \centering
+    \includegraphics[width=1.0\textwidth]{./figures/access_control_request_delegation.drawio.pdf}
 \end{frame}
 
 \subsection{Zero-RTT Encryption}
@@ -176,6 +177,7 @@
     Communication Latency: Overhead for Message encryption, transmission etc.
 \end{frame}
 
+\subsection{Asymmetric Cryptography in SAS}
 \begin{frame}{Asymmetric Cryptography in SAS}
     Performance Remarks
     Problem: Solid foundation for approach/framework but too much effort for low performance devices like MUs/IEDs/RTUs
@@ -184,9 +186,17 @@
 \end{frame}
 
 \begin{frame}{TLS-Inspired Cipher Change (Alternative 1)}
-    Optional Untrusted Server-Aided Signing/Verifikation Encryption/Decryption Server
-    Literature to approaches
-    Figure with 2 nodes and PDP where initial OAT exchange is also DH key exchange/cipher change
+    \centering
+    \includegraphics[width=0.5\textwidth]{./figures/access_control_request_delegation.drawio.pdf}
+    \begin{greenblock}{Cipher Change Approach}
+        Exchange Algorithm \& Key Exchange Parameters \dots
+        \begin{itemize}
+            \item Directly (5. \& 9. Step)
+            \item Indirectly via PDP (1. \& 9. Step)
+        \end{itemize}
+        $\rightarrow$ Mandatory Asymmetric Cryptography: Only Steps 1-9
+    \end{greenblock}
+    % Figure with 2 nodes and PDP where initial OAT exchange is also DH key exchange/cipher change
 \end{frame}
 
 \begin{frame}{Server-Aided Asymmetric Cryptography (Alternative 2)}
