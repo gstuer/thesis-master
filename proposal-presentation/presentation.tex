@@ -179,10 +179,23 @@
 
 \subsection{Asymmetric Cryptography in SAS}
 \begin{frame}{Asymmetric Cryptography in SAS}
-    Performance Remarks
-    Problem: Solid foundation for approach/framework but too much effort for low performance devices like MUs/IEDs/RTUs
-    Problem 2: Ethernet-based broadcast communication to multiple devices
-    Solution: Two alternatives SAV \& Cipher Change TLS Style
+    \begin{greenblock}{Advantage: Key Distribution \& Identity Verification}
+        Unsecure Network \& Untrusted Network Participants
+        \\$\rightarrow$ Easy \& Secure Key Distribution
+        % No confidential key material transmitted over unsecure channel
+    \end{greenblock}
+    \begin{redblock}{Disadvantage: Computational Complexity \parencite{Elbez2019,Ishchenko2018}}
+        Example: 1024-Bit RSA Digital Signature vs. 128-Bit HMAC/GMAC
+        \\$\rightarrow$ 10ms/50µs  on RPi2 (1GHz quad-core)
+        \\$\rightarrow$ 0.3ms/4µs on Xeon X3440 (2.53GHz quad-core) 
+    \end{redblock}
+    \begin{redblock}{Disadvantage: Ethernet-Based Multicast Communication in SAS}
+        Message encryption at publisher requires shared private keys for subscribers
+        \\Alternative: Transform unsecure multicast into secure unicast messages
+    \end{redblock}
+    % Performance Remarks
+    % Problem: Solid foundation for approach/framework but too much effort for low performance devices like MUs/IEDs/RTUs
+    % Problem 2: Ethernet-based broadcast communication to multiple devices
 \end{frame}
 
 \begin{frame}{TLS-Inspired Cipher Change (Alternative 1)}
@@ -200,9 +213,18 @@
 \end{frame}
 
 \begin{frame}{Server-Aided Asymmetric Cryptography (Alternative 2)}
-    Optional Untrusted Server-Aided Signing/Verifikation Encryption/Decryption Server
-    Literature to approaches
-    Figure with 2 nodes, PDP, and CryptoHelper
+    \begin{greenblock}{Trusted/Untrusted Cryptography Accelerator (TCA/UCA)}
+        Provides cryptography services to resource-constrained devices
+    \end{greenblock}
+    \begin{blueblock}{TCA/UCA Services}
+        \begin{itemize}
+            \item Server-Aided Verification (SAV) \parencite{Girault2005}
+            \item Proxy Re-Encryption (PRE) \parencite{Green2007}
+            \item Hardware-Based Cryptographic Accelerator
+        \end{itemize}
+    \end{blueblock}
+    % Optional Untrusted Server-Aided Signing/Verifikation Encryption/Decryption Server
+    % Figure with 2 nodes, PDP, and CryptoHelper
 \end{frame}
 
 \section{Evaluation}
