@@ -42,7 +42,7 @@
 
 \section{Motivation}
 \begin{frame}{Motivation}
-    Motivation Figure
+    TODO Motivation Figure
 \end{frame}
 
 \section{System Model}
@@ -228,14 +228,46 @@
 \end{frame}
 
 \section{Evaluation}
-\begin{frame}{Evaluation Metrics}
-    Econ, Perf, Security
+\begin{frame}{Evaluation: Areas \& Metrics}
+    \begin{greenblock}{Security Evaluation}
+        Does SAZE provide security against typical substation adversaries \& attacks?
+        \\$\rightarrow$ Required Assumptions \& Satisfied Security Requirements/Goals
+    \end{greenblock}
+    \begin{greenblock}{Perfomance Evaluation}
+        Is SAZE capable of securing low latency communication in substations?
+        \\$\rightarrow$ Computational Complexity, Congestion Resistance, \& Supported Message Types
+    \end{greenblock}
+    \begin{greenblock}{Economic Evaluation}
+        Is SAZE an economically feasible solution for the construction or retrofitting of substations?
+        \\$\rightarrow$ Retrofitting Capability, Costs, \& Compatibility with Standards
+    \end{greenblock}
+    % Econ, Perf, Security
 \end{frame}
 
-\begin{frame}{Implementation}
-    2 Possible Implementations
-    Prototype Network (Testbed) with Raspberry Pi using real equipment or simulate SAS traffic -> Figure
-    Network Simulation
+\begin{frame}{Evaluation: SAS Network Testbed}
+    % \includegraphics[width=0.5\textwidth]{./figures/implementation_testbed.drawio.pdf}
+    TODO Figure
+    \begin{blueblock}{Discussion}
+        Results $\rightarrow$ Realistic \& Practice-Oriented 
+        \\Repeatability \& Reproducibility $\rightarrow$ Difficult
+    \end{blueblock}
+    % 2 Possible Implementations
+    % Prototype Network (Testbed) with Raspberry Pi using real equipment or simulate SAS traffic -> Figure
+    % Network Simulation
+\end{frame}
+
+\begin{frame}{Evaluation: Network Simulation}
+    \begin{greenblock}{Approach}
+        Implementation of SAZE Protocols in Network Simulator
+        \\$\rightarrow$ Based on existing protocol implementations for simulators (Ethernet, TCP/IP, GOOSE, SV, MMS\dots)
+    \end{greenblock}
+    \begin{blueblock}{Discussion}
+        Results $\rightarrow$ Uncomparable with SAS
+        \\Repeatability \& Reproducibility $\rightarrow$ Easy
+    \end{blueblock}
+    % 2 Possible Implementations
+    % Prototype Network (Testbed) with Raspberry Pi using real equipment or simulate SAS traffic -> Figure
+    % Network Simulation
 \end{frame}
 
 \appendix
