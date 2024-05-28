@@ -139,23 +139,50 @@
 
 \subsection{Server-Aided ABAC}
 \begin{frame}{Attribute-Based Access Control (ABAC)}
-    ABAC Definition
-    ABAC Benefit vs. traditional IBAC/RBAC solutions including RT-Attribute like network congestion
-    ABAC Requirements -> Authentication \& Authorization
+    \begin{greenblock}{Definition \parencite{JTF2020}}
+        Access control model enabling access decisions based on attributes associated with \textbf{subjects}, \textbf{objects}, \textbf{actions}, and the \textbf{environment} of a system
+    \end{greenblock}
+
+    \begin{blueblock}{Discussion \parencite{Hu2014}}
+        \begin{itemize}
+            \item Multifactor Policy Expression $\rightarrow$ Fine-Grained \& Flexible Access Control (cf. RBAC/IBAC)
+            \item Dynamic Policy Evaluation $\rightarrow$ Dynamic Authorization \& Real-Time Attributes
+        \end{itemize}
+    \end{blueblock}
+
+    \begin{grayblock}{Architecture \parencite{Hu2014,Oasis2013}}
+        \begin{itemize}
+            \item Policy Decision Point (PDP) $\rightarrow$ Computes access decisions by evaluating policies
+            \item Policy Enforcement Point (PEP) $\rightarrow$ Enforces policy decisions by controlling access to protected objects
+        \end{itemize}
+    \end{grayblock}
+    % ABAC Definition
+    % ABAC Benefit vs. traditional IBAC/RBAC solutions including RT-Attribute like network congestion
+    % ABAC Requirements -> Authentication \& Authorization
 \end{frame}
 
 \begin{frame}{Authorization, Authentication, \& Access Control}
     \centering
 	\includegraphics[width=0.9\textwidth]{./figures/access_control_request_traditional.drawio.pdf}
     \begin{redblock}{Problem}
-        TODO
-        Device responsible for policy management, policy enforcement, access control decisions, authentication of requestor\dots
+        Too many provider responsibilities
+        \\$\rightarrow$ Policy Management/Decisions/Enforcement, Request Verification, \& Response Creation
     \end{redblock}
 \end{frame}
 
 \begin{frame}{Server-Aided ABAC}
-    ABAC Problem -> Performance/Computational Effort/Certificates for Attributes\dots
-    Idea -> Authentication and Authorization Delegation to Server => "Server-Aided ABAC"
+    \begin{redblock}{Problem: Policy Evaluation Complexity}
+        Fine-grained \& flexible access control relying on dynamic authorization \& ad-hoc evaluation
+        \\$\rightarrow$ Complex policy evaluation in real-time environment
+    \end{redblock}
+
+    \begin{greenblock}{Solution: Server-Aided ABAC}
+        Delegation of authentication, authorization, \& access control to semi-trusted server (PDP)
+        \\$\rightarrow$ Evaluates policies \& makes access decisions on request
+        \\$\rightarrow$ Speedup Techniques: Evaluation Pre-Computation \& Access Decision Caching
+    \end{greenblock}
+    % ABAC Problem -> Performance/Computational Effort/Certificates for Attributes\dots
+    % Idea -> Authentication and Authorization Delegation to Server => "Server-Aided ABAC"
 \end{frame}
 
 \begin{frame}{Server-Aided ABAC}
