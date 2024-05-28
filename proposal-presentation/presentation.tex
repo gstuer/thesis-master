@@ -165,19 +165,24 @@
 
 \subsection{Zero-RTT Encryption}
 \begin{frame}{Zero-RTT Encryption}
-    Problem: Enc. in substation -> Initialization vs. Communication Latency
-    Init Latency: Solvable via Zero-RTT solution -> Not straight forward because Ethernet-Based Communication Message-Based not Session-Based
-    Communication Latency: Overhead for Message encryption, transmission etc.
+    \begin{greenblock}{Concept}
+        Encrypted communication without prior per-session/per-connection handshake
+        \\$\rightarrow$ Communication with Zero Round-Trip-Time (Zero-RTT) Handshake
+    \end{greenblock}
+
+    \begin{blueblock}{Discussion}
+        \begin{itemize}
+            \item Initialization Latency: Zero-RTT
+            \item Communication Latency: Cryptography \& Transmission Overhead
+        \end{itemize}
+        $\rightarrow$ Problem: Non-Cacheable Authorizations \& Message-Based Ethernet Communication
+    \end{blueblock}
+    % Problem: Enc. in substation -> Initialization vs. Communication Latency
+    % Init Latency: Solvable via Zero-RTT solution -> Not straight forward because Ethernet-Based Communication Message-Based not Session-Based
+    % -> Not applicable to non-cacheable authorizations
+    % Communication Latency: Overhead for Message encryption, transmission etc.
 \end{frame}
 
-\begin{frame}{Zero-RTT Encryption}
-    Problem: Enc. in substation -> Initialization vs. Communication Latency
-    Init Latency: Solvable via Zero-RTT solution -> Not straight forward because Ethernet-Based Communication Message-Based not Session-Based
-    -> Not applicable to non-cacheable authorizations
-    Communication Latency: Overhead for Message encryption, transmission etc.
-\end{frame}
-
-\subsection{Asymmetric Cryptography in SAS}
 \begin{frame}{Asymmetric Cryptography in SAS}
     \begin{greenblock}{Advantage: Key Distribution \& Identity Verification}
         Unsecure Network \& Untrusted Network Participants
@@ -191,7 +196,7 @@
     \end{redblock}
     \begin{redblock}{Disadvantage: Ethernet-Based Multicast Communication in SAS}
         Message encryption at publisher requires shared private keys for subscribers
-        \\Alternative: Transform unsecure multicast into secure unicast messages
+        \\$\rightarrow$ Alternative: Transform unsecure multicast into secure unicast messages
     \end{redblock}
     % Performance Remarks
     % Problem: Solid foundation for approach/framework but too much effort for low performance devices like MUs/IEDs/RTUs
