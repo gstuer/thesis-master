@@ -41,8 +41,21 @@
 \end{frame}
 
 \section{Motivation}
-\begin{frame}{Motivation}
+\begin{frame}[allowframebreaks]{Motivation}
     TODO Motivation Figure
+    \framebreak
+    \begin{redblock}{Substation Threats \& Attacks}
+        \begin{itemize}
+            \item Eavesdropping
+            \item Man-in-the-Middle
+            \item Spoofing/Masquerading
+            \item Replay
+            \item Denial of Service $\rightarrow$ Flooding, Broadcast/Multicast Storm, \& Poisoning
+            \item False Data Injection $\rightarrow$ Forged Sensor Data \& Commands, \& Configuration Tampering
+            \item \dots
+        \end{itemize}
+        % $\rightarrow$ Authentication, Authorization, Access Control, \& Encryption of Substation Communication
+    \end{redblock}
 \end{frame}
 
 \section{System Model}
@@ -337,6 +350,24 @@
     % 2 Possible Implementations
     % Prototype Network (Testbed) with Raspberry Pi using real equipment or simulate SAS traffic -> Figure
     % Network Simulation
+\end{frame}
+
+\section{Conclusion}
+\begin{frame}{Conclusion}
+    \begin{redblock}{Problem}
+        Current ICT-based cyberattack mitigation approaches do not fully cover common attacks on SAS
+        \\Example: Reconnaissance via eavesdropping $\rightarrow$ Confidentiality
+        \\Example: Flooding $\rightarrow$ Dynamic authorization based on time-variable attributes
+    \end{redblock}
+    \begin{greenblock}{Idea}
+        Mandatory authentication, authorization, access control, \& encryption of SAS communication
+    \end{greenblock}
+    \begin{blueblock}{Contribution}
+        SAZE security framework\dots
+        \\\dots employing authentication, authorization, access control, \& encryption
+        \\\dots for time-critical SAS communication
+        \\\dots in time-variable SAS environment
+    \end{blueblock}
 \end{frame}
 
 \appendix
