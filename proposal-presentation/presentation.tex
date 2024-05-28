@@ -67,16 +67,16 @@
 
 \begin{frame}{SAS Communication}
     \begin{blueblock}{Station Bus}
-        Transport-Layer-based Session-oriented Communication (e.g. MMS Protocol)
+        Transport Layer-Based Session-Oriented Communication (e.g. MMS Protocol)
         \\$\rightarrow$ Client-Server (Unicast)
     \end{blueblock}
     \begin{blueblock}{Process Bus}
-        Data-Link-Layer-based Message-oriented Communication (e.g. GOOSE \& SV Protocol)
+        Data Link Layer-Based Message-Oriented Communication (e.g. GOOSE \& SV Protocol)
         \\$\rightarrow$ Publisher-Subscriber (Broadcast/Multicast)
     \end{blueblock}
     \begin{grayblock}{IEC 61850 Message Types \& Performance Classes}
         Requirements for messages in substations
-        \\Examples: GOOSE (Type 1A, 3ms), SV (Type 4, 3ms), MMS (Type 2/3/5, 100-10000ms)
+        \\Examples: GOOSE (Type 1A, 3 ms), SV (Type 4, 3 ms), MMS (Type 2/3/5, 100-10000 ms)
     \end{grayblock}
     TODO Cite IEC 61850-5 and -8
 \end{frame}
@@ -125,7 +125,7 @@
 \section{Related Work}
 \begin{frame}{Related Work}
     \begin{blueblock}{IEC 62351 (TODO Citation)}
-        Standard for cybersecurity of energy-related systems \& communication networks
+        Standard for Cybersecurity: Energy-Related Systems \& Communication Networks
         \\$\rightarrow$ Authenticity: Mandatory Symmetric Authentication
         \\$\rightarrow$ Confidentiality: Optional (Non-Recommended) Symmetric Encryption
         \\$\rightarrow$ Access Control: Role-Based Access Control (RBAC) (Access-Token-Driven, 7 Mandatory Roles)
@@ -155,7 +155,7 @@
 \begin{frame}{Research Questions}
     \begin{greenblock}{Attribute-Based Access Control in Substations}
         How can ABAC approaches be employed to secure modern SAS?
-        \\$\rightarrow$ Real-Time Attributes, Ad-hoc Policy Evaluation, \& Speedup Solutions
+        \\$\rightarrow$ Real-Time Attributes, Ad-Hoc Policy Evaluation, \& Speedup Solutions
     \end{greenblock}
 
     \begin{greenblock}{Confidentiality, Integrity \& Authenticity of Communication in Substations}
@@ -164,7 +164,7 @@
     \end{greenblock}
 
     \begin{greenblock}{Real-Time Substation Security Framework}
-        How can authentication, authorization, access control, \& encryption be integrated into a substation architecture and framework able to secure real-time communication?
+        How can authentication, authorization, access control, \& encryption be integrated into a security framework which is able to secure time-critical SAS communication?
         \\$\rightarrow$ System Model, Domain Requirements, Architecture, \& Protocols
     \end{greenblock}
 \end{frame}
@@ -174,7 +174,7 @@
     \begin{greenblock}{\textbf{S}erver-aided \textbf{A}BAC with \textbf{Z}ero-RTT \textbf{E}ncryption (SAZE)}
         \begin{itemize}
             \item Mandatory Access Control \& Encryption for SAS Communication
-            \item Transparent Security for IEC 61850 Devices (e.g. IED \& MU)
+            \item Transparent Security for SAS Devices (e.g. IED \& MU)
         \end{itemize}
     \end{greenblock}
     %Overview: Describe parts Server-Aided Attribute-Based Access Control (Including Authentication and Authorization Delegation) with Zero-RTT Encryption (Asym./Sym.)
@@ -193,7 +193,7 @@
 \subsection{Server-Aided ABAC}
 \begin{frame}{Attribute-Based Access Control (ABAC)}
     \begin{greenblock}{Definition \parencite{JTF2020}}
-        Access control model enabling access decisions based on attributes associated with \textbf{subjects}, \textbf{objects}, \textbf{actions}, and the \textbf{environment} of a system
+        Access control model enabling access decisions based on attributes associated with \textbf{subjects}, \textbf{objects}, \textbf{actions}, and the \textbf{environment} of a system.
     \end{greenblock}
 
     \begin{blueblock}{Discussion \parencite{Hu2014}}
@@ -246,7 +246,7 @@
 \subsection{Zero-RTT Encryption}
 \begin{frame}{Zero-RTT Encryption}
     \begin{greenblock}{Concept}
-        Encrypted communication without prior per-session/per-connection handshake
+        Encrypted communication without prior session/connection handshake
         \\$\rightarrow$ Communication with Zero Round-Trip-Time (Zero-RTT) Handshake
     \end{greenblock}
 
@@ -271,11 +271,11 @@
     \end{greenblock}
     \begin{redblock}{Disadvantage: Computational Complexity \parencite{Elbez2019,Ishchenko2018}}
         Example: 1024-Bit RSA Digital Signature vs. 128-Bit HMAC/GMAC
-        \\$\rightarrow$ 10ms/50µs  on RPi2 (1GHz quad-core)
-        \\$\rightarrow$ 0.3ms/4µs on Xeon X3440 (2.53GHz quad-core) 
+        \\$\rightarrow$ 10 ms vs. 50 µs on RPi2 (1GHz quad-core)
+        \\$\rightarrow$ 0.3 ms vs. 4 µs on Xeon X3440 (2.53GHz quad-core) 
     \end{redblock}
     \begin{redblock}{Disadvantage: Ethernet-Based Multicast Communication in SAS}
-        Message encryption at publisher requires shared private keys for subscribers
+        Message encryption at publisher requires shared private keys for subscribers.
         \\$\rightarrow$ Alternative: Transform unsecure multicast into secure unicast messages
     \end{redblock}
     % Performance Remarks
@@ -290,9 +290,9 @@
         Exchange Algorithm \& Key Exchange Parameters \dots
         \begin{itemize}
             \item Directly (5. \& 9. Step)
-            \item Indirectly via PDP (1. \& 9. Step)
+            \item Indirectly via PDP (1., 7., \& 9. Step)
         \end{itemize}
-        $\rightarrow$ Mandatory Asymmetric Cryptography: Only Steps 1-9
+        $\rightarrow$ Mandatory Asymmetric Cryptography: Only Steps 0-9
     \end{greenblock}
     % Figure with 2 nodes and PDP where initial OAT exchange is also DH key exchange/cipher change
 \end{frame}
@@ -358,7 +358,7 @@
 \section{Conclusion}
 \begin{frame}{Conclusion}
     \begin{redblock}{Problem}
-        Current ICT-based cyberattack mitigation approaches do not fully cover common attacks on SAS
+        Current ICT-based cyberattack mitigation approaches do not fully cover common attacks on SAS.
         \\Example: Reconnaissance via eavesdropping $\rightarrow$ Confidentiality
         \\Example: Flooding $\rightarrow$ Dynamic authorization based on time-variable attributes
     \end{redblock}
@@ -367,9 +367,9 @@
     \end{greenblock}
     \begin{blueblock}{Contribution}
         SAZE security framework\dots
-        \\\dots employing authentication, authorization, access control, \& encryption
+        \\\dots employs mandatory authentication, authorization, access control, \& encryption
         \\\dots for time-critical SAS communication
-        \\\dots in time-variable SAS environment
+        \\\dots in time-variable SAS environment.
     \end{blueblock}
 \end{frame}
 
