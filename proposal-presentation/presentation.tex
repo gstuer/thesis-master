@@ -108,8 +108,32 @@
 \end{frame}
 
 \section{Related Work}
-\begin{frame}{Related Work}
-    Message Authentication, Asym. Performance Evaluation, BitW- \& HW-Solutions, Access Control
+\begin{frame}[allowframebreaks]{Related Work}
+    \begin{blueblock}{IEC 62351 (TODO Citation)}
+        Standard for cybersecurity of energy-related systems \& communication networks
+        \\$\rightarrow$ Authenticity: Mandatory Symmetric Authentication
+        \\$\rightarrow$ Confidentiality: Optional (Non-Recommended) Symmetric Encryption
+        \\$\rightarrow$ Access Control: Role-Based Access Control (RBAC) (Access-Token-Driven, 7 Mandatory Roles)
+    \end{blueblock}
+    \framebreak
+    \begin{blueblock}{Secure Communication in Substations}
+        \begin{itemize}
+            \item Bump-in-the-Wire Security Filter for GOOSE/SV MAC Tagging \& Verification \parencite{Ishchenko2018}
+            \item Domain-Based Collaborative Cyberattack Mitigation Approach \parencite{Hong2019}
+            \item Fixed-Latency Hardware Architecture for GOOSE/SV Encryption \& Authentication \parencite{Rodriguez2021}
+        \end{itemize}
+    \end{blueblock}
+
+    \begin{blueblock}{Access Control in Substations}
+        \begin{itemize}
+            \item ABAC Station Bus Firewall for IED Protection \parencite{Ruland2018}
+            \item Real-Time ABAC for Cyber-Physical Systems \parencite{Burmester2013}
+            \item XACML-Based RBAC Approach for IEC 61850 \& IEC 62351 compliant SAS \parencite{Lee2015}
+            \item Distributed RBAC for Subscription-Based Remote Network Services \parencite{Ma2006} % Constraint-Enabled 
+            \item Rule-Based RBAC Policy Enforcement Architecture \parencite{Alcaraz2016} % for Smart Grid Systems
+        \end{itemize}
+    \end{blueblock}
+    % Message Authentication, Asym. Performance Evaluation, BitW- \& HW-Solutions, Access Control
 \end{frame}
 
 \begin{frame}{Research Questions}
@@ -118,7 +142,7 @@
         \\$\rightarrow$ Real-Time Attributes, Ad-hoc Policy Evaluation, \& Speedup Solutions
     \end{greenblock}
 
-    \begin{greenblock}{Confidentiality \& Authenticity of Communication in Substations}
+    \begin{greenblock}{Confidentiality, Integrity \& Authenticity of Communication in Substations}
         Which cryptographic techniques are suitable for securing internal \& external communication of a SAS?
         \\$\rightarrow$ Asymmetric/Symmetric Cryptography, (Dis-)Advantages, Speedup Solutions, \& Resource Constrained Devices
     \end{greenblock}
