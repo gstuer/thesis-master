@@ -42,21 +42,27 @@
 
 \section{Motivation}
 \begin{frame}{Motivation}
-    TODO Motivation Figure
+    \centering
+	\includegraphics[width=0.8\textwidth]{./figures/sas_intrusion.drawio.pdf}
 \end{frame}
 \begin{frame}{Motivation}
-    \begin{redblock}{Substation Threats \& Attacks}
-        \begin{itemize}
-            \item Eavesdropping
-            \item Man-in-the-Middle
-            \item Spoofing/Masquerading
-            \item Replay
-            \item Denial of Service $\rightarrow$ Flooding, Broadcast/Multicast Storm, \& Poisoning
-            \item False Data Injection $\rightarrow$ Forged Sensor Data \& Commands, \& Configuration Tampering
-            \item \dots
-        \end{itemize}
-        % $\rightarrow$ Authentication, Authorization, Access Control, \& Encryption of Substation Communication
-    \end{redblock}
+    \begin{columns}
+        \column{.4\textwidth}
+        \centering
+        \includegraphics[width=1.0\textwidth]{./figures/sas_intrusion.drawio.pdf}
+        \column{.6\textwidth}
+        \begin{redblock}{Substation Threats \& Attacks}
+            \begin{itemize}
+                \item Eavesdropping
+                \item Man-in-the-Middle
+                \item Spoofing/Masquerading
+                \item Replay
+                \item Denial of Service\\$\rightarrow$ Flooding, Broadcast/Multicast Storm, \& Poisoning
+                \item False Data Injection\\$\rightarrow$ Forged Sensor Data \& Commands, \& Configuration Tampering
+            \end{itemize}
+            % $\rightarrow$ Authentication, Authorization, Access Control, \& Encryption of Substation Communication
+        \end{redblock}
+    \end{columns}
 \end{frame}
 
 \section{System Model}
