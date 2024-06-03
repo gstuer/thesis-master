@@ -1,8 +1,40 @@
 \chapter{Approach}
 \label{ch:approach}
-\todo{Own idea, concept, protocol, evaluation, proof, testing, expected benefits and limitations}
-\todo{SECURITY: Security Goals (CIA + Privacy Preserving)}
+In the following section, we introduce our proposed security approach for substation automation systems.
+With the aim of securing the time-critical communication between resource-constrained devices in a time-variable environment, we propose a security framework for \textbf{S}erver-aided \textbf{A}BAC with \textbf{Z}ero-RTT \textbf{E}ncryption (SAZE).
+The SAZE ("Sassy") security framework is able to prevent and mitigate cyberattacks by providing security mechanisms and enforcing mandatory communication policies.
 
-\todo{IDEA: Wrap packages of arbitrary protocols by encripting payload of ethernet package, and adding a new header with ABAC-SS information. Maybe as HW Middleware? If other endpoint does not support the ABAC-SS wrapping fall back to proofing endpoint via identity provider only.}
+The introduction and discussion of the proposed SAZE approach is organized as follows.
+At the beginning of this chapter in \autoref{sec:approach:system_model}, we discuss the field of application of the proposed approach by introducing a system model and defining its requirements.
+Based on the presented system model and requirements, we introduce the security model, main concepts, and architecture of the SAZE security framework in \autoref{sec:approach:security_model}.
+Finally, we present the proposed evaluation strategies and metrics of the security framework in \autoref{sec:approach:evaluation}.
+%\todo{Own idea, concept, protocol, evaluation, proof, testing, expected benefits and limitations}
+%\todo{SECURITY: Security Goals (CIA + Privacy Preserving)}
+%\todo{IDEA: Wrap packages of arbitrary protocols by encripting payload of ethernet package, and adding a new header with ABAC-SS information. Maybe as HW Middleware? If other endpoint does not support the ABAC-SS wrapping fall back to proofing endpoint via identity provider only.}
+%\todo{PERF EVALUATION: 1. Run approach on network simulator, and 2. Run approach on raspberry pi's representing different roles like server, DER, user \dots}
 
-\todo{PERF EVALUATION: 1. Run approach on network simulator, and 2. Run approach on raspberry pi's representing different roles like server, DER, user \dots}
+\section{System Model}
+\label{sec:approach:system_model}
+\todo{Introduction: Substation Automation System}
+\todo{Architecture: Devices (Resource-Constrained) \& Layers \& Busses inspired by IEC 61850}
+\todo{Communication: Busses \& Message Types (+ Link to External/Internal Requests -> Latency of Transmission) inspired by IEC 61850}
+\todo{System Threats + Adversaries + Attack Trees}
+\todo{Requirements: Security, Performance, Interoperability, Safety, Availability -> Link to different Busses/Devices}
+
+\section{SAZE Security Model \& Framework}
+\label{sec:approach:security_model}
+\todo{Architecture: SAZE Components \& Layers \& Busses}
+\todo{Security Policies -> Link to Requirements \& Attacks}
+\todo{Server-Aided ABAC: is Delegated AC, Evaluation Strategy (With PDP, Ad-Hoc, Time Variable Attributes), Policies (Rule/Pol Types:RT/Static, DSL, appropriate message types for pol. types), Requests(External, Internal), Protocols, Session-Based via OAT (Estab. channel before comm.), Semi-Delegated Authentication, Delegated Authorization}
+\todo{Zero-RTT Encryption: Extension of AC, Signcryption, TCS/UCS\dots}
+\todo{Realization: HW (BITW) or Software Solution}
+
+\section{Evaluation}
+\label{sec:approach:evaluation}
+\todo{Evaluation Areas \& Metrics: Econ., Perf., Sec.}
+\todo{Network Testbed}
+\todo{Network Simulation}
+
+\section{Limitations}
+\label{sec:approach:limitations}
+\todo{Limitations: No intrusion detection but prevention/mitigation, might not be usable for fast messages, not every crypto for every message type}
