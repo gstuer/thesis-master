@@ -16,23 +16,66 @@ Finally, we present the proposed evaluation strategies and metrics of the securi
 \section{System Model}
 \label{sec:approach:system_model}
 \todo{Introduction: Substation Automation System}
-\todo{Architecture: Devices (Resource-Constrained) \& Layers \& Busses inspired by IEC 61850}
+
+\subsection{Architecture}
+\todo{Architecture: Devices (Resource-Constrained) \& Layers \& Buses inspired by IEC 61850}
+\subsubsection{Layers}
+\subsubsection{Buses}
+
+\subsection{Communication}
 \todo{Communication: Busses \& Message Types (+ Link to External/Internal Requests -> Latency of Transmission) inspired by IEC 61850}
+\subsubsection{Message Types}
+\subsubsection{Communication Latency}
+
+\subsection{Threats}
 \todo{System Threats + Adversaries + Attack Trees}
+
+\subsection{Requirements}
 \todo{Requirements: Security, Performance, Interoperability, Safety, Availability -> Link to different Busses/Devices}
+\subsubsection{Security}
+\subsubsection{Safety}
+\subsubsection{Availability}
+\subsubsection{Performance}
+\subsubsection{Interoperability}
 
 \section{SAZE Security Model \& Framework}
 \label{sec:approach:security_model}
+\subsection{SAZE Architecture}
 \todo{Architecture: SAZE Components \& Layers \& Busses}
+
+\subsection{Security Policies}
 \todo{Security Policies -> Link to Requirements \& Attacks}
+
+\subsection{Server-Aided ABAC}
 \todo{Server-Aided ABAC: is Delegated AC, Evaluation Strategy (With PDP, Ad-Hoc, Time Variable Attributes), Policies (Rule/Pol Types:RT/Static, DSL, appropriate message types for pol. types), Requests(External, Internal), Protocols, Session-Based via OAT (Estab. channel before comm.), Semi-Delegated Authentication, Delegated Authorization}
+\subsubsection{Delegated Authorization}
+\todo{Policies (Rule/Pol Types:RT/Static, DSL, appropriate message types for pol. types)}
+\todo{Hierarchic PAPs}
+\subsubsection{Semi-Delegated Authentication}
+\todo{Semi-Delegated Authentication}
+\subsubsection{Delegated Authentication}
+
+\subsubsection{Access Control Protocol}
+\paragraph{Unicast: Client-Server Protocol}
+\paragraph{Multicast \& Broadcast: Publisher-Subscriber Protocol}
+
+\subsection{Zero-RTT Encryption}
 \todo{Zero-RTT Encryption: Extension of AC, Signcryption, TCS/UCS\dots}
+
+\subsection{Realization}
 \todo{Realization: HW (BITW) or Software Solution}
 
 \section{Evaluation}
 \label{sec:approach:evaluation}
-\todo{Evaluation Areas \& Metrics: Econ., Perf., Sec.}
+\subsection{Evaluation Areas \& Metrics}
+\subsubsection{Security Evaluation}
+\subsubsection{Performance Evaluation}
+\subsubsection{Economic Evaluation}
+
+\subsection{Network Testbed}
 \todo{Network Testbed}
+
+\subsection{Network Simulation}
 \todo{Network Simulation}
 
 \section{Limitations}
