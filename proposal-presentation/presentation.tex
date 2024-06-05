@@ -52,7 +52,8 @@
 \begin{frame}{Motivation}
     \centering
 	\includegraphics[width=0.8\textwidth]{./figures/sas_intrusion.drawio.pdf}
-    \nonumberfootnote{IED\dots Intelligent Electronic Device | MU\dots Merging Unit | RTU\dots Remote Terminal Unit | MTU\dots Master Terminal Unit}
+    \nonumberfootnote{IED\dots Intelligent Electronic Device | MU\dots Merging Unit | RTU\dots Remote Terminal Unit}
+    \nonumberfootnote{MTU\dots Master Terminal Unit | ICT\dots Information and Communications Technology}
 \end{frame}
 \begin{frame}{Motivation}
     \begin{columns}
@@ -305,8 +306,8 @@
     \end{greenblock}
     \begin{redblock}{Disadvantage: Computational Complexity \parencite{Elbez2019,Ishchenko2018}}
         Example: 1024-Bit RSA Digital Signature vs. 128-Bit HMAC/GMAC
-        \\$\rightarrow$ 10 ms vs. 50 µs on RPi2 (1GHz quad-core)
-        \\$\rightarrow$ 0.3 ms vs. 4 µs on Xeon X3440 (2.53GHz quad-core) 
+        \\$\rightarrow$ 10 ms vs. 50 µs on RPi2 (1 GHz quad-core)
+        \\$\rightarrow$ 0.3 ms vs. 4 µs on Xeon X3440 (2.53 GHz quad-core) 
     \end{redblock}
     \begin{redblock}{Disadvantage: Ethernet-Based Multicast Communication in SAS}
         Message encryption at publisher requires shared private keys for subscribers.
