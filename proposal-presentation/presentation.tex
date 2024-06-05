@@ -136,7 +136,7 @@
         \\$\rightarrow$ Access Control: Role-Based Access Control (RBAC) (Access-Token-Driven, 7 Mandatory Roles)
     \end{blueblock}
 \end{frame}
-\begin{frame}{Related Work: Secure Communication}
+\begin{frame}{Related Work}
     \begin{blueblock}{Secure Communication in Substations}
         \begin{itemize}
             \item Bump-in-the-Wire Security Filter for GOOSE/SV MAC Tagging \& Verification \parencite{Ishchenko2018}
@@ -144,8 +144,7 @@
             \item Fixed-Latency Hardware Architecture for GOOSE/SV Encryption \& Authentication \parencite{Rodriguez2021}
         \end{itemize}
     \end{blueblock}
-\end{frame}
-\begin{frame}{Related Work: Access Control}
+
     \begin{blueblock}{Role-Based Access Control (RBAC) in Substations}
         \begin{itemize}
             \item XACML-Based RBAC Approach for IEC 61850 \& IEC 62351 compliant SAS \parencite{Lee2015}
@@ -153,11 +152,18 @@
             \item Rule-Based RBAC Policy Enforcement Architecture \parencite{Alcaraz2016} % for Smart Grid Systems
         \end{itemize}
     \end{blueblock}
-
+\end{frame}
+\begin{frame}{Related Work}
     \begin{blueblock}{Attribute-Based Access Control (ABAC) in Substations}
         \begin{itemize}
-            \item ABAC Station Bus Firewall for IED Protection \parencite{Ruland2018}
-            \item Real-Time ABAC for Cyber-Physical Systems \parencite{Burmester2013}
+            \item Firewall for Attribute-Based Access Control in Smart Grids \parencite{Ruland2018}
+            \\$\rightarrow$ Firewall with XACML-Based ABAC Policies
+            \\$\rightarrow$ Outer \& Inner Station Bus
+            \\$\rightarrow$ Unobstructed Fast Messages (e.g. GOOSE)
+            \item T-ABAC: An attribute-based access control model for real-time availability in highly dynamic systems \parencite{Burmester2013}
+            \\$\rightarrow$ Real-Time Attribute Values
+            \\$\rightarrow$ Labeling of High Priority Packets
+            \\$\rightarrow$ Domain-Based Congestion Avoidance
         \end{itemize}
     \end{blueblock}
     % Message Authentication, Asym. Performance Evaluation, BitW- \& HW-Solutions, Access Control
