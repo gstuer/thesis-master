@@ -5,6 +5,14 @@
 
 %% Beispiel-Präsentation
 \documentclass[en]{sdqbeamer} 
+
+%% Footnote without numbering
+\newcommand\nonumberfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
  
 %% Titelbild
 \titleimage{banner_2020_kit}
@@ -44,6 +52,7 @@
 \begin{frame}{Motivation}
     \centering
 	\includegraphics[width=0.8\textwidth]{./figures/sas_intrusion.drawio.pdf}
+    \nonumberfootnote{IED\dots Intelligent Electronic Device | MU\dots Merging Unit | RTU\dots Remote Terminal Unit | MTU\dots Master Terminal Unit}
 \end{frame}
 \begin{frame}{Motivation}
     \begin{columns}
@@ -68,7 +77,8 @@
 \section{System Model}
 \begin{frame}{Substation Automation System (SAS)}
     \centering
-	\includegraphics[width=0.8\textwidth]{./figures/substation_architecture.drawio.pdf}
+	\includegraphics[width=0.7\textwidth]{./figures/substation_architecture.drawio.pdf}
+    \nonumberfootnote{IED\dots Intelligent Electronic Device | MU\dots Merging Unit | HMI\dots Human-Machine Interface}
 \end{frame}
 
 \begin{frame}{SAS Communication}
@@ -199,12 +209,19 @@
 
 \begin{frame}{SAZE Components}
     \centering
-	\includegraphics[width=0.8\textwidth]{./figures/saze_components_color.drawio.pdf}
+	\includegraphics[width=0.75\textwidth]{./figures/saze_components_color.drawio.pdf}
+    \nonumberfootnote{PDP\dots Policy Decision Point | TCS/UCS\dots Trusted/Untrusted Cryptography Server | SAS\dots Substation Automation System}
 \end{frame}
 
 \begin{frame}{SAZE SAS Architecture}
-    \centering
-    \includegraphics[height=0.75\textheight]{./figures/saze_architecture_color.drawio.pdf}
+    \begin{columns}
+        \column{.7\textwidth}
+        \centering
+        \includegraphics[height=0.75\textheight]{./figures/saze_architecture_color.drawio.pdf}
+        \column{.3\textwidth}
+        \footnotesize
+        HMI\dots Human-Machine Interface\\IED\dots Intelligent Electronic Device\\MU\dots Merging Unit\\PDP\dots Policy Decision Point\\TCS\dots Trusted Cryptography Server\\UCS\dots Untrusted Cryptography Server\\WAN\dots Wide Area Network
+    \end{columns}
 \end{frame}
 
 \subsection{Server-Aided ABAC}
