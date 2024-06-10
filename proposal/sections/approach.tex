@@ -6,8 +6,11 @@ The SAZE ("Sassy") security framework is able to prevent and mitigate cyberattac
 
 The introduction and discussion of the proposed SAZE approach is organized as follows.
 At the beginning of this chapter in \autoref{sec:approach:system_model}, we discuss the field of application of the proposed approach by introducing a system model and defining its requirements.
-Based on the presented system model and requirements, we introduce the security model, main concepts, and architecture of the SAZE security framework in \autoref{sec:approach:security_model}.
-Finally, we present the proposed evaluation strategies and metrics of the security framework in \autoref{sec:approach:evaluation}.
+Based on the presented system model and requirements, we introduce the security model and architecture of the SAZE security framework in \autoref{sec:approach:security_model}.
+The two main SAZE concepts server-aided ABAC and zero-RTT encryption are introduced in \autoref{sec:approach:sa} and \autoref{sec:approach:ze}.
+In \autoref{sec:approach:realization} we present the planned realization of the SAZE security framework.
+Subsequently, we present the proposed evaluation strategies and metrics of the security framework in \autoref{sec:approach:evaluation}.
+Finally, in \autoref{sec:approach:limitations} we discuss limitations of the proposed approach.
 %\todo{Own idea, concept, protocol, evaluation, proof, testing, expected benefits and limitations}
 %\todo{SECURITY: Security Goals (CIA + Privacy Preserving)}
 %\todo{IDEA: Wrap packages of arbitrary protocols by encripting payload of ethernet package, and adding a new header with ABAC-SS information. Maybe as HW Middleware? If other endpoint does not support the ABAC-SS wrapping fall back to proofing endpoint via identity provider only.}
@@ -50,6 +53,7 @@ Finally, we present the proposed evaluation strategies and metrics of the securi
 \todo{Security Policies -> Link to Requirements \& Attacks}
 
 \section{Server-Aided ABAC (SA)}
+\label{sec:approach:sa}
 \todo{Server-Aided ABAC: is Delegated AC, Distributed Evaluation Strategy (With PDP, Ad-Hoc, Time Variable Attributes), Policies (Rule/Pol Types:RT/Static, DSL, appropriate message types for pol. types), Requests(External, Internal), Protocols, Session-Based via OAT (Estab. channel before comm.), Semi-Delegated Authentication, Delegated Authorization}
 % \subsubsection{Delegated Authorization}
 % \todo{Policies (Rule/Pol Types:RT/Static, DSL, appropriate message types for pol. types)}
@@ -63,9 +67,11 @@ Finally, we present the proposed evaluation strategies and metrics of the securi
 % \paragraph{Multicast \& Broadcast: Publisher-Subscriber Protocol}
 
 \section{Zero-RTT Encryption (ZE)}
+\label{sec:approach:ze}
 \todo{Zero-RTT Encryption: Extension of AC, Signcryption, TCS/UCS\dots}
 
 \section{Realization}
+\label{sec:approach:realization}
 \todo{Realization: HW (BITW) or Software Solution}
 
 \section{Evaluation}
@@ -83,4 +89,4 @@ Finally, we present the proposed evaluation strategies and metrics of the securi
 
 \section{Limitations}
 \label{sec:approach:limitations}
-\todo{Limitations: No intrusion detection but prevention/mitigation, might not be usable for fast messages, not every crypto for every message type}
+\todo{Limitations: No intrusion detection but prevention/mitigation, might not be usable for fast messages, not every crypto for every message type, possible new attack vectors by adding new components}
