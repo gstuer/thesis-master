@@ -4,7 +4,7 @@ In the following section, we introduce our proposed security approach for substa
 With the aim of securing the time-critical communication between resource-constrained devices in a time-variable environment, we propose a security framework for \textbf{S}erver-aided \textbf{A}BAC with \textbf{Z}ero-RTT \textbf{E}ncryption (SAZE).
 The SAZE ("Sassy") security framework is able to prevent and mitigate cyberattacks by providing security mechanisms and enforcing mandatory communication policies.
 
-The introduction and discussion of the proposed SAZE approach is organized as follows.
+The introduction and discussion of the proposed approach is organized as follows.
 At the beginning of this chapter in \autoref{sec:approach:system_model}, we discuss the field of application of the proposed approach by introducing a system model and defining its requirements.
 Based on the presented system model and requirements, we introduce the security model and architecture of the SAZE security framework in \autoref{sec:approach:security_model}.
 The two main SAZE concepts server-aided ABAC and zero-RTT encryption are introduced in \autoref{sec:approach:sa} and \autoref{sec:approach:ze}.
@@ -18,17 +18,76 @@ Finally, in \autoref{sec:approach:limitations} we discuss limitations of the pro
 
 \section{System Model}
 \label{sec:approach:system_model}
-\todo{Introduction: Substation Automation System}
+In the following sections, we introduce the system model of the SAZE approach.
+The system model serves the purpose of delimiting the scope and area of application of the proposed approach.
+
+The area of application of the proposed approach is the power system domain.
+More specifically, the proposed approach is tailored to the communication and control systems of substations in the electricity grid.
+The communication and control equipment of an ICS is referred to as secondary equipment.
+The entirety of secondary equipment of a substation is referred to as Substation Automation System (SAS) \cite{Padilla2015}.
+Although the proposed approach is tailored to the power system domain and substation environment, its main concepts may also be applied to other ICS with similar requirements and constraints.
 
 \subsection{Architecture}
-\todo{Architecture: Devices (Resource-Constrained) \& Layers \& Buses inspired by IEC 61850}
-\subsubsection{Layers}
-\subsubsection{Buses}
+The architecture of the presented system model and SAS respectively is based on the IEC 61850 standard \cite{IEC61850P5}.
+The presented system model architecture consists of four layers called network level, station level, bay level, and process level.
+The process, bay, and station level represent the internal layers of a SAS architecture.
+The SAS architecture containing the process, bay, and station level as well as the station and process bus further discussed in \autoref{sec:approach:system_model:communication} is shown in \autoref{fig:substation_architecture}.
+The network level represents a SAS-external layer to integrate multiple SAS instances into a comprehensive power system.
+Each of the four layers consists of different devices and provides different control and automation functions:
+\begin{enumerate}
+    \item Process Level: The process level provides functions to interact with the physical process via sensors and actuators.
+    As a consequence, SAS devices located at the process level provide interfaces to the physical process.
+    In other words, devices located at the process level transform analog measurement signals or control signals into digital values and vice versa.
+    Devices restricted to the transformation and provision of measurement and control values are referred to as Merging Units (MU).
+    Moreover, IEDs can be employed to combine MU functions with higher-level functions such as protection or communication tasks.
+
+    \item Bay Level: The bay level provides common functions of so-called bays of a SAS.
+    As stated by the \citeauthor{IEC61850P5} \cite{IEC61850P5}, a bay represents a closely connected subpart of a substation with common functionality.
+    The devices at bay level supervise the operation of lower-level devices of a SAS bay.
+    Consequently, a supervising bay level device is referred to as bay controller or bay protection.
+
+    \item Station Level: The station level provides functions related to the substation as a whole.
+    Therefore, the station level comprises devices required for on-site and remote monitoring and control of the substation.
+    Devices at the station level include Human Machine Interfaces (HMI) for substation operators as well as Wide Area Network (WAN) gateways like SCADA RTUs.
+
+    \item Network Level: The network level provides higher-level functions exceeding the scope of a single SAS.
+    The network level devices include supervisory monitoring and control devices like SCADA MTUs.
+\end{enumerate}
+\begin{figure}
+	\centering
+	\includegraphics[width=1.0\linewidth]{figures/substation_architecture.drawio.pdf}
+	\caption{The internal SAS architecture consisting of devices located on three layers called system level, bay level, and process level connected via station bus and process bus.}
+	\label{fig:substation_architecture}
+\end{figure}
 
 \subsection{Communication}
-\todo{Communication: Busses \& Message Types (+ Link to External/Internal Requests -> Latency of Transmission) inspired by IEC 61850}
+\label{sec:approach:system_model:communication}
+In the following, we discuss the communication between devices of the presented system model.
+For this purpose, we firstly identify different communication characteristics based on which communication relationships and messages can be classified.
+Secondly, we define three messages types for time-critical ICS and SAS communication.
+Lastly, we discuss the bus-based device interactions occurring in the above-mentioned four layer system model.
+
+\subsubsection{Classification Characteristics}
+The communication relationships between devices can be classified using different communication characteristics.
+Topological communication characteristics can be used to classify the device relationships based on their relative or absolute location within the system model.
+Accordingly, communication can either occur between devices on the same layer or different layers of the system model.
+Communication on the same layer of the system model is referred to as horizontal communication, whereas communication between devices on different layers is referred to as vertical communication.
+Moreover, communication can occur between devices of the same or different subsystems.
+Communication between devices of the same subsystem is classified as (subsystem) internal communication, whereas communication relationships including an external device are classified as (subsystem) external communication.
+
+Besides the topology-based classification, communication relationships can be classified based on their continuity.
+Continuous, session-oriented, or stateful communication requires an initial session establishment between the involved devices.
+While the first message exchange requires additional initialization overhead, subsequent latencies might benefit from the established communication session.
+Discontinuous, message-oriented, or stateless communication enables communication without initial overhead for the involved devices.
+Consequently, discontinuous communication does not lead to latency emerging from session initialization and management.
+
+Since communication in ICS and SAS is time-critical, communication relationships can be classified based on their communication latency requirements.
+\todo{\dots}
+
 \subsubsection{Message Types}
-\subsubsection{Communication Latency}
+The defined message types of the presented system model are based on the message types and performance classes of the IEC 61850 standard \cite{IEC61850P5}.
+
+\subsubsection{Communication Buses}
 
 \subsection{Threats}
 \todo{System Threats + Adversaries + Attack Trees}
@@ -89,4 +148,4 @@ Finally, in \autoref{sec:approach:limitations} we discuss limitations of the pro
 
 \section{Limitations}
 \label{sec:approach:limitations}
-\todo{Limitations: No intrusion detection but prevention/mitigation, might not be usable for fast messages, not every crypto for every message type, possible new attack vectors by adding new components}
+\todo{Limitations: No intrusion detection but prevention/mitigation, might not be usable for fast messages, not every crypto for every message type, possible new attack vectors by adding new components, applicability to other ics domains, time protocol interference}
