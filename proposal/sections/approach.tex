@@ -74,6 +74,7 @@ Accordingly, communication can either occur between devices on the same layer or
 Communication on the same layer of the system model is referred to as horizontal communication, whereas communication between devices on different layers is referred to as vertical communication.
 Moreover, communication can occur between devices of the same or different subsystems.
 Communication between devices of the same subsystem is classified as (subsystem) internal communication, whereas communication relationships including an external device are classified as (subsystem) external communication.
+Furthermore, a communication relationship is not limited to a single receiver (unicast) but rather a group of devices (multicast) or all devices (broadcast) may receive a sender's message.
 
 Besides the topology-based classification, communication relationships can be classified based on their continuity.
 Continuous, session-oriented, or stateful communication requires an initial session establishment between the involved devices.
@@ -81,16 +82,59 @@ While the first message exchange requires additional initialization overhead, su
 Discontinuous, message-oriented, or stateless communication enables communication without initial overhead for the involved devices.
 Consequently, discontinuous communication does not lead to latency emerging from session initialization and management.
 
-Since communication in ICS and SAS is time-critical, communication relationships can be classified based on their communication latency requirements.
-\todo{\dots}
+Since communication in ICS and SAS is time-critical, communication relationships can be classified based on their communication latency constraints.
+Within the scope of the proposed approach, we define communication latency as sum of processing times and transmission times required to exchange information between involved devices.
+The transmission time is the time required to transmit a message over a network link with a specific throughput.
+The processing time represents the time required for a device to send, forward, or receive a message or packet.
+For intermediate network devices like routers and switches the processing time depends on queuing delay and forwarding delay.
+For the sender and receiver of a message or packet the processing time consists of enqueue and dequeue delays, cryptographic overhead, and message coding.
+As a consequence, the communication latency represents the time required for a message from being put into the sending buffer at the sender to the point when the message is taken from the receiving buffer at the receiver.
 
 \subsubsection{Message Types}
-The defined message types of the presented system model are based on the message types and performance classes of the IEC 61850 standard \cite{IEC61850P5}.
+The defined message types of the presented system model are based on the classification characteristics defined above and on the message types and performance classes of the IEC 61850 standard \cite{IEC61850P5}.
+The defined message type as well as their typical communication topology, continuity, and latency constraints are shown in \autoref{tab:message_types}.
+
+The low latency message type corresponds to the IEC 61850 \cite{IEC61850P5} message types 1A and 4.
+The low latency messages are used for SAS-internal exchange of sampled values and state values.
+In IEC 61850 compliant substations the sampled values are exchanged using the Sampled Values (SV) protocol between MUs and IEDs (vertical) or between MUs (horizontal).
+Moreover, state values and state changes are exchanged horizontally between IEDs using the Generic Object Oriented Substation Events (GOOSE) protocol.
+
+The medium latency message type corresponds to the IEC 61850 message types 1B and 2.
+The medium latency messages are used for internal and external as well as horizontal and vertical session-based client-server communication.
+In IEC 61850 substations IEDs use the Manufacturing Message Specification (MMS) protocol to communicate with other IEDs and higher-level devices.
+
+The high latency message type corresponds to the IEC 61850 message types 3 and 5.
+This message type is used for HMI interactions as well as non-time-critical operations like file transfers.
+In IEC 61850 substations MMS and SCADA protocols are used for high latency communication.
+\begin{table}
+    \centering
+    \caption{Message types of the presented system model classified with regard to their topology, continuity, and latency constraints of the communication relationships.}
+    \label{tab:message_types}
+    \begin{tabular}{l c c c c c}
+    \toprule
+    \multicolumn{1}{c}{Message Type} & \multicolumn{3}{c}{Topology} & Continuity & Latency\\
+    & Externality & Verticality & Receiver & & Constraint\\
+    \midrule
+    Low Latency & Internal & Horiz./Vert. & Multicast & Message-Based & 3 ms\\
+    Medium Latency & Int./Ext. & Horiz./Vert. & Unicast & Session-Based & 20-100 ms\\
+    High Latency & External & Vert. & Unicast & Session-Based & 500 ms\\
+    \bottomrule
+    \end{tabular}
+    \end{table}
 
 \subsubsection{Communication Buses}
+The presented system model uses a bus-based approach for message exchange between the system architecture layers.
+The approach as well as the two concrete buses used are based on the IEC 61850 standard \cite{IEC61850P5}.
+The first bus is referred to as process bus and is located between the bay level and the process level.
+The process bus is used for time-critical message-based publisher-subscriber communication.
+Consequently, GOOSE and SV are the IEC 61850 protocols used for process bus communication.
 
-\subsection{Threats}
-\todo{System Threats + Adversaries + Attack Trees}
+The second bus is referred to as station bus and is located between the station level and the bay level.
+The station bus connects IEDs at the bay level with each other as well as with gateways and interfaces at the station level.
+The communication at the station bus is typically session-based unicast communication with less strict time requirements compared to the process bus.
+
+%\subsection{Threats}
+%\todo{System Threats + Adversaries + Attack Trees}
 
 \subsection{Requirements}
 \todo{Requirements: Security, Performance, Interoperability, Safety, Availability -> Link to different Busses/Devices}
