@@ -137,12 +137,43 @@ The communication at the station bus is typically session-based unicast communic
 %\todo{System Threats + Adversaries + Attack Trees}
 
 \subsection{Requirements}
-\todo{Requirements: Security, Performance, Interoperability, Safety, Availability -> Link to different Busses/Devices}
-\subsubsection{Security}
-\subsubsection{Safety}
-\subsubsection{Availability}
-\subsubsection{Performance}
-\subsubsection{Interoperability}
+In the following, the requirements of the presented system model are defined and introduced.
+Based on the identified requirements functional and non-functional characteristics for the proposed security framework can be derived and evaluated.
+Each system model requirement is associated with one of the five categories security (RQ.SEC), safety (RQ.SAFE), availability (RQ.AVA), performance (RQ.PERF), and interoperability (RQ.INT).
+\todo{Add forward/backward secrecy and more.}
+
+%\subsubsection{Security}
+\paragraph{RQ.SEC.1 Confidentiality}
+The system prohibits unauthorized access to sensitive information stored on devices and payload of messages exchanged within the system and between systems.
+\paragraph{RQ.SEC.2 Integrity}
+The system detects unauthorized manipulation of stored and exchanged data.
+\paragraph{RQ.SEC.3 Authenticity}
+The system can proof the authenticity and trustworthiness of subjects and data objects present in the system.
+\paragraph{RQ.SEC.4 Non-Repudiation}
+The system ensures that a subject cannot dispute its authorship of data and requests.
+\paragraph{RQ.SEC.5 Least Privilege Principle (PoLP)}
+The system ensures that each subject has the least number of privileges necessary to perform its function \cite{JTF2020}.
+\paragraph{RQ.SEC.6 Separation of Duties (SoD)}
+The system ensures that no subject has enough privileges to be able to misuse the system without collusion \cite{JTF2020}.
+\paragraph{RQ.SEC.7 Privacy-Preservation}
+\todo{TODO: Does this conflict with the idea of proofing the origin of a request? In other words, is it possible to check if the subject who requested the access decision is still the same subject who used it in its request?}
+
+%\subsubsection{Safety}
+\paragraph{RQ.SAFE.1 Safe Operation}
+\paragraph{RQ.SAFE.2 Fail-Safe}
+
+%\subsubsection{Availability}
+\paragraph{RQ.AVA.1 Continuing Operation}
+\paragraph{RQ.AVA.2 Fail-Operational}
+
+%\subsubsection{Performance}
+\paragraph{RQ.PERF.1 Communication Latency}
+\paragraph{RQ.PERF.2 Computational Complexity}
+\paragraph{RQ.PERF.3 Energy \& Power Saving}
+
+%\subsubsection{Interoperability}
+\paragraph{RQ.INT.1 Compatibility}
+\paragraph{RQ.INT.2 Interchangeability}
 
 \section{Security Model: Server-Aided ABAC with Zero-RTT Encryption (SAZE)}
 \label{sec:approach:security_model}
@@ -192,4 +223,4 @@ The communication at the station bus is typically session-based unicast communic
 
 \section{Limitations}
 \label{sec:approach:limitations}
-\todo{Limitations: No intrusion detection but prevention/mitigation, might not be usable for fast messages, not every crypto for every message type, possible new attack vectors by adding new components, applicability to other ics domains, time protocol interference}
+\todo{Limitations: No intrusion detection but prevention/mitigation, might not be usable for fast messages, not every crypto for every message type, possible new attack vectors by adding new components, applicability to other ics domains, time protocol interference, physical access control -> future work}
