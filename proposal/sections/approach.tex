@@ -197,7 +197,39 @@ The system ensures that no subject has enough privileges to be able to misuse th
 
 \section{Certificateless Attribute-Based Server-Aided Authentication (CASA)}
 \label{sec:approach:casa}
-\todo{CASA}
+In the following section, we present the \textbf{C}ertificateless \textbf{A}ttribute-Based \textbf{S}erver-Aided \textbf{A}uthentication (CASA) concept.
+CASA is a certificateless public key cryptography (CL-PKC) approach.
+The goal of CASA is to provide cryptographic algorithms and schemes for key generation, key distribution, signing, and verification.
+Moreover, the goal of CASA is to support more abstract cybersecurity mechanisms like authorization and access control of the CASC-SAS approach.
+As a consequence, CASA represents the foundation of the employed CASC-SAS cybersecurity mechanisms.
+
+\todo{Describe difference to ID-Based, CL, PKI\dots}
+\todo{General introduction in CL concept, KGC, attribute-based, server-aided idea}
+
+\subsection{Signature Scheme}
+The definition of the CASA signature scheme is based on the definition of digital signature schemes provided by \citeauthor{Boneh2023} \cite{Boneh2023}.
+Moreover, as CASA is a CL-PKC approach, the signature scheme is based on the schemes and concepts presented by \citeauthor{AlRiyami2003} \cite{AlRiyami2003}.
+
+The CASA signature scheme $S_{CASA} = (G,S,V)$ is a triple of algorithms.
+The algorithms comprise a key generation algorithm $G$, a signing algorithm $S$, and a verification algorithm $V$.
+In the following sections, the specific algorithms are further discussed.
+
+\subsubsection{Key Generation Algorithm $G$}
+The key generation algorithm $(pk, sk) \leftarrow G()$ takes no input and outputs a private signing key $sk$ and public verification key $pk$.
+\todo{Add steps for CL-PKC like Setup, Partial Key Extract\dots}
+
+\subsubsection{Signing Algorithm $S$}
+The signing algorithm $\sigma \leftarrow S(sk, m)$ takes the private signing key $sk$ and message $m$ as input, and outputs the signature $\sigma$.
+In other words, the signing algorithm $S$ is used by the sender of a message $m$ to generate a digital signature $\sigma$.
+The generated digital signature $\sigma$ is associated with the message $m$ and the sender's private signing key $sk$.
+\todo{Introduce Server-Aided Signing Techniques (Server-Partial-Signing, Sender-Signing) and Online/Offline Algorithm Steps.}
+
+\subsubsection{Verification Algorithm $V$}
+The verification algorithm $\delta \in \{accept, reject\} \leftarrow V(pk, m, \sigma)$ takes the public verification key $pk$, the message $m$, and the signature $\sigma$ as input.
+The algorithm outputs the verification decision $\delta$ which is either $accept$ or $reject$.
+In other words, the verification algorithm $V$ is used by the receiver to verify a received message $m$ based on an appended signature $\sigma$.
+As $\sigma$ is associated with the message $m$ and the sender's private signing key $sk$, it allows the receiver to verify the integrity and authenticity of the received message $m$ using the sender's public verification key $pk$.
+\todo{Introduce Server-Aided Verification, \& 2 Sub-Algos for Server-Partial-Verification \& Receiver-Verification}
 
 \section{Server-Aided ABAC (SABAC)}
 \label{sec:approach:sabac}
