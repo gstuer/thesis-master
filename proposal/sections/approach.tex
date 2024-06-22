@@ -1,15 +1,15 @@
 \chapter{Approach}
 \label{ch:approach}
 In the following section, we introduce our proposed security approach for substation automation systems.
-With the aim of securing the time-critical communication between resource-constrained devices in a time-variable environment, we propose a security framework for \textbf{S}erver-aided \textbf{A}BAC with \textbf{Z}ero-RTT \textbf{E}ncryption (SAZE).
-The SAZE ("Sassy") security framework is able to prevent and mitigate cyberattacks by providing security mechanisms and enforcing mandatory communication policies.
+With the aim of securing the time-critical communication between resource-constrained devices in a time-variable environment, we propose a \textbf{C}ertificateless \textbf{A}ttribute-Based \textbf{S}erver-Aided \textbf{C}ryptosystem for \textbf{S}ubstation \textbf{A}utomation \textbf{S}ystems (CASC-SAS).
+The CASC-SAS cryptography and cybersecurity approach is able to prevent and mitigate cyberattacks by providing security schemes and mechanisms, and enforcing mandatory communication policies.
 
 The introduction and discussion of the proposed approach is organized as follows.
 At the beginning of this chapter in \autoref{sec:approach:system_model}, we discuss the field of application of the proposed approach by introducing a system model and defining its requirements.
-Based on the presented system model and requirements, we introduce the security model and architecture of the SAZE security framework in \autoref{sec:approach:security_model}.
-The two main SAZE concepts server-aided ABAC and zero-RTT encryption are introduced in \autoref{sec:approach:sa} and \autoref{sec:approach:ze}.
-In \autoref{sec:approach:realization} we present the planned realization of the SAZE security framework.
-Subsequently, we present the proposed evaluation strategies and metrics of the security framework in \autoref{sec:approach:evaluation}.
+Based on the presented system model and requirements, we introduce the security model of the CASC-SAS approach in \autoref{sec:approach:security_model}.
+The two main CASC-SAS concepts, its cryptographic scheme and server-aided access control, are introduced in \autoref{sec:approach:casa} and \autoref{sec:approach:sabac}.
+In \autoref{sec:approach:realization} we present the planned realization of the CASC-SAS approach.
+Subsequently, we present the proposed evaluation strategies and metrics of the approach in \autoref{sec:approach:evaluation}.
 Finally, in \autoref{sec:approach:limitations} we discuss limitations of the proposed approach.
 %\todo{Own idea, concept, protocol, evaluation, proof, testing, expected benefits and limitations}
 %\todo{SECURITY: Security Goals (CIA + Privacy Preserving)}
@@ -18,10 +18,10 @@ Finally, in \autoref{sec:approach:limitations} we discuss limitations of the pro
 
 \section{System Model}
 \label{sec:approach:system_model}
-In the following sections, we introduce the system model of the SAZE approach.
+In the following sections, we introduce the system model of the CASC-SAS approach.
 The system model serves the purpose of delimiting the scope and area of application of the proposed approach.
 
-The area of application of the proposed approach is the power system domain.
+The area of application of the proposed approach consists of ICSs in the power system domain.
 More specifically, the proposed approach is tailored to the communication and control systems of substations in the electricity grid.
 The communication and control equipment of an ICS is referred to as secondary equipment.
 The entirety of secondary equipment of a substation is referred to as Substation Automation System (SAS) \cite{Padilla2015}.
@@ -32,7 +32,7 @@ The architecture of the presented system model and SAS respectively is based on 
 The presented system model architecture consists of four layers called network level, station level, bay level, and process level.
 The process, bay, and station level represent the internal layers of a SAS architecture.
 The SAS architecture containing the process, bay, and station level as well as the station and process bus further discussed in \autoref{sec:approach:system_model:communication} is shown in \autoref{fig:substation_architecture}.
-The network level represents a SAS-external layer to integrate multiple SAS instances into a comprehensive power system.
+The network level represents a SAS-external layer to integrate multiple SAS instances and supervisory controllers into a comprehensive power system.
 Each of the four layers consists of different devices and provides different control and automation functions:
 \begin{enumerate}
     \item Process Level: The process level provides functions to interact with the physical process via sensors and actuators.
@@ -56,16 +56,16 @@ Each of the four layers consists of different devices and provides different con
 \begin{figure}
 	\centering
 	\includegraphics[width=1.0\linewidth]{figures/substation_architecture.drawio.pdf}
-	\caption{The internal SAS architecture consisting of devices located on three layers called system level, bay level, and process level connected via station bus and process bus.}
+	\caption{The internal SAS architecture consisting of three layers called system level, bay level, and process level which are connected via station bus and process bus.}
 	\label{fig:substation_architecture}
 \end{figure}
 
 \subsection{Communication}
 \label{sec:approach:system_model:communication}
 In the following, we discuss the communication between devices of the presented system model.
-For this purpose, we firstly identify different communication characteristics based on which communication relationships and messages can be classified.
-Secondly, we define three messages types for time-critical ICS and SAS communication.
-Lastly, we discuss the bus-based device interactions occurring in the above-mentioned four layer system model.
+For this purpose, we identify different communication characteristics based on which communication relationships and messages can be classified.
+Moreover, we define three messages types for time-critical ICS and SAS communication.
+Furthermore, we discuss the bus-based device interactions occurring in the above-mentioned four layer system model.
 
 \subsubsection{Classification Characteristics}
 The communication relationships between devices can be classified using different communication characteristics.
@@ -105,7 +105,7 @@ In IEC 61850 substations IEDs use the Manufacturing Message Specification (MMS) 
 
 The high latency message type corresponds to the IEC 61850 message types 3 and 5.
 This message type is used for HMI interactions as well as non-time-critical operations like file transfers.
-In IEC 61850 substations MMS and SCADA protocols are used for high latency communication.
+In IEC 61850 substations MMS as well as SCADA protocols are used for high latency communication.
 \begin{table}
     \centering
     \caption{Message types of the presented system model classified with regard to their topology, continuity, and latency constraints of the communication relationships.}
@@ -117,29 +117,38 @@ In IEC 61850 substations MMS and SCADA protocols are used for high latency commu
     \midrule
     Low Latency & Internal & Horiz./Vert. & Multicast & Message-Based & 3 ms\\
     Medium Latency & Int./Ext. & Horiz./Vert. & Unicast & Session-Based & 20-100 ms\\
-    High Latency & External & Vert. & Unicast & Session-Based & 500 ms\\
+    High Latency & Int./Ext. & Horiz./Vert. & Unicast & Session-Based & 500 ms\\
     \bottomrule
     \end{tabular}
-    \end{table}
+\end{table}
 
 \subsubsection{Communication Buses}
-The presented system model uses a bus-based approach for message exchange between the system architecture layers.
-The approach as well as the two concrete buses used are based on the IEC 61850 standard \cite{IEC61850P5}.
-The first bus is referred to as process bus and is located between the bay level and the process level.
-The process bus is used for time-critical message-based publisher-subscriber communication.
-Consequently, GOOSE and SV are the IEC 61850 protocols used for process bus communication.
+The presented system model uses a bus-based approach for SAS-internal message exchange between the system architecture layers.
+The implementation of SAS-internal buses is typically based on Ethernet and open or proprietary fieldbus technology.
+The bus-based approach as well as the two concrete buses introduced in the following are based on the IEC 61850 standard \cite{IEC61850P5}.
 
-The second bus is referred to as station bus and is located between the station level and the bay level.
+The first bus for SAS-internal message exchange is referred to as process bus.
+The process bus is located between the bay level and the process level.
+The process bus is used for time-critical message-based publisher-subscriber communication.
+GOOSE and SV are the IEC 61850 protocols used for process bus communication.
+
+The second bus for SAS-internal message exchange is referred to as station bus.
+The station bus is located between the station level and the bay level.
 The station bus connects IEDs at the bay level with each other as well as with gateways and interfaces at the station level.
 The communication at the station bus is typically session-based unicast communication with less strict time requirements compared to the process bus.
+
+SAS-external message exchange between devices on the station level and network level use WAN telecommunication technologies including Internet, satellite, cellular, and radio technology.
+Secure tunneling approaches like Virtual Private Networks (VPN) can be used to enhance the security of SAS message exchange over an unsecure communication medium.
 
 %\subsection{Threats}
 %\todo{System Threats + Adversaries + Attack Trees}
 
 \subsection{Requirements}
-In the following, the requirements of the presented system model are defined and introduced.
-Based on the identified requirements functional and non-functional characteristics for the proposed security framework can be derived and evaluated.
-Each system model requirement is associated with one of the five categories security (RQ.SEC), safety (RQ.SAFE), availability (RQ.AVA), performance (RQ.PERF), and interoperability (RQ.INT).
+In the following, we introduce the requirements of the presented system model.
+Based on the identified requirements, functional and non-functional characteristics of the proposed approach are derived and evaluated.
+Each system model requirement is associated with a requirement category.
+We define five requirement categories for the introduced system requirements.
+The requirement categories include security (RQ.SEC), safety (RQ.SAFE), availability (RQ.AVA), performance (RQ.PERF), and interoperability (RQ.INT).
 \todo{Add forward/backward secrecy and more.}
 
 %\subsubsection{Security}
@@ -175,10 +184,10 @@ The system ensures that no subject has enough privileges to be able to misuse th
 \paragraph{RQ.INT.1 Compatibility}
 \paragraph{RQ.INT.2 Interchangeability}
 
-\section{Security Model: Server-Aided ABAC with Zero-RTT Encryption (SAZE)}
+\section{Security Model}
 \label{sec:approach:security_model}
 \subsection{Security Architecture}
-\todo{Architecture: SAZE Components \& Layers \& Busses}
+\todo{Architecture: CASC-SAS Components \& Layers \& Busses}
 \subsubsection{Layers \& Buses}
 \subsubsection{Components}
 \subsubsection{Stakeholders}
@@ -186,8 +195,12 @@ The system ensures that no subject has enough privileges to be able to misuse th
 \subsection{Security Policies}
 \todo{Security Policies -> Link to Requirements \& Attacks}
 
-\section{Server-Aided ABAC (SA)}
-\label{sec:approach:sa}
+\section{Certificateless Attribute-Based Server-Aided Authentication (CASA)}
+\label{sec:approach:casa}
+\todo{CASA}
+
+\section{Server-Aided ABAC (SABAC)}
+\label{sec:approach:sabac}
 \todo{Server-Aided ABAC: is Delegated AC, Distributed Evaluation Strategy (With PDP, Ad-Hoc, Time Variable Attributes), Policies (Rule/Pol Types:RT/Static, DSL, appropriate message types for pol. types), Requests(External, Internal), Protocols, Session-Based via OAT (Estab. channel before comm.), Semi-Delegated Authentication, Delegated Authorization}
 % \subsubsection{Delegated Authorization}
 % \todo{Policies (Rule/Pol Types:RT/Static, DSL, appropriate message types for pol. types)}
@@ -199,10 +212,6 @@ The system ensures that no subject has enough privileges to be able to misuse th
 % \subsubsection{Access Control Protocol}
 % \paragraph{Unicast: Client-Server Protocol}
 % \paragraph{Multicast \& Broadcast: Publisher-Subscriber Protocol}
-
-\section{Zero-RTT Encryption (ZE)}
-\label{sec:approach:ze}
-\todo{Zero-RTT Encryption: Extension of AC, Signcryption, TCS/UCS\dots}
 
 \section{Realization}
 \label{sec:approach:realization}
