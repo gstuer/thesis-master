@@ -226,13 +226,20 @@ As a consequence, an entity has to generate its public key before it can request
 This alternative key generation enables sending of partial private keys over unsecure channels and reduces the required trust in the KGC.
 Furthermore, this technique allows only one public key to be created for a specific private key.
 
+\subsection{Server-Aided Cryptography}
 As PKC mechanisms may consist of computationally complex algorithms and operations such as bilinear pairing, we propose a server-aided PKC approach.
 Therefor, we propose an extension of the CL-PKC concept and schemes to make time-critical steps server-aided.
 In order to make CASA server-aided, an Untrusted Cryptography Server (UCS) supports devices by handling computationally expensive algorithms instead of executing them locally on resource-constraint devices.
 To minimize the required trust, the UCS may only handle certain computations, i.e., partially sign or verify a request of a device.
 This server-aided approach enables resource-constraint devices to apply secure algorithms and schemes of CASA in a time-critical OT environment.
+In the following, we employ the concept of server-aided PKC for the verification process.
 
-Moreover, as CASA is tailored for time-critical communication, the approach aims to reduce the required time for cryptographic algorithms.
+As stated by \citeauthor{Wu2008} \cite{Wu2008}, a server-aided verification process has to satisfy the property of being computation-saving.
+A server-aided verification process $V_{Aided}$ is computation-saving if the computational costs for the verifier are strictly less than the costs of non-server-aided verification $V_{Conventional}$.
+In other words, $V_{Aided}$ is computation-saving if the equation $Cost(V_{Aided}) < Cost(V_{Conventional})$ holds.
+
+\subsection{Online \& Offline Cryptography}
+Since CASA is tailored for time-critical communication, the approach aims to reduce the required time for cryptographic algorithms.
 In addition to server-aided cryptography, this time reduction is achieved by precomputation.
 For this purpose, each step of an algorithm is classified as either online or offline.
 Online steps depend on the sender's public key, the digital signature, or the message.
@@ -241,13 +248,14 @@ Nevertheless, specific online steps can be accelerated via server-aided cryptogr
 Offline steps depend on information that is available before any message exchange occurs.
 Therefore, offline steps can be precomputed to reduce the required time for cryptographic algorithms.
 
-\subsection{Signature Scheme}
-The definition of the CASA signature scheme is based on the definition of digital signature schemes provided by \citeauthor{Boneh2023} \cite{Boneh2023}.
-Moreover, as CASA is a CL-PKC approach, the signature scheme is based on the schemes and concepts presented by \citeauthor{AlRiyami2003} \cite{AlRiyami2003}.
-
-The CASA signature scheme $S_{CASA} = (I, G_{VAL}, G_{PK}, G_{PPK}, G_{SK}, S, V)$ is a seven-tuple of algorithms.
-The algorithms comprise an initialization algorithm $I$, a secret value generation algorithm $G_{VAL}$, a public key generation algorithm $G_{PK}$, a partial private key generation algorithm $G_{PPK}$, a private key generation algorithm $G_{SK}$, a signing algorithm $S$, and a verification algorithm $V$.
+\subsection{Signature Scheme $\mathcal{S}_{CASA}$}
+The CASA signature scheme $\mathcal{S}_{CASA} = (I, G_{VAL}, G_{PK}, G_{PPK}, G_{SK}, S, V_{ENT}, V_{SAV}, V_{FIN})$ is a nine-tuple of algorithms.
+The algorithms comprise an initialization algorithm $I$, a secret value generation algorithm $G_{VAL}$, a public key generation algorithm $G_{PK}$, a partial private key generation algorithm $G_{PPK}$, a private key generation algorithm $G_{SK}$, a signing algorithm $S$, a partial entity verification algorithm $V_{ENT}$, a partial server verification algorithm $V_{SAV}$, and a final entity verification algorithm $V_{FIN}$.
 In the following sections, the specific algorithms are further discussed.
+
+The definition of the CASA signature scheme is based on the definition of digital signature schemes provided by \citeauthor{Boneh2023} \cite{Boneh2023}.
+Moreover, since CASA is a CL-PKC approach, the signature scheme is based on the schemes and concepts presented by \citeauthor{AlRiyami2003} \cite{AlRiyami2003} and \citeauthor{Ramadan2023} \cite{Ramadan2023}.
+The proposed server-aided verification concept and algorithms are based on schemes proposed by \citeauthor{Ramadan2020} \cite{Ramadan2020}, \citeauthor{Girault2005} \cite{Girault2005} and \citeauthor{Wu2008} \cite{Wu2008}.
 
 \subsubsection{Initialization Algorithm $I$}
 The initialization algorithm $(\rho, s) \leftarrow I(\lambda)$ takes the security parameter $\lambda$ as input and outputs the public system parameters $\rho$ and the private master key $s$.
@@ -275,17 +283,29 @@ The private key generation algorithm $sk_A \leftarrow G_{SK}(\rho, \chi_A, ppk_A
 The algorithm outputs the private signing key $sk_A$ of entity $A$.
 
 \subsubsection{Signing Algorithm $S$}
-The signing algorithm $\sigma \leftarrow S(sk, m)$ takes the private signing key $sk$ and message $m$ as input, and outputs the signature $\sigma$.
-In other words, the signing algorithm $S$ is used by the sender of a message $m$ to generate a digital signature $\sigma$.
-The generated digital signature $\sigma$ is associated with the message $m$ and the sender's private signing key $sk$.
+The signing algorithm $\sigma \leftarrow S(sk_A, m)$ takes the private signing key $sk_A$ and message $m$ as input, and outputs the signature $\sigma$.
+In other words, the signing algorithm $S$ is used by the sender $A$ of a message $m$ to generate a digital signature $\sigma$.
+The generated digital signature $\sigma$ is associated with the message $m$ and the sender's private signing key $sk_A$.
 \todo{Introduce Server-Aided Signing Techniques (Server-Partial-Signing, Sender-Signing) and Online/Offline Algorithm Steps.}
 
-\subsubsection{Verification Algorithm $V$}
-The verification algorithm $\delta \in \{accept, reject\} \leftarrow V(pk, m, \sigma)$ takes the public verification key $pk$, the message $m$, and the signature $\sigma$ as input.
+\subsubsection{Partial Entity Verification Algorithm $V_{ENT}$}
+The partial entity verification algorithm $\sigma_{ENT} \leftarrow V_{ENT}(\rho, pk_A, m, \sigma)$ represents the first step of the server-aided verification process.
+The algorithm takes the public system parameters $\rho$, the public verification key $pk_A$ of entity $A$, the message $m$, and the signature $\sigma$ as input.
+The algorithm outputs the partially verified signature $\sigma_{ENT}$.
+The receiver of a message executes the partial entity verification algorithm $V_{ENT}$ and sends the partially verified signature $\sigma_{ENT}$ to the UCS for server-aided verification.
+
+\subsubsection{Partial Server Verification Algorithm $V_{SAV}$}
+The partial server verification algorithm $\sigma_{SAV} \leftarrow V_{SAV}(\sigma_{ENT})$ represents the second step of the server-aided verification process.
+The algorithm takes the partially verified signature $\sigma_{ENT}$ as input and outputs the partially verified signature $\sigma_{SAV}$.
+The algorithm is executed by the UCS on request of a message receiving entity.
+After the execution, the UCS provides the partially verified signature $\sigma_{SAV}$ to the requestor.
+
+\subsubsection{Final Entity Verification Algorithm $V_{FIN}$}
+The final entity verification algorithm $\delta \in \{accept, reject\} \leftarrow V_{FIN}(\rho, pk_A, m, \sigma, \sigma_{ENT}, \sigma_{SAV})$ represents the third and last step of the server-aided verification process.
+The algorithm takes the public system parameters $\rho$, the public verification key $pk_A$ of entity $A$, the message $m$, the signature $\sigma$, and the partially verified signatures $\sigma_{ENT}$ and $\sigma_{SAV}$ as input.
 The algorithm outputs the verification decision $\delta$ which is either $accept$ or $reject$.
-In other words, the verification algorithm $V$ is used by the receiver to verify a received message $m$ based on an appended signature $\sigma$.
-As $\sigma$ is associated with the message $m$ and the sender's private signing key $sk$, it allows the receiver to verify the integrity and authenticity of the received message $m$ using the sender's public verification key $pk$.
-\todo{Introduce Server-Aided Verification, \& 2 Sub-Algos for Server-Partial-Verification \& Receiver-Verification}
+In other words, the verification algorithm $V_{FIN}$ is used by the receiver to verify a received message $m$ sent by entity $A$ based on an appended signature $\sigma$.
+As $\sigma$ is associated with the message $m$ and the sender's private signing key $sk_A$, it allows the receiver to verify the integrity and authenticity of the received message $m$ using the sender's public verification key $pk_A$.
 
 \section{Server-Aided ABAC (SABAC)}
 \label{sec:approach:sabac}
