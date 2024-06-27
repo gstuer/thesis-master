@@ -164,7 +164,7 @@ The system ensures that a subject cannot dispute its authorship of data and requ
 The system ensures that each subject has the least number of privileges necessary to perform its function \cite{JTF2020}.
 \paragraph{RQ.SEC.6 Separation of Duties (SoD)}
 The system ensures that no subject has enough privileges to be able to misuse the system without collusion \cite{JTF2020}.
-\paragraph{RQ.SEC.7 Privacy-Preservation}
+\paragraph{RQ.SEC.7 Privacy Preservation}
 \todo{TODO: Does this conflict with the idea of proofing the origin of a request? In other words, is it possible to check if the subject who requested the access decision is still the same subject who used it in its request?}
 
 %\subsubsection{Safety}
@@ -184,10 +184,29 @@ The system ensures that no subject has enough privileges to be able to misuse th
 \paragraph{RQ.INT.1 Compatibility}
 \paragraph{RQ.INT.2 Interchangeability}
 
-\section{Certificateless Attribute-Based Server-Aided Cryptosystem for Substation Automation Systems (CASC-SAS)}
+\section[Certificateless Attribute-Based Server-Aided Cryptosystem for SAS (CASC-SAS)]{Certificateless Attribute-Based Server-Aided Cryptosystem for Substation Automation Systems (CASC-SAS)}
 \label{sec:approach:casc}
+In order to satisfy the requirements of the above-mentioned system model, we propose a \textbf{C}ertificateless \textbf{A}ttribute-Based \textbf{S}erver-Aided \textbf{C}ryptosystem for \textbf{S}ubstation \textbf{A}utomation \textbf{S}ystems (CASC-SAS).
+The CASC-SAS approach is a cryptosystem that provides security policies, cybersecurity mechanisms, and cryptographic algorithms and schemes.
+The goal of the approach is the enhancement of SAS security by providing secure authentication, authorization, and attribute-based access control for time-critical SAS communication.
+
+The CASC-SAS approach comprises two core concepts.
+The first core concept of the approach is the Certificateless Attribute-Based Server-Aided Authentication (CASA).
+This concept represents the foundation of the CASC-SAS approach.
+The concept provides cryptographic algorithms and schemes for authentication including a public key cryptography signature scheme for key generation, signing, and verification.
+Communicating SAS devices as well as more abstract cybersecurity services can rely on the provided communication integrity, authenticity, non-repudiation, and privacy preservation.
+This core concept is further discussed in \autoref{sec:approach:casa}.
+
+The second core concept of the approach is the Server-Aided Attribute-Based Access Control (SABAC).
+This concept provides mechanisms to enable Attribute-Based Access Control (ABAC) for time-critical SAS communication.
+The concept represents a more abstract cybersecurity means to provide confidentiality, PoLP, and SoD.
+For this purpose, the concept relies on authentication services provided by CASA.
+This concept is further discussed in \autoref{sec:approach:sabac}.
+
 \subsection{Security Architecture}
-\todo{Architecture: CASC-SAS Components \& Layers \& Busses}
+The CASC-SAS approach is based on a dual-path layered security architecture.
+\dots
+
 \subsubsection{Layers \& Buses}
 \subsubsection{Components}
 \subsubsection{Stakeholders}
