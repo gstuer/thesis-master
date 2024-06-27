@@ -268,12 +268,12 @@ The secret value generation algorithm is executed by an entity.
 The secret value $\chi_A$ is never shared with other entities and may only be known to entity $A$.
 
 \subsubsection{Public Key Generation Algorithm $G_{PK}$}
-The public key generation algorithm $pk_A \leftarrow G_{PK}(\rho, \chi_A, ID_A)$ takes the public system parameters $\rho$, the secret value of an entity $\chi_A$, and the defining attributes of entity $A$ $ID_A$ as input.
+The public key generation algorithm $pk_A \leftarrow G_{PK}(\rho, \chi_A, ATT_A)$ takes the public system parameters $\rho$, the secret value of an entity $\chi_A$, and the defining attributes of entity $A$ $ATT_A$ as input.
 The algorithm outputs the public verification key $pk_A$ of entity $A$.
 The algorithm is executed by an entity.
 
 \subsubsection{Partial Private Key Generation Algorithm $G_{PPK}$}
-The partial private key generation algorithm $ppk_A \leftarrow G_{PPK}(\rho, s, ID_A, pk_A)$ takes the public system parameters $\rho$, the private master key of the KGC $s$, the defining attributes of entity $A$ $ID_A$, and the $A$'s public verification key $pk_A$ as input.
+The partial private key generation algorithm $ppk_A \leftarrow G_{PPK}(\rho, s, ATT_A, pk_A)$ takes the public system parameters $\rho$, the private master key of the KGC $s$, the defining attributes of entity $A$ $ATT_A$, and the $A$'s public verification key $pk_A$ as input.
 The algorithm outputs the partial private key $ppk_A$ of entity $A$.
 The partial private key generation is executed by the KGC on request of an entity.
 After the execution, the KGC provides the partial private key to the corresponding entity.
