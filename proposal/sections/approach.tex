@@ -204,8 +204,33 @@ For this purpose, the concept relies on authentication services provided by CASA
 This concept is further discussed in \autoref{sec:approach:sabac}.
 
 \subsection{Security Architecture}
-The CASC-SAS approach is based on a dual-path layered security architecture.
-\dots
+In the following, we present the security architecture of the proposed approach.
+The CASC-SAS approach is based on a dual-path four-layered architecture.
+The four layers of the architecture are presented in \autoref{sec:approach:casc:architecture:layers}.
+Moreover, the two paths of the architecture are further discussed in \autoref{sec:approach:casc:architecture:paths}.
+
+\subsubsection{Four-Layered Architecture}
+\label{sec:approach:casc:architecture:layers}
+The CASC-SAS architecture is non-strictly layered and consists of four open layers.
+The goal of the layered architecture is the separation of different domains and levels of abstraction within the CASC-SAS approach.
+An upper layer may use services provided by a lower layer but not vice versa.
+Moreover, since the layering is non-strict, an upper layer is not restricted to the services provided by its direct predecessor, but may rather bypass lower layers.
+
+\paragraph{Layer 3: Domain}
+\todo{Provides insecure domain-specific messages to be exchanged between two different SAS devices\dots}
+
+\paragraph{Layer 2: Cybersecurity}
+\todo{Provides authorization and access control in order to satisfy confidentiality, PoLP, and SoD.}
+
+\paragraph{Layer 1: Cryptography}
+\todo{Provides authentication via digital signatures in order to satisfy integrity, authenticity, non-repudiation, and privacy preservation.}
+
+\paragraph{Layer 0: Message Exchange}
+\todo{Provides reliable and unreliable message exchange between devices in a network.}
+
+\subsubsection{Dual-Path Architecture}
+\label{sec:approach:casc:architecture:paths}
+\todo{Data Path (Online, time-critical communication, Domain-Specific Messages) \& Control Path (Offline, Non-Time Critical communication, CASC-SAS Messages)\dots}
 
 \subsubsection{Layers \& Buses}
 \subsubsection{Components}
