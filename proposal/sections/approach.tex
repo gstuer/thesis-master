@@ -215,26 +215,64 @@ The CASC-SAS architecture is non-strictly layered and consists of four open laye
 The goal of the layered architecture is the separation of different domains and levels of abstraction within the CASC-SAS approach.
 An upper layer may use services provided by a lower layer but not vice versa.
 Moreover, since the layering is non-strict, an upper layer is not restricted to the services provided by its direct predecessor, but may rather bypass lower layers.
+The four layers of the CASC-SAS architecture and their provided services are defined in the following sections.
 
 \paragraph{Layer 3: Domain}
-\todo{Provides insecure domain-specific messages to be exchanged between two different SAS devices\dots}
+The domain layer is the uppermost layer of the architecture.
+The domain layer represents the domain-specific applications and the exchange of domain-specific messages.
+We assume that the domain layer does not provide means for secure message exchange between entities.
+As a consequence, the domain layer relies on the secure message exchange provided by lower layers.
+%Provides insecure domain-specific messages to be exchanged between two different SAS devices\dots
 
 \paragraph{Layer 2: Cybersecurity}
-\todo{Provides authorization and access control in order to satisfy confidentiality, PoLP, and SoD.}
+The cybersecurity layer encompasses algorithms and protocols used to satisfy the security requirements.
+Additionally, security workflows and mechanisms for the enforcement of security policies are located at this layer.
+Consequently, the cybersecurity layer provides secure message exchange services to the domain layer.
+The SABAC concept of CASC-SAS is part of this architectural layer.
+SABAC provides authorization and access control to satisfy the security requirements confidentiality, PoLP, and SoD.
+%Provides authorization and access control in order to satisfy confidentiality, PoLP, and SoD.
 
 \paragraph{Layer 1: Cryptography}
-\todo{Provides authentication via digital signatures in order to satisfy integrity, authenticity, non-repudiation, and privacy preservation.}
+The cryptography layer provides cryptographic algorithms and schemes to higher layers of the architecture.
+It relies on reliable and unreliable control message exchange.
+The exchange of cryptographic control messages enables cryptographic workflows such as key generation, key distribution, key revocation, and server-aided cryptography.
+The CASA core concept of CASC-SAS is located at the cryptography layer.
+CASA provides authentication means via digital signatures to higher levels of the architecture.
+Accordingly, CASA provides services that satisfy the security requirements integrity, authenticity, non-repudiation, and privacy preservation.
+%Provides authentication via digital signatures in order to satisfy integrity, authenticity, non-repudiation, and privacy preservation.
 
 \paragraph{Layer 0: Message Exchange}
-\todo{Provides reliable and unreliable message exchange between devices in a network.}
+The lowermost layer of the CASC-SAS architecture is referred to as message exchange layer.
+The message exchange layer provides reliable and unreliable message exchange between devices in a network to higher layers.
+The message exchange layer represents an abstraction of the physical layer, data link layer, network layer, and transport layer of a conventional network stack.
+%Provides reliable and unreliable message exchange between devices in a network.
+
+\paragraph{Example: Domain-Specific Communication}
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\linewidth]{figures/layers_request_example.drawio.pdf}
+    \caption{An exemplary domain-specific communication between a sending and receiving entity including the involved CASC-SAS layers and messages exchanged between the architectural layers.}
+    \label{fig:layers_request_example}
+\end{figure}
+An exemplary domain-specific communication between a sending entity and receiving entity is shown in \autoref{fig:layers_request_example}.
+The figure shows the four layers of the CASC-SAS architecture at the sender and receiver.
+Moreover, the different messages exchanged between the layers are shown.
+While the invocation of services is restricted to predecessor layers, message exchange resulting from an invocation may occur bidirectional.
+The presented domain-specific communication is initiated by entity A.
+Therefor, entity A creates a single or multiple domain-specific messages and delivers them to the cybersecurity layer.
+The yet unsigned and non-authorized messages are then authorized by SABAC and forwarded to CASA at the cryptography layer for signing.
+Subsequently, the signed and authorized messages are forwarded to the receiver using the reliable and unreliable network transport services provided by the message exchange layer.
+Upon arrival at the receiver, the message exchange layer delivers the signed and authorized messages to the cybersecurity layer.
+The messages are then verified by the cybersecurity layer before forwarding them to the domain layer or application respectively.
+For the purpose of message verification, the cybersecurity layer enforces access control policies by verifying the validity of the message authorization.
+Moreover, the message is forwarded to the cryptography layer for cryptographic verification.
 
 \subsubsection{Dual-Path Architecture}
 \label{sec:approach:casc:architecture:paths}
 \todo{Data Path (Online, time-critical communication, Domain-Specific Messages) \& Control Path (Offline, Non-Time Critical communication, CASC-SAS Messages)\dots}
 
-\subsubsection{Layers \& Buses}
-\subsubsection{Components}
-\subsubsection{Stakeholders}
+%\subsubsection{Stakeholders}
+%\todo{Stakeholders of CASC-SAS}
 
 \subsection{Security Policies}
 \todo{Security Policies -> Link to Requirements \& Attacks}
