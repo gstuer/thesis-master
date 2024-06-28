@@ -269,7 +269,20 @@ Moreover, the message is forwarded to the cryptography layer for cryptographic v
 
 \subsubsection{Dual-Path Architecture}
 \label{sec:approach:casc:architecture:paths}
-\todo{Data Path (Online, time-critical communication, Domain-Specific Messages) \& Control Path (Offline, Non-Time Critical communication, CASC-SAS Messages)\dots}
+%Data Path (Online, time-critical communication, Domain-Specific Messages) \& Control Path (Offline, Non-Time Critical communication, CASC-SAS Messages)\dots
+In addition to the separation into different layers, the occurring message exchanges within the CASC-SAS architecture are logically divided into two communication paths.
+The two paths are referred to as data path and control path.
+
+The messages on the data path are used for the forwarding of domain-specific payload from a sending entity to a receiving entity.
+Besides the concrete domain-specific messages, communication required for the message forwarding are transported on the data path.
+This message-related communication includes server-aided signing and verification requests as well as access control.
+As a consequence, the data path is used for traffic-intensive and time-critical message exchange.
+
+The messages on the control path are used for the exchange of management information and do not carry domain-specific payload.
+The components of the CASC-SAS approach use control path messages for layer-internal communication between different devices.
+The cryptography layer uses control messages for key generation, distribution, and revocation.
+The cybersecurity layer uses control messages for tasks such as policy management.
+As a result, the communication occurring on the control path is less traffic-intensive and less time-critical.
 
 %\subsubsection{Stakeholders}
 %\todo{Stakeholders of CASC-SAS}
