@@ -7,7 +7,7 @@ The CASC-SAS cryptography and cybersecurity approach is able to prevent and miti
 The introduction and discussion of the proposed approach is organized as follows.
 At the beginning of this chapter in \autoref{sec:approach:system_model}, we discuss the field of application of the proposed approach by introducing a system model and defining its requirements.
 Based on the presented system model and requirements, we introduce the CASC-SAS approach in \autoref{sec:approach:casc}.
-The two main CASC-SAS concepts, its cryptographic scheme and server-aided access control, are introduced in \autoref{sec:approach:casa} and \autoref{sec:approach:sabac}.
+The two main CASC-SAS concepts, its cryptographic scheme and server-aided access control, are introduced in \autoref{sec:approach:casa} and \autoref{sec:approach:sabaac}.
 In \autoref{sec:approach:realization} we present the planned realization of the CASC-SAS approach.
 Subsequently, we present the proposed evaluation strategies and metrics of the approach in \autoref{sec:approach:evaluation}.
 Finally, in \autoref{sec:approach:limitations} we discuss limitations of the proposed approach.
@@ -197,11 +197,11 @@ The concept provides cryptographic algorithms and schemes for authentication inc
 Communicating SAS devices as well as more abstract cybersecurity services can rely on the provided communication integrity, authenticity, non-repudiation, and privacy preservation.
 This core concept is further discussed in \autoref{sec:approach:casa}.
 
-The second core concept of the approach is the Server-Aided Attribute-Based Access Control (SABAC).
-This concept provides mechanisms to enable Attribute-Based Access Control (ABAC) for time-critical SAS communication.
+The second core concept of the approach is the Server-Aided Attribute-Based Authorization and Access Control (SABAAC).
+This concept provides mechanisms to enable attribute-based authorization and ABAC for time-critical SAS communication.
 The concept represents a more abstract cybersecurity means to provide confidentiality, PoLP, and SoD.
 For this purpose, the concept relies on authentication services provided by CASA.
-This concept is further discussed in \autoref{sec:approach:sabac}.
+This concept is further discussed in \autoref{sec:approach:sabaac}.
 
 \subsection{Security Architecture}
 In the following, we present the security architecture of the proposed approach.
@@ -228,8 +228,8 @@ As a consequence, the domain layer relies on the secure message exchange provide
 The cybersecurity layer encompasses algorithms and protocols used to satisfy the security requirements.
 Additionally, security workflows and mechanisms for the enforcement of security policies are located at this layer.
 Consequently, the cybersecurity layer provides secure message exchange services to the domain layer.
-The SABAC concept of CASC-SAS is part of this architectural layer.
-SABAC provides authorization and access control to satisfy the security requirements confidentiality, PoLP, and SoD.
+The SABAAC concept of CASC-SAS is part of this architectural layer.
+SABAAC provides authorization and access control to satisfy the security requirements confidentiality, PoLP, and SoD.
 %Provides authorization and access control in order to satisfy confidentiality, PoLP, and SoD.
 
 \paragraph{Layer 1: Cryptography}
@@ -260,7 +260,7 @@ Moreover, the different messages exchanged between the layers are shown.
 While the invocation of services is restricted to predecessor layers, message exchange resulting from an invocation may occur bidirectional.
 The presented domain-specific communication is initiated by entity A.
 Therefor, entity A creates a single or multiple domain-specific messages and delivers them to the cybersecurity layer.
-The yet unsigned and non-authorized messages are then authorized by SABAC and forwarded to CASA at the cryptography layer for signing.
+The yet unsigned and non-authorized messages are then authorized by SABAAC and forwarded to CASA at the cryptography layer for signing.
 Subsequently, the signed and authorized messages are forwarded to the receiver using the reliable and unreliable network transport services provided by the message exchange layer.
 Upon arrival at the receiver, the message exchange layer delivers the signed and authorized messages to the cybersecurity layer.
 The messages are then verified by the cybersecurity layer before forwarding them to the domain layer or application respectively.
@@ -408,35 +408,35 @@ In order to create an existential forgery, i.e., output a valid pair of message 
 While non-adaptive CMA restricts the adversary to a fixed set of messages chosen prior to the attack, adaptive CMA allows the adversary to request signatures of messages depending on previously obtained signatures.
 \citeauthor{Goldwasser1988} describe an adaptive CMA as most powerful attack possible for an enemy restricted to using the signature scheme.
 
-\section{Server-Aided ABAC (SABAC)}
-\label{sec:approach:sabac}
+\section{Server-Aided Attribute-Based Authorization \& Access Control (SABAAC)}
+\label{sec:approach:sabaac}
 %\todo{Server-Aided ABAC: is Delegated AC, Distributed Evaluation Strategy (With PDP, Ad-Hoc, Time Variable Attributes), Policies (Rule/Pol Types:RT/Static, DSL, appropriate message types for pol. types), Requests(External, Internal), Protocols, Session-Based via OAT (Estab. channel before comm.), Semi-Delegated Authentication, Delegated Authorization}
-The second core concept of the CASC-SAS approach is the \textbf{S}erver-Aided \textbf{A}ttribute-\textbf{B}ased \textbf{A}ccess \textbf{C}ontrol (SABAC).
-The SABAC approach enables the employment of attribute-based authorization and access control for time-critical SAS communication.
-Therefore, SABAC prevents unauthorized access and extraction of information.
+The second core concept of the CASC-SAS approach is the \textbf{S}erver-Aided \textbf{A}ttribute-\textbf{B}ased \textbf{A}uthorization and \textbf{A}ccess \textbf{C}ontrol (SABAAC).
+The SABAAC approach enables the employment of attribute-based authorization and access control for time-critical SAS communication.
+Therefore, SABAAC prevents unauthorized access and extraction of information.
 The approach enables CASC-SAS to satisfy the confidentiality, PoLP, and SoD security requirements.
 Moreover, the expressive and flexible but yet computationally expensive ABAC policies are handled in a server-aided manner in order to satisfy the strict time constraints of the SAS domain.
 
-SABAC represents a cybersecurity concept that is located on the cybersecurity layer of the CASC-SAS architecture.
+SABAAC represents a cybersecurity concept that is located on the cybersecurity layer of the CASC-SAS architecture.
 Since the approach is located on the cybersecurity layer, it relies on secure authentication services provided by CASA.
-As a consequence, SABAC assumes that efficient and secure signing and verification algorithms are available.
-In other words, CASA provides secure cryptographic algorithms and schemes that enable SABAC to realize secure authorization and access control.
+As a consequence, SABAAC assumes that efficient and secure signing and verification algorithms are available.
+In other words, CASA provides secure cryptographic algorithms and schemes that enable SABAAC to realize secure authorization and access control.
 
-The SABAC approach is divided into two central tasks.
+The SABAAC approach is divided into two central tasks.
 The first task is referred to as delegated attribute-based authorization.
-The delegated authorization process is further discussed in \autoref{sec:approach:sabac:authorization}.
+The delegated authorization process is further discussed in \autoref{sec:approach:sabaac:authorization}.
 The second central task is referred to as delegated ABAC.
-The delegated ABAC process is further discussed in \autoref{sec:approach:sabac:accesscontrol}.
-\todo{Security Requirements: Also integrity but not really confidentiality provided by SABAC?}
+The delegated ABAC process is further discussed in \autoref{sec:approach:sabaac:accesscontrol}.
+\todo{Security Requirements: Also integrity but not really confidentiality provided by SABAAC?}
 
 \subsection{Delegated Attribute-Based Authorization}
-\label{sec:approach:sabac:authorization}
+\label{sec:approach:sabaac:authorization}
 \todo{Policies (Rule/Pol Types:RT/Static, DSL, appropriate message types for pol. types)}
 \todo{Hierarchic PDP/PAPs}
 \todo{Authorization Protocol: Static vs Dynamic Auth.}
 
 \subsection{Delegated Attribute-Based Access Control}
-\label{sec:approach:sabac:accesscontrol}
+\label{sec:approach:sabaac:accesscontrol}
 \paragraph{Unicast: Client-Server Protocol}
 \paragraph{Multicast \& Broadcast: Publisher-Subscriber Protocol}
 
