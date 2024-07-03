@@ -441,7 +441,7 @@ The component-based architecture of our authorization and access control approac
 These functional units are based on the access control mechanism functional points presented by \citeauthor{Hu2014} \cite{Hu2014}.
 Each functional unit is represented by a component that offers function-oriented services.
 The components of the architecture are TTPs since the semantic validity of their provided services is not verifiable by the service consumers.
-We specify the components as semi-trusted for the access control problem due to the restriction to access control tasks and mitigation approaches such as multiple instance of a single component.
+We specify the components as semi-trusted for the access control problem due to the restriction to access control tasks and available mitigation approaches such as multiple instances of a single component.
 The four components of the architecture are discussed in the following:
 \begin{description}
     \item[Policy Administration Point (PAP)] The PAP offers services for the policy creation, management, and distribution.
@@ -465,9 +465,41 @@ The four components of the architecture are discussed in the following:
     Accordingly, the SABAAC PEP provides attributes related to its protected objects to the PDP.
 \end{description}
 
+\subsection{Access Control Policy}
+\label{sec:approach:sabaac:policy}
+According to \citeauthor{Hu2014} \cite{Hu2014}, ABAC is an access control model that enables access decisions based on attributes associated with subjects, objects, actions, and the environment of a system.
+An ABAC policy represents a set of rules that describe under which environmental conditions a certain subject is granted to perform certain actions on a specific protected object.
+
+The SABAAC approach relies on the concept of attribute-based policies and access control due to the following benefits.
+ABAC enables multifactor policy expression, while RBAC and IBAC limit the policy expressiveness by only relying on either roles or identities.
+Consequently, the multifactor policy expression enables fine-grained and flexible access control.
+Moreover, as stated by \citeauthor{Hu2014} \cite{Hu2014}, the use of ABAC can avoid explicit authorizations prior to a request.
+In other words, an ABAC policy can be dynamically evaluated at the time of a request.
+This dynamic evaluation allows the use of attributes from a time-variable environment.
+As stated by \citeauthor{Burmester2013} \cite{Burmester2013}, a real-time attribute represents an attribute whose value is time-dependent.
+Given an attribute evaluation function $E_{ATT}$ and point of time $t$, the value $\lambda_a$ of a real-time attribute $a$ is defined by $E_{ATT}(a, t) = \lambda_a$.
+In order to handle policies based on their degree of time-variability, the SABAAC approach classifies policies as follows:
+\begin{description}
+    \item[Dynamic Policy] A dynamic policy $\rho$ is an ABAC policy whose evaluation relies on at least one time-variable subject, object, environment, or action attribute.
+    A policy $\rho$ is dynamic iff $\exists a \in \rho: \forall t_i \neq t_j: E(a,t_i) \neq E(a,t_j)$.
+    Due to the time-variable evaluation of dynamic policies, access decisions must have a limited time of validity that corresponds to the change rate of the underlying attribute values.
+    As a result, caching of access decisions that are based on dynamic policies should be avoided.
+    A dynamic policy is also referred to as real-time policy.
+    \item[Static Policy] A static policy $\rho$ is an ABAC policy whose evaluation does not rely on time-variable subject, object, environment, or action attributes.
+    A policy $\rho$ is static iff $\forall a \in \rho: \forall t_i,t_j: E(a,t_i) = E(a,t_j)$.
+    Since static policies do not rely on dynamic attributes, access decisions can be cached.
+    Moreover, due to the non-frequent attribute retrieval and evaluation as well as access decision caching, static policies are a viable solution for low latency message exchange.
+    A static policy is also referred to as non-real-time policy.
+\end{description}
+\todo{Policy DSL}
+
 \subsection{Delegated Attribute-Based Authorization Protocol}
 \label{sec:approach:sabaac:authorization}
-\todo{Policies (Rule/Pol Types:RT/Static, DSL, appropriate message types for pol. types)}
+In the following, we discuss the delegated attribute-based authorization protocol of the SABAAC approach.
+The authorization protocol is responsible for the policy creation, management, storage, and distribution.
+For this purpose, the authorization protocol provides policy management services at the PAP.
+Moreover, the authorization protocol provides services for the exchange of policies between the PAP, PSP, and PDP.
+
 \todo{Hierarchic PDP/PAPs}
 \todo{Authorization Protocol: Static vs Dynamic Auth.}
 
