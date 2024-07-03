@@ -1,1 +1,1 @@
-# Master Thesis: Attribute-Based Access Control for Substations (ABAC-SS)
+# Master Thesis: Certificateless Attribute-Based Server-Aided Cryptosystem for Substation Automation Systems (CASC-SAS)
