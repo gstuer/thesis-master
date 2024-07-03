@@ -421,22 +421,59 @@ Since the approach is located on the cybersecurity layer, it relies on secure au
 As a consequence, the approach assumes that efficient and secure signing and verification algorithms are available.
 In other words, CASA provides secure cryptographic algorithms and schemes that enable SABAAC to realize secure authorization and access control.
 
-The proposed authorization and access control approach is divided into two central tasks.
+The proposed authorization and access control approach is based on a function-oriented component-based architecture.
+The architecture and components are further discussed in \autoref{sec:approach:sabaac:architecture}.
+Furthermore, the approach is divided into two central tasks or protocols respectively.
 The first task is referred to as delegated attribute-based authorization.
-The delegated authorization process is further discussed in \autoref{sec:approach:sabaac:authorization}.
+The delegated attribute-based authorization is responsible for the access control policy creation, management, storage, and distribution.
+This process partially takes place prior to occurring access requests and corresponding access decisions.
+The delegated attribute-based authorization protocol is further discussed in \autoref{sec:approach:sabaac:authorization}.
 The second central task is referred to as delegated ABAC.
-The delegated ABAC process is further discussed in \autoref{sec:approach:sabaac:accesscontrol}.
+The delegated ABAC is responsible for the policy decision and policy enforcement.
+This process takes place when an entity initiates the communication with another entity.
+The delegated ABAC protocol is further discussed in \autoref{sec:approach:sabaac:accesscontrol}.
+%Our authorization approach is inspired by the access control mechanism functional points presented by \citeauthor{Hu2014} \cite{Hu2014}.
 \todo{Security Requirements: Also integrity but not really confidentiality provided by SABAAC?}
 
-\subsection{Delegated Attribute-Based Authorization}
+\subsection{Authorization \& Access Control Architecture}
+\label{sec:approach:sabaac:architecture}
+The component-based architecture of our authorization and access control approach consists of four functional units.
+These functional units are based on the access control mechanism functional points presented by \citeauthor{Hu2014} \cite{Hu2014}.
+Each functional unit is represented by a component that offers function-oriented services.
+The components of the architecture are TTPs since the semantic validity of their provided services is not verifiable by the service consumers.
+We specify the components as semi-trusted for the access control problem due to the restriction to access control tasks and mitigation approaches such as multiple instance of a single component.
+The four components of the architecture are discussed in the following:
+\begin{description}
+    \item[Policy Administration Point (PAP)] The PAP offers services for the policy creation, management, and distribution.
+    The PAP is a component of the delegated attribute-based authorization process and executes the corresponding authorization protocols.
+    Moreover, it provides interfaces for policy management services to human operators.
+    The PAP accesses the PSP to persist policies and policy changes.
+    \item[Policy Storage Point (PSP)] The PSP acts as a repository to make created policies and changes to policies persistent.
+    Therefor, the PSP offers create, read, update, and delete (CRUD) services to PAP instances.
+    The physical PSP instance may be integrated with the PAP component to avoid network communication overhead.
+    \item[Policy Decision Point (PDP)] The PDP takes access control decisions by evaluating policies.
+    The PDP takes decision on request of a PEP and provides the access control decision to the requesting PEP.
+    As a consequence, the PDP is part of the delegated ABAC task of SABAAC.
+    Furthermore, in the SABAAC architecture the PDP incorporates the services provided by the context handler which was introduced by \citeauthor{Hu2014} \cite{Hu2014}.
+    Therefore, the PDP not only takes access control decision on request but is rather responsible for the policy and attribute evaluation workflow.
+    This workflow includes the retrieval of required attributes and speedup techniques such as access decision caching and policy evaluation precomputation.
+    \item[Policy Enforcement Point (PEP)] The PEP enforces access control decisions by controlling access to protected objects.
+    As a consequence, the PEP is part of the delegated ABAC task of SABAAC.
+    The services provided by the PEP rely on access control decisions taken by the PDP.
+    % In order to reduce the required trust in the PDP decision, the PEP can query multiple PDPs to validate the access control decision taken.
+    Moreover, in the SABAAC architecture the PEP incorporates the services provided by the policy information point (PIP) introduced by \citeauthor{Hu2014} \cite{Hu2014}.
+    Accordingly, the SABAAC PEP provides attributes related to its protected objects to the PDP.
+\end{description}
+
+\subsection{Delegated Attribute-Based Authorization Protocol}
 \label{sec:approach:sabaac:authorization}
 \todo{Policies (Rule/Pol Types:RT/Static, DSL, appropriate message types for pol. types)}
 \todo{Hierarchic PDP/PAPs}
 \todo{Authorization Protocol: Static vs Dynamic Auth.}
 
-\subsection{Delegated Attribute-Based Access Control}
+\subsection{Delegated Attribute-Based Access Control Protocol}
 \label{sec:approach:sabaac:accesscontrol}
-\todo{Server-Aided ABAC is Delegated ABAC, Distributed Evaluation Strategy (With PDP, Ad-Hoc, Time Variable Attributes), Requests(External, Internal), Protocols, Session-Based via OAT (Estab. channel before comm.)}
+\todo{Server-Aided ABAC is Delegated ABAC, Distributed Evaluation Strategy (With PDP, Ad-Hoc, Time Variable Attributes), Requests(External, Internal), Protocols, Session-Based via OAT (Estab. channel before comm.), Multiple PDPs and voting due to semi-trusted}
 \paragraph{Unicast: Client-Server Protocol}
 \paragraph{Multicast \& Broadcast: Publisher-Subscriber Protocol}
 
