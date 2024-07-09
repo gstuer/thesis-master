@@ -470,14 +470,14 @@ The four components of the architecture are discussed in the following:
 According to \citeauthor{Hu2014} \cite{Hu2014}, ABAC is an access control model that enables access decisions based on attributes associated with subjects, objects, actions, and the environment of a system.
 An ABAC policy represents a set of rules that describe under which environmental conditions a certain subject is granted to perform certain actions on a specific protected object.
 
-The SABAAC approach relies on the concept of attribute-based policies and access control due to the following benefits.
+The SABAAC approach relies on the concept of attribute-based policies and access control due to the following benefits:
 ABAC enables multifactor policy expression, while RBAC and IBAC limit the policy expressiveness by only relying on either roles or identities.
 Consequently, the multifactor policy expression enables fine-grained and flexible access control.
 Moreover, as stated by \citeauthor{Hu2014} \cite{Hu2014}, the use of ABAC can avoid explicit authorizations prior to a request.
 In other words, an ABAC policy can be dynamically evaluated at the time of a request.
 This dynamic evaluation allows the use of attributes from a time-variable environment.
 As stated by \citeauthor{Burmester2013} \cite{Burmester2013}, a real-time attribute represents an attribute whose value is time-dependent.
-Given an attribute evaluation function $E_{ATT}$ and point of time $t$, the value $\lambda_a$ of a real-time attribute $a$ is defined by $E_{ATT}(a, t) = \lambda_a$.
+Given an attribute evaluation function $E_{ATT}$ and a point of time $t$, the value $\lambda_a$ of a real-time attribute $a$ is defined by $E_{ATT}(a, t) = \lambda_a$.
 In order to handle policies based on their degree of time-variability, the SABAAC approach classifies policies as follows:
 \begin{description}
     \item[Dynamic Policy] A dynamic policy $\rho$ is an ABAC policy whose evaluation relies on at least one time-variable subject, object, environment, or action attribute.
@@ -487,7 +487,7 @@ In order to handle policies based on their degree of time-variability, the SABAA
     A dynamic policy is also referred to as real-time policy.
     \item[Static Policy] A static policy $\rho$ is an ABAC policy whose evaluation does not rely on time-variable subject, object, environment, or action attributes.
     A policy $\rho$ is static iff $\forall a \in \rho: \forall t_i,t_j: E(a,t_i) = E(a,t_j)$.
-    Since static policies do not rely on dynamic attributes, access decisions can be cached.
+    Since static policies do not rely on time-variable attributes, access decisions can be cached.
     Moreover, due to the non-frequent attribute retrieval and evaluation as well as access decision caching, static policies are a viable solution for low latency message exchange.
     A static policy is also referred to as non-real-time policy.
 \end{description}
@@ -496,12 +496,52 @@ In order to handle policies based on their degree of time-variability, the SABAA
 \subsection{Delegated Attribute-Based Authorization Protocol}
 \label{sec:approach:sabaac:authorization}
 In the following, we discuss the delegated attribute-based authorization protocol of the SABAAC approach.
-The authorization protocol is responsible for the policy creation, management, storage, and distribution.
-For this purpose, the authorization protocol provides policy management services at the PAP.
+Authorization is the process of assigning access privileges for protected objects to subjects \cite{Eckert2023}.
+According to \citeauthor{Eckert2023} \cite{Eckert2023}, a subject is said to be authorized for a specific request if it has the required access privileges for the request.
+We propose an authorization protocol that is responsible for the policy creation, management, storage, and distribution.
+For this purpose, the authorization protocol provides policy management services for human operators at the PAP.
 Moreover, the authorization protocol provides services for the exchange of policies between the PAP, PSP, and PDP.
 
-\todo{Hierarchic PDP/PAPs}
-\todo{Authorization Protocol: Static vs Dynamic Auth.}
+The delegated attribute-based authorization protocol is a message-based protocol.
+It uses digital signatures and verification provided by CASA to verify the integrity and authenticity of messages.
+Moreover, the services provided by the authorization protocol use reliable and acknowledged transport layer protocols for the message exchange.
+Since the authorization protocol is delegated, authorizations are not managed by the protected devices, but management is rather delegated to a TTP.
+In the SABAAC approach this TTP is represented by the PAP, PSP, and PDP.
+Accordingly, the protected objects or devices respectively delegate the authorization process to these SABAAC components.
+Therefore, the authorization can also be referred to as server-aided authorization.
+
+Since no cybersecurity layer sessions are established and consequently neither nonces nor sequence numbers can be used, message exchange of the authorization protocol is vulnerable to replay attacks.
+Therefore, we propose using timestamp-based replay protection for authorization messages.
+At the sender, timestamp-based replay protection can be achieved by adding a timestamp to the message and digitally signing the message and timestamp together.
+The message is then sent over the network to the receiver.
+The receiver only processes the message payload if its timestamp has a reasonable deviation from the current time.
+Moreover, if the receiver keeps record of the last timestamp received from each sender, the receiver can acknowledge duplicated and older packets without processing them.
+
+Authorizations in the SABAAC approach are realized using ABAC policies.
+As discussed in \autoref{sec:approach:sabaac:policy}, access control policies are classified as either static or dynamic.
+Consequently, the authorization protocol has to take the time-variability into account.
+For this purpose, the authorization protocol consists of three parts or sub-protocols respectively:
+\begin{description}
+    \item[Static Authorization] The static authorization process is responsible for the creation, modification, and deletion of policies.
+    The static authorization is initiated by a human operator.
+    The human operator sends a policy creation, modification, or deletion request to a PAP.
+    The PAP then translates the request into a valid SABAAC policy or policy modification and sends it to the PSP in the form of a CRUD request.
+    Finally, the PSP persists the created or modified policy and sends a response to the PAP.
+    \item[Policy Exchange] After a policy is created or modified via static authorization, it is shared with the PDPs via policy exchange.
+    Therefor, the PAP sends a policy exchange message to a PDP which contains the created or modified policy.
+    The policy exchange is an incremental process.
+    Consequently, only newly created or modified policies are exchanged.
+    A policy exchange containing all relevant policies can be initiated by a PDP by sending a policy exchange request to a PAP.
+    \item[Dynamic Authorization] The dynamic authorization process is responsible for the evaluation of SABAAC policies.
+    The dynamic authorization process is executed by the PDP.
+    The goal of the process is to compute whether a certain subject is authorized for a specific request.
+    Therefor, the PDP retrieves the attributes related to a policy and derives an authorization decision or access decision respectively.
+    The dynamic authorization is either executed ad-hoc in order to respond to an access control request or executed prior to a request.
+    The former execution strategy has less management overhead, since it requires no caching of policy evaluations.
+    On the contrary, ad-hoc policy evaluation increases the response time for access control requests.
+    The latter execution strategy evaluates policies prior to a request and caches the corresponding access decision.
+    Consequently, this precomputation strategy enables low latency communication by reducing the response time for access control requests.
+\end{description}
 
 \subsection{Delegated Attribute-Based Access Control Protocol}
 \label{sec:approach:sabaac:accesscontrol}
