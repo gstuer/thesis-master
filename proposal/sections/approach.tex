@@ -545,9 +545,83 @@ For this purpose, the authorization protocol consists of three parts or sub-prot
 
 \subsection{Delegated Attribute-Based Access Control Protocol}
 \label{sec:approach:sabaac:accesscontrol}
-\todo{Server-Aided ABAC is Delegated ABAC, Distributed Evaluation Strategy (With PDP, Ad-Hoc, Time Variable Attributes), Requests(External, Internal), Protocols, Session-Based via OAT (Estab. channel before comm.), Multiple PDPs and voting due to semi-trusted}
-\paragraph{Unicast: Client-Server Protocol}
-\paragraph{Multicast \& Broadcast: Publisher-Subscriber Protocol}
+%\todo{Server-Aided ABAC is Delegated ABAC, Distributed Evaluation Strategy (With PDP, Ad-Hoc, Time Variable Attributes), Requests(External, Internal), Protocols, Session-Based via OAT (Estab. channel before comm.), Multiple PDPs and voting due to semi-trusted}
+%\paragraph{Unicast: Client-Server Protocol}
+%\paragraph{Multicast \& Broadcast: Publisher-Subscriber Protocol}
+In the following, we discuss the delegated attribute-based access control protocol of the SABAAC approach.
+The goal of the access control protocol is the exchange and enforcement of access control decisions.
+The access control decisions are derived from the dynamic authorization process discussed in \autoref{sec:approach:sabaac:authorization}.
+Since the PDP instances execute the dynamic authorization process, the provisioning of access decisions is delegated to the PDP instances as well.
+In other words, the PDP instances compute access decision using dynamic authorization and provide these decisions to devices using the access control protocol.
+Moreover, devices including requesting subjects and protected objects delegate the enforcement of access decisions to trusted PEP instances.
+
+The access control protocol of the SABAAC approach uses digitally signed and partially acknowledged message exchange.
+Similar to the authorization protocol, it uses digital signatures and verification provided by CASA to verify the integrity and authenticity of messages.
+In order to exchange messages on the control path, the access control protocol relies on reliable transport services provided by the message exchange layer.
+Data path message exchange of the access control protocol relies on either reliable or unreliable transport services depending on requirements such as message integrity and congestion tolerance.
+Moreover, the protocol is based on discontinuous message-based communication as well as continuous session-based communication at the cybersecurity layer.
+The access control sessions are initialized at the sending and receiving entities prior to the exchange of domain-specific messages.
+
+The security of the access control protocol is vulnerable to three distinct threats.
+Due to its communication architecture the protocol is vulnerable to replay, denial-of-service (DoS), and collusion attacks.
+Replay of messages represents a threat for session-based and message-based communication.
+Session-based communication of the protocol uses session identifiers and sequence numbers to provide replay protection.
+Message-based communication employs timestamp-based replay protection, similar to the discontinuous communication used by the authorization protocol.
+DoS attacks represent a threat for session-based communication due its stateful concept including session initialization and management.
+In order to mitigate malicious DoS attacks and DoS due to configuration and system errors, the access control uses a soft-state session-based message exchange.
+Accordingly, the session states used by the communicating entities have to be refreshed periodically and unused or invalid states are deleted.
+As a consequence, devices may not make assumptions about the current state of other devices.
+Moreover, a device has to handle session state exceptions via reinitialization of access control sessions.
+The third type of security threat is the collusion of malicious PDP and PEP instances.
+A collusion attack occurs if a PDP forges an access decision that is used by a PEP to access a protected object in an unauthorized manner.
+In order to mitigate collusion and reduce the trust in a PDP, a PEP can use server-aided access decision verification.
+Therefor, a PEP can request the verification of a PDP access decision from another PDP.
+
+The workflow of the access control protocol is divided into three mandatory phases and an optional verification phase.
+The phases of the access control protocol are defined as follows:
+\begin{description}
+    \item[Access Request] The access request represents the initial phase of the access control procedure.
+    The goal of the access request phase is to exchange an access decision between a PDP and PEP.
+    The access request phase is initiated by a PEP instance on behalf of a domain subject.
+    Therefor, the PEP sends an access request including a digital signature and timestamp to a PDP.
+    The PDP verifies the request based on the signature and timestamp.
+    The PDP then derives an access decision from the access request and the dynamic authorization process.
+    The access decision can either grant or deny the requested access.
+    Finally, the signed access decision is returned to the requesting PEP.
+    A PEP instance can either initiate the access request ad-hoc as soon as a domain request arrives or execute the access request prior to an arriving domain request.
+    The latter option reduces the time before domain-specific payload can be transmitted to the receiving devices.
+
+    In order to take the time-variability of access control policies into account, the exchanged access decision has to contain a period of validity.
+    As long as an access decision is valid, it can be cached and reused by the PEPs.
+    Moreover, the access decision has to contain parameters to uniquely identify the access request.
+    These request parameters are used at the sending and receiving PEPs to identify the access control session.
+    Since arbitrary header-specific and payload-specific information can be used for session identification, the SABAAC approach defines the mandatory identification parameters.
+    Domain-specific message exchange that is based on data link layer protocols such as Ethernet is at least identified by a triple of parameters.
+    The identifying triple consists of source address, destination address, and communication protocol.
+    Domain-specific message exchange that is based on transport layer protocols such as the Transmission Control Protocol (TCP) or the User Datagram Protocol (UDP) is at least identified by a five-tuple of parameters.
+    The identifying five-tuple consists of source address, source port, destination address, destination port, and communication protocol.
+    \item[Session Initialization] The session initialization is executed by a PEP instance that is granted access via access request phase.
+    In order to initialize an access control session, a PEP sends a session initialization request to another PEP.
+    The digitally signed request has to contain a PDP-signed granted access decision and an initial sequence number.
+    Moreover, the requesting PEP may use piggybacking to send a domain-specific request with the session initialization request.
+    On receipt of an initialization request, a PEP verifies the signature of the request, the signature of the access decision, and its period of validity.
+    The PEP may optionally use server-aided access decision verification that is further discussed in the following section.
+    If the received request is valid, the PEP initializes a session state, sends a positive initialization acknowledgement to the requestor, and starts processing piggybacked domain-specific requests.
+    If the request is invalid, the PEP sends a negative initialization acknowledgement to the requestor.
+    \item[Access Decision Verification] The optional server-aided access decision verification enables a PEP to verify received access decisions.
+    Therefor, the PEP sends a verification request containing the PDP-signed access decision to another PDP.
+    The PDP verifies the access decision and sends a positive or negative verification acknowledgement back to the requestor.
+    \item[Payload Exchange] The payload exchange phase is the final phase of the access control protocol.
+    This phase can be repeatedly executed until the period of validity of an underlying access control session ends.
+    The goal of the payload exchange phase is to exchange signed and authorized domain-specific requests between a sender and a receiver.
+    For this purpose, the sender's PEP appends a valid session-specific sequence number to a domain-specific request.
+    This extended request is digitally signed and sent to the receiver's PEP.
+    On receipt of the extended request, the receiving PEP derives the session identifying parameters from the request.
+    Based on these parameters, the PEP verifies that a valid access control session for the received domain-specific request exists.
+    Moreover, the PEP verifies the sequence number and signature of the extended message.
+    Domain-specific communication is unidirectionally handled by the access control protocol of SABAAC.
+    Consequently, a response to a domain-specific request is handled as independent message exchange by the PEPs.
+\end{description}
 
 \section{Realization}
 \label{sec:approach:realization}
