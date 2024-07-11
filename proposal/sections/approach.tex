@@ -619,8 +619,13 @@ The phases of the access control protocol are defined as follows:
     On receipt of the extended request, the receiving PEP derives the session identifying parameters from the request.
     Based on these parameters, the PEP verifies that a valid access control session for the received domain-specific request exists.
     Moreover, the PEP verifies the sequence number and signature of the extended message.
+    
     Domain-specific communication is unidirectionally handled by the access control protocol of SABAAC.
     Consequently, a response to a domain-specific request is handled as independent message exchange by the PEPs.
+    Moreover, the payload exchange phase relies on a negative acknowledgement (NACK) concept
+    A NACK is sent in case of verification or authorization exceptions.
+    The NACK concept avoids acknowledgement implosions in multicast and broadcast communication scenarios.
+    A received NACK may trigger a session reinitialization workflow at a PEP.
 \end{description}
 
 \section{Realization}
