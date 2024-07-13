@@ -432,7 +432,13 @@ The second central task is referred to as delegated ABAC.
 The delegated ABAC is responsible for the policy decision and policy enforcement.
 This process takes place when an entity initiates the communication with another entity.
 The delegated ABAC protocol is further discussed in \autoref{sec:approach:sabaac:accesscontrol}.
-%Our authorization approach is inspired by the access control mechanism functional points presented by \citeauthor{Hu2014} \cite{Hu2014}.
+An overview of the SABAAC architecture, components, and protocols as well as the integration of CASA components and services into the SABAAC approach are shown in \autoref{fig:sabaac_protocols_overview}.
+\begin{figure}
+	\centering
+    \includegraphics[width=1.0\linewidth]{figures/SABAAC_protocols_overview.drawio.pdf}
+	\caption{Component-based architecture and communication protocols of the SABAAC approach, including the four SABAAC components, their interrelationships, and the integration of CASA components and services into the authorization and access control workflow.}
+	\label{fig:sabaac_protocols_overview}
+\end{figure}
 \todo{Security Requirements: Also integrity but not really confidentiality provided by SABAAC?}
 
 \subsection{Authorization \& Access Control Architecture}
@@ -603,7 +609,8 @@ The phases of the access control protocol are defined as follows:
     \item[Session Initialization] The session initialization is executed by a PEP instance that is granted access via access request phase.
     In order to initialize an access control session, a PEP sends a session initialization request to another PEP.
     The digitally signed request has to contain a PDP-signed granted access decision and an initial sequence number.
-    Moreover, the requesting PEP may use piggybacking to send a domain-specific request with the session initialization request.
+    Moreover, the requesting PEP may send the session initialization request along with a domain-specific request by piggybacking a payload exchange request.
+    The usage of piggybacking decreases the required time until a domain-specific response arrives at the requesting PEP by one RTT.
     On receipt of an initialization request, a PEP verifies the signature of the request, the signature of the access decision, and its period of validity.
     The PEP may optionally use server-aided access decision verification that is further discussed in the following section.
     If the received request is valid, the PEP initializes a session state, sends a positive initialization acknowledgement to the requestor, and starts processing piggybacked domain-specific requests.
