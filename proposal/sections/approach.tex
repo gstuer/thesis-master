@@ -533,11 +533,39 @@ For this purpose, the authorization protocol consists of three parts or sub-prot
     The human operator sends a policy creation, modification, or deletion request to a PAP.
     The PAP then translates the request into a valid SABAAC policy or policy modification and sends it to the PSP in the form of a CRUD request.
     Finally, the PSP persists the created or modified policy and sends a response to the PAP.
+    The static authorization process, the involved components, and the occurring message exchanges are visualized in \autoref{fig:sabaac_authorization_static}.
+    \begin{figure}
+        \centering
+        \includegraphics[width=1.0\linewidth]{figures/SABAAC_protocols_authorization_static.drawio.pdf}
+        \caption{Components and exchanged messages of the static authorization and policy persisting process initiated by a policy modification request of a human operator at a HMI.}
+        \label{fig:sabaac_authorization_static}
+    \end{figure}
     \item[Policy Exchange] After a policy is created or modified via static authorization, it is shared with the PDPs via policy exchange.
     Therefor, the PAP sends a policy exchange message to a PDP which contains the created or modified policy.
     The policy exchange is an incremental process.
     Consequently, only newly created or modified policies are exchanged.
+    The incremental policy exchange is shown in \autoref{fig:sabaac_authorization_dynamic_policyexchange_incremental}.
     A policy exchange containing all relevant policies can be initiated by a PDP by sending a policy exchange request to a PAP.
+    This type of policy exchange is referred to as complete policy exchange.
+    The complete policy exchange is shown in \autoref{fig:sabaac_authorization_dynamic_policyexchange_complete}.
+    \begin{figure}
+        \centering
+        \begin{subfigure}[t]{0.48\linewidth}
+            \centering
+            \includegraphics[width=\linewidth]{figures/SABAAC_protocols_authorization_dynamic_policyexchange_incremental.drawio.pdf}
+            \caption{Incremental policy exchange procedure initiated by the static authorization of a PAP.}
+            \label{fig:sabaac_authorization_dynamic_policyexchange_incremental}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[t]{0.48\linewidth}
+            \centering
+            \includegraphics[width=\linewidth]{figures/SABAAC_protocols_authorization_dynamic_policyexchange_complete.drawio.pdf}
+            \caption{Complete policy exchange procedure initiated by a policy exchange request of a PDP.}
+            \label{fig:sabaac_authorization_dynamic_policyexchange_complete}
+        \end{subfigure}
+        \caption{Components and exchanged messages of the incremental and complete policy exchange procedures.}
+        \label{fig:sabaac_authorization_dynamic_policyexchange}
+    \end{figure}
     \item[Dynamic Authorization] The dynamic authorization process is responsible for the evaluation of SABAAC policies.
     The dynamic authorization process is executed by the PDP.
     The goal of the process is to compute whether a certain subject is authorized for a specific request.
