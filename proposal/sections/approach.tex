@@ -536,8 +536,8 @@ For this purpose, the authorization protocol consists of three parts or sub-prot
     The static authorization process, the involved components, and the occurring message exchanges are visualized in \autoref{fig:sabaac_authorization_static}.
     \begin{figure}
         \centering
-        \includegraphics[width=1.0\linewidth]{figures/SABAAC_protocols_authorization_static.drawio.pdf}
-        \caption{Components and exchanged messages of the static authorization and policy persisting process initiated by a policy modification request of a human operator at a HMI.}
+        \includegraphics[width=0.9\linewidth]{figures/SABAAC_protocols_authorization_static.drawio.pdf}
+        \caption{Components and exchanged messages of the static authorization process. The process is initiated by a policy modification request of a human operator at a HMI. The involved PAP instance relies on a PSP to persist static authorizations or SABAAC policies respectively. Requests to persist changes to static authorizations are communicated in the form of CRUD requests between the PAP and PSP.}
         \label{fig:sabaac_authorization_static}
     \end{figure}
     \item[Policy Exchange] After a policy is created or modified via static authorization, it is shared with the PDPs via policy exchange.
@@ -563,7 +563,7 @@ For this purpose, the authorization protocol consists of three parts or sub-prot
             \caption{Complete policy exchange procedure initiated by a policy exchange request of a PDP.}
             \label{fig:sabaac_authorization_dynamic_policyexchange_complete}
         \end{subfigure}
-        \caption{Components and exchanged messages of the incremental and complete policy exchange procedures.}
+        \caption{Components and exchanged messages of the incremental and complete policy exchange procedures. The static authorization is a prerequisite for both  policy exchange procedures. The policy exchange is an interaction between a PAP and a PDP either initiated by a static authorization or on request of the involved PDP. The policy exchange is a prerequisite for dynamic authorization at a PDP. A repeatedly executed dynamic authorization process may be initially triggered by a policy exchange.}
         \label{fig:sabaac_authorization_dynamic_policyexchange}
     \end{figure}
     \item[Dynamic Authorization] The dynamic authorization process is responsible for the evaluation of SABAAC policies.
