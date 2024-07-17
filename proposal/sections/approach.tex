@@ -715,20 +715,49 @@ The phases of the access control protocol are defined as follows:
 
 \section{Realization}
 \label{sec:approach:realization}
-\todo{Realization: HW (BITW) or Software Solution}
+In the following section, we discuss the proposed realization of the CASC-SAS approach and its two core concepts CASA and SABAAC.
+The approach or its two concepts respectively introduce components that are defined and discussed in \autoref{sec:approach:casa} and \autoref{sec:approach:sabaac}.
+These components have to be integrated into the SAS system model to employ the CASC-SAS approach.
+This integration of CASC-SAS components into the SAS architecture is visualized in \autoref{fig:casc_architecture}.
+The PEP, PDP, UCS, and KGC components have to be present locally in every adapted SAS.
+This is necessary due to the strict time constraints of SAS-internal low latency message exchange.
+The PAP and PSP instances may be centrally deployed, since static authorization is part of the non-time-critical control path communication.
+Any non-intermediate SAS component that participates in a communication relationship must either support the CASC-SAS protocols or use the services provided by a PEP to secure occurring message exchanges.
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\linewidth]{figures/casc_architecture_color.drawio.pdf}
+    \caption{The adaptation of the layered SAS architecture to the CASC-SAS approach entails a modification of the architecture to accommodate the additional components provided by CASC-SAS. The components depicted in blue represent elements of the SAS architecture, whereas the components depicted in red are introduced by the CASC-SAS approach. The components with a color gradient represent elements of the SAS architecture that have been adapted to support CASC-SAS concepts.}
+    \label{fig:casc_architecture}
+\end{figure}
+
+In order to examine the feasibility and perform the above-mentioned integration, we propose a hardware and software realization of our approach.
+The aim of the realization is to provide implementations of CASA and SABAAC with a full range of functions.
+The software is going to be implemented component-wise using high-level programming languages.
+Depending on the complexity and time constraints of a specific component, different programming languages might be used for the implementation.
+Due to internal dependencies, the software implementation is split into two parts.
+The first part is dedicated to the CASA approach, as it represents the foundation of all employed protocols.
+The second part is dedicated to the SABAAC components and protocols.
+
+The employed components of CASA and SABAAC provide different services.
+Furthermore, the components have to be deployed differently in order to correspond to the proposed protocols.
+While PAP and PSP may be deployed centrally, components such as PEP, PDP, UCS, and KGC are distributed to individual SAS instances.
+This leads to differing hardware requirements for the implemented components.
+Moreover, with the exception of PEP instances, the components provide their services by using a client-server pattern.
+The PEP instances partially use a client-server pattern and partially provide their services in the form of a bump-in-the-wire (BITW) solution.
+The services provided by PEP instances via BITW pattern are automatically applied to captured packets.
+Therefore, these services are invisible to the corresponding service consumers.
+This BITW pattern is inspired by the security filter approach presented by \citeauthor{Ishchenko2018} \cite{Ishchenko2018}.
+Taking the differing provision patterns and deployment structures into account, we propose the usage of performance-oriented server hardware for the PAP, PSP, PDP, UCS, and KGC to avoid bottlenecks and mitigate the risk of accidental or malicious DoS.
+Moreover, we propose the usage of inexpensive off-the-shelf hardware for the highly distributed PEP instances.
 
 \section{Evaluation}
 \label{sec:approach:evaluation}
+\todo{Network Testbed}
+\todo{Network Simulation}
 \subsection{Evaluation Areas \& Metrics}
 \subsubsection{Security Evaluation}
 \subsubsection{Performance Evaluation}
 \subsubsection{Economic Evaluation}
-
-\subsection{Network Testbed}
-\todo{Network Testbed}
-
-\subsection{Network Simulation}
-\todo{Network Simulation}
 
 \section{Limitations}
 \label{sec:approach:limitations}
