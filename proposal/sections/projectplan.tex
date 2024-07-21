@@ -12,9 +12,11 @@ The risk assessment evaluates technical and non-technical risks for the proposed
 The work plan structures the proposed thesis into six milestones.
 Each milestone represents a major phase of the proposed master's thesis.
 The milestones serve as intermediate project goals which enable monitoring and reporting of project progress.
-Each milestone is defined by its starting date, duration in calendar weeks (CW), and deliverables.
-Moreover, each milestone consists of at least one task.
-The tasks of a milestone are referred to as increments.
+Each milestone is defined by its duration in calendar weeks (CW), deliverables, and tasks.
+Each milestone consists of at least one task.
+A task of a milestone is referred to as increment.
+The duration of a milestone depends on the duration of its increments and increment interdependencies.
+The projected timescales for the completion of milestones and increments have been calculated based on empirical values.
 The milestones of the proposed master's thesis are defined as follows:
 \begin{description}
     \item[Milestone I:] Preliminary Work
@@ -95,7 +97,23 @@ The milestones of the proposed master's thesis are defined as follows:
 
 \section{Time Schedule}
 \label{sec:time_schedule}
-\dots
+The time schedule maps the milestones and increments as defined in \autoref{sec:work_plan} to specific calendar weeks.
+The mapping of the proposed master's thesis is shown in \autoref{fig:timeplan}.
+The proposed time schedule covers the period from the 30th calendar week of 2024 to the 4th calendar week of 2025.
+In other words, the time schedule spans from July 22nd, 2024 to January 20th, 2025.
+The work plan stipulates that the approach presented in this thesis proposal has to be realized and evaluated within the 26-week period.
+Additionally, the remaining chapters must be completed and the written elaboration of the thesis must be finalized within this timeframe.
+
+The visualized time schedule shown in \autoref{fig:timeplan} illustrates the milestones II to VI.
+The initial milestone represents the preliminary work and has therefore been excluded from the visual representation.
+Multiple increments mapped to the same calendar weeks may be performed in parallel, as there are either no interdependencies or existing dependencies can be resolved beforehand.
+Accordingly, the indicated duration of an increment takes the occurrence of parallelization into account.
+In regard to the realization of CASA and SABAAC, the dependency inversion principle and service interfaces are employed to resolve existing dependencies.
+Other increments such as the different areas of the evaluation do not have interdependencies.
+The realization, evaluation, and conclusion milestones depend on the results of their predecessors.
+Consequently, the preceding milestones must be completed before the next milestone can commence.
+The finalization milestone is only partially dependent on the review milestone due to its binding increment.
+Accordingly, independent increments of these milestones can be performed simultaneously.
 \begin{figure}
     \centering
     \includegraphics[width=1.0\linewidth]{figures/timeplan.drawio.pdf}
