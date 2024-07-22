@@ -123,6 +123,68 @@ Accordingly, independent increments of these milestones can be performed simulta
 
 \section{Risk Assessment}
 \label{sec:risk_assessment}
-The risk assessment identifies technical as well as project management risks and assesses their impact on the proposed project plan.\dots
-\todo{Find, analyse, describe, estimate risks}
-\todo{Provide mitigation ideas for each risk}
+%Find, analyse, describe, estimate risks
+%Provide mitigation ideas for each risk
+The risk assessment identifies potential risks and assesses their impact on the proposed project plan.
+Additionally, it presents mitigation strategies for the identified risks.
+By considering the occurrence of undesirable events, the risk assessment enables the meeting of deadlines.
+The identified and assessed risks are classified as either technical or non-technical risks.
+The technical risks are discussed in detail in \autoref{sec:risk_assessment_technical}.
+The non-technical risks consist of organizational and project management risks and are discussed in detail in \autoref{sec:risk_assessment_project_management}.
+
+\subsection{Technical Risks}
+\label{sec:risk_assessment_technical}
+The following technical risks represent deficiencies in the design and implementation of the approach, which could result in non-compliance with stated requirements.
+In order to ensure the compliance with stated requirements, it is recommended that software testing and system evaluation are conducted in an automated manner.
+
+\subsubsection{Software Implementation Flaws}
+Software implementation flaws have an impact on the performance, availability, security, and safety of the approach.
+Implementation flaws such as bugs should be avoided by using automated software testing.
+The automated software testing should consist of automated unit, integration, system, and acceptance tests.
+The unit, integration, and system tests assure the correct and failure-free operation of the software under valid and invalid system conditions.
+The acceptance tests check the compliance to stated system requirements.
+The employed software testing methods have to provide high source code coverage.
+Besides automated software testing, code reviews after the implementation of the CASC-SAS software can increase the source code quality and mitigate the risk of implementation flaws.
+
+\subsubsection{Software Design Flaws}
+Software design flaws have an impact on the performance, availability, security, and safety of the approach.
+In order to mitigate the risk of software design flaws and therefore avoid re-implementation, architecture reviews should be conducted after the design of the CASC-SAS software.
+Furthermore, automated acceptance tests should check the compliance of already implemented software to stated system requirements to identify software design flaws.
+
+\subsubsection{Transient Hardware Faults}
+Transient faults of system hardware have an impact on the performance and availability of the approach.
+Transient faults have to be taken into account during the design and implementation of the system.
+This can be achieved by employing failure-avoidance strategies such as redundancy and automated system monitoring.
+
+\subsubsection{Persistent Hardware Faults}
+Persistent faults of system hardware have an impact on the performance and availability of the approach.
+Persistent faults have to identified via automated system monitoring and resolved by replacing corresponding hardware components.
+
+\subsubsection{Unsuitable Hardware}
+Unsuitable hardware has an impact on the performance and economic aspects of the approach.
+As a consequence, unsuitable hardware has to be replaced by suitable hardware in order to satisfy the system requirements.
+In order to make the approach performant and economically feasible, the system has to use components that provide neither too much nor too less performance for their designated tasks.
+
+%\subsubsection{Non-Transferability of Realization to SAS Environment}
+
+\subsection{Organizational \& Project Management Risks}
+\label{sec:risk_assessment_project_management}
+The following risks represent deficiencies in the project organization and management.
+Undesirable events caused by these risks lead to deviations from the proposed work plan and time schedule.
+In order to mitigate the following risks, a preliminary milestone was created with the objective of reducing the number and complexity of tasks to be completed within the limited thesis period.
+
+\subsubsection{Inaccurate Estimation of Milestone \& Increment Duration}
+The projected durations of milestones and increments have been calculated based on empirical values.
+However, this calculation approach may result in inaccurate estimations, which could lead to a deviation from the proposed time schedule.
+To mitigate the risk of inaccurate estimations, an additional buffer time has been incorporated into each duration associated with an increment or milestone.
+
+\subsubsection{Illness-Related Delay}
+The projected durations of milestones and increments have been calculated based on empirical values.
+Furthermore, additional buffer times have been incorporated into the projected durations.
+Nevertheless, illness may result in a deviation from the proposed time schedule.
+Small deviations, in the order of weeks, can be compensated by the additional buffer times.
+Large deviations, in the order of months, require either an extension of the limited thesis period or a prioritization of increments.
+The possibility of extending the thesis period by up to three months is governed by the examination regulations.
+
+%\subsubsection{Unavailability of Necessary Hardware}
+%\subsubsection{Unavailability of Necessary Software}
