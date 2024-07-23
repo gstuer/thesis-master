@@ -149,41 +149,69 @@ In the following, we introduce the requirements of the presented system model.
 Based on the identified requirements, functional and non-functional characteristics of the proposed approach are derived and evaluated.
 Each system model requirement is associated with a requirement category.
 We define five requirement categories for the introduced system requirements.
-The requirement categories include security (RQ.SEC), safety (RQ.SAFE), availability (RQ.AVA), performance (RQ.PERF), and interoperability (RQ.INT).
+The requirement categories include security (RQ.SEC), safety (RQ.SAF), availability (RQ.AVA), performance (RQ.PER), and interoperability (RQ.INT).
 \todo{Add forward/backward secrecy and more.}
 
-%\subsubsection{Security}
-\paragraph{RQ.SEC.1 Confidentiality}
-The system prohibits unauthorized access to sensitive information stored on devices and payload of messages exchanged within the system and between systems \cite{Eckert2023}.
-\paragraph{RQ.SEC.2 Integrity}
-The system detects unauthorized manipulation of stored and exchanged data \cite{Eckert2023}.
-\paragraph{RQ.SEC.3 Authenticity}
-The system can proof the authenticity and trustworthiness of subjects and data objects present in the system \cite{Eckert2023}.
-\paragraph{RQ.SEC.4 Non-Repudiation}
-The system ensures that a subject cannot dispute its authorship of data and requests \cite{Eckert2023}.
-\paragraph{RQ.SEC.5 Least Privilege Principle (PoLP)}
-The system ensures that each subject has the least number of privileges necessary to perform its function \cite{JTF2020}.
-\paragraph{RQ.SEC.6 Separation of Duties (SoD)}
-The system ensures that no subject has enough privileges to be able to misuse the system without collusion \cite{JTF2020}.
-\paragraph{RQ.SEC.7 Privacy Preservation}
-\todo{TODO: Does this conflict with the idea of proofing the origin of a request? In other words, is it possible to check if the subject who requested the access decision is still the same subject who used it in its request?}
+\subsubsection{Security}
+The system model has to satisfy six requirements related to information security.
+The security requirements of the system model are defined as follows:
+\begin{description}
+    %\paragraph{RQ.SEC.1 Confidentiality}
+    %The system prohibits unauthorized access to sensitive information stored on devices and payload of messages exchanged within the system and between systems \cite{Eckert2023}.
+    \item[RQ.SEC.1] Integrity\\
+    The system detects unauthorized manipulation of stored and exchanged data \cite{Eckert2023}.
+    \begin{description}
+        \item[RQ.SEC.1A] Device Integrity\\
+        The system detects unauthorized manipulation of data that is stored on system devices.
+        \item[RQ.SEC.1B] Message Integrity\\
+        The system detects unauthorized manipulation of data that is exchanged between system devices.
+    \end{description}
+    \item[RQ.SEC.2] Authenticity\\
+    The system can proof the authenticity and trustworthiness of subjects and data objects present in the system \cite{Eckert2023}.
+    \item[RQ.SEC.3] Access Control\\
+    The system prohibits unauthorized access to sensitive information stored on devices.
+    \item[RQ.SEC.4] Non-Repudiation\\
+    The system ensures that a subject cannot dispute its authorship of data and requests~\cite{Eckert2023}.
+    \item[RQ.SEC.5] Least Privilege Principle (PoLP)\\
+    The system ensures that each subject has the least number of privileges necessary to perform its function \cite{JTF2020}.
+    \item[RQ.SEC.6] Separation of Duties (SoD)\\
+    The system ensures that no subject has enough privileges to be able to misuse the system without collusion \cite{JTF2020}.
+    %\paragraph{RQ.SEC.7 Privacy Preservation}
+    %\todo{TODO: Does this conflict with the idea of proofing the origin of a request? In other words, is it possible to check if the subject who requested the access decision is still the same subject who used it in its request?}
+\end{description}
 
-%\subsubsection{Safety}
-\paragraph{RQ.SAFE.1 Safe Operation}
-\paragraph{RQ.SAFE.2 Fail-Safe}
+\subsubsection{Safety}
+The system model has to satisfy two safety-related requirements.
+The safety requirements of the system model are defined as follows:
+\begin{description}
+    \item[RQ.SAF.1] Safe Operation
+    \item[RQ.SAF.2] Fail-Safe
+\end{description}
 
-%\subsubsection{Availability}
-\paragraph{RQ.AVA.1 Continuing Operation}
-\paragraph{RQ.AVA.2 Fail-Operational}
+\subsubsection{Availability}
+The system model has to satisfy two availability-related requirements.
+The availability requirements of the system model are defined as follows:
+\begin{description}
+    \item[RQ.AVA.1] Continuing Operation
+    \item[RQ.AVA.2] Fail-Operational
+\end{description}
 
-%\subsubsection{Performance}
-\paragraph{RQ.PERF.1 Communication Latency}
-\paragraph{RQ.PERF.2 Computational Complexity}
-\paragraph{RQ.PERF.3 Energy \& Power Saving}
+\subsubsection{Performance}
+The system model has to satisfy three requirements related to system performance.
+The performance requirements of the system model are defined as follows:
+\begin{description}
+    \item[RQ.PER.1] Communication Latency
+    \item[RQ.PER.2] Computational Complexity
+    \item[RQ.PER.3] Energy \& Power Saving
+\end{description}
 
-%\subsubsection{Interoperability}
-\paragraph{RQ.INT.1 Compatibility}
-\paragraph{RQ.INT.2 Interchangeability}
+\subsubsection{Interoperability}
+The system model has to satisfy two requirements related to system interoperability.
+The interoperability requirements of the system model are defined as follows:
+\begin{description}
+    \item[RQ.INT.1] Compatibility
+    \item[RQ.INT.2] Interchangeability
+\end{description}
 
 \section[Certificateless Attribute-Based Server-Aided Cryptosystem for SAS (CASC-SAS)]{Certificateless Attribute-Based Server-Aided Cryptosystem for Substation Automation Systems (CASC-SAS)}
 \label{sec:approach:casc}
