@@ -11,7 +11,7 @@ compile: $(binary_dir)/$(binary)
 $(binary_dir):
 	mkdir $(binary_dir)
 
-$(binary_dir)/$(binary): $(binary_dir)
+$(binary_dir)/$(binary): $(sources) $(binary_dir)
 	$(compiler) $(flags) -o $(binary_dir)/$(binary) $(sources)
 
 clean:
