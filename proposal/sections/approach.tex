@@ -91,6 +91,7 @@ For the sender and receiver of a message or packet the processing time consists 
 As a consequence, the communication latency represents the time required for a message from being put into the sending buffer at the sender to the point when the message is taken from the receiving buffer at the receiver.
 
 \subsubsection{Message Types}
+\label{sec:approach:system_model:communication:message_types}
 The defined message types of the presented system model are based on the classification characteristics defined above and on the message types and performance classes of the IEC 61850 standard \cite{IEC61850P5}.
 The defined message type as well as their typical communication topology, continuity, and latency constraints are shown in \autoref{tab:message_types}.
 
@@ -149,7 +150,7 @@ In the following, we introduce the requirements of the presented system model.
 Based on the identified requirements, functional and non-functional characteristics of the proposed approach are derived and evaluated.
 Each system model requirement is associated with a requirement category.
 We define five requirement categories for the introduced system requirements.
-The requirement categories include security (RQ.SEC), safety (RQ.SAF), availability (RQ.AVA), performance (RQ.PER), and interoperability (RQ.INT).
+The requirement categories include security (RQ.SEC), safety (RQ.SAF), availability (RQ.AVA), performance (RQ.PER), and compatibility (RQ.COM).
 \todo{Add forward/backward secrecy and more.}
 
 \subsubsection{Security}
@@ -184,33 +185,46 @@ The security requirements of the system model are defined as follows:
 The system model has to satisfy two safety-related requirements.
 The safety requirements of the system model are defined as follows:
 \begin{description}
-    \item[RQ.SAF.1] Safe Operation
-    \item[RQ.SAF.2] Fail-Safe
+    \item[RQ.SAF.1] Safe Operation\\
+    Under possible operating conditions, the system must not pose a threat to itself and its environment.
+    \item[RQ.SAF.2] Fail-Safe\\
+    In case of failure, the system terminates without causing harm to the system or system environment~\cite{rfc4949}.
+    In other words, the system never transitions into an unsafe state.
 \end{description}
 
 \subsubsection{Availability}
 The system model has to satisfy two availability-related requirements.
 The availability requirements of the system model are defined as follows:
 \begin{description}
-    \item[RQ.AVA.1] Continuing Operation
-    \item[RQ.AVA.2] Fail-Operational
+    \item[RQ.AVA.1] Continuing Operation\\
+    Under possible operating conditions, the system must continue its operation as stated by the system requirements.
+    \item[RQ.AVA.2] Fail-Operational\\
+    In case of failure, the system aims to continue its operation by selectively terminating failing system functions.
+    The selective termination of non-essential system functions in case of a failure is also referred to as fail-soft~\cite{rfc4949}.
 \end{description}
 
 \subsubsection{Performance}
 The system model has to satisfy three requirements related to system performance.
 The performance requirements of the system model are defined as follows:
 \begin{description}
-    \item[RQ.PER.1] Communication Latency
-    \item[RQ.PER.2] Computational Complexity
-    \item[RQ.PER.3] Energy \& Power Saving
+    \item[RQ.PER.1] Communication Latency\\
+    The system must respect the latency constraints for network communication defined in \autoref{sec:approach:system_model:communication:message_types}.
+    Consequently, the maximum communication latency for low latency message exchange on the data path must not exceed three milliseconds.
+    \item[RQ.PER.2] Computational Complexity\\
+    The system must respect the limited performance of resource-constraint devices in the SAS.
+    Consequently, computationally complex algorithms have to be executed by performance-oriented servers.
+    \item[RQ.PER.3] Energy \& Power Saving\\
+    The system must respect the energy and power constraints of resource-constraint devices in the SAS.
 \end{description}
 
-\subsubsection{Interoperability}
-The system model has to satisfy two requirements related to system interoperability.
-The interoperability requirements of the system model are defined as follows:
+\subsubsection{Compatibility}
+The system model has to satisfy two requirements related to system compatibility.
+The compatibility requirements of the system model are defined as follows:
 \begin{description}
-    \item[RQ.INT.1] Compatibility
-    \item[RQ.INT.2] Interchangeability
+    \item[RQ.COM.1] Interoperability\\
+    The system components are capable of exchanging information and providing services, irrespective of whether they originate from a single vendor or multiple vendors~\cite{IEC61850P5}.
+    \item[RQ.COM.2] Interchangeability\\
+    The system's behavior and functionality may not be influenced by an exchange of devices with an equal range of functions from a single vendor or multiple vendors~\cite{IEC61850P5}.
 \end{description}
 
 \section[Certificateless Attribute-Based Server-Aided Cryptosystem for SAS (CASC-SAS)]{Certificateless Attribute-Based Server-Aided Cryptosystem for Substation Automation Systems (CASC-SAS)}
@@ -825,7 +839,7 @@ The three areas of interest and their corresponding metrics are defined as follo
     \end{enumerate}
     \item[Economic Evaluation] Is CASC-SAS an economically feasible solution for the construction or retrofitting of an SAS?
     \begin{enumerate}
-        \item Satisfied economy and interoperability requirements
+        \item Satisfied compatibility requirements
         \item Assumed device requirements
         \item Additional costs for SAS construction and retrofitting
         \item Feasibility with regard to SAS retrofitting
