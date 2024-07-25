@@ -11,25 +11,25 @@ Moreover, the similarities, differences, and applications of the related work wi
 An authenticated communication approach for network packets between IEDs and merging units is presented by \citeauthor{Ishchenko2018} \cite{Ishchenko2018}.
 They identified the lack of security in existing IEC 61850 substations and ICSs in general as a key weakness.
 In order to mitigate this weakness, \citeauthor{Ishchenko2018} present retrofitting of substations as a viable solution
-For this purpose, they introduce a system and bump-in-the-wire device called Security Filter as an add-on device between IEDs and Ethernet-based communication busses using the generic object oriented substation event (GOOSE) or sampled values (SV) protocol.
-Security Filter appends message authentication code (MAC) tags to outgoing messages of the IEDs and verifies incoming MAC tags.
+For this purpose, they introduce a system and bump-in-the-wire device called security filter as an add-on device between IEDs and Ethernet-based communication busses using the generic object oriented substation event (GOOSE) or sampled values (SV) protocol.
+Security filter appends message authentication code (MAC) tags to outgoing messages of the IEDs and verifies incoming MAC tags.
 As a consequence, the communication busses are secured against unauthenticated messages achieving the security goals integrity and authenticity.
-Moreover, the Security Filter approach uses a timestamp to avoid replay attacks.
+Moreover, the security filter approach uses a timestamp to avoid replay attacks.
 
-In order to achieve interoperability with legacy communication systems and compatibility with different substation automation systems, the authors introduce a multimode operation design for Security Filter.
+In order to achieve interoperability with legacy communication systems and compatibility with different substation automation systems, the authors introduce a multimode operation design for the security filter.
 The multimode operation design consists of three operation modes.
-In filtering mode Security Filter verifies all packets incoming packets, blocks compromised packets after a certain threshold, and tags all outgoing packets.
-Moreover, Security Filter alarms the IED about the compromised packets.
-In supervisory mode Security Filter tags selected packets based on a specific rate of packets, verifies tagged packets only, and blocks and alarms when the number of compromised packets exceeds the threshold.
+In filtering mode the security filter verifies all packets incoming packets, blocks compromised packets after a certain threshold, and tags all outgoing packets.
+Moreover, the security filter alarms the IED about the compromised packets.
+In supervisory mode the security filter tags selected packets based on a specific rate of packets, verifies tagged packets only, and blocks and alarms when the number of compromised packets exceeds the threshold.
 Consequently, supervisory mode leads to a reduced computational effort.
 The last mode is called advisory mode.
-In advisory mode Security Filter selectively tags and verifies packets based on a specific rate of packets but only triggers alarms and does not block packets after the threshold of compromised packets is reached.
-Additionally, the operation of Security Filter can be disabled in case of internal errors allowing all packets to pass through.
-\citeauthor{Ishchenko2018} showed that Security Filter is able to meet the IEC 61850 performance requirements of GOOSE and SV using a HMAC and GMAC algorithm even on commodity of-the-shelf ARM hardware.
+In advisory mode the security filter selectively tags and verifies packets based on a specific rate of packets but only triggers alarms and does not block packets after the threshold of compromised packets is reached.
+Additionally, the operation of the security filter can be disabled in case of internal errors allowing all packets to pass through.
+\citeauthor{Ishchenko2018} showed that the security filter is able to meet the IEC 61850 performance requirements of GOOSE and SV using a HMAC and GMAC algorithm even on commodity of-the-shelf ARM hardware.
 
-This thesis proposal introduces an approach similar to the Security Filter approach presented by \citeauthor{Ishchenko2018}.
-The architecture and security procedures of the proposed approach are inspired by Security Filter.
-We propose extending the concept of authenticated communication within substations by using payload encryption to achieve confidentiality as well as authenticity, integrity, and availability.
+This thesis proposal introduces an approach similar to the security filter approach presented by \citeauthor{Ishchenko2018}.
+The architecture and security procedures of the proposed approach are inspired by the security filter.
+The concept of authenticated communication is proposed as a foundation for secure communication in substations.
 Moreover, the proposed approach aims to extend the employed access control from identity-based to attribute-based authorization.
 As a consequence, more complex access control policies can be established within a substation or ICS in general.
 
@@ -66,9 +66,9 @@ The authors conducted the evaluation of the presented architecture using simulat
 As stated by the authors, the hardware implementation is able to process GOOSE and SV packets with a fixed latency in the order of microseconds.
 Consequently, the authors state that the presented hardware architecture is able to provide integrity and confidentiality without exceeding the maximum delivery time of three milliseconds introduced by IEC 61850 for GOOSE and SV packets.
 
-Besides securing the intra-substation communication based on the GOOSE and SV protocol, the thesis proposal extends the idea of providing integrity, authenticity, and confidentiality to inter-substation and remote communication.
-In order to achieve flexibility and interoperability with regard to different ICS environments including different protocols and algorithms used, the proposed approach is software-based instead of hardware-based.
-Moreover, the proposed approach does not rely on a symmetric-key algorithm but rather asymmetric-key algorithms.
+Besides securing the intra-substation communication based on the GOOSE and SV protocol, the thesis proposal extends the idea of providing integrity, authenticity, and non-repudiation to inter-substation and remote communication.
+In order to achieve flexibility and interoperability with regard to different ICS environments including different protocols and algorithms used, the proposed approach is software-based rather than hardware-based.
+Furthermore, the proposed approach does not rely on a symmetric-key algorithms, but rather on asymmetric-key algorithms.
 This is possible due to an increase in processing performance of IT and OT devices nowadays.
 
 %%% Hong2019 - Cyber Attack Resilient Distance Protection and Circuit Breaker Control for Digital Substations
@@ -88,7 +88,7 @@ The presented attack scenarios are an accidental or malicious IED configuration 
 Collaborating devices can block these attacks by validating sensor data and configuration changes based on measurements and metrics as well as predicting consequences of control actions.
 
 The approach presented in the thesis proposal is inspired by the usage of domain-specific knowledge to detect and block attacks.
-The proposed approach uses available domain-specific knowledge to design and implement a substation-specific security system.
+The proposed approach uses available domain-specific knowledge to design and implement a substation-specific cryptosystem.
 Moreover, the incremental framework of the proposed approach for the system design, threat analysis, and mitigation strategy design is based on the research framework presented by \citeauthor{Hong2019}.
 
 \section{Access Control in Substations}
@@ -169,7 +169,8 @@ Each DRBAC policy is associated to a certain distributed role and contains a dom
 Moreover, the authors state that their DRBAC approach supports temporal, contextual, or cardinality constraints to enhance the semantic expressiveness of access control and enable the definition of higher-level organizational policies.
 
 The authentication and authorization approach employed in the thesis proposal is inspired by the concept of delegation presented by \citeauthor{Ma2006}.
-The authors demonstrate the delegation concept in a subscription-based remote network service environment, whereas the proposed approach uses authentication and authorization delegation in substations.
+The authors illustrate the concept of delegation within the context of a subscription-based remote network service environment.
+The proposed approach entails the utilization of authentication and authorization delegation in substations.
 Moreover, the proposed approach elevates the degree of abstraction of the presented delegation concept by decoupling it from the concrete access control model used.
 The proposed approach realizes authorization delegation via PDPs that make access control decisions for resource requests in place of other devices.
 Furthermore, authentication delegation is used for external resource requests in order to increase scalability and manageability.
@@ -194,7 +195,8 @@ During the interoperability phase the PEP transparently applies the security pol
 The approach presented in the thesis proposal relies on a system model with an architecture similar to the approach presented by \citeauthor{Alcaraz2016}.
 Moreover, the two approaches resemble in their usage of authentication and authorization delegation as well as their awareness regarding the request context realized via PDP decision-making.
 Nevertheless, the approaches differ in their degree of dependence on specific access control models.
-The approach presented by \citeauthor{Alcaraz2016} depends on the subject-role associations of RBAC for decision-making as prescribed by IEC 62351-8, whereas the proposed approach supports more fine-grained and flexible ABAC policies.
+The approach presented by \citeauthor{Alcaraz2016} depends on the subject-role associations of RBAC for decision-making as prescribed by IEC 62351-8.
+The proposed approach supports more fine-grained and flexible ABAC policies.
 
 %%% Liu2006 - Study on PMI based access control of substation automation system (10.1109/PES.2006.1709324)
 An RBAC-based access control approach using Privilege Management Infrastructure (PMI) for IEC 61850 substations is presented by \citeauthor{Liu2006} \cite{Liu2006}.
