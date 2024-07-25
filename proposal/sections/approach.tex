@@ -10,7 +10,7 @@ Based on the presented system model and requirements, we introduce the CASC-SAS 
 The two main CASC-SAS concepts, its cryptographic scheme and server-aided access control, are introduced in \autoref{sec:approach:casa} and \autoref{sec:approach:sabaac}.
 In \autoref{sec:approach:realization} we present the planned realization of the CASC-SAS approach.
 Subsequently, we present the proposed evaluation strategies and metrics of the approach in \autoref{sec:approach:evaluation}.
-Finally, in \autoref{sec:approach:limitations} we discuss limitations of the proposed approach.
+% Finally, in \autoref{sec:approach:limitations} we discuss limitations of the proposed approach.
 %\todo{Own idea, concept, protocol, evaluation, proof, testing, expected benefits and limitations}
 %\todo{SECURITY: Security Goals (CIA + Privacy Preserving)}
 %\todo{IDEA: Wrap packages of arbitrary protocols by encripting payload of ethernet package, and adding a new header with ABAC-SS information. Maybe as HW Middleware? If other endpoint does not support the ABAC-SS wrapping fall back to proofing endpoint via identity provider only.}
@@ -144,6 +144,7 @@ Secure tunneling approaches like Virtual Private Networks (VPN) can be used to e
 
 %\subsection{Threats}
 %\todo{System Threats + Adversaries + Attack Trees}
+\todo{Subsection: System Threats}
 
 \subsection{Requirements}
 In the following, we introduce the requirements of the presented system model.
@@ -327,11 +328,13 @@ The cryptography layer uses control messages for key generation, distribution, a
 The cybersecurity layer uses control messages for tasks such as policy management.
 As a result, the communication occurring on the control path is less traffic-intensive and less time-critical.
 
-%\subsubsection{Stakeholders}
-%\todo{Stakeholders of CASC-SAS}
+% \subsubsection{Stakeholders}
+% \todo{Stakeholders of CASC-SAS}
+\todo{Subsubsection: Stakeholders}
 
-\subsection{Security Policies}
-\todo{Security Policies -> Link to Requirements \& Attacks}
+% \subsection{Security Policies}
+% \todo{Security Policies -> Link to Requirements \& Attacks}
+\todo{Subsubsection: Security Policies}
 
 \section{Certificateless Attribute-Based Server-Aided Authentication (CASA)}
 \label{sec:approach:casa}
@@ -847,6 +850,8 @@ The three areas of interest and their corresponding metrics are defined as follo
     \end{enumerate}
 \end{description}
 
-\section{Limitations}
-\label{sec:approach:limitations}
-\todo{Limitations: No intrusion detection but prevention/mitigation, might not be usable for fast messages, not every crypto for every message type, possible new attack vectors by adding new components, applicability to other ics domains, time protocol interference, physical access control -> future work}
+% \section{Limitations}
+% \label{sec:approach:limitations}
+% \todo{Reactivate reference in approach introduction}
+% \todo{Limitations: No intrusion detection but prevention/mitigation, might not be usable for fast messages, not every crypto for every message type, possible new attack vectors by adding new components, applicability to other ics domains, time protocol interference, physical access control -> future work}
+\todo{Section: Limitations}
