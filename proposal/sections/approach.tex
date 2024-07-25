@@ -244,7 +244,7 @@ This core concept is further discussed in \autoref{sec:approach:casa}.
 
 The second core concept of the approach is the Server-Aided Attribute-Based Authorization and Access Control (SABAAC).
 This concept provides mechanisms to enable attribute-based authorization and ABAC for time-critical SAS communication.
-The concept represents a more abstract cybersecurity means to provide confidentiality, PoLP, and SoD.
+The concept represents a more abstract cybersecurity means to provide access control, PoLP, and SoD.
 For this purpose, the concept relies on authentication services provided by CASA.
 This concept is further discussed in \autoref{sec:approach:sabaac}.
 
@@ -274,8 +274,8 @@ The cybersecurity layer encompasses algorithms and protocols used to satisfy the
 Additionally, security workflows and mechanisms for the enforcement of security policies are located at this layer.
 Consequently, the cybersecurity layer provides secure message exchange services to the domain layer.
 The SABAAC concept of CASC-SAS is part of this architectural layer.
-SABAAC provides authorization and access control to satisfy the security requirements confidentiality, PoLP, and SoD.
-%Provides authorization and access control in order to satisfy confidentiality, PoLP, and SoD.
+SABAAC provides authorization and access control to satisfy the security requirements access control, PoLP, and SoD.
+%Provides authorization and access control in order to satisfy access control, PoLP, and SoD.
 
 \paragraph{Layer 1: Cryptography}
 The cryptography layer provides cryptographic algorithms and schemes to higher layers of the architecture.
@@ -460,7 +460,7 @@ While non-adaptive CMA restricts the adversary to a fixed set of messages chosen
 The second core concept of the CASC-SAS approach is the \textbf{S}erver-Aided \textbf{A}ttribute-\textbf{B}ased \textbf{A}uthorization and \textbf{A}ccess \textbf{C}ontrol (SABAAC).
 The SABAAC approach enables the employment of attribute-based authorization and access control for time-critical SAS communication.
 Therefore, the approach prevents unauthorized access and extraction of information.
-The approach enables CASC-SAS to satisfy the confidentiality, PoLP, and SoD security requirements.
+The approach enables CASC-SAS to satisfy the access control, PoLP, and SoD security requirements.
 Moreover, the expressive and flexible but yet computationally expensive ABAC policies are handled in a server-aided manner in order to satisfy the strict time constraints of the SAS domain.
 
 Our authorization and access control approach represents a cybersecurity concept that is located on the cybersecurity layer of the CASC-SAS architecture.
@@ -486,7 +486,6 @@ An overview of the SABAAC architecture, components, and protocols as well as the
 	\caption{Component-based architecture and communication protocols of the SABAAC approach, including the four SABAAC components, their interrelationships, and the integration of CASA components and services into the authorization and access control workflow.}
 	\label{fig:sabaac_protocols_overview}
 \end{figure}
-\todo{Security Requirements: Also integrity but not really confidentiality provided by SABAAC?}
 
 \subsection{Authorization \& Access Control Architecture}
 \label{sec:approach:sabaac:architecture}
