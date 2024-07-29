@@ -28,6 +28,11 @@
 %% Subcaption package required for subfigures
 \usepackage{subcaption}
 
+%% Glossaries package required for acronym section
+\usepackage[acronym,toc,section=chapter,numberedsection=false,style=listgroup]{glossaries}
+\makeglossaries
+\loadglsentries{sections/acronyms.tex}
+
 %% ---------------------------------
 %% | Information about the thesis  |
 %% ---------------------------------
@@ -131,6 +136,13 @@
 \input{sections/relatedwork.tex}
 \input{sections/approach.tex}
 \input{sections/projectplan.tex}
+
+%% ---------------------------
+%% |   Glossary / Acronyms   |
+%% ---------------------------
+% Glossary and acronyms are printed as chapter*: Used entries and non-empty chapters only!
+\printglossary
+\printacronyms
 
 %% --------------------
 %% |   Bibliography   |
