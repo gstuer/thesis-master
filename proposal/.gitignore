@@ -18,3 +18,12 @@ sections/*.pdf
 *.synctex.gz
 *.toc
 .vscode/
+
+# Latex - Glossaries Package & Makeglossaries
+*.acn
+*.acr
+*.alg
+*.glg
+*.glo
+*.gls
+*.ist
