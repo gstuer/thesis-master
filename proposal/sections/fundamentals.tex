@@ -315,11 +315,33 @@ A policy represents a rule based on which an access decision is taken for specif
 As a consequence, a policy can be seen as a relationship between subject, object, environment, and operation attributes describing under which circumstances the ACM grants or denies an access request.
 
 According to \citeauthor{Hu2014} \cite{Hu2014}, RBAC and IBAC represent special cases of ABAC regarding their attributes used.
+Furthermore, ABAC is capable of enforcing DAC as well as MAC concepts.
 An advantage of ABAC compared to different access control models is the higher flexibility regarding multifactor policy expression.
 Moreover, ABAC can take access control decisions based on ad-hoc knowledge and knowledge from separate infrastructure.
 This is possible due to ABAC taking decisions at request time by evaluating policies instead of static decision-making as found in IBAC and RBAC.
 As a consequence, pre-provisioning of requesting subjects in a multi-organization environment can be avoided.
-\todo{Describe/Present architcture of XACML based on RFC 2904 including PEP, PDP, and PIP}
+\todo{Overhaul benefits and challenges based on Guide to Attribute Based Access Control (ABAC) Definition and Considerations Page 8}
+\todo{Describe/Present architecture of XACML based on RFC 2904 including PEP, PDP, and PIP}
+
+\subsection{NIST Recommendations}
+The National Institute of Standards and Technology (NIST) provides recommendations and guidance for authentication, authorization, and access control in ICS \cite{Stouffer2015} and OT systems \cite{Stouffer2023}.
+With regard to authentication, NIST recommends considering the identity management lifecycle in OT environments.
+This lifecycle includes the issuance, update, and revocation of authentication credentials.
+Furthermore, NIST recommends the consideration of centralized identity management and authentication to improve management and monitoring.
+NIST mentions Active Directory (AD) and Lightweight Directory Access Protocol (LDAP) as centralization supporting network technologies.
+Nevertheless, NIST points out that authentication might not be advisable if it has an impact on performance, reliability, and safety.
+This is especially the case in emergency situations in which authentication may impede procedures and result in negative consequences for system safety.
+
+With regard to authorization and access control, NIST emphasizes the importance of considering physical and logical means for OT security.
+NIST states that organizations are not limited to a single access control approach, but may rather employ different approaches resulting in higher effectiveness and efficiency.
+A combination of ACLs, RBAC, and ABAC is mentioned as an example for achieving the access control requirements of an organization.
+
+NIST recommends considering logical access control minimizing errors and costs of maintaining access privileges.
+It is recommended that approaches support the Principle of Least Privilege (PoLP) and Separation of Duties (SoD).
+Furthermore, NIST recommends solutions that incorporate credential management, authentication, authorization, access control, and system monitoring.
+These solutions represent secure platforms enabling the access to OT devices.
+Solutions that verify the identity of individuals or devices before granting access are recommended, as they lead to lower access and command processing latencies.
+Moreover, solutions should be highly reliable and designed to reduce the impact on OT operations and safety.
 
 % \section{Classes of Security Policy Models}
 % \label{sec:securitypolicymodels}
