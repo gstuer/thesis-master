@@ -1,46 +1,71 @@
 \chapter{Introduction}
 \label{ch:introduction}
-Modern operational technology (OT) such as industrial control systems (ICS) increasingly rely on information and communication technology (ICT) for monitoring and control.
+Modern operational technology (OT) such as industrial control systems (ICS) increasingly rely on information and communication technology (ICT) for monitoring and control~\cite{Stouffer2023}.
+As a consequence, the resemblance of OT and information technology (IT) systems increases as OT systems adopt IT technology.
 This development leads to new possibilities including the integration of distributed OT into supervisory control and data acquisition (SCADA) systems.
 Nevertheless, besides these possibilities, new challenges arise from the increased usage of ICT in OT systems.
 
 According to \citeauthor{Stouffer2023} \cite{Stouffer2023}, the typical long life cycle of OT systems and their unique requirements regarding performance, reliability, security, safety, privacy, and environmental impact have to be taken into account when designing, operating, and maintaining OT systems.
 In the following, we focus on the information security of OT systems.
-Although a variety of information security solutions exist for information technology (IT), migration of existing approaches to the OT domain may not be a viable solution due to the differing system characteristics, risks, and priorities.
+Although a variety of information security solutions exist for IT, migration of existing approaches to the OT domain may not be a viable solution due to the differing system characteristics, risks, and priorities.
 An example for the differing priorities are information confidentiality and access control.
-While the prevention of unauthorized access represents the core objective of IT security approaches, OT systems and especially OT-based critical infrastructure prioritize system availability and reliability.
+While the prevention of unauthorized access represents the core objective of IT security approaches, OT systems and especially OT-based critical infrastructures prioritize system availability and reliability.
 
-Within the scope of this thesis, we focus on time-critical communication in a specific type of ICS.
+Within the scope of this thesis, we focus on the occurring communication in a specific type of OT system.
 The field of application of the approach proposed by this thesis are so-called substation automation systems (SAS).
-A SAS represents the entirety of communication and control equipment of a substation \cite{Padilla2015}.
-The IEC 61850 series provides standards for the communication networks of digital energy systems \cite{IEC61850P5}.
-The goal of the IEC 61850 series is seamless communication and interoperability of systems in a smart energy grid.
-Although standards for the communication in a SAS are provided by the IEC 61850 standards, information security is not an objective of the standards.
-In order to overcome this problem, the IEC 62351 standard series was created by the \citeauthor{IEC62351P6}.
-Part 6 of the IEC 62351 series provides standardized security means for communication compliant to IEC 61850 \cite{IEC62351P6}.
-Moreover, Part 8 of the IEC 62351 series provides a role-based access control concept for power system \cite{IEC62351P8}.
+A SAS represents the entirety of communication and control equipment of a substation~\cite{Padilla2015}.
+A substation is a facility of a high-voltage electricity grid connecting power transmission and distribution lines that use different voltage levels~\cite{oshaSubstation}.
+A substation and its SAS represent a specific type of ICS.
+The tasks of a SAS are time-critical and have to be executed reliably, as the electricity sector and its substations are critical infrastructures.
 
-Despite the existence of standards for communication and information security, there are remaining challenges in order to secure SAS communication.
+The IEC 61850 series provides standards for the communication networks of digital energy systems~\cite{IEC61850P5}.
+The goal of the IEC 61850 series is seamless communication and interoperability of systems in a smart energy grid.
+Although standards for the communication in a SAS are provided by the IEC 61850 standards, information security is not an objective of these standards.
+In order to overcome this problem, the IEC 62351 standard series was created by the~\citeauthor{IEC62351P6}.
+Part 6 of the IEC 62351 series provides standardized security means for communication compliant to IEC 61850~\cite{IEC62351P6}.
+Moreover, Part 8 of the IEC 62351 series provides a role-based access control concept for power system~\cite{IEC62351P8}.
+
+\section{Objective}
+\label{sec:introduction:objective}
+While standards regarding the communication networks of smart grid systems are widely accepted and used, information security still has to face yet unresolved challenges.
+Attacks in the past have shown, that economically or politically motivated adversaries pose a risk for OT systems such as energy-related systems~\cite{canada2021}.
+These attacks include TODO \dots 
+
+Despite the existence of standards for communication and information security including the IEC 61850 and 62351, there are remaining challenges in order to secure SAS communication.
+This thesis focuses on these remaining challenges in order to enhance the information security of SAS communication.
 According to \citeauthor{Ishchenko2018} \cite{Ishchenko2018} as well as \citeauthor{Elbez2019} \cite{Elbez2019}, the strict time constraints of the low latency communication in substations are key factors for the information security.
 According to the authors, asymmetric cryptography formerly prescribed by the IEC 62351 standards is not appropriate due to computational complexity and latency.
-
-\section{Contribution}
-\label{sec:contribution}
-With the aim of providing means to enhance the information security in an SAS, we propose a \textbf{C}ertificateless \textbf{A}ttribute-Based \textbf{S}erver-Aided \textbf{C}ryptosystem for \textbf{S}ubstation \textbf{A}utomation \textbf{S}ystems (CASC-SAS).
-The main objective of the proposed approach is to provide secure asymmetric cryptographic protocols, algorithms, and schemes for SAS communication.
-The provided protocols, algorithms, and schemes aim to satisfy SAS security requirements such as integrity, authenticity, and non-repudiation, while taking the strict time constraints of the SAS domain into account.
-Moreover, our cryptosystem comprises a server-aided attribute-based access control (ABAC) approach.
-This ABAC approach enables the prevention of unauthorized access.
-Our proposed ABAC approach uses the provided cryptographic protocols, algorithms, and schemes as a foundation.
-Furthermore, our server-aided ABAC approach aims to demonstrate the applicability of expressive and flexible but yet computationally expensive access control policies in an environment with strict time and resource constraints.
-
-\section{Research Questions}
-\label{sec:research_questions}
-While standards regarding the communication networks of smart grid systems are widely accepted and used, information security still has to face yet unresolved challenges.
-Our proposed approach aims to not only enhance the security of SAS communication by satisfying security objectives, but also takes the specific characteristics, risks, and priorities of OT, ICS, and SAS into account.
-Based on this proposed approach, the following research questions are going to be answered in the course of this thesis:
+% Based on this proposed approach, the following research questions are going to be answered in the course of this thesis:
+Therefor, the following research questions are going to be answered in the course of this thesis:
 \begin{description}
-    \item[RQ1] How can a secure certificateless server-aided public key cryptography approach be designed and implemented, that is able to serve as a foundation for a malleable and extendable cryptosystem in the time-critical SAS environment?\\
-    \item[RQ2] How can expressive and flexible but yet computationally expensive access control approaches such as ABAC be employed to enable prevention of unauthorized access in a time-critical SAS environment?\\
+    \item[RQ1] How can a secure certificateless server-aided public key cryptography approach be designed and implemented, that is able to serve as a foundation for a malleable and extendable cryptosystem in the time-critical SAS environment?
+    \item[RQ2] How can expressive and flexible but yet computationally expensive access control approaches such as ABAC be employed to enable prevention of unauthorized access in a time-critical SAS environment?
     \item[RQ3] How can authentication, authorization, and access control be integrated into a certificateless attribute-based server-aided cryptosystem for time-critical SAS communication?
 \end{description}
+
+\section{Contribution}
+\label{sec:introduction:contribution}
+With the aim of providing means to enhance the information security in an SAS, we propose a \textbf{C}ertificateless \textbf{A}ttribute-Based \textbf{S}erver-Aided \textbf{C}ryptosystem for \textbf{S}ubstation \textbf{A}utomation \textbf{S}ystems (CASC-SAS).
+The main objective of the proposed approach is to provide secure protocols, algorithms, and schemes for SAS communication based on asymmetric cryptography.
+% The provided protocols, algorithms, and schemes aim to satisfy SAS security requirements such as integrity, authenticity, and non-repudiation, while taking the strict time constraints of the SAS domain into account.
+The provided protocols, algorithms, and schemes aim to satisfy SAS security requirements such as integrity, authenticity, access control, and non-repudiation.
+The approach aims to not only enhance the security of SAS communication by satisfying security objectives, but also takes the specific characteristics, risks, and priorities of OT, ICS, and SAS into account.
+Our proposed cryptosystem is based on a dual-path four-layered architecture.
+Furthermore, the CASC-SAS approach is divided into two core concepts or components respectively.
+These two concepts are referred to as CASA and SABAAC.
+
+\subsubsection*{Certificateless Attribute-Based Server-Aided Authentication (CASA)}
+CASA is an attribute-based public key approach.
+Instead of relying on trusted certificate authorities (CA), the approach employs certificateless public key cryptography.
+CASA provides cryptographic protocols, algorithms, and schemes that serve as a foundation for cybersecurity approaches in a SAS.
+In order to take the time criticality of SAS communication into account, the approach features server-aided algorithms and online/offline cryptography.
+
+\subsubsection*{Server-Aided Attribute-Based Authorization \& Access Control (SABAAC)}
+SABAAC is a server-aided attribute-based access control (ABAC) approach.
+The approach uses the provided cryptographic protocols, algorithms, and schemes of CASA as a foundation.
+It enables the prevention of unauthorized access to devices of a SAS.
+Our approach aims to demonstrate the applicability of expressive and flexible but yet computationally expensive access control policies in an environment with strict time and resource constraints.
+For this purpose, SABAAC not only relies on server-aided algorithms, but also provides speedup techniques such as access decision caching and policy evaluation precomputation.
+
+\section{Structure}
+\label{sec:introduction:structure}
