@@ -35,9 +35,15 @@ The state-sponsored incidents include the Stuxnet malware deployed in Iranian nu
 
 Despite the existence of standards for communication and information security including the IEC 61850 and 62351, there are remaining challenges in order to secure SAS communication.
 This thesis focuses on these remaining challenges in order to enhance the information security of SAS communication.
-According to \citeauthor{Ishchenko2018} \cite{Ishchenko2018} as well as \citeauthor{Elbez2019} \cite{Elbez2019}, the strict time constraints of the low latency communication in substations are key factors for the information security.
-According to the authors, asymmetric cryptography formerly prescribed by the IEC 62351 standards is not appropriate due to computational complexity and latency.
+As stated by \citeauthor{Ishchenko2018} \cite{Ishchenko2018}, these challenges include, among others, ensuring the integrity and authenticity of substation control and protection communication without compromising the time criticality.
+For this purpose, cryptographic signature and verification approaches can be employed in the SAS environment.
+According to \citeauthor{Elbez2019} \cite{Elbez2019}, the strict time constraints of the low latency communication in substations are key factors for the information security.
+Accordingly, asymmetric cryptography formerly prescribed by the IEC 62351 standards is not appropriate due to computational complexity and latency.
+
 % Based on this proposed approach, the following research questions are going to be answered in the course of this thesis:
+Due to an increase in processing performance of IT and OT devices nowadays, this thesis examines the applicability of effective and efficient asymmetric cryptography in substations.
+For this purpose, this thesis proposes new cryptographic and cybersecurity approaches for authentication, authorization, and access control.
+Moreover, the thesis discusses the employment of speedup techniques to enable the usage of secure asymmetric cryptography in time-critical OT systems.
 Therefor, the following research questions are going to be answered in the course of this thesis:
 \begin{description}
     \item[RQ1] How can a secure certificateless server-aided public key cryptography approach be designed and implemented, that is able to serve as a foundation for a malleable and extendable cryptosystem in the time-critical SAS environment?
