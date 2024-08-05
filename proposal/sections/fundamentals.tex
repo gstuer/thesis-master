@@ -397,8 +397,8 @@ Consequently, the key must be kept secret in order to satisfy the security objec
 
 Consider, for instance, two subjects called Alice and Bob, who wish to exchange confidential messages via an unsecure communication channel.
 At the beginning, Alice and Bob agree upon a common secret key $s$ with the assistance of a secure key exchange protocol.
-Subsequently, Alice uses $s$ to encrypt a plaintext message $m$ and transmits the ciphertext message $c_m$ to Bob via the unsecure communication channel.
-Upon receipt, Bob retrieves $m$ by using $s$ to decrypt $c_m$.
+Subsequently, Alice uses $s$ to encrypt a plaintext message $m$ and transmits the ciphertext message $c$ to Bob via the unsecure communication channel.
+Upon receipt, Bob retrieves $m$ by using $s$ to decrypt $c$.
 
 Symmetric cryptography has advantages in comparison with asymmetric cryptography~\cite{Barker2020}.
 Firstly, symmetric-key algorithms are faster than asymmetric-key algorithms.
@@ -406,11 +406,30 @@ Secondly, for a given level of security, symmetric cryptographic keys are shorte
 This reduces the memory and bandwidth requirements for key storage and transmission.
 
 \subsection{Asymmetric Cryptography (Public-Key Cryptography)}
-\todo{TODO Asymmetric concept and examples and dis/advantages}
-\todo{TODO PKI}
+Asymmetric cryptography, also referred to as Public-Key Cryptography (PKC), relies on algorithms which use a pair of two related keys for a cryptographic operation and its inverse operation~\cite{Barker2020,CNSS2022,Eckert2023}.
+This pair of related keys consists of a private key and a public key.
+The private key must be kept secret.
+The public key may be shared without consequences for security, as long as its authenticity and integrity is ensured.
+Although the two keys are related, the private key cannot be efficiently derived from the public key.
+
+Consider, for instance, two subjects called Alice and Bob, who wish to exchange confidential messages via an unsecure communication channel.
+At the beginning, Alice generates a private key $s_{Alice}$ and a corresponding public key $p_{Alice}$, and transmits $p_{Alice}$ to Bob.
+Alice's private key $s_{Alice}$ is never exchanged.
+Subsequently, Bob uses $p_{Alice}$ to encrypt a plaintext message $m$ for Alice.
+The ciphertext message $c_{Alice}$ is then transmitted to Alice via the unsecure communication channel.
+Since Bob encrypted the message with $p_{Alice}$, only Alice is able to decrypt the message using the corresponding private key $s_{Alice}$.
+Upon receipt, Alice retrieves $m$ by using $s_{Alice}$ to decrypt $c_{Alice}$.
+
+PKC offers the following advantages over symmetric cryptography~\cite{Barker2020,Eckert2023}:
+Firstly, PKC does not require a secure channel or secure protocol to exchange keys.
+Secondly, the overall number of required keys using PKC is lower.
+Moreover, the number of keys scales linear with the number of communication entities.
+For example in a network with $n$ entities, $n$ key pairs or $2n$ keys have to be established.
+In the same network, pairwise symmetric cryptography would require $n(n-1)/2$ keys.
 
 \subsubsection{Identity-Based Public-Key Cryptography}
 \todo{TODO ID-PKC}
+\todo{TODO PKI}
 
 \subsubsection{Certificateless Public-Key Cryptography}
 \todo{TODO CL-PKC}
