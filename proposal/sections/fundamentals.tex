@@ -361,9 +361,34 @@ Moreover, solutions should be highly reliable and designed to reduce the impact 
 
 \section{Cryptography}
 \label{sec:fundamentals:cryptography}
-\todo{TODO What is cryptography?}
-\todo{TODO Kerckhoffs' principles}
-\todo{TODO What is a cryptosystem?}
+Cryptography is a scientific discipline concerned with the study of methodologies, algorithms, schemes, and protocols for the encryption and verification of information~\cite{Barker2016,Barker2020,CNSS2022}.
+In other words, cryptography provides means to prevent unauthorized access and to enable the verification of information.
+The objective of cryptography is to satisfy specific security goals, including the assurance of confidentiality, integrity, authenticity, and non-repudiation.
+
+Cryptographic algorithms are well-defined computational procedures that transform a variable input into an output~\cite{Barker2020}.
+The input of an algorithm comprises a cryptographic key that determines the algorithm's operation.
+Algorithms are classified based on their complexity and degree of distribution.
+Cryptographic primitives represent low-level cryptographic algorithms.
+The purpose of primitives is to act as building blocks for more complex algorithms.
+A cryptographic scheme represents a set of unambiguously specified transformations providing a cryptographic service.
+Accordingly, schemes are more abstract or higher-level constructs than primitives.
+Cryptographic protocols specify the information exchange between communicating entities.
+For this purpose, protocols define the message order and data structures for exchanged information.
+Consequently, protocols are more abstract or higher-level constructs than schemes.
+
+A cryptographic system, also referred to as cryptosystem, is a set of cryptographic algorithms~\cite{Menezes1996}.
+Moreover, a cryptosystem comprises sets of valid inputs and outputs as well as required cryptographic keys~\cite{Eckert2023}.
+The goal of a cryptosystem is to provide specific cryptographic services such as encryption or verification.
+Verification describes the process of proving the integrity, authenticity, or non-repudiation of information~\cite{Boneh2023}.
+The verification of information is based on a so-called tag or signature created by a signature algorithm.
+Encryption describes the process of transforming plain information into an unintelligible form to maintain its secrecy~\cite{Barker2016,Boneh2023}.
+The inverse process of encryption is referred to as decryption.
+The intelligible plain information is referred to as plaintext.
+The unintelligible or encrypted form of information is referred to as ciphertext.
+
+Two important principles for the design of cryptosystems were formulated by \citeauthor{Kerckhoffs1883} and \citeauthor{Shannon1949}.
+As stated by \citeauthor{Kerckhoffs1883}, the cryptosystem must not require secrecy and must be able to be known by the adversary without inconvenience~\cite{Kerckhoffs1883}.
+According to \citeauthor{Shannon1949}, it shall be assumed that the adversary knows the system being used~\cite{Shannon1949}.
 
 \subsection{Symmetric Cryptography (Secret-Key Cryptography)}
 \todo{TODO Symmetric concept and examples and dis/advantages}
