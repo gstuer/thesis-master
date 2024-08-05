@@ -391,7 +391,19 @@ As stated by \citeauthor{Kerckhoffs1883}, the cryptosystem must not require secr
 According to \citeauthor{Shannon1949}, it shall be assumed that the adversary knows the system being used~\cite{Shannon1949}.
 
 \subsection{Symmetric Cryptography (Secret-Key Cryptography)}
-\todo{TODO Symmetric concept and examples and dis/advantages}
+Symmetric cryptography relies on algorithms which use the same key for a cryptographic operation and its inverse operation~\cite{Barker2020,Eckert2023}.
+In other words, the same so-called secret key is used for encryption and decryption, or signing and verification.
+Consequently, the key must be kept secret in order to satisfy the security objectives.
+
+Consider, for instance, two subjects called Alice and Bob, who wish to exchange confidential messages via an unsecure communication channel.
+At the beginning, Alice and Bob agree upon a common secret key $s$ with the assistance of a secure key exchange protocol.
+Subsequently, Alice uses $s$ to encrypt a plaintext message $m$ and transmits the ciphertext message $c_m$ to Bob via the unsecure communication channel.
+Upon receipt, Bob retrieves $m$ by using $s$ to decrypt $c_m$.
+
+Symmetric cryptography has advantages in comparison with asymmetric cryptography~\cite{Barker2020}.
+Symmetric-key algorithms are faster than asymmetric-key algorithms.
+For the same level of security, the symmetric cryptographic keys are shorter.
+The latter advantage reduces the required memory for key storage and bandwidth for key transmission.
 
 \subsection{Asymmetric Cryptography (Public-Key Cryptography)}
 \todo{TODO Asymmetric concept and examples and dis/advantages}
