@@ -395,6 +395,14 @@ Symmetric cryptography relies on algorithms which use the same key for a cryptog
 In other words, the same so-called secret key is used for encryption and decryption, or signing and verification.
 Consequently, the key must be kept secret in order to satisfy the security objectives.
 
+In order to encrypt and decrypt information, an entity uses a secret key~\cite{Boneh2023}.
+Sender and receiver of confidential messages must agree upon a common secret key prior to the exchange of messages.
+The secret key has to be exchange via a secure communication channel or with the assistance of a secure key exchange protocol.
+For the purpose of verification, so-called Message Authentication Codes (MAC) are used in symmetric cryptography.
+Therefor, the sender computes a so-called MAC tag for a specific message using the secret key.
+The MAC tag is then appended to the message.
+The receiver is able to prove the authenticity and integrity of the message by verifying the appended MAC tag using the secret key.
+
 Consider, for instance, two subjects called Alice and Bob, who wish to exchange confidential messages via an unsecure communication channel.
 At the beginning, Alice and Bob agree upon a common secret key $s$ with the assistance of a secure key exchange protocol.
 Subsequently, Alice uses $s$ to encrypt a plaintext message $m$ and transmits the ciphertext message $c$ to Bob via the unsecure communication channel.
@@ -411,6 +419,13 @@ This pair of related keys consists of a private key and a public key.
 The private key must be kept secret.
 The public key may be shared without consequences for security, as long as its authenticity and integrity is ensured.
 Although the two keys are related, the private key cannot be efficiently derived from the public key.
+
+In order to encrypt a plaintext, a sending entity uses the public key of a receiving entity~\cite{Boneh2023}.
+Only the receiving entity, whose public key was used for encryption, is able to decrypt the ciphertext using its own private key.
+For the purpose of verification, so-called digital signatures are used in PKC.
+Therefor, a sending entity computes a digital signature for a specific message using its own private key.
+The digital signature is then appended to the message.
+The receiver is able to prove the authenticity and integrity of the message by verifying the appended digital signature using the sender's public key.
 
 Consider, for instance, two subjects called Alice and Bob, who wish to exchange confidential messages via an unsecure communication channel.
 At the beginning, Alice generates a private key $s_{Alice}$ and a corresponding public key $p_{Alice}$, and transmits $p_{Alice}$ to Bob.
