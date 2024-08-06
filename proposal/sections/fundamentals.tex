@@ -483,4 +483,19 @@ The only restriction is that the public key and the private key must use the sam
 However, CL-PKC is not identity-based, as the public key is not solely based on the identity of an entity.
 
 \subsubsection{Attribute-Based Public-Key Cryptography}
-\todo{TODO ABC}
+Attribute-based Public-Key Cryptography (AB-PKC) is a generalization of the ID-PKC concept~\cite{Sahai2005,Goyal2006,Hu2023}.
+Attribute-Based Encryption (ABE) combines the principles of ABAC with the concept of PKC.
+Therefor, attribute-based policies are integrated into cryptographic algorithms in the form of access structures and attributes.
+This integration enables encryption based on arbitrary attributes and provides fine-grained access control via attribute-based decryption.
+Communication complexity for key distribution in ID-PKC scales linear with the number of communication entities, i.e., users or devices.
+In ABE the communication complexity scales linear with the number of attributes.
+Similar to the concept of ABE, Attribute-Based Signatures (ABS) enable the integration of attributes into signing and verification algorithms~\cite{Li2010,Maji2011}.
+
+ABE approaches are classified as either Key-Policy ABE (KP-ABE) or Ciphertext-Policy ABE (CP-ABE), depending on whether the access structure is associated with a key or a ciphertext~\cite{Goyal2006,Bethencourt2007,Hu2023}.
+In KP-ABE the access structure is associated with a key.
+The ciphertext is labeled with a set of attributes.
+A user's secret key is able to decrypt the ciphertext if the attributes of the ciphertext satisfy the key-associated access structure.
+Consequently, a data owner cannot control who is able to access the data and has to trust a TTP to issue appropriate keys~\cite{Bethencourt2007}.
+In CP-ABE the access structure is associated with a ciphertext, and keys are associated with a set of attributes.
+A user's secret key is able to decrypt the ciphertext if the key-associated attributes satisfy the ciphertext's access structure.
+Accordingly, each data owner manages the access control policies for its own data, which makes CP-ABE more flexible and scalable than KP-ABE.
