@@ -4,22 +4,22 @@ The purpose of this chapter is to introduce, define, and describe the fundamenta
 Moreover, this chapter provides an introduction into the foundational literature.
 The terms and concepts defined within this chapter are assumed to be known in the following chapters. 
 
-At the beginning of this chapter in \autoref{sec:itot} and \autoref{sec:ics} the concepts of information technology, operational technology, and industrial control systems are introduced.
+At the beginning of this chapter, in \autoref{sec:itot} and \autoref{sec:ics}, the concepts of information technology, operational technology, and industrial control systems are introduced.
 Moreover, this chapter defines the terms information security in \autoref{sec:security} and safety in \autoref{sec:safety} for the scope of the proposed thesis.
 Furthermore, this chapter provides an introduction for access control including five access control models.
 The introduction of access control can be found in \autoref{sec:accesscontrol}.
 %At the end of this chapter in \autoref{sec:securitypolicymodels} an overview of four different classes of security policy models is presented.
-\todo{Fundamentals, e.g Access Control (Role, Attribute \dots), Substations (IEDs, IEC61850, GOOSE/MMS/OpenVPN/Ethernet-Based/Analog \dots)}
+At the end of this chapter, in \autoref{sec:fundamentals:cryptography}, an overview of symmetric and asymmetric cryptography is provided.
 
 \section{Information Technology (IT) \& Operational Technology (OT)}
 \label{sec:itot}
 The term information technology (IT) encompasses the technological concepts and systems required to create, process, store, present, and communicate information.
 In the scope of IT, information is an abstract concept which is represented by so-called data or data objects \cite{Eckert2023}.
-The meaning of data originates from or is assigned to a data object by using a specific information interpretation rule.
+The meaning of data is assigned to a data object by using a specific information interpretation rule.
 Data objects can be distinguished based on their abilities by being either passive or active.
 Passive data objects can only represent information for storage, whereas active data objects can store and process information.
 
-As stated by \citeauthor{Eckert2023} \cite{Eckert2023}, an IT system is a dynamical technical system which is able to process and store information.
+As stated by \citeauthor{Eckert2023} \cite{Eckert2023}, an IT system is a dynamic technical system which is able to process and store information.
 An IT system is a part of a sociotechnical system and provides information-based services to more abstract social, economical or political structures.
 Moreover, the users of an IT system may have different goals, levels of experience, and technical know-how.
 
@@ -28,14 +28,14 @@ As a consequence, OT describes the application and interactions of information s
 According to \citeauthor{Stouffer2023} \cite{Stouffer2023} OT encompasses systems and devices interacting with the physical environment directly or through managed devices.
 The systems and devices interact with the physical environment by detecting changes through monitoring or by causing changes through control of devices or processes.
 In the context of OT systems the term process refers to the part of a system producing an output, whereas a controller represents a part of a system that maintains the conformance with specifications.
-Besides the industrial control systems (ICS) further discussed in \autoref{sec:ics}, other examples of OT systems are building automation systems and transportation systems.
+Besides the industrial control systems (ICS), further discussed in \autoref{sec:ics}, other examples of OT systems are building automation systems and transportation systems.
 
 Although the evolution from analog systems to OT systems by inserting IT into existing physical systems might provide new functionality and enhance system parameters like costs or performance, new challenges may arise \cite{Stouffer2023}.
 Especially the typical long life cycle of OT systems and their unique requirements regarding performance, reliability, security, safety, privacy, and environmental impact have to be taken into account when designing, operating, and maintaining OT systems.
-In the following the proposed thesis especially focuses on the security implications as well as the design and implementation of secure OT systems.
+In the following, the proposed thesis especially focuses on the security implications as well as the design and implementation of secure OT systems.
 \todo{800-82r3 OT System Design Considerations}
 
-\section{Industrial Control Systems (ICS)}
+\section{Industrial Control System (ICS)}
 \label{sec:ics}
 The term industrial control system (ICS) encompasses different types of control systems consisting of monitoring, control and network components acting together to achieve an industrial objective \cite{Stouffer2015}.
 In the scope of the thesis proposal, an ICS represents a specific type of OT system that gathers, processes, and stores information while interacting with a physical environment to achieve an industrial objective.
@@ -50,7 +50,7 @@ Moreover, an ICS can be configured to operate in three different modes:
 \subsection{Architectures}
 \label{sec:architectures}
 ICS as well as generic control systems consisting of multiple interconnected components can be classified regarding their control system architecture.
-According to \citeauthor{Galloway2013} \cite{Galloway2013} an ICS architecture, or architecture of an ICS network respectively, is typically deeper regarding the levels of hierarchy than a company network.
+According to \citeauthor{Galloway2013} \cite{Galloway2013} an ICS architecture or architecture of an ICS network is typically deeper regarding the levels of hierarchy than a company network.
 Moreover, the technologies including devices as well as the communication links and protocols in an ICS network are often heterogeneous.
 
 In the following sections the main types of control system architectures and topologies are presented.
@@ -61,13 +61,13 @@ While these architectures introduce different and partially incompatible concept
 Supervisor control and data acquisition (SCADA) is a type of control system architecture.
 As stated by \citeauthor{bailey2003} \cite{bailey2003}, SCADA refers to a combination of telemetry and data acquisition.
 The objective of SCADA is to collect data of a remote process, transfer it to a central site, process and analyze the data, and present it to a human operator via human machine interfaces (HMI).
-Moreover, SCADA enables sending of control actions back to the remote process.
+Moreover, SCADA enables sending control actions back to the remote process.
 
 The collection of data from devices of a remote process and the delivery of control actions back to the remote devices requires a communication path between the central and remote site \cite{Stouffer2023}.
-In the scope of OT and ICS the central site is referred to as control center and the remote site is referred to as field or field site.
+Within the scope of OT and ICS, the central site is referred to as control center and the remote site is referred to as field or field site.
 Specialized network components at the field site enable remote devices to communicate with the control center via telecommunication technologies.
 These specialized network components at the field are referred to as gateways or remote terminal units (RTU).
-The gateways and RTUs communicate with a device at the control center also known as master terminal unit (MTU).
+The RTUs communicate with a device at the control center also known as master terminal unit (MTU).
 The network components of an ICS network are further discussed in \autoref{sec:networkcomponents}.
 Examples for telecommunication technologies used for the communication are wide area networks (WAN), satellite, cellular, and radio technology.
 
@@ -108,7 +108,7 @@ As mentioned above, the field devices of an ICS interact with a physical environ
 These field devices include different types of sensors and actuators.
 
 As discussed in \autoref{sec:architectures}, ICS network architectures with certain topologies integrate multiple devices into a single complex centralized or distributed ICS system achieving a control objective.
-In order to integrate field devices like sensors and actuators into an ICS network, specialized network devices provide communication services.
+To integrate field devices like sensors and actuators into an ICS network, specialized network devices provide communication services.
 These provided services enable communication between devices at the same field site or to remote devices like a SCADA MTU. 
 
 \subsubsection{Remote Terminal Unit (RTU)}
@@ -118,14 +118,14 @@ In other words, an RTU provides an interface for the physical environment to an 
 According to \citeauthor{Galloway2013} \cite{Galloway2013}, an RTU is usually a special type of PLC. 
 
 \subsubsection{Intelligent Electronic Device (IED)}
-An intelligent electronic device (IED) is a network device with one or more processors capable of sending data to external sources or receiving data respectively \cite{aga2006}.
+An intelligent electronic device (IED) is a network device with one or more processors capable of sending data to external sources or receiving data \cite{aga2006}.
 As stated by \citeauthor{Stouffer2023} \cite{Stouffer2023}, an IED provides a direct interface for controlling and monitoring of field devices to a supervisory controller.
 Moreover, an IED can be distinguished from an RTU as it is able to act without direct instructions of a supervisory controller.
 
-According to \citeauthor{Stouffer2023}, the control timing requirements have to be considered when designing OT systems.
+According to \citeauthor{Stouffer2023} \cite{Stouffer2023}, the control timing requirements have to be considered when designing OT systems.
 Therefore, automated control devices are required to perform necessary control actions as human operators may not be reliable, consistent or fast enough.
 Especially in an ICS with large geographical extent, it may be required to perform computations close to the field devices to reduce or avoid communication latency.
-IEDs can provide the computational performance and features required to realize functionality with control timing requirements at the field.
+IEDs can provide the computational performance and features required to realize time-constrained control functionality at the field.
 
 % \subsection{Substations}
 % \todo{Introduction: SS is OT, Definition \& Modelling via IEC61850, Availability \& Integrity over Confidentiality, typical communication in a scada system, commonly used protocols, possible attack vectors}
@@ -138,11 +138,11 @@ IEDs can provide the computational performance and features required to realize 
 A secure IT system does not allow any system states leading to unauthorized information extraction or manipulation.
 Security in the scope of computer systems is also referred to as information security or IT security.
 
-Within the scope of OT the risks and priorities differ from IT systems \cite{Stouffer2023}.
+Within the scope of OT, the risks and priorities differ from IT systems \cite{Stouffer2023}.
 While security approaches for IT systems were developed and refined over the years, OT systems were often isolated and widely used proprietary solutions.
 As modern OT systems increasingly integrate IT technology for connectivity and remote access, proprietary solutions get replaced with widely available solutions.
 This leads to less isolation and a requirement for OT security solutions.
-According to \citeauthor{Stouffer2023}, precautions have to be taken when introducing OT security solutions resembling IT solutions due to the differing requirements of OT systems.
+According to \citeauthor{Stouffer2023} \cite{Stouffer2023}, precautions have to be taken when introducing OT security solutions resembling IT solutions due to the differing requirements of OT systems.
 \citeauthor{Stouffer2023} state that considerations for OT security have to include the special requirements regarding timeliness, performance, constrained resources, availability, communication protocols, and risk management.
 Moreover, they mention the physical effect an OT system has on its environment, its typically longer component lifecycle including the differing change management, and the geographical distribution of physical components.
 \todo{Describe NIST 800-82r3 difference between IT OT System Security more clearly}
@@ -156,7 +156,7 @@ In other words, an object is an entity used to store, access, and process inform
 \subsection{Objective}
 As state by the \citeauthor{nsa2009} \cite{nsa2009}, a security objective is a statement of intent to counter a given threat or enforce a given organizational security policy.
 In other words, security objectives define the security requirements of a system.
-Besides the term security objective, a security requirement of a system is referred to as security goal or protection goal.
+The security objectives of a system are referred to as security goals or protection goals.
 As stated by \citeauthor{Eckert2023} \cite{Eckert2023}, literature typically mentions three main security goals for IT systems.
 These goals are referred to as CIA which stands for confidentiality, integrity, and availability.
 The relative importance of a specific security goal depends on the concrete system and its environment.
@@ -170,7 +170,7 @@ Especially if the operation of an OT system has an impact on human health and sa
 
 \subsubsection{Confidentiality}
 A system has the characteristic of confidentiality if it prevents unauthorized access or extraction of information \cite{Eckert2023}.
-In order to prohibit direct unauthorized access of sensitive information encryption techniques and access control as described in \autoref{sec:accesscontrol} is used.
+To prohibit direct unauthorized access of sensitive information, encryption techniques and access control as described in \autoref{sec:accesscontrol} are used.
 
 Moreover, besides preventing the direct access of information in an unauthorized manner, a system must be protected against leakage of data.
 This leakage can occur if multiple programs or processes communicate to provide a certain service.
@@ -181,7 +181,7 @@ The corresponding problem is referred to as confinement problem.
 A system has the characteristic of integrity if the system prevents undetected unauthorized or accidental manipulation of data \cite{Eckert2023}.
 If a manipulation cannot be prevented due to the environment, for example when data is exchanged using a shared network, the manipulation has to be detected by the system.
 As a consequence, a system with integrity always detects manipulation and never processes manipulated data.
-In order to detect manipulation, cryptographic hash functions can be used to verify the integrity of data.
+To detect manipulation, cryptographic hash functions can be used to verify the integrity of data.
 
 \subsubsection{Availability}
 A system satisfies the conditions of availability, if authenticated and authorized access to the services and data provided by the system is possible at any time \cite{Eckert2023}.
@@ -195,7 +195,7 @@ The characteristics to prove the trustworthiness of a subject may include creden
 The authenticity of a data object can be proven by verifying the corresponding source and originator.
 
 \subsubsection{Non-Repudiation}
-A system ensures non-repudiation by making it impossible for a subject or author of data respectively to dispute its authorship \cite{Eckert2023}.
+A system ensures non-repudiation by making it impossible for a subject or author of data to dispute its authorship \cite{Eckert2023}.
 Non-repudiation can be realized within a system using digital signatures and mechanisms to audit and log user activity.
 
 \subsubsection{Privacy}
@@ -218,7 +218,7 @@ In other words, each object and subject within the system is labeled according t
 The security labels of a subject are referred to as clearances, whereas the security labels of an object are referred to as classifications \cite{CNSS2022}.
 
 \subsection{Policy}
-According to \citeauthor{Anderson2002} \cite{Anderson2002}, a security policy is a set of documents or high-level specification stating the security goals and properties to be achieved by the security mechanisms of a system.
+According to \citeauthor{Anderson2002} \cite{Anderson2002}, a security policy is a set of documents or a high-level specification stating the security goals and properties to be achieved by the security mechanisms of a system.
 In other words, a security policy is a set of criteria for the provision of security capabilities and functions to support one or more security objectives \cite{JTF2020}.
 Moreover, a security policy can be seen as a set of rules for system entity behavior.
 As a consequence, a security policy defines the conditions under which a system grants or denies the access to an object for a specific subject. 
@@ -230,9 +230,9 @@ Therefore, safety represents a characteristic of an IT system that is present if
 As a consequence, a safe system does not pose a threat to its physical environment including its human operators.
 
 As an OT system may be able to directly interact with its physical environment, safety requirements have to be considered in the OT system design \cite{Stouffer2023}.
-According to \citeauthor{Stouffer2023}, OT systems have to detect unsafe states and trigger actions to transition into safe states.
+OT systems have to detect unsafe states and trigger actions to transition into safe states.
 Moreover, the impact of failures has to be considered and solutions to continue operations may be required.
-In order to continue operations, redundancy or the ability to operate in a degraded state can be used.
+To continue operations, redundancy or the ability to operate in a degraded state can be used.
 Besides automatic procedures, human oversight and manual supervisory control are essential for safety-critical processes.
 
 \section{Access Control}
@@ -247,11 +247,11 @@ In other words, as stated by \citeauthor{Hu2014} \cite{Hu2014}, logical access c
 An operation is performed by a subject on a specific object.
 Operations include access, utilization, manipulation, and deletion of objects.
 An operation may also be referred to as action.
-In order to protect an object, the owners of the objects establish access control policies.
+To protect an object, the owners of the objects establish access control policies.
 These policies describe which subjects may perform certain operations on a specific object.
 
 The policies are enforced by logical components referred to as access control mechanisms (ACM).
-\citeauthor{Hu2014} state that the ACM receives the access request from the subject, decides whether the request should be granted or denied, and enforces the decision taken.
+\citeauthor{Hu2014} \cite{Hu2014} state that the ACM receives the access request from the subject, decides whether the request should be granted or denied, and enforces the decision taken.
 The ACM takes the decision based on a framework called access control model.
 The access control model defines the functionalities and environment including subjects, objects, and rules for the ACM to take and enforce a decision.
 In the following sections, five different access control models are introduced.
@@ -305,7 +305,7 @@ As a consequence, ABAC is also referred to as aspect-based access control (ABAC)
 
 Within the context of ABAC, an attribute is a characteristic containing information in the form of a name-value pair \cite{Hu2014}.
 A subject attribute describes the characteristics of a person or non-person entity like identity, clearance, or department.
-An object attribute describes the resource the access is requested for including the object classification, type, or owner.
+An object attribute describes the resource for which the access is requested, including the object classification, type, or owner.
 An operation or action attribute describes the function performed on an object by a subject.
 Operations include create, read, update, delete, or execute.
 The environment conditions or environment attributes describe the context of an access request.
@@ -336,7 +336,7 @@ With regard to authorization and access control, NIST emphasizes the importance 
 NIST states that organizations are not limited to a single access control approach, but may rather employ different approaches resulting in higher effectiveness and efficiency.
 A combination of ACLs, RBAC, and ABAC is mentioned as an example for achieving the access control requirements of an organization.
 
-NIST recommends considering logical access control minimizing errors and costs of maintaining access privileges.
+NIST recommends considering logical access control to minimize errors and costs of maintaining access privileges.
 It is recommended that approaches support the Principle of Least Privilege (PoLP) and Separation of Duties (SoD).
 Furthermore, NIST recommends solutions that incorporate credential management, authentication, authorization, access control, and system monitoring.
 These solutions represent secure platforms enabling the access to OT devices.
@@ -395,7 +395,7 @@ Symmetric cryptography relies on algorithms which use the same key for a cryptog
 In other words, the same so-called secret key is used for encryption and decryption, or signing and verification.
 Consequently, the key must be kept secret in order to satisfy the security objectives.
 
-In order to encrypt and decrypt information, an entity uses a secret key~\cite{Boneh2023}.
+To encrypt and decrypt information, an entity uses a secret key~\cite{Boneh2023}.
 Sender and receiver of confidential messages must agree upon a common secret key prior to the exchange of messages.
 The secret key has to be exchange via a secure communication channel or with the assistance of a secure key exchange protocol.
 For the purpose of verification, so-called Message Authentication Codes (MAC) are used in symmetric cryptography.
@@ -420,7 +420,7 @@ The private key must be kept secret.
 The public key may be shared without consequences for security, as long as its authenticity and integrity is ensured.
 Although the two keys are related, the private key cannot be efficiently derived from the public key.
 
-In order to encrypt a plaintext, a sending entity uses the public key of a receiving entity~\cite{Boneh2023}.
+To encrypt a plaintext, a sending entity uses the public key of a receiving entity~\cite{Boneh2023}.
 Only the receiving entity, whose public key was used for encryption, is able to decrypt the ciphertext using its own private key.
 For the purpose of verification, so-called digital signatures are used in PKC.
 Therefor, a sending entity computes a digital signature for a specific message using its own private key.
@@ -443,7 +443,7 @@ For example in a network with $n$ entities, $n$ key pairs or $2n$ keys have to b
 In the same network, pairwise symmetric cryptography would require $n(n-1)/2$ keys.
 
 \subsubsection{Identity-Based Public-Key Cryptography}
-The concept of identity-based cryptosystems and schemes was initially proposed by \citeauthor{Shamir1985}~\cite{Shamir1985}.
+The concept of identity-based cryptosystems and schemes was initially proposed by \textcite{Shamir1985}.
 Identity-Based Public-Key Cryptography (ID-PKC) approaches allow the derivation of public keys from subject identities~\cite{Shamir1985,Boneh2023}.
 Therefore, no certificates are required to verify that a public key belongs to a certain subject, since the subject identity is used to derive the public key.
 In ID-PKC the existence of a public key does not depend on the existence of a corresponding private key.
@@ -472,18 +472,18 @@ Certificate-based PKC approaches such as PKI use a TTP called Certificate Author
 These digital certificates are used to verify that a certain public key belongs to a specific subject which holds the corresponding private key.
 
 CL-PKC approaches make use of a TTP called Key Generating Center (KGC) to generate partial private keys for entities based on the entity's identity and a master key~\cite{AlRiyami2003}.
-In order to obtain the private key, the entity combines the partial private key with a secret value.
+To obtain the private key, the entity combines the partial private key with a secret value.
 The generated private key is never shared with the KGC or other entities.
 Consequently, CL-PKC neither suffers from the key escrow problem nor requires a secure communication channel for the key distribution.
 
-In order to obtain the public key, the entity generates it based on public parameters and the secret value~\cite{AlRiyami2003}.
+To obtain the public key, the entity generates it based on public parameters and the secret value~\cite{AlRiyami2003}.
 After the generation, the public key may be shared with other entities directly or via public directories.
 Similar to ID-PKC, the public key is not derived from the private key and may therefore exist prior to it.
 The only restriction is that the public key and the private key must use the same secret value.
 However, CL-PKC is not identity-based, as the public key is not solely based on the identity of an entity.
 
 \subsubsection{Attribute-Based Public-Key Cryptography}
-Attribute-based Public-Key Cryptography (AB-PKC) is a generalization of the ID-PKC concept~\cite{Sahai2005,Goyal2006,Hu2023}.
+Attribute-Based Public-Key Cryptography (AB-PKC) is a generalization of the ID-PKC concept~\cite{Sahai2005,Goyal2006,Hu2023}.
 Attribute-Based Encryption (ABE) combines the principles of ABAC with the concept of PKC.
 Therefor, attribute-based policies are integrated into cryptographic algorithms in the form of access structures and attributes.
 This integration enables encryption based on arbitrary attributes and provides fine-grained access control via attribute-based decryption.
