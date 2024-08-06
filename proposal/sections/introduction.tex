@@ -3,7 +3,7 @@
 Modern operational technology (OT) such as industrial control systems (ICS) increasingly rely on information and communication technology (ICT) for monitoring and control~\cite{Stouffer2023}.
 As a consequence, the resemblance of OT and information technology (IT) systems increases as OT systems adopt IT technology.
 This development leads to new possibilities including the integration of distributed OT into supervisory control and data acquisition (SCADA) systems.
-Nevertheless, besides these possibilities, new challenges arise from the increased usage of ICT in OT systems.
+Nevertheless, new challenges arise from the increased usage of ICT in OT systems.
 
 According to \citeauthor{Stouffer2023} \cite{Stouffer2023}, the typical long life cycle of OT systems and their unique requirements regarding performance, reliability, security, safety, privacy, and environmental impact have to be taken into account when designing, operating, and maintaining OT systems.
 In the following, we focus on the information security of OT systems.
@@ -12,7 +12,7 @@ An example for the differing priorities are information confidentiality and acce
 While the prevention of unauthorized access represents the core objective of IT security approaches, OT systems and especially OT-based critical infrastructures prioritize system availability and reliability.
 
 Within the scope of this thesis, we focus on the occurring communication in a specific type of OT system.
-The field of application of the approach proposed by this thesis are so-called substation automation systems (SAS).
+The field of application of the approach proposed by this thesis is known as substation automation system (SAS).
 A SAS represents the entirety of communication and control equipment of a substation~\cite{Padilla2015}.
 A substation is a facility of a high-voltage electricity grid connecting power transmission and distribution lines that use different voltage levels~\cite{oshaSubstation}.
 A substation and its SAS represent a specific type of ICS.
@@ -34,11 +34,11 @@ These incidents comprise 13 state-sponsored incidents, 13 cybercrime incidents, 
 The state-sponsored incidents include the Stuxnet malware deployed in Iranian nuclear power and enrichment facilities in 2010 \cite{bbc2010}, the Shamoon malware used against Saudi Aramco in 2012 \cite{reuters2012}, the Blackenergy malware used to attack Ukrainian power distribution systems in 2015 \cite{cisa2021a}, the Industroyer/CrashOverride malware used to shut down remote terminal units of a Ukrainian power transmission facility in 2016 \cite{reuters2016,cisa2021b}, the Triton/Trisis malware used to attack Triconex Safety Instrumented System (SIS) controllers in 2017 \cite{johnson2017}, and other incidents in 2013, 2014, 2015, 2017, 2018 as well as 2020 \cite{wsj2015,cisa2018a,bsi2014,hdn2017,vice2017,cisa2018b,toi2020,warrick2020}.
 
 Despite the existence of standards for communication and information security including the IEC 61850 and 62351, there are remaining challenges in order to secure SAS communication.
-This thesis focuses on these remaining challenges in order to enhance the information security of SAS communication.
+This thesis focuses on these remaining challenges to enhance the information security of SAS communication.
 As stated by \citeauthor{Ishchenko2018} \cite{Ishchenko2018}, these challenges include, among others, ensuring the integrity and authenticity of substation control and protection communication without compromising the time criticality.
 For this purpose, cryptographic signature and verification approaches can be employed in the SAS environment.
 According to \citeauthor{Elbez2019} \cite{Elbez2019}, the strict time constraints of the low latency communication in substations are key factors for the information security.
-Accordingly, asymmetric cryptography formerly prescribed by the IEC 62351 standards is not appropriate due to computational complexity and latency.
+Accordingly, asymmetric cryptography formerly specified by the IEC 62351 standards is not appropriate due to computational complexity and latency.
 
 % Based on this proposed approach, the following research questions are going to be answered in the course of this thesis:
 Due to an increase in processing performance of IT and OT devices nowadays, this thesis examines the applicability of effective and efficient asymmetric cryptography in substations.
@@ -53,20 +53,20 @@ Therefor, the following research questions are going to be answered in the cours
 
 \section{Contribution}
 \label{sec:introduction:contribution}
-With the aim of providing means to enhance the information security in an SAS, we propose a \textbf{C}ertificateless \textbf{A}ttribute-Based \textbf{S}erver-Aided \textbf{C}ryptosystem for \textbf{S}ubstation \textbf{A}utomation \textbf{S}ystems (CASC-SAS).
+With the aim of providing means to enhance the information security in a SAS, we propose a \textbf{C}ertificateless \textbf{A}ttribute-Based \textbf{S}erver-Aided \textbf{C}ryptosystem for \textbf{S}ubstation \textbf{A}utomation \textbf{S}ystems (CASC-SAS).
 The main objective of the proposed approach is to provide secure protocols, algorithms, and schemes for SAS communication based on asymmetric cryptography.
 % The provided protocols, algorithms, and schemes aim to satisfy SAS security requirements such as integrity, authenticity, and non-repudiation, while taking the strict time constraints of the SAS domain into account.
 The provided protocols, algorithms, and schemes aim to satisfy SAS security requirements such as integrity, authenticity, access control, and non-repudiation.
 The approach aims to not only enhance the security of SAS communication by satisfying security objectives, but also takes the specific characteristics, risks, and priorities of OT, ICS, and SAS into account.
 Our proposed cryptosystem is based on a dual-path four-layered architecture.
-Furthermore, the CASC-SAS approach is divided into two core concepts or components respectively.
+Furthermore, the CASC-SAS approach is divided into two core concepts or components.
 These two concepts are referred to as CASA and SABAAC.
 
 \subsubsection*{Certificateless Attribute-Based Server-Aided Authentication (CASA)}
 CASA is an attribute-based public key approach.
 Instead of relying on trusted certificate authorities (CA), the approach employs certificateless public key cryptography.
 CASA provides cryptographic protocols, algorithms, and schemes that serve as a foundation for cybersecurity approaches in a SAS.
-In order to take the time criticality of SAS communication into account, the approach features server-aided algorithms and online/offline cryptography.
+To take the time criticality of SAS communication into account, the approach features server-aided algorithms and online/offline cryptography.
 
 \subsubsection*{Server-Aided Attribute-Based Authorization \& Access Control (SABAAC)}
 SABAAC is a server-aided attribute-based access control (ABAC) approach.
