@@ -11,8 +11,8 @@ Moreover, the similarities, differences, and applications of the related work wi
 An authenticated communication approach for network packets between IEDs and merging units is presented by \citeauthor{Ishchenko2018} \cite{Ishchenko2018}.
 They identified the lack of security in existing IEC 61850 substations and ICSs in general as a key weakness.
 To mitigate this weakness, \citeauthor{Ishchenko2018} present retrofitting of substations as a viable solution
-For this purpose, they introduce a system and bump-in-the-wire device called security filter as an add-on device between IEDs and Ethernet-based communication busses using the generic object oriented substation event (GOOSE) or sampled values (SV) protocol.
-Security filter appends message authentication code (MAC) tags to outgoing messages of the IEDs and verifies incoming MAC tags.
+For this purpose, they introduce a system and bump-in-the-wire device called security filter as an add-on device between IEDs and Ethernet-based communication busses using the Generic Object Oriented Substation Event (GOOSE) or Sampled Values (SV) protocol.
+Security filter appends Message Authentication Code (MAC) tags to outgoing messages of the IEDs and verifies incoming MAC tags.
 As a consequence, the communication busses are secured against unauthenticated messages achieving the security goals integrity and authenticity.
 Moreover, the security filter approach uses a timestamp to avoid replay attacks.
 
@@ -157,7 +157,7 @@ As a consequence, traditional RBAC and IBAC approaches do not work well in multi
 For this reason, \citeauthor{Ma2006} propose an approach called Distributed Role-based Access Control (DRBAC).
 DRBAC is a distributed authentication and role-based authorization framework.
 As stated by the authors, the distributed authentication is realized by delegating the authentication of users to the corresponding subscribing institutions by issuing authentication delegation certificates.
-The subscribing institutions use their existing authentication infrastructure to authenticate users and create digitally signed service access tickets (SAT).
+The subscribing institutions use their existing authentication infrastructure to authenticate users and create digitally signed Service Access Tickets (SAT).
 The resource provider is able to use the SAT to verify the legitimacy of requests.
 The role-based authorization approach of the DRBAC framework extends traditional RBAC by adding the concept of distributed roles shared by the resource provider and resource subscribers.
 The resource provider specifies the distributed roles and exports them to the subscribing institutions via distributed role certificates.

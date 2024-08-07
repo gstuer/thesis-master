@@ -13,7 +13,7 @@ At the end of this chapter, in \autoref{sec:fundamentals:cryptography}, an overv
 
 \section{Information Technology (IT) \& Operational Technology (OT)}
 \label{sec:itot}
-The term information technology (IT) encompasses the technological concepts and systems required to create, process, store, present, and communicate information.
+The term Information Technology (IT) encompasses the technological concepts and systems required to create, process, store, present, and communicate information.
 In the scope of IT, information is an abstract concept which is represented by so-called data or data objects \cite{Eckert2023}.
 The meaning of data is assigned to a data object by using a specific information interpretation rule.
 Data objects can be distinguished based on their abilities by being either passive or active.
@@ -23,12 +23,12 @@ As stated by \citeauthor{Eckert2023} \cite{Eckert2023}, an IT system is a dynami
 An IT system is a part of a sociotechnical system and provides information-based services to more abstract social, economical or political structures.
 Moreover, the users of an IT system may have different goals, levels of experience, and technical know-how.
 
-When shifting the scope from abstract information storage and processing to the interaction with the physical world, the term operational technology (OT) arises.
+When shifting the scope from abstract information storage and processing to the interaction with the physical world, the term Operational Technology (OT) arises.
 As a consequence, OT describes the application and interactions of information storage and processing procedures in a physical environment.
 According to \citeauthor{Stouffer2023} \cite{Stouffer2023} OT encompasses systems and devices interacting with the physical environment directly or through managed devices.
 The systems and devices interact with the physical environment by detecting changes through monitoring or by causing changes through control of devices or processes.
 In the context of OT systems the term process refers to the part of a system producing an output, whereas a controller represents a part of a system that maintains the conformance with specifications.
-Besides the industrial control systems (ICS), further discussed in \autoref{sec:ics}, other examples of OT systems are building automation systems and transportation systems.
+Besides the Industrial Control Systems (ICS), further discussed in \autoref{sec:ics}, other examples of OT systems are building automation systems and transportation systems.
 
 Although the evolution from analog systems to OT systems by inserting IT into existing physical systems might provide new functionality and enhance system parameters like costs or performance, new challenges may arise \cite{Stouffer2023}.
 Especially the typical long life cycle of OT systems and their unique requirements regarding performance, reliability, security, safety, privacy, and environmental impact have to be taken into account when designing, operating, and maintaining OT systems.
@@ -37,7 +37,7 @@ In the following, the proposed thesis especially focuses on the security implica
 
 \section{Industrial Control System (ICS)}
 \label{sec:ics}
-The term industrial control system (ICS) encompasses different types of control systems consisting of monitoring, control and network components acting together to achieve an industrial objective \cite{Stouffer2015}.
+The term ICS encompasses different types of control systems consisting of monitoring, control and network components acting together to achieve an industrial objective \cite{Stouffer2015}.
 In the scope of the thesis proposal, an ICS represents a specific type of OT system that gathers, processes, and stores information while interacting with a physical environment to achieve an industrial objective.
 According to \citeauthor{Stouffer2015} \cite{Stouffer2015} the control in an ICS can be partially or fully automated.
 Moreover, an ICS can be configured to operate in three different modes:
@@ -58,18 +58,18 @@ While these architectures introduce different and partially incompatible concept
 \todo{Add Galloway2013 difference Company vs. ICS networks}
 
 \subsubsection{Supervisory Control \& Data Acquisition (SCADA)}
-Supervisor control and data acquisition (SCADA) is a type of control system architecture.
+Supervisor Control And Data Acquisition (SCADA) is a type of control system architecture.
 As stated by \citeauthor{bailey2003} \cite{bailey2003}, SCADA refers to a combination of telemetry and data acquisition.
-The objective of SCADA is to collect data of a remote process, transfer it to a central site, process and analyze the data, and present it to a human operator via human machine interfaces (HMI).
+The objective of SCADA is to collect data of a remote process, transfer it to a central site, process and analyze the data, and present it to a human operator via Human Machine Interfaces (HMI).
 Moreover, SCADA enables sending control actions back to the remote process.
 
 The collection of data from devices of a remote process and the delivery of control actions back to the remote devices requires a communication path between the central and remote site \cite{Stouffer2023}.
 Within the scope of OT and ICS, the central site is referred to as control center and the remote site is referred to as field or field site.
 Specialized network components at the field site enable remote devices to communicate with the control center via telecommunication technologies.
-These specialized network components at the field are referred to as gateways or remote terminal units (RTU).
-The RTUs communicate with a device at the control center also known as master terminal unit (MTU).
+These specialized network components at the field are referred to as gateways or Remote Terminal Units (RTU).
+The RTUs communicate with a device at the control center also known as Master Terminal Unit (MTU).
 The network components of an ICS network are further discussed in \autoref{sec:networkcomponents}.
-Examples for telecommunication technologies used for the communication are wide area networks (WAN), satellite, cellular, and radio technology.
+Examples for telecommunication technologies used for the communication are Wide Area Networks (WAN), satellite, cellular, and radio technology.
 
 Although the SCADA approach not necessarily requires a communication network to exist but rather works via direct connection between remote devices and the central site, modern SCADA systems rely on bus-based field networks or Ethernet-based solutions \cite{bailey2003}.
 As a consequence, according to \citeauthor{bailey2003} the benefits of modern SCADA approaches are minimal required wiring, plug-and-play installation and replacement of devices, remote access to data from anywhere, easier large-scale data storage, and higher flexibility for visualization and incorporation of real data simulations.
@@ -82,7 +82,7 @@ The series, series-star, and multi-drop topologies use daisy-chaining and switch
 The sharing of a single channel among multiple devices increases the efficiency and operation complexity but decreases the costs and system complexity.
 
 \subsubsection{Distributed Control System (DCS)}
-A distributed control system (DCS) is a control system architecture without centralized remote control of the field site \cite{Stouffer2023}.
+A Distributed Control System (DCS) is a control system architecture without centralized remote control of the field site \cite{Stouffer2023}.
 Instead of controlling the field site remotely from a control center, a DCS realizes supervisory control of multiple process sub-systems at the field site.
 Therefore, a DCS is typically implemented for the control of a process and its sub-processes within the same geographic location.
 
@@ -91,10 +91,10 @@ Moreover, the objective of a DCS is the control of integrated systems that are c
 Due to the small geographical area and high interconnection within a DCS, the communication with control devices is more reliable and less prone to issues based on the data quality.
 
 \subsubsection{Programmable Logic Controller (PLC)}
-A programmable logic controller (PLC) is a control system component responsible for locally managing and controlling a certain process \cite{Stouffer2023}.
+A Programmable Logic Controller (PLC) is a control system component responsible for locally managing and controlling a certain process \cite{Stouffer2023}.
 Therefore, a PLC may represent the primary controller in a PLC-based topology for small OT systems.
 Moreover, PLCs can be used as building blocks to realize more complex hierarchical topologies like SCADA or DCS.
-In the latter case, a PLC may integrate or use the services and communication abilities of a remote terminal unit (RTU) further discussed in \autoref{sec:networkcomponents}.
+In the latter case, a PLC may integrate or use the services and communication abilities of a RTU further discussed in \autoref{sec:networkcomponents}.
 
 PLCs can provide fixed functionality or be modular.
 Fixed functionality PLCs may also be programmable but limited to certain I/O, processing or communication abilities.
@@ -112,13 +112,13 @@ To integrate field devices like sensors and actuators into an ICS network, speci
 These provided services enable communication between devices at the same field site or to remote devices like a SCADA MTU. 
 
 \subsubsection{Remote Terminal Unit (RTU)}
-A remote terminal unit (RTU) is a network device at the field site that forwards information from connected field devices to other network devices and vice versa \cite{Stouffer2023}.
+A RTU is a network device at the field site that forwards information from connected field devices to other network devices and vice versa \cite{Stouffer2023}.
 As a consequence, an RTU acts as a gateway between field devices and network devices at a higher level of the network hierarchy.
 In other words, an RTU provides an interface for the physical environment to an ICS based on SCADA or DCS.
 According to \citeauthor{Galloway2013} \cite{Galloway2013}, an RTU is usually a special type of PLC. 
 
 \subsubsection{Intelligent Electronic Device (IED)}
-An intelligent electronic device (IED) is a network device with one or more processors capable of sending data to external sources or receiving data \cite{aga2006}.
+An Intelligent Electronic Device (IED) is a network device with one or more processors capable of sending data to external sources or receiving data \cite{aga2006}.
 As stated by \citeauthor{Stouffer2023} \cite{Stouffer2023}, an IED provides a direct interface for controlling and monitoring of field devices to a supervisory controller.
 Moreover, an IED can be distinguished from an RTU as it is able to act without direct instructions of a supervisory controller.
 
@@ -237,7 +237,7 @@ Besides automatic procedures, human oversight and manual supervisory control are
 
 \section{Access Control}
 \label{sec:accesscontrol}
-As stated by the \citeauthor{NIST2022} \cite{NIST2022}, access control (AC) is the process of granting and denying specific requests to logical or physical services and resources.
+As stated by the \citeauthor{NIST2022} \cite{NIST2022}, Access Control (AC) is the process of granting and denying specific requests to logical or physical services and resources.
 Based on the type of service or resource guarded by the access control, two types of access control can be distinguished.
 Physical access control supervises access requests of subjects to specific physical facilities like federal buildings or military establishments.
 Logical access control monitors and controls the access and usage of information and related information processing services.
@@ -250,7 +250,7 @@ An operation may also be referred to as action.
 To protect an object, the owners of the objects establish access control policies.
 These policies describe which subjects may perform certain operations on a specific object.
 
-The policies are enforced by logical components referred to as access control mechanisms (ACM).
+The policies are enforced by logical components referred to as Access Control Mechanisms (ACM).
 \citeauthor{Hu2014} \cite{Hu2014} state that the ACM receives the access request from the subject, decides whether the request should be granted or denied, and enforces the decision taken.
 The ACM takes the decision based on a framework called access control model.
 The access control model defines the functionalities and environment including subjects, objects, and rules for the ACM to take and enforce a decision.
@@ -261,7 +261,7 @@ Moreover, each model has specific advantages and disadvantages.
 \todo{Explain Identification/Authorization/Authentication, see Access Control at $https://en.wikipedia.org/wiki/Information_security$}
 
 \subsection{Discretionary Access Control (DAC)}
-Discretionary access control (DAC) is an object-based access control model \cite{Eckert2023}.
+Discretionary Access Control (DAC) is an object-based access control model \cite{Eckert2023}.
 An owner has to monitor and control the access of other subjects to its own objects.
 The owner grants or denies the access to its own objects individually.
 Dependencies between objects have to be considered and solved for each object manually which may lead to inconsistencies.
@@ -270,7 +270,7 @@ The \citeauthor{JTF2020} \cite{JTF2020} defines DAC as an access control policy 
 Moreover, a subject may choose the security attributes of newly created objects, change security attributes, and change rules governing access control.
 
 \subsection{Mandatory Access Control (MAC)}
-Mandatory access control (MAC) is a system-based access control model \cite{Eckert2023}.
+Mandatory Access Control (MAC) is a system-based access control model \cite{Eckert2023}.
 MAC specifies system-wide or global access policies.
 MAC can complement DAC and vice-versa.
 If the DAC grants access and the MAC does not, the access request is denied.
@@ -280,7 +280,7 @@ The \citeauthor{JTF2020} \cite{JTF2020} defines MAC as an access control policy 
 Moreover, MAC is considered a non-discretionary access control prohibiting and preventing authorized subjects from passing information and privileges to unauthorized subjects.
 
 \subsection{Identity-Based Access Control (IBAC)}
-Identity-based access control (IBAC) is a user-centric access control model employing mechanisms that use the identities of subjects to take authorization decisions \cite{Hu2014}.
+Identity-Based Access Control (IBAC) is a user-centric access control model employing mechanisms that use the identities of subjects to take authorization decisions \cite{Hu2014}.
 In other words, as stated by the \citeauthor{CNSS2022} \cite{CNSS2022}, IBAC represents an access control assigning access authorizations to objects based on the user identity.
 
 An example of an IBAC mechanism capturing the identities of subjects and their access privileges is an access control list (ACL) \cite{Hu2014}.
@@ -290,7 +290,7 @@ As a consequence, an ACL makes authorization decision statically based on its en
 The static behavior of ACLs leads to the disadvantage that the entries have to be reevaluated and revoked regularly to avoid users accumulating privileges.
 
 \subsection{Role-Based Access Control (RBAC)}
-The role-based access control (RBAC) is a task-centric or responsibility-centric access control model \cite{Eckert2023}.
+The Role-Based Access Control (RBAC) is a task-centric or responsibility-centric access control model \cite{Eckert2023}.
 Instead of assigning privileges to each subject individually, roles for different tasks or responsibilities within the system are created.
 These roles are assigned to subjects explicitly and subjects inherit the privileges of their roles.
 As stated by \citeauthor{Hu2014} \cite{Hu2014}, a role can be seen as a subject attribute evaluated by the ACM to take an access decision.
@@ -299,9 +299,9 @@ According to the \citeauthor{JTF2020} \cite{JTF2020}, a role may apply to a sing
 The privileges of a role reflect the permissions an individual requires within an organization and may be inherited through a role hierarchy.
 
 \subsection{Attribute-Based Access Control (ABAC)}
-The attribute-based access control (ABAC) is an access control model enabling access decisions based on attributes associated with subjects, objects, actions, and the environment of a system \cite{JTF2020}.
+The Attribute-Based Access Control (ABAC) is an access control model enabling access decisions based on attributes associated with subjects, objects, actions, and the environment of a system \cite{JTF2020}.
 In other words, as stated by \citeauthor{Hu2014} \cite{Hu2014}, in ABAC an access request of a subject to perform operations on objects is decided based on assigned attributes of the subject and object, environment conditions, and a set of policies.
-As a consequence, ABAC is also referred to as aspect-based access control (ABAC) \cite{Anderson2020} or policy-based access control (PBAC).
+As a consequence, ABAC is also referred to as aspect-based access control \cite{Anderson2020} or policy-based access control.
 
 Within the context of ABAC, an attribute is a characteristic containing information in the form of a name-value pair \cite{Hu2014}.
 A subject attribute describes the characteristics of a person or non-person entity like identity, clearance, or department.
@@ -320,7 +320,7 @@ An advantage of ABAC compared to different access control models is the higher f
 Moreover, ABAC can take access control decisions based on ad-hoc knowledge and knowledge from separate infrastructure.
 This is possible due to ABAC taking decisions at request time by evaluating policies instead of static decision-making as found in IBAC and RBAC.
 As a consequence, pre-provisioning of requesting subjects in a multi-organization environment can be avoided.
-\todo{Overhaul benefits and challenges based on Guide to Attribute Based Access Control (ABAC) Definition and Considerations Page 8}
+\todo{Overhaul benefits and challenges based on Guide to ABAC Definition and Considerations Page 8}
 \todo{Describe/Present architecture of XACML based on RFC 2904 including PEP, PDP, and PIP}
 
 \subsection{NIST Recommendations}

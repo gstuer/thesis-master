@@ -175,7 +175,7 @@ The security requirements of the system model are defined as follows:
     The system prohibits unauthorized access to sensitive information stored on devices.
     \item[RQ.SEC.4] Non-Repudiation\\
     The system ensures that a subject cannot dispute its authorship of data and requests~\cite{Eckert2023}.
-    \item[RQ.SEC.5] Least Privilege Principle (PoLP)\\
+    \item[RQ.SEC.5] Principle of Least Privilege  (PoLP)\\
     The system ensures that each subject has the least number of privileges necessary to perform its function \cite{JTF2020}.
     \item[RQ.SEC.6] Separation of Duties (SoD)\\
     The system ensures that no subject has enough privileges to be able to misuse the system without collusion \cite{JTF2020}.
@@ -486,7 +486,7 @@ The four components of the architecture are discussed in the following:
     Moreover, it provides interfaces for policy management services to human operators.
     The PAP accesses the PSP to persist policies and policy changes.
     \item[Policy Storage Point (PSP)] The PSP acts as a repository to make created policies and changes to policies persistent.
-    Therefor, the PSP offers create, read, update, and delete (CRUD) services to PAP instances.
+    Therefor, the PSP offers Create, Read, Update, and Delete (CRUD) services to PAP instances.
     The physical PSP instance may be integrated with the PAP component to avoid network communication overhead.
     \item[Policy Decision Point (PDP)] The PDP takes access control decisions by evaluating policies.
     The PDP takes decision on request of a PEP and provides the access control decision to the requesting PEP.
@@ -498,7 +498,7 @@ The four components of the architecture are discussed in the following:
     As a consequence, the PEP is part of the delegated ABAC task of SABAAC.
     The services provided by the PEP rely on access control decisions taken by the PDP.
     % To reduce the required trust in the PDP decision, the PEP can query multiple PDPs to validate the access control decision taken.
-    Moreover, in the SABAAC architecture the PEP incorporates the services provided by the policy information point (PIP) introduced by \citeauthor{Hu2014} \cite{Hu2014}.
+    Moreover, in the SABAAC architecture the PEP incorporates the services provided by the Policy Information Point (PIP) introduced by \citeauthor{Hu2014} \cite{Hu2014}.
     Accordingly, the SABAAC PEP provides attributes related to its protected objects to the PDP.
 \end{description}
 
@@ -638,7 +638,7 @@ Moreover, the protocol is based on discontinuous message-based communication as 
 The access control sessions are initialized at the sending and receiving entities prior to the exchange of domain-specific messages.
 
 The security of the access control protocol is vulnerable to three distinct threats.
-Due to its communication architecture the protocol is vulnerable to replay, denial-of-service (DoS), and collusion attacks.
+Due to its communication architecture the protocol is vulnerable to replay, Denial-of-Service (DoS), and collusion attacks.
 Replay of messages represents a threat for session-based and message-based communication.
 Session-based communication of the protocol uses session identifiers and sequence numbers to provide replay protection.
 Message-based communication employs timestamp-based replay protection, similar to the discontinuous communication used by the authorization protocol.
@@ -727,7 +727,7 @@ The phases of the access control protocol are defined as follows:
     
     Domain-specific communication is unidirectionally handled by the access control protocol of SABAAC.
     Consequently, a response to a domain-specific request is handled as independent message exchange by the PEPs.
-    Moreover, the payload exchange phase relies on a negative acknowledgement (NACK) concept
+    Moreover, the payload exchange phase relies on a Negative Acknowledgement (NACK) concept
     A NACK is sent in case of verification or authorization exceptions.
     The NACK concept avoids acknowledgement implosions in multicast and broadcast communication scenarios.
     A received NACK may trigger a session reinitialization workflow at a PEP.
@@ -805,7 +805,7 @@ Furthermore, the components have to be deployed differently to correspond to the
 While PAP and PSP may be deployed centrally, components such as PEP, PDP, UCS, and KGC are distributed to individual SAS instances.
 This leads to differing hardware requirements for the implemented components.
 Moreover, with the exception of PEP instances, the components provide their services by using a client-server pattern.
-The PEP instances partially use a client-server pattern and partially provide their services in the form of a bump-in-the-wire (BITW) solution.
+The PEP instances partially use a client-server pattern and partially provide their services in the form of a Bump-In-The-Wire (BITW) solution.
 The services provided by PEP instances via BITW pattern are automatically applied to captured packets.
 Therefore, these services are invisible to the corresponding service consumers.
 This BITW pattern is inspired by the security filter approach presented by \citeauthor{Ishchenko2018} \cite{Ishchenko2018}.
