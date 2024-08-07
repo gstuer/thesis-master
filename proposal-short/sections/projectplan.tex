@@ -3,7 +3,7 @@
 In the following section, the project plan of the proposed master's thesis is discussed.
 The project plan consists of a work plan, time schedule, and risk assessment.
 The work plan defines the project objectives, milestones, tasks, and deliverables and is presented in \autoref{sec:work_plan}.
-The time schedule represents the mapping of the proposed work plan to calendar weeks and is discussed in \autoref{sec:time_schedule}.
+The time schedule represents the mapping of the proposed work plan to Calendar Weeks (CW) and is visualized in \autoref{fig:timeplan}.
 The risk assessment evaluates technical and non-technical risks for the proposed project plan and is discussed in \autoref{sec:risk_assessment}.
 
 \section{Work Plan}
@@ -12,7 +12,7 @@ The risk assessment evaluates technical and non-technical risks for the proposed
 The work plan structures the proposed thesis into six milestones.
 Each milestone represents a major phase of the proposed master's thesis.
 The milestones serve as intermediate project goals which enable monitoring and reporting of project progress.
-Each milestone is defined by its duration in Calendar Weeks (CW), deliverables, and tasks.
+Each milestone is defined by its duration in CWs, deliverables, and tasks.
 Each milestone consists of at least one task.
 A task of a milestone is referred to as increment.
 The duration of a milestone depends on the duration of its increments and increment interdependencies.
@@ -94,22 +94,6 @@ The milestones of the proposed master's thesis are defined as follows:
         \end{enumerate}
     \end{description}
 \end{description}
-
-\section{Time Schedule}
-\label{sec:time_schedule}
-The time schedule shown in \autoref{fig:timeplan} maps the milestones and increments as defined in \autoref{sec:work_plan} to specific calendar weeks.
-The proposed time schedule covers the period from the 30th calendar week of 2024 to the 4th calendar week of 2025.
-The work plan stipulates that the approach presented in this thesis proposal has to be realized and evaluated within the 26-week period.
-Additionally, the remaining chapters must be completed and the written elaboration of the thesis must be finalized within this timeframe.
-
-The visualized time schedule illustrates the milestones II to VI.
-The initial milestone represents the preliminary work and has therefore been excluded from the visual representation.
-Multiple increments mapped to the same calendar weeks may be performed in parallel.
-In regard to the realization of CASA and SABAAC, the dependency inversion principle and service interfaces are employed to resolve existing dependencies.
-Other increments such as the different areas of the evaluation do not have interdependencies.
-The realization, evaluation, and conclusion milestones depend on the results of their predecessors.
-Consequently, the preceding milestones must be completed before the next milestone can commence.
-The finalization milestone is only partially dependent on the review milestone due to its binding increment.
 \begin{figure}
     \centering
     \includegraphics[width=1.0\linewidth]{figures/timeplan.drawio.pdf}
@@ -130,50 +114,39 @@ The non-technical risks consist of organizational and project management risks a
 \label{sec:risk_assessment_technical}
 The following technical risks represent deficiencies in the design and implementation of the approach, which could result in non-compliance with stated requirements.
 To ensure the compliance with stated requirements, it is recommended that software testing and system evaluation are conducted in an automated manner.
-
-\subsubsection{Software Implementation Flaws}
-Software implementation flaws have an impact on the performance, availability, security, and safety of the approach.
-Implementation flaws such as bugs should be avoided by using automated software testing.
-The automated software testing should consist of automated unit, integration, system, and acceptance tests.
-The unit, integration, and system tests assure the correct and failure-free operation of the software under valid and invalid system conditions.
-The acceptance tests check the compliance to stated system requirements.
-The employed software testing methods have to provide high source code coverage.
-Besides automated software testing, code reviews after the implementation of the CASC-SAS software can increase the source code quality and mitigate the risk of implementation flaws.
-
-\subsubsection{Software Design Flaws}
-Software design flaws have an impact on the performance, availability, security, and safety of the approach.
-To mitigate the risk of software design flaws and therefore avoid re-implementation, architecture reviews should be conducted after the design of the CASC-SAS software.
-Furthermore, automated acceptance tests should check the compliance of already implemented software to stated system requirements to identify software design flaws.
-
-\subsubsection{Transient Hardware Faults}
-Transient faults of system hardware have an impact on the performance and availability of the approach.
-Transient faults have to be taken into account during the design and implementation of the system.
-This can be achieved by employing failure-avoidance strategies such as redundancy and automated system monitoring.
-
-\subsubsection{Persistent Hardware Faults}
-Persistent faults of system hardware have an impact on the performance and availability of the approach.
-Persistent faults have to identified via automated system monitoring and resolved by replacing corresponding hardware components.
-
-\subsubsection{Unsuitable Hardware}
-Unsuitable hardware has an impact on the performance and economic aspects of the approach.
-As a consequence, unsuitable hardware has to be replaced by suitable hardware in order to satisfy the system requirements.
-To make the approach performant and economically feasible, the system has to use components that provide neither too much nor too less performance for their designated tasks.
+\begin{description}
+    \item[Software Implementation Flaws] Software implementation flaws have an impact on the performance, availability, security, and safety of the approach.
+    Implementation flaws such as bugs should be avoided by using automated software testing.
+    The automated software testing should consist of automated unit, integration, system, and acceptance tests.
+    The unit, integration, and system tests assure the correct and failure-free operation of the software under valid and invalid system conditions.
+    The acceptance tests check the compliance to stated system requirements.
+    The employed software testing methods have to provide high source code coverage.
+    Besides automated software testing, code reviews after the implementation of the CASC-SAS software can increase the source code quality and mitigate the risk of implementation flaws.
+    \item[Software Design Flaws] Software design flaws have an impact on the performance, availability, security, and safety of the approach.
+    To mitigate the risk of software design flaws and therefore avoid re-implementation, architecture reviews should be conducted after the design of the CASC-SAS software.
+    Furthermore, automated acceptance tests should check the compliance of already implemented software to stated system requirements to identify software design flaws.
+    \item[Transient Hardware Faults] Transient faults of system hardware have an impact on the performance and availability of the approach.
+    Transient faults have to be taken into account during the design and implementation of the system.
+    This can be achieved by employing failure-avoidance strategies such as redundancy and automated system monitoring.
+    \item[Persistent Hardware Faults] Persistent faults of system hardware have an impact on the performance and availability of the approach.
+    Persistent faults have to identified via automated system monitoring and resolved by replacing corresponding hardware components.
+    \item[Unsuitable Hardware] Unsuitable hardware has an impact on the performance and economic aspects of the approach.
+    As a consequence, unsuitable hardware has to be replaced by suitable hardware in order to satisfy the system requirements.
+    To make the approach performant and economically feasible, the system has to use components that provide neither too much nor too less performance for their designated tasks.
+\end{description}
 
 \subsection{Organizational \& Project Management Risks}
 \label{sec:risk_assessment_project_management}
 The following risks represent deficiencies in the project organization and management.
-Undesirable events caused by these risks lead to deviations from the proposed work plan and time schedule.
 To mitigate the following risks, a preliminary milestone was created with the objective of reducing the number and complexity of tasks to be completed within the limited thesis period.
-
-\subsubsection{Inaccurate Estimation of Milestone \& Increment Duration}
-The projected durations of milestones and increments have been calculated based on empirical values.
-However, this calculation approach may result in inaccurate estimations, which could lead to a deviation from the proposed time schedule.
-To mitigate the risk of inaccurate estimations, an additional buffer time has been incorporated into each duration associated with an increment or milestone.
-
-\subsubsection{Illness-Related Delay}
-The projected durations of milestones and increments have been calculated based on empirical values.
-Furthermore, additional buffer times have been incorporated into the projected durations.
-Nevertheless, illness may result in a deviation from the proposed time schedule.
-Small deviations, in the order of weeks, can be compensated by the additional buffer times.
-Large deviations, in the order of months, require either an extension of the limited thesis period or a prioritization of increments.
-The possibility of extending the thesis period by up to three months is governed by the examination regulations.
+\begin{description}
+    \item[Inaccurate Estimation of Milestone \& Increment Duration] The projected durations of milestones and increments have been calculated based on empirical values.
+    However, this calculation approach may result in inaccurate estimations, which could lead to a deviation from the proposed time schedule.
+    To mitigate the risk of inaccurate estimations, an additional buffer time has been incorporated into each duration associated with an increment or milestone.
+    \item[Illness-Related Delay] The projected durations of milestones and increments have been calculated based on empirical values.
+    Furthermore, additional buffer times have been incorporated into the projected durations.
+    Nevertheless, illness may result in a deviation from the proposed time schedule.
+    Small deviations, in the order of weeks, can be compensated by the additional buffer times.
+    Large deviations, in the order of months, require either an extension of the limited thesis period or a prioritization of increments.
+    The possibility of extending the thesis period by up to three months is governed by the examination regulations.
+\end{description}
