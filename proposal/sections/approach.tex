@@ -28,7 +28,7 @@ The entirety of secondary equipment of a substation is referred to as Substation
 Although the proposed approach is tailored to the power system domain and substation environment, its main concepts may also be applied to other ICS with similar requirements and constraints.
 
 \subsection{Architecture}
-The architecture of the presented system model and SAS respectively is based on the IEC 61850 standard \cite{IEC61850P5}.
+The architecture of the presented system model is based on the IEC 61850 standard \cite{IEC61850P5}.
 The presented system model architecture consists of four layers called network level, station level, bay level, and process level.
 The process, bay, and station level represent the internal layers of a SAS architecture.
 The SAS architecture containing the process, bay, and station level as well as the station and process bus further discussed in \autoref{sec:approach:system_model:communication} is shown in \autoref{fig:substation_architecture}.
@@ -308,7 +308,7 @@ Therefor, entity A creates a single or multiple domain-specific messages and del
 The yet unsigned and non-authorized messages are then authorized by SABAAC and forwarded to CASA at the cryptography layer for signing.
 Subsequently, the signed and authorized messages are forwarded to the receiver using the reliable and unreliable network transport services provided by the message exchange layer.
 Upon arrival at the receiver, the message exchange layer delivers the signed and authorized messages to the cybersecurity layer.
-The messages are then verified by the cybersecurity layer before forwarding them to the domain layer or application respectively.
+The messages are then verified by the cybersecurity layer before forwarding them to the domain layer and application.
 For the purpose of message verification, the cybersecurity layer enforces access control policies by verifying the validity of the message authorization.
 Moreover, the message is forwarded to the cryptography layer for cryptographic verification.
 
@@ -455,7 +455,7 @@ In other words, CASA provides secure cryptographic algorithms and schemes that e
 
 The proposed authorization and access control approach is based on a function-oriented component-based architecture.
 The architecture and components are further discussed in \autoref{sec:approach:sabaac:architecture}.
-Furthermore, the approach is divided into two central tasks or protocols respectively.
+Furthermore, the approach is divided into two central tasks or protocols.
 The first task is referred to as delegated attribute-based authorization.
 The delegated attribute-based authorization is responsible for the access control policy creation, management, storage, and distribution.
 This process partially takes place prior to occurring access requests and corresponding access decisions.
@@ -544,7 +544,7 @@ It uses digital signatures and verification provided by CASA to verify the integ
 Moreover, the services provided by the authorization protocol use reliable and acknowledged transport layer protocols for the message exchange.
 Since the authorization protocol is delegated, authorizations are not managed by the protected devices, but management is rather delegated to a TTP.
 In the SABAAC approach this TTP is represented by the PAP, PSP, and PDP.
-Accordingly, the protected objects or devices respectively delegate the authorization process to these SABAAC components.
+Accordingly, the protected objects or devices delegate the authorization process to these SABAAC components.
 Therefore, the authorization can also be referred to as server-aided authorization.
 
 Since no cybersecurity layer sessions are established and consequently neither nonces nor sequence numbers can be used, message exchange of the authorization protocol is vulnerable to replay attacks.
@@ -557,7 +557,7 @@ Moreover, if the receiver keeps record of the last timestamp received from each 
 Authorizations in the SABAAC approach are realized using ABAC policies.
 As discussed in \autoref{sec:approach:sabaac:policy}, access control policies are classified as either static or dynamic.
 Consequently, the authorization protocol has to take the time-variability into account.
-For this purpose, the authorization protocol consists of three parts or sub-protocols respectively:
+For this purpose, the authorization protocol consists of three parts or sub-protocols:
 \begin{description}
     \item[Static Authorization] The static authorization process is responsible for the creation, modification, and deletion of policies.
     The static authorization is initiated by a human operator.
@@ -569,7 +569,7 @@ For this purpose, the authorization protocol consists of three parts or sub-prot
         \centering
         \includegraphics[width=0.9\linewidth]{figures/SABAAC_protocols_authorization_static.drawio.pdf}
         \caption{Components and exchanged messages of the static authorization process.
-        % The process is initiated by a policy modification request of a human operator at a HMI. The involved PAP instance relies on a PSP to persist static authorizations or SABAAC policies respectively. Requests to persist changes to static authorizations are communicated in the form of CRUD requests between the PAP and PSP.
+        % The process is initiated by a policy modification request of a human operator at a HMI. The involved PAP instance relies on a PSP to persist static authorizations or SABAAC policies. Requests to persist changes to static authorizations are communicated in the form of CRUD requests between the PAP and PSP.
         }
         \label{fig:sabaac_authorization_static}
     \end{figure}
@@ -610,7 +610,7 @@ For this purpose, the authorization protocol consists of three parts or sub-prot
     \item[Dynamic Authorization] The dynamic authorization process is responsible for the evaluation of SABAAC policies.
     The dynamic authorization process is executed by the PDP.
     The goal of the process is to compute whether a certain subject is authorized for a specific request.
-    Therefor, the PDP retrieves the attributes related to a policy and derives an authorization decision or access decision respectively.
+    Therefor, the PDP retrieves the attributes related to a policy and derives an access decision.
     The dynamic authorization is either executed ad-hoc in order to respond to an access control request or executed prior to a request.
     The former execution strategy has less management overhead, since it requires no caching of policy evaluations.
     On the contrary, ad-hoc policy evaluation increases the response time for access control requests.
@@ -773,7 +773,7 @@ The phases of the access control protocol are defined as follows:
 \section{Realization}
 \label{sec:approach:realization}
 In the following section, we discuss the proposed realization of the CASC-SAS approach and its two core concepts CASA and SABAAC.
-The approach or its two concepts respectively introduce components that are defined and discussed in \autoref{sec:approach:casa} and \autoref{sec:approach:sabaac}.
+The approach and its two concepts introduce components that are defined and discussed in \autoref{sec:approach:casa} and \autoref{sec:approach:sabaac}.
 % These components have to be integrated into the SAS system model to employ the CASC-SAS approach.
 The adaptation of the layered SAS architecture to the CASC-SAS approach entails a modification of the architecture to accommodate these additional components.
 This integration of CASC-SAS components into the SAS architecture is visualized in \autoref{fig:casc_architecture}.
