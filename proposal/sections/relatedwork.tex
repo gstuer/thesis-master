@@ -10,13 +10,13 @@ Moreover, the similarities, differences, and applications of the related work wi
 %%% Ishchenko2018 - Secure Communication of Intelligent Electronic Devices in Digital Substations
 An authenticated communication approach for network packets between IEDs and merging units is presented by \citeauthor{Ishchenko2018} \cite{Ishchenko2018}.
 They identified the lack of security in existing IEC 61850 substations and ICSs in general as a key weakness.
-In order to mitigate this weakness, \citeauthor{Ishchenko2018} present retrofitting of substations as a viable solution
+To mitigate this weakness, \citeauthor{Ishchenko2018} present retrofitting of substations as a viable solution
 For this purpose, they introduce a system and bump-in-the-wire device called security filter as an add-on device between IEDs and Ethernet-based communication busses using the generic object oriented substation event (GOOSE) or sampled values (SV) protocol.
 Security filter appends message authentication code (MAC) tags to outgoing messages of the IEDs and verifies incoming MAC tags.
 As a consequence, the communication busses are secured against unauthenticated messages achieving the security goals integrity and authenticity.
 Moreover, the security filter approach uses a timestamp to avoid replay attacks.
 
-In order to achieve interoperability with legacy communication systems and compatibility with different substation automation systems, the authors introduce a multimode operation design for the security filter.
+To achieve interoperability with legacy communication systems and compatibility with different substation automation systems, the authors introduce a multimode operation design for the security filter.
 The multimode operation design consists of three operation modes.
 In filtering mode the security filter verifies all packets incoming packets, blocks compromised packets after a certain threshold, and tags all outgoing packets.
 Moreover, the security filter alarms the IED about the compromised packets.
@@ -37,7 +37,7 @@ As a consequence, more complex access control policies can be established within
 A review of IEC 62351 security recommendations with regard to message authentication and a comparison of viable authentication approaches for IEC 61850 substations is presented by \citeauthor{Elbez2019} \cite{Elbez2019}.
 As stated by the authors, ensuring integrity and authenticity of substation communication is critical.
 Similar to the approach presented by \citeauthor{Ishchenko2018}, the authors focus on Ethernet-based substation communication using the GOOSE protocol.
-In order to ensure integrity and authenticity of substation communication, the authors present two authentication schemes for GOOSE messages.
+To ensure integrity and authenticity of substation communication, the authors present two authentication schemes for GOOSE messages.
 Firstly, the authors present the digital signature authentication approach specified by IEC 62351~\cite{IEC62351P6}.
 This approach is based on asymmetric cryptography using the RSA Probabilistic Signature Scheme with Appendix (RSASSA-PSS) algorithm.
 Secondly, the authors present a keyed Hash Message Authentication Code (HMAC).
@@ -67,7 +67,7 @@ As stated by the authors, the hardware implementation is able to process GOOSE a
 Consequently, the authors state that the presented hardware architecture is able to provide integrity and confidentiality without exceeding the maximum delivery time of three milliseconds introduced by IEC 61850 for GOOSE and SV packets~\cite{IEC61850P5}.
 
 Besides securing the intra-substation communication based on the GOOSE and SV protocol, the thesis proposal extends the idea of providing integrity, authenticity, and non-repudiation to inter-substation and remote communication.
-In order to achieve flexibility and interoperability with regard to different ICS environments including different protocols and algorithms used, the proposed approach is software-based rather than hardware-based.
+To achieve flexibility and interoperability with regard to different ICS environments including different protocols and algorithms used, the proposed approach is software-based rather than hardware-based.
 Furthermore, the proposed approach does not rely on a symmetric-key algorithms, but rather on asymmetric-key algorithms.
 This is possible due to an increase in processing performance of IT and OT devices nowadays.
 
@@ -77,7 +77,7 @@ Besides the benefits, new technologies introduce vulnerabilities that may result
 As an example, the authors mention unauthorized remote access to substations through misconfigured security devices, such as firewalls.
 Moreover, the authors state that an adversary might not only intrude the substation from outside but also from the inside.
 From inside the substation, an adversary may inject false measurements into the process bus or gain access to the station bus to inject forged control signals or change the configuration of devices like IEDs.
-In order to protect substations against attacks, \citeauthor{Hong2019} present a domain-based collaborative mitigation approach.
+To protect substations against attacks, \citeauthor{Hong2019} present a domain-based collaborative mitigation approach.
 According to the authors, the goal of the approach is to enable substation devices to collaboratively defend against attacks.
 For this purpose, the authors propose a distributed security domain layer.
 The proposed approach can be employed independently or can complement existing information and communication technology (ICT) security approaches.
@@ -130,7 +130,7 @@ As stated by the authors, the extended ABAC model is applicable to substation au
 %%% Lee2015 - Role-based access control for substation automation systems using XACML (10.1016/j.is.2015.01.007)
 An IEC 61850 and IEC 62351 compliant RBAC approach for substations is presented by \citeauthor{Lee2015} \cite{Lee2015}.
 According to the authors, data collection and analysis are key drivers in smart grids leading to an increased requirement for data security and access control of substation devices.
-In order to address requirements such as confidentiality and integrity, the authors propose an RBAC approach based on IEC 62351 \cite{IEC62351P8} using XACML \cite{Oasis2013}.
+To address requirements such as confidentiality and integrity, the authors propose an RBAC approach based on IEC 62351 \cite{IEC62351P8} using XACML \cite{Oasis2013}.
 As stated by the authors, the communication within substations can either be classified as session-based TCP/IP client-server communication or Ethernet-based publisher-subscriber communication.
 The presented approach focuses on session-based access control for TCP/IP communication on the station bus of substations.
 As a consequence, the presented RBAC approach can be employed to process MMS communication between IEDs and devices at station level.
@@ -173,7 +173,7 @@ The authors illustrate the concept of delegation within the context of a subscri
 The proposed approach entails the utilization of authentication and authorization delegation in substations.
 Moreover, the proposed approach elevates the degree of abstraction of the presented delegation concept by decoupling it from the concrete access control model used.
 The proposed approach realizes authorization delegation via PDPs that make access control decisions for resource requests in place of other devices.
-Furthermore, authentication delegation is used for external resource requests in order to increase scalability and manageability.
+Furthermore, authentication delegation is used for external resource requests to increase scalability and manageability.
 
 %%% Alcaraz2016 - Policy enforcement system for secure interoperable control in distributed Smart Grid systems (10.1016/j.jnca.2015.05.023)
 A rule-based RBAC policy enforcement approach for smart grid systems is presented by \citeauthor{Alcaraz2016} \cite{Alcaraz2016}.
@@ -185,7 +185,7 @@ The first phase is dedicated to the authentication.
 During the authentication phase a subject authenticates itself at an identity server within its own infrastructure.
 In case of a successful authentication, the identity server provides the subject with an authentication token.
 During the second phase the authorization takes place.
-In order to acquire an authorization token, the Policy Enforcement Point (PEP) of the subject infrastructure provides the authentication token and the desired type of action on the target object to a Policy Decision Point (PDP).
+To acquire an authorization token, the Policy Enforcement Point (PEP) of the subject infrastructure provides the authentication token and the desired type of action on the target object to a Policy Decision Point (PDP).
 The PDP of the presented approach consists of a validation manager and a Policy Decision Manager (PDM).
 The former one validates the authentication token as well as roles and permissions associated with the requesting subject, whereas the latter one evaluates the access request and creates the authorization token if it grants the request.
 Moreover, the presented PDM is based on a rule-based expert system and a context manager for the analysis of the subject, target object, and context of the request.   
