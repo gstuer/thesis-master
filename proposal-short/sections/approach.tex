@@ -6,11 +6,13 @@ The CASC-SAS cryptography and cybersecurity approach is able to prevent and miti
 
 The CASC-SAS approach is a cryptosystem that provides security policies, cybersecurity mechanisms, and cryptographic protocols and schemes.
 The goal of the approach is the enhancement of SAS security by providing secure authentication, authorization, and attribute-based access control for time-critical SAS communication.
-The approach is based on a dual-path four-layered architecture.
+The CASC-SAS approach comprises two core concepts.
+The first core concept of the approach is the Certificateless Attribute-Based Server-Aided Authentication (CASA), which is further discussed in \autoref{sec:approach:casa}.
+The second core concept of the approach is the Server-Aided Attribute-Based Authorization and Access Control (SABAAC), which is further discussed in \autoref{sec:approach:sabaac}.
+Moreover, the approach is based on a dual-path four-layered architecture.
 The two paths are referred to as data path and control path.
 The four layers of the architecture are referred to as domain, cybersecurity, cryptography, and message exchange.
 The architectural layers are illustrated in \autoref{fig:layers_request_example}.
-
 \begin{figure}
     \centering
     \includegraphics[width=0.8\linewidth]{figures/layers_request_example.drawio.pdf}
@@ -18,25 +20,17 @@ The architectural layers are illustrated in \autoref{fig:layers_request_example}
     \label{fig:layers_request_example}
 \end{figure}
 
-The CASC-SAS approach comprises two core concepts.
-The first core concept of the approach is the Certificateless Attribute-Based Server-Aided Authentication (CASA).
-This concept represents the foundation of the CASC-SAS approach.
-This core concept is further discussed in \autoref{sec:approach:casa}.
-The second core concept of the approach is the Server-Aided Attribute-Based Authorization and Access Control (SABAAC).
-This concept provides mechanisms to enable attribute-based authorization and ABAC for time-critical SAS communication.
-This concept is further discussed in \autoref{sec:approach:sabaac}.
-
 \section{Requirements}
 In the following, we introduce the requirements of the presented approach.
 Based on the identified requirements, functional and non-functional characteristics of the proposed approach are derived and evaluated.
-Each system model requirement is associated with a requirement category.
+Each requirement is associated with a requirement category.
 The requirement categories consist of security, safety, availability, performance, and compatibility.
 
 With regard to information security the approach has to satisfy seven requirements, namely device integrity, message integrity, authenticity, access control, non-repudiation, Principle of Least Privilege (PoLP), and Separation of Duties (SoD).
-With regard to safety the approach has to satisfy two requirements, namely operational safety and fail-safe.
-With regard to availability the approach has to satisfy two requirements, namely operational continuity and fail-operational.
+With regard to safety the approach has to satisfy operational safety and fail-safe requirements.
+With regard to availability the approach has to satisfy operational continuity and fail-operational requirements.
 With regard to performance the approach has to take three constraints into account, namely communication latency, computational complexity, and energy as well as power.
-With regard to compatibility the approach has to satisfy two requirements, namely interoperability and interchangeability.
+With regard to compatibility the approach has to satisfy interoperability and interchangeability requirements.
 
 \section{Certificateless Attribute-Based Server-Aided Authentication (CASA)}
 \label{sec:approach:casa}
@@ -62,7 +56,7 @@ To minimize the required trust, the UCS may only handle certain computations, i.
 This server-aided approach enables resource-constrained devices to apply secure algorithms and schemes of CASA in a time-critical OT environment.
 In the following, we employ the concept of server-aided PKC for the verification process.
 
-As stated by \citeauthor{Wu2008} \cite{Wu2008}, a server-aided verification process has to satisfy the property of being computation-saving.
+A server-aided verification process has to satisfy the property of being computation-saving \cite{Wu2008}.
 A server-aided verification process $V_{Aided}$ is computation-saving if the computational costs for the verifier are strictly less than the costs of non-server-aided verification $V_{Conventional}$.
 In other words, $V_{Aided}$ is computation-saving if the equation $Cost(V_{Aided}) < Cost(V_{Conventional})$ holds.
 
@@ -79,11 +73,6 @@ Therefore, offline steps can be precomputed to reduce the required time for cryp
 \subsection{Signature Scheme $\mathcal{S}_{CASA}$}
 The CASA signature scheme $\mathcal{S}_{CASA} = (I, G_{VAL}, G_{PK}, G_{PPK}, G_{SK}, S, V_{ENT}, V_{SAV}, V_{FIN})$ is a nine-tuple of algorithms.
 The algorithms comprise an initialization algorithm $I$, a secret value generation algorithm $G_{VAL}$, a public key generation algorithm $G_{PK}$, a partial private key generation algorithm $G_{PPK}$, a private key generation algorithm $G_{SK}$, a signing algorithm $S$, a partial entity verification algorithm $V_{ENT}$, a partial server verification algorithm $V_{SAV}$, and a final entity verification algorithm $V_{FIN}$.
-In the following sections, the specific algorithms are further discussed.
-
-The definition of the CASA signature scheme is based on the definition of digital signature schemes provided by \citeauthor{Boneh2023} \cite{Boneh2023}.
-Moreover, since CASA is a CL-PKC approach, the signature scheme has been adapted from the schemes and concepts presented by \citeauthor{AlRiyami2003} \cite{AlRiyami2003} and \citeauthor{Ramadan2023} \cite{Ramadan2023}.
-The proposed server-aided verification concept and algorithms are inspired by schemes proposed by \citeauthor{Ramadan2020} \cite{Ramadan2020}, \citeauthor{Girault2005} \cite{Girault2005} and \citeauthor{Wu2008} \cite{Wu2008}.
 
 \subsection{Security Model}
 The proposed signature scheme $\mathcal{S}_{CASA}$ is a secure signature scheme if it is existentially unforgeable under an adaptive chosen-message attack (EUF-CMA)~\cite{Boneh2023, Goldwasser1988}.
@@ -92,7 +81,7 @@ While non-adaptive CMA restricts the adversary to a fixed set of messages chosen
 
 \section{Server-Aided Attribute-Based Authorization \& Access Control (SABAAC)}
 \label{sec:approach:sabaac}
-The second core concept of the CASC-SAS approach is the \textbf{S}erver-Aided \textbf{A}ttribute-\textbf{B}ased \textbf{A}uthorization and \textbf{A}ccess \textbf{C}ontrol (SABAAC).
+The second core concept of CASC-SAS is the \textbf{S}erver-Aided \textbf{A}ttribute-\textbf{B}ased \textbf{A}uthorization and \textbf{A}ccess \textbf{C}ontrol (SABAAC).
 The SABAAC approach enables the employment of attribute-based authorization and access control for time-critical SAS communication.
 Therefore, the approach prevents unauthorized access and extraction of information.
 The approach enables CASC-SAS to satisfy the access control, PoLP, and SoD security requirements.
@@ -130,10 +119,9 @@ This process takes place when an entity initiates the communication with another
 The SABAAC approach relies on the concept of attribute-based policies and access control due to the following benefits:
 ABAC enables multifactor policy expression, while RBAC and IBAC limit the policy expressiveness by only relying on either roles or identities.
 Consequently, the multifactor policy expression enables fine-grained and flexible access control.
-Moreover, as stated by \citeauthor{Hu2014} \cite{Hu2014}, the use of ABAC can avoid explicit authorizations prior to a request.
-In other words, an ABAC policy can be dynamically evaluated at the time of a request.
+Moreover, the use of ABAC can avoid explicit authorizations prior to a request \cite{Hu2014}.
 This dynamic evaluation allows the use of attributes from a time-variable environment.
-As stated by \citeauthor{Burmester2013} \cite{Burmester2013}, a real-time attribute represents an attribute whose value is time-dependent.
+A so-called real-time attribute represents an attribute whose value is time-dependent \cite{Burmester2013}.
 Given an attribute evaluation function $E_{ATT}$ and a point of time $t$, the value $\lambda_a$ of a real-time attribute $a$ is defined by $E_{ATT}(a, t) = \lambda_a$.
 To handle policies based on their degree of time-variability, the SABAAC approach classifies policies as follows:
 \begin{description}
@@ -153,8 +141,7 @@ To handle policies based on their degree of time-variability, the SABAAC approac
 \label{sec:approach:realization}
 In the following section, we discuss the proposed realization of the CASC-SAS approach and its two core concepts CASA and SABAAC.
 The approach and its two concepts introduce components that are defined and discussed in \autoref{sec:approach:casa} and \autoref{sec:approach:sabaac}.
-% These components have to be integrated into the SAS system model to employ the CASC-SAS approach.
-The adaptation of the layered SAS architecture to the CASC-SAS approach entails a modification of the architecture to accommodate these additional components.
+These components have to be integrated into the SAS architecture to employ the CASC-SAS approach.
 This integration of CASC-SAS components into the SAS architecture is visualized in \autoref{fig:casc_architecture}.
 The components depicted in blue represent elements of the SAS architecture, whereas the components depicted in red are introduced by the CASC-SAS approach.
 The components with a color gradient represent elements of the SAS architecture that have been adapted to support CASC-SAS concepts.
@@ -182,7 +169,7 @@ The employed components of CASA and SABAAC provide different services.
 Furthermore, the components have to be deployed differently to correspond to the proposed protocols.
 While PAP and PSP may be deployed centrally, components such as PEP, PDP, UCS, and KGC are distributed to individual SAS instances.
 This leads to differing hardware requirements for the implemented components.
-Moreover, with the exception of PEP instances, the components provide their services by using a client-server pattern.
+Moreover, except for PEP instances, the components provide their services by using a client-server pattern.
 The PEP instances partially use a client-server pattern and partially provide their services in the form of a Bump-In-The-Wire (BITW) solution.
 The services provided by PEP instances via BITW pattern are automatically applied to captured packets.
 Therefore, these services are invisible to the corresponding service consumers.
@@ -193,59 +180,37 @@ Moreover, we propose the usage of inexpensive off-the-shelf hardware for the hig
 \section{Evaluation}
 \label{sec:approach:evaluation}
 In this section, the evaluation of the CASC-SAS approach is discussed.
-The goal of the evaluation is to derive quantitative and qualitative characteristics of the approach.
-These characteristics are used to verify the applicability of the proposed approach in the presented field of application.
-Moreover, the characteristics are used to identify limitations and future work of the proposed approach.
+The goal of the evaluation is to derive quantitative and qualitative metrics of the approach for different areas of interest.
+These metrics are used to verify the applicability and to identify limitations of the proposed approach.
+We propose three areas of interest for the evaluation of the CASC-SAS approach:
+\begin{description}
+    \item[Security Evaluation] Does CASC-SAS provide security against typical SAS adversaries and attacks?
+    Which security, safety, and availability requirements are satisfied?
+    Which system and adversary characteristics were assumed?
+    Did the attack surface change?
+    \item[Performance Evaluation] Is CASC-SAS capable of securing time-constrained communication of an SAS?
+    Which performance requirements are satisfied?
+    Which communication characteristics were assumed?
+    Which types of messages are supported?
+    Is the approach resistant against network exceptions including congestion, delay, jitter, duplicated packets, lost packets, and out-of-order packet delivery?
+    \item[Economic Evaluation] Is CASC-SAS an economically feasible solution for the construction or retrofitting of an SAS?
+    Which compatibility requirements are satisfied?
+    Which device characteristics were assumed?
+    How high are the additional costs for SAS construction and retrofitting?
+    Is SAS retrofitting is feasible approach?
+    How high is the cost-benefit efficiency compared to alternative approaches?
+\end{description}
 
-\subsection{Strategy}
-The evaluation is performed theoretically as well as experimentally.
-For the theoretical parts of evaluation, formal and informal methods are used to proof certain characteristics of the proposed approach.
-The experimentally performed part of the evaluation is based on the realization presented in \autoref{sec:approach:realization}.
-The component implementations are used to construct a network simulation and network test bed.
-The proposed network test bed is visualized in \autoref{fig:evaluation_test_bed}.
-The components depicted in blue represent computers that mimic the behavior of domain-specific senders and receivers of an SAS.
-The components depicted in red are part of the CASC-SAS approach.
-The components depicted in yellow represent message-forwarding intermediate network devices.
-
-These test environments mimic the behavior of a real interconnected SAS for occurring message exchanges.
-The simulation and test bed strategy have differing advantages and disadvantages.
-On the one hand, the simulation strategy has the advantage of repeatability and reproducibility due to deterministic behavior, whereas the behavior of the test bed is non-deterministic.
-On the other hand, the test bed results are practice-oriented and transferable to the physical SAS domain, whereas the behavior of a real SAS cannot be compared to the deterministic behavior of the network simulation.
 \begin{figure}
     \centering
     \includegraphics[width=0.7\linewidth]{figures/network_testbed_color.drawio.pdf}
-    \caption{Architecture of the network test bed used for the experimental evaluation of the CASC-SAS approach.
-    % Architecture of the network test bed used for the experimental evaluation of the CASC-SAS approach. The components depicted in blue represent computers that mimic the behavior of domain-specific senders and receivers of an SAS. The components depicted in red are part of the CASC-SAS approach. The components depicted in yellow represent message-forwarding intermediate network devices.
-    }
+    \caption{Network test bed used for the experimental evaluation of the CASC-SAS approach.}
     \label{fig:evaluation_test_bed}
 \end{figure}
+The evaluation is performed theoretically as well as experimentally.
+For the theoretical parts of evaluation, formal and informal methods are used to proof certain characteristics of the proposed approach.
+The experimentally performed part of the evaluation is based on the realization presented in \autoref{sec:approach:realization}.
+Based on the realization, a network simulation and network test bed, visualized in \autoref{fig:evaluation_test_bed}, are constructed.
+The simulation strategy has the advantage of repeatability and reproducibility due to deterministic behavior, whereas the behavior of the test bed is non-deterministic.
+The test bed results are practice-oriented and transferable to the physical SAS domain, whereas the behavior of a real SAS cannot be compared to the deterministic behavior of the network simulation.
 
-\subsection{Evaluation Areas \& Metrics}
-The evaluation aims to derive quantitative and qualitative metrics for different areas of interest.
-We propose three areas of interest for the evaluation of the CASC-SAS approach.
-The three areas of interest and their corresponding metrics are defined as follows:
-\begin{description}
-    \item[Security Evaluation] Does CASC-SAS provide security against typical SAS adversaries and attacks?
-    \begin{enumerate}
-        \item Satisfied security, safety, and availability requirements
-        \item Assumed system characteristics
-        \item Assumed adversary characteristics
-        \item Mitigated attacks
-        \item Introduced attack surface
-    \end{enumerate}
-    \item[Performance Evaluation] Is CASC-SAS capable of securing time-constrained communication of an SAS?
-    \begin{enumerate}
-        \item Satisfied performance requirements
-        \item Assumed communication characteristics
-        \item Supported message types
-        \item Resistance against network exceptions including congestion, delay, jitter, duplicated packets, lost packets, and out-of-order packet delivery
-    \end{enumerate}
-    \item[Economic Evaluation] Is CASC-SAS an economically feasible solution for the construction or retrofitting of an SAS?
-    \begin{enumerate}
-        \item Satisfied compatibility requirements
-        \item Assumed device requirements
-        \item Additional costs for SAS construction and retrofitting
-        \item Feasibility with regard to SAS retrofitting
-        \item Cost-benefit efficiency compared to alternative approaches
-    \end{enumerate}
-\end{description}
