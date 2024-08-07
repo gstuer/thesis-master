@@ -213,10 +213,10 @@ The performance requirements of the system model are defined as follows:
     The system must respect the latency constraints for network communication defined in \autoref{sec:approach:system_model:communication:message_types}.
     Consequently, the maximum communication latency for low latency message exchange on the data path must not exceed three milliseconds.
     \item[RQ.PER.2] Computational Complexity\\
-    The system must respect the limited performance of resource-constraint devices in the SAS.
+    The system must respect the limited performance of resource-constrained devices in the SAS.
     Consequently, computationally complex algorithms have to be executed by performance-oriented servers.
     \item[RQ.PER.3] Energy \& Power Saving\\
-    The system must respect the energy and power constraints of resource-constraint devices in the SAS.
+    The system must respect the energy and power constraints of resource-constrained devices in the SAS.
 \end{description}
 
 \subsubsection{Compatibility}
@@ -356,9 +356,9 @@ Furthermore, this technique allows only one public key to be created for a speci
 \subsection{Server-Aided Cryptography}
 As PKC mechanisms may consist of computationally complex algorithms and operations such as bilinear pairing, we propose a server-aided PKC approach.
 Therefor, we propose an extension of the CL-PKC concept and schemes to make time-critical steps server-aided.
-In order to make CASA server-aided, an Untrusted Cryptography Server (UCS) supports devices by handling computationally expensive algorithms instead of executing them locally on resource-constraint devices.
+In order to make CASA server-aided, an Untrusted Cryptography Server (UCS) supports devices by handling computationally expensive algorithms instead of executing them locally on resource-constrained devices.
 To minimize the required trust, the UCS may only handle certain computations, i.e., partially sign or verify a request of a device.
-This server-aided approach enables resource-constraint devices to apply secure algorithms and schemes of CASA in a time-critical OT environment.
+This server-aided approach enables resource-constrained devices to apply secure algorithms and schemes of CASA in a time-critical OT environment.
 In the following, we employ the concept of server-aided PKC for the verification process.
 
 As stated by \citeauthor{Wu2008} \cite{Wu2008}, a server-aided verification process has to satisfy the property of being computation-saving.
@@ -691,12 +691,12 @@ The phases of the access control protocol are defined as follows:
     As illustrated in the figure, the session initialization relies on an interaction between two PEP instances.
     Moreover, a server-aided access decision verification at the receiving PEP is shown.
     The receiver's PEP uses a server-aided access decision verification provided by a PDP to reduce the trust in another PDP.
-    Additionally, the shown SABAAC components, especially resource-constraint PEP instances, rely on the services provided by a CASA UCS for SAV.
+    Additionally, the shown SABAAC components, especially resource-constrained PEP instances, rely on the services provided by a CASA UCS for SAV.
     \begin{figure}
         \centering
         \includegraphics[width=1.0\linewidth]{figures/SABAAC_protocols_accesscontrol_initialization.drawio.pdf}
         \caption{Components and exchanged messages of a successful access request, unidirectional session initialization, and access decision verification.
-        % The access request procedure relies on an interaction between a PDP and a PEP and is a prerequisite for the session initialization. The session initialization relies on an interaction between two PEP instances. The receiver's PEP uses a server-aided access decision verification provided by a PDP to reduce the trust in another PDP. The shown SABAAC components, especially resource-constraint PEP instances, rely on the services provided by a CASA UCS for SAV.
+        % The access request procedure relies on an interaction between a PDP and a PEP and is a prerequisite for the session initialization. The session initialization relies on an interaction between two PEP instances. The receiver's PEP uses a server-aided access decision verification provided by a PDP to reduce the trust in another PDP. The shown SABAAC components, especially resource-constrained PEP instances, rely on the services provided by a CASA UCS for SAV.
         }
         \label{fig:sabaac_accesscontrol_initialization}
     \end{figure}
@@ -855,7 +855,7 @@ The three areas of interest and their corresponding metrics are defined as follo
         \item Mitigated attacks
         \item Introduced attack surface
     \end{enumerate}
-    \item[Performance Evaluation] Is CASC-SAS capable of securing time-constraint communication of an SAS?
+    \item[Performance Evaluation] Is CASC-SAS capable of securing time-constrained communication of an SAS?
     \begin{enumerate}
         \item Satisfied performance requirements
         \item Assumed communication characteristics
