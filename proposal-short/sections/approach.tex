@@ -125,7 +125,7 @@ Given an attribute evaluation function $E_{ATT}$ and a point of time $t$, the va
 To handle policies based on their degree of time-variability, the SABAAC approach classifies policies as follows:
 \begin{description}
     \item[Dynamic Policy] A dynamic policy $\rho$ is an ABAC policy whose evaluation relies on at least one time-variable subject, object, environment, or action attribute.
-    A policy $\rho$ is dynamic iff $\exists a \in \rho: \forall t_i \neq t_j: E(a,t_i) \neq E(a,t_j)$.
+    A policy $\rho$ is dynamic iff $\exists a \in \rho: \exists t_i \neq t_j: E(a,t_i) \neq E(a,t_j)$.
     Due to the time-variable evaluation of dynamic policies, access decisions must have a limited time of validity that corresponds to the change rate of the underlying attribute values.
     As a result, caching of access decisions that are based on dynamic policies should be avoided.
     A dynamic policy is also referred to as real-time policy.
