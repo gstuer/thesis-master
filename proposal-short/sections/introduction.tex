@@ -44,11 +44,11 @@ Accordingly, asymmetric cryptography formerly specified by the IEC 62351 standar
 Due to an increase in processing performance of IT and OT devices nowadays, this thesis examines the applicability of effective and efficient asymmetric cryptography in substations.
 For this purpose, this thesis proposes new cryptographic and cybersecurity approaches for authentication, authorization, and access control.
 Moreover, the thesis discusses the employment of speedup techniques to enable the usage of secure asymmetric cryptography in time-critical OT systems.
-Therefor, the following research questions are going to be answered in the course of this thesis:
+Therefore, the following research questions are going to be answered in the course of this thesis:
 \begin{description}
-    \item[RQ1] How can a secure certificateless server-aided public key cryptography approach be designed and implemented, that is able to serve as a foundation for a malleable and extendable cryptosystem in the time-critical SAS environment?
-    \item[RQ2] How can expressive and flexible but yet computationally expensive access control approaches such as Attribute-Based Access Control (ABAC) be employed to enable prevention of unauthorized access in a time-critical SAS environment?
-    \item[RQ3] How can authentication, authorization, and access control be integrated into a certificateless attribute-based server-aided cryptosystem for time-critical SAS communication?
+    \item[RQ1] How can a secure certificateless server-aided public key cryptography approach be designed and implemented, that is able to ensure the authenticity, integrity, and non-repudiation of communication in a time-critical SAS environment?
+    \item[RQ2] How can expressive and flexible but yet computationally expensive access control approaches such as Attribute-Based Access Control (ABAC) be employed to enable prevention of unauthorized access, enable the Separation of Duties (SoD), and ensure the Principle of Least Privilege (PoLP) in a time-critical SAS environment?
+    \item[RQ3] How can authentication, authorization, and access control be integrated into a malleable, extendable, certificateless, attribute-based, and server-aided cryptosystem for time-critical SAS communication?
 \end{description}
 
 \section{Contribution}
@@ -57,7 +57,7 @@ With the aim of providing means to enhance the information security in a SAS, we
 The main objective of the proposed approach is to provide secure protocols, algorithms, and schemes for SAS communication based on asymmetric cryptography.
 % The provided protocols, algorithms, and schemes aim to satisfy SAS security requirements such as integrity, authenticity, and non-repudiation, while taking the strict time constraints of the SAS domain into account.
 The provided protocols, algorithms, and schemes aim to satisfy SAS security requirements such as integrity, authenticity, access control, and non-repudiation.
-The approach aims to not only enhance the security of SAS communication by satisfying security objectives, but also takes the specific characteristics, risks, and priorities of OT, ICS, and SAS into account.
+The approach not only aims to enhance the security of SAS communication by satisfying security objectives, but also takes the specific characteristics, risks, and priorities of OT, ICS, and SAS into account.
 Our proposed cryptosystem is based on a dual-path four-layered architecture.
 Furthermore, the CASC-SAS approach is divided into two core concepts or components.
 These two concepts are referred to as CASA and SABAAC.
@@ -72,5 +72,5 @@ To take the time criticality of SAS communication into account, the approach fea
 SABAAC is a server-aided ABAC approach.
 The approach uses the provided cryptographic protocols, algorithms, and schemes of CASA as a foundation.
 It enables the prevention of unauthorized access to devices of a SAS.
-Our approach aims to demonstrate the applicability of expressive and flexible but yet computationally expensive access control policies in an environment with strict time and resource constraints.
+Our approach aims to demonstrate the applicability of access control policies, which are expressive and flexible with regard to the attributes used but yet computationally expensive to evaluate, in an environment with strict time and resource constraints.
 For this purpose, SABAAC not only relies on server-aided algorithms, but also provides speedup techniques such as access decision caching and policy evaluation precomputation.

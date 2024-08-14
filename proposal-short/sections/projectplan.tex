@@ -16,6 +16,7 @@ Each milestone is defined by its duration in CWs, deliverables, and tasks.
 Each milestone consists of at least one task.
 A task of a milestone is referred to as increment.
 The duration of a milestone depends on the duration of its increments and increment interdependencies.
+Multiple increments mapped to the same calendar weeks may be performed in parallel, as there are either no interdependencies or existing dependencies can be resolved beforehand.
 The projected timescales for the completion of milestones and increments are calculated based on empirical values.
 The milestones of the proposed master's thesis are defined as follows:
 \begin{description}
@@ -115,6 +116,9 @@ The non-technical risks consist of organizational and project management risks a
 The following technical risks represent deficiencies in the design and implementation of the approach, which could result in non-compliance with stated requirements.
 To ensure the compliance with stated requirements, it is recommended that software testing and system evaluation are conducted in an automated manner.
 \begin{description}
+    \item[Software Design Flaws] Software design flaws have an impact on the performance, availability, security, and safety of the approach.
+    To mitigate the risk of software design flaws and therefore avoid re-implementation, architecture reviews are conducted after the design of the CASC-SAS software.
+    Furthermore, automated acceptance tests check the compliance of already implemented software with stated system requirements to identify software design flaws.
     \item[Software Implementation Flaws] Software implementation flaws have an impact on the performance, availability, security, and safety of the approach.
     Implementation flaws such as bugs are avoided by using automated software testing.
     The automated software testing consists of unit, integration, system, and acceptance tests.
@@ -122,9 +126,6 @@ To ensure the compliance with stated requirements, it is recommended that softwa
     The acceptance tests check the compliance with stated system requirements.
     The employed software testing methods have to provide high source code coverage.
     Besides automated software testing, code reviews after the implementation of the CASC-SAS software can increase the source code quality and mitigate the risk of implementation flaws.
-    \item[Software Design Flaws] Software design flaws have an impact on the performance, availability, security, and safety of the approach.
-    To mitigate the risk of software design flaws and therefore avoid re-implementation, architecture reviews are conducted after the design of the CASC-SAS software.
-    Furthermore, automated acceptance tests check the compliance of already implemented software with stated system requirements to identify software design flaws.
     \item[Transient Hardware Faults] Transient faults of system hardware have an impact on the performance and availability of the approach.
     Transient faults have to be taken into account during the design and implementation of the system.
     This can be achieved by employing failure-avoidance strategies such as redundancy and automated system monitoring.
