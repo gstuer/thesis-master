@@ -54,10 +54,11 @@ Each of the four layers consists of different devices and provides different con
     The network level devices include supervisory monitoring and control devices like SCADA MTUs.
 \end{enumerate}
 \begin{figure}
-	\centering
-	\includegraphics[width=1.0\linewidth]{figures/substation_architecture.drawio.pdf}
-	\caption{The internal SAS architecture consisting of three layers called system level, bay level, and process level which are connected via station bus and process bus.}
-	\label{fig:substation_architecture}
+    \centering
+    \includegraphics[width=1.0\linewidth]{figures/substation_architecture.drawio.pdf}
+    % \caption{The internal SAS architecture consisting of three layers called system level, bay level, and process level which are connected via station bus and process bus.}
+    \caption{Internal three-layered architecture of a SAS.}
+    \label{fig:substation_architecture}
 \end{figure}
 
 \subsection{Communication}
@@ -111,7 +112,8 @@ In IEC 61850 substations MMS as well as SCADA protocols are used for high latenc
 \begin{table}
     \centering
     \small
-    \caption{Message types of the presented system model classified with regard to their topology, continuity, and latency constraints of the communication relationships.}
+    % \caption{Message types of the presented system model classified with regard to their topology, continuity, and latency constraints of the communication relationships.}
+    \caption{Message types of the presented system model.}
     \label{tab:message_types}
     \begin{tabular}{l c c c c c}
     \toprule
@@ -295,7 +297,8 @@ The message exchange layer represents an abstraction of the physical layer, data
 \begin{figure}
     \centering
     \includegraphics[width=1.0\linewidth]{figures/layers_request_example.drawio.pdf}
-    \caption{An exemplary domain-specific communication between a sending and receiving entity including the involved CASC-SAS layers and messages exchanged between the architectural layers.}
+    % \caption{An exemplary domain-specific communication between a sending and receiving entity including the involved CASC-SAS layers and messages exchanged between the architectural layers.}
+    \caption{Exemplary message exchange in four-layered CASC-SAS architecture.}
     \label{fig:layers_request_example}
 \end{figure}
 An exemplary domain-specific communication between a sending entity and receiving entity is shown in \autoref{fig:layers_request_example}.
@@ -465,10 +468,11 @@ This process takes place when an entity initiates the communication with another
 The delegated ABAC protocol is further discussed in \autoref{sec:approach:sabaac:accesscontrol}.
 An overview of the SABAAC architecture, components, and protocols as well as the integration of CASA components and services into the SABAAC approach are shown in \autoref{fig:sabaac_protocols_overview}.
 \begin{figure}
-	\centering
+    \centering
     \includegraphics[width=1.0\linewidth]{figures/SABAAC_protocols_overview.drawio.pdf}
-	\caption{Component-based architecture and communication protocols of the SABAAC approach, including the four SABAAC components, their interrelationships, and the integration of CASA components and services into the authorization and access control workflow.}
-	\label{fig:sabaac_protocols_overview}
+    % \caption{Component-based architecture and communication protocols of the SABAAC approach, including the four SABAAC components, their interrelationships, and the integration of CASA components and services into the authorization and access control workflow.}
+    \caption{Function-oriented component-based architecture of the SABAAC approach.}
+    \label{fig:sabaac_protocols_overview}
 \end{figure}
 
 \subsection{Authorization \& Access Control Architecture}
@@ -567,7 +571,7 @@ For this purpose, the authorization protocol consists of three parts or sub-prot
     \begin{figure}
         \centering
         \includegraphics[width=0.9\linewidth]{figures/SABAAC_protocols_authorization_static.drawio.pdf}
-        \caption{Components and exchanged messages of the static authorization process.
+        \caption{Exchanged messages of the static authorization process.
         % The process is initiated by a policy modification request of a human operator at a HMI. The involved PAP instance relies on a PSP to persist static authorizations or SABAAC policies. Requests to persist changes to static authorizations are communicated in the form of CRUD requests between the PAP and PSP.
         }
         \label{fig:sabaac_authorization_static}
@@ -601,7 +605,7 @@ For this purpose, the authorization protocol consists of three parts or sub-prot
             \caption{Complete policy exchange procedure initiated by a policy exchange request of a PDP.}
             \label{fig:sabaac_authorization_dynamic_policyexchange_complete}
         \end{subfigure}
-        \caption{Components and exchanged messages of the incremental and complete policy exchange procedures.
+        \caption{Exchanged messages of the policy exchange procedures.
         %The static authorization is a prerequisite for both policy exchange procedures. The policy exchange is an interaction between a PAP and a PDP either initiated by a static authorization or on request of the involved PDP. The policy exchange is a prerequisite for dynamic authorization at a PDP. A repeatedly executed dynamic authorization process may be initially triggered by a policy exchange.
         }
         \label{fig:sabaac_authorization_dynamic_policyexchange}
@@ -694,7 +698,7 @@ The phases of the access control protocol are defined as follows:
     \begin{figure}
         \centering
         \includegraphics[width=1.0\linewidth]{figures/SABAAC_protocols_accesscontrol_initialization.drawio.pdf}
-        \caption{Components and exchanged messages of a successful access request, unidirectional session initialization, and access decision verification.
+        \caption{Exchanged messages of an access request, unidirectional session initialization, and access decision verification.
         % The access request procedure relies on an interaction between a PDP and a PEP and is a prerequisite for the session initialization. The session initialization relies on an interaction between two PEP instances. The receiver's PEP uses a server-aided access decision verification provided by a PDP to reduce the trust in another PDP. The shown SABAAC components, especially resource-constrained PEP instances, rely on the services provided by a CASA UCS for SAV.
         }
         \label{fig:sabaac_accesscontrol_initialization}
@@ -718,7 +722,7 @@ The phases of the access control protocol are defined as follows:
     \begin{figure}
         \centering
         \includegraphics[width=1.0\linewidth]{figures/SABAAC_protocols_accesscontrol_payloadexchange.drawio.pdf}
-        \caption{Components and exchanged messages of a successful unidirectional payload exchange procedure between two domain entities.
+        \caption{Exchanged messages of a unidirectional payload exchange procedure.
         % The procedure relies solely on the interaction of PEP instances, with the exception of a single server-aided CASA verification on message receipt.
         }
         \label{fig:sabaac_accesscontrol_payloadexchange}
@@ -762,7 +766,7 @@ The phases of the access control protocol are defined as follows:
             \caption{Bidirectional session initialization and payload exchange with piggybacking.}
             \label{fig:sabaac_accesscontrol_initialization_rtt_piggyback}
         \end{subfigure}
-        \caption{Protocol sequence diagrams showing a piggybacking and non-piggybacking initialization of bidirectional message exchange sessions between two PEP instances.
+        \caption{Protocol sequence diagrams of bidirectional session initialization and message exchange.
         % Protocol sequence diagrams showing a simplified piggybacking and non-piggybacking initialization of sessions for bidirectional message exchange and payload exchange between two PEP instances. For RTT comparison purposes, the semantically identical session initialization handshakes and message exchanges are shown without and with piggybacking of payload exchange requests. The use of piggybacking reduces the minimum time required to deliver the first payload exchange request from two RTTs to a half RTT under the assumption of symmetric transmission times. The minimum time until a response is delivered for the initial payload exchange request is reduced from three RTTs to a single RTT. After the bidirectional initialization of sessions, the minimum time required for a bidirectional payload exchange equals one RTT for both scenarios.
         }
         \label{fig:sabaac_accesscontrol_initialization_rtt}
@@ -835,7 +839,7 @@ On the other hand, the test bed results are practice-oriented and transferable t
 \begin{figure}
     \centering
     \includegraphics[width=1.0\linewidth]{figures/network_testbed_color.drawio.pdf}
-    \caption{Architecture of the network test bed used for the experimental evaluation of the CASC-SAS approach.
+    \caption{Architecture of the network test bed.
     % Architecture of the network test bed used for the experimental evaluation of the CASC-SAS approach. The components depicted in blue represent computers that mimic the behavior of domain-specific senders and receivers of an SAS. The components depicted in red are part of the CASC-SAS approach. The components depicted in yellow represent message-forwarding intermediate network devices.
     }
     \label{fig:evaluation_test_bed}
