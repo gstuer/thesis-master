@@ -1,11 +1,13 @@
 from Communicator import Communicator
+from Entity import Entity, printTimed
 from statistics import fmean
 import sys
 import time
 
-class ActiveEntity(Communicator):
+class ActiveEntity(Entity, Communicator):
     def __init__(self, destination, port):
-        super().__init__(port)
+        Entity.__init__(self)
+        Communicator.__init__(self, port)
         self.destination = destination
 
     def estimateRoundTripTime(self, readings, initializationPackets = 5, initializationThreshold = 0.8, intermessageTimeout = 0, receiveTimeout = 0.75, initializationTimeout = 0):
@@ -50,14 +52,13 @@ if __name__ == "__main__":
     readings = int(sys.argv[3])
     entity = ActiveEntity(destination, port)
 
-    print(f"Starting to estimate RTT...")
+    printTimed(f"Starting to estimate RTT.")
     startTime = time.time_ns()
     roundTripTimes = entity.estimateRoundTripTime(readings)
     endTime = time.time_ns()
 
     if roundTripTimes is None:
-        print("Estimation failed: Connection initilization not successful.")
+        printTimed("Estimation failed: Connection initilization not successful.")
     else:
         roundTripTimes = [x for x in roundTripTimes if x is not None]
-        print("Estimation successful.")
-        print(f"Min:{min(roundTripTimes)} Max:{max(roundTripTimes)} Avg:{fmean(roundTripTimes)} Lost:{readings - len(roundTripTimes)} PPS:{readings / (endTime - startTime) * pow(10, 9)}")
+        printTimed(f"Estimation successful.\nMin:{min(roundTripTimes)} Max:{max(roundTripTimes)} Avg:{fmean(roundTripTimes)} Lost:{readings - len(roundTripTimes)} PPS:{readings / (endTime - startTime) * pow(10, 9)}")

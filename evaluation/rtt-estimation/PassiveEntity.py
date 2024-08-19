@@ -1,9 +1,11 @@
 from Communicator import Communicator
+from Entity import Entity, printTimed
 import sys
 
-class PassiveEntity(Communicator):
+class PassiveEntity(Entity, Communicator):
     def __init__(self, port):
-        super().__init__(port)
+        Entity.__init__(self)
+        Communicator.__init__(self, port)
 
     def listen(self):
         while True:
@@ -14,5 +16,6 @@ class PassiveEntity(Communicator):
 if __name__ == "__main__":
     port = int(sys.argv[1])
     entity = PassiveEntity(port)
-    print(f"Starting to listen to port {port:d}...")
+
+    printTimed(f"Starting to listen to port {port:d}")
     entity.listen()
