@@ -126,7 +126,7 @@
 \newcommand{\thegrouplogo}{sdqlogo}
 \newcommand{\grouplogo}[1]{\renewcommand{\thegrouplogo}{#1}}
 % \newcommand{\printgrouplogo}{\includegraphics[height=1.8cm]{logos/\thegrouplogo}} % Original Size
-\newcommand{\printgrouplogo}{\includegraphics[height=1.0cm]{logos/\thegrouplogo}}
+\newcommand{\printgrouplogo}{\includegraphics[height=0.9cm]{logos/\thegrouplogo}}
 \newcommand{\nogrouplogo}{\renewcommand{\printgrouplogo}{}}
 
 \titlehead{%
