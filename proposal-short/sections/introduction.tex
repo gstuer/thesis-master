@@ -56,22 +56,16 @@ Therefore, the following research questions are going to be answered in the cour
 \label{sec:introduction:contribution}
 With the aim of providing means to enhance the information security in a SAS, we propose a \textbf{C}ertificateless \textbf{A}ttribute-Based \textbf{S}erver-Aided \textbf{C}ryptosystem for \textbf{S}ubstation \textbf{A}utomation \textbf{S}ystems (CASC-SAS).
 The main objective of the proposed approach is to provide secure protocols, algorithms, and schemes for SAS communication based on asymmetric cryptography.
-% The provided protocols, algorithms, and schemes aim to satisfy SAS security requirements such as integrity, authenticity, and non-repudiation, while taking the strict time constraints of the SAS domain into account.
 The provided protocols, algorithms, and schemes aim to satisfy SAS security requirements such as integrity, authenticity, access control, and non-repudiation.
-The approach not only aims to enhance the security of SAS communication by satisfying security objectives, but also takes the specific characteristics, risks, and priorities of OT, ICS, and SAS into account.
-Our proposed cryptosystem is based on a dual-path four-layered architecture.
-Furthermore, the CASC-SAS approach is divided into two core concepts or components.
-These two concepts are referred to as CASA and SABAAC.
-
-\subsubsection*{Certificateless Attribute-Based Server-Aided Authentication (CASA)}
-CASA is an attribute-based public key approach.
-Instead of relying on trusted Certificate Authorities (CA), the approach employs certificateless public key cryptography.
-CASA provides cryptographic protocols, algorithms, and schemes that serve as a foundation for cybersecurity approaches in a SAS.
-To take the time criticality of SAS communication into account, the approach features server-aided algorithms and online/offline cryptography.
-
-\subsubsection*{Server-Aided Attribute-Based Authorization \& Access Control (SABAAC)}
-SABAAC is a server-aided ABAC approach.
-The approach uses the provided cryptographic protocols, algorithms, and schemes of CASA as a foundation.
-It enables the prevention of unauthorized access to devices of a SAS.
-Our approach aims to demonstrate the applicability of access control policies, which are expressive and flexible with regard to the attributes used but yet computationally expensive to evaluate, in an environment with strict time and resource constraints.
-For this purpose, SABAAC not only relies on server-aided algorithms, but also provides speedup techniques such as access decision caching and policy evaluation precomputation.
+Furthermore, the approach takes the specific characteristics, risks, and priorities of OT, ICS, and SAS into account.
+To address the aforementioned objectives and considerations, this thesis comprises the following contributions:
+\begin{itemize}
+    \item Identification of security, safety, availability, performance, and compatibility requirements of the proposed approach, and development of a system model, which represents the corresponding field of application.
+    \item Design of a server-aided attribute-based authorization and access control approach called SABAAC, which relies on speedup techniques such as access decision caching and policy evaluation precomputation.
+    \item Design of a certificateless attribute-based public key cryptography approach for digital signatures called CASA, which features server-aided verification and online/offline cryptography.
+    \item Design of a certificateless attribute-based server-aided cryptosystem for SAS called CASC-SAS, which integrates SABAAC and CASA into a dual-path four-layered system architecture.
+    \item Implementation of the proposed approach using high-level programming languages, and deployment of the implementation to a fully functional test bed that mimics the behavior of an interconnected OT system.
+    \item Security evaluation to proof the security characteristics of the approach.
+    \item Performance evaluation to demonstrate the applicability of the approach in an OT environment with strict time and resource constraints.
+    \item Compatibility evaluation to demonstrate the feasibility of the approach for the construction and retrofitting of a SAS.
+\end{itemize}
