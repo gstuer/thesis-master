@@ -19,20 +19,21 @@ The architectural layers are illustrated in \autoref{fig:layers_request_example}
     \label{fig:layers_request_example}
 \end{figure}
 
-\section{Requirements}
+\section{Requirements \& Adversarial Attacks}
 In the following, we introduce the requirements of the presented approach.
 Based on the identified requirements, functional and non-functional characteristics of the proposed approach are derived and evaluated.
 Each requirement is associated with a requirement category.
 The requirement categories consist of security, safety, availability, performance, and compatibility.
-
 With regard to information security, the approach has to satisfy seven requirements, namely device integrity, message integrity, authenticity, access control, non-repudiation, Principle of Least Privilege (PoLP), and Separation of Duties (SoD).
 In terms of safety, the approach must satisfy operational safety and fail-safe requirements.
 Furthermore, the approach must satisfy two availability-related requirements, namely operational continuity and fail-operational.
 With regard to performance, the approach has to take three constraints into account, namely communication latency, computational complexity, and energy as well as power.
 With regard to compatibility, the approach has to satisfy interoperability and interchangeability requirements.
 
-In addition to the aforementioned requirement categories, the approach has to provide mitigation strategies against various types of attacks, including adaptive chosen-message, collusion, (distributed) denial-of-service, replay, spoofing, and false data injection attacks.
-However, the proposed approach does not address confidentiality-related requirements and attacks.
+In addition to the aforementioned requirements, the approach has to provide mitigation strategies against various types of attacks.
+The objective of these strategies is not merely to safeguard the equipment of the CASC-SAS approach, but rather to ensure the continuous operation of SAS devices, including intelligent electronic devices and merging units.
+The approach must be able to mitigate adaptive chosen-message, collusion, (distributed) denial-of-service, man-in-the-middle, replay, spoofing, and false data injection attacks.
+However, the approach does not address confidentiality-related requirements and attacks.
 
 \section{Certificateless Attribute-Based Server-Aided Authentication (CASA)}
 \label{sec:approach:casa}
