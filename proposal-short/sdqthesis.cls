@@ -159,7 +159,7 @@
 \newcommand{\theeditend}{}
 
 %% formatting commands for titlepage
-\newcommand{\thesistype}[1]{\subtitle{\vskip2em #1 \ifcurrentbaselanguage{English}{of}{von}}%
+\newcommand{\thesistype}[1]{\subtitle{\vskip2em #1 \ifcurrentbaselanguage{English}{}{}}%
 \renewcommand{\thethesistype}{#1}}
 \newcommand{\myinstitute}[1]{\renewcommand{\theinstitute}{#1}}
 \newcommand{\reviewerone}[1]{\renewcommand{\thereviewerone}{#1}}
@@ -177,8 +177,10 @@
 \newcommand{\settitle}{%
 \publishers{%
 \large
-\ifcurrentbaselanguage{English}{At the KIT Department of Informatics}%
-{An der KIT-Fakultät für Informatik}\\
+\ifcurrentbaselanguage{English}{Karlsruhe Institute of Technology (KIT)}%
+{Karlsruher Institut für Technologie (KIT)}\\
+\ifcurrentbaselanguage{English}{Department of Informatics}%
+{Fakultät für Informatik}\\
 \theinstitute\\[2em]
 \begin{tabular}{l l}
   \ifcurrentbaselanguage{English}{First examiner}{1. Prüfer/Prüferin}: & \thereviewerone\\
