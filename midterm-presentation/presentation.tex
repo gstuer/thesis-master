@@ -179,7 +179,34 @@
     \end{blueblock}
 \end{frame}
 \begin{frame}{Preliminary Results}
-    TODO
+    \centering
+    \includegraphics[height=0.78\textheight]{./figures/rtt-estimation-results.pdf}
+\end{frame}
+\begin{frame}{Discussion: 10k Sequential Packets}
+    \begin{blueblock}{Access Control Overhead}
+        \begin{tabular}{r r r r}
+            & \multicolumn{1}{c}{Avg} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Packets/s}\\
+            \textbf{Unauthorized} & 2.0 ms & 1.7 ms & 465 PPS\\
+            \textbf{Unsigned} & 3.3 ms & 2.8 ms & 292 PPS
+        \end{tabular}
+        %\textbf{Unauthorized:} $\sim$2.0 ms RTT (min $\sim$1.7 ms) 465 PPS
+        %\\\textbf{Unsigned:} $\sim$3.3 ms RTT (min $\sim$2.8 ms) 292 PPS
+        \vspace{0.5em}
+        \\$\rightarrow$ Access Control: +1.3 ms RTT (+65 \%)
+    \end{blueblock}
+    \begin{blueblock}{Authentication Overhead}
+        \begin{tabular}{r r r r}
+            & \multicolumn{1}{c}{Avg} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Packets/s}\\
+            \textbf{HMAC} & 3.4 ms & 2.9 ms & 285 PPS\\
+            \textbf{Ed25519} & 12.0 ms & 9.6 ms & 82 PPS\\
+            \textbf{RSA-2048} & 14.0 ms & 11.4 ms & 68 PPS
+        \end{tabular}
+        %\textbf{HMAC:} $\sim$3.4 ms RTT (min $\sim$2.9 ms) 285 PPS
+        %\\\textbf{Ed25519:} $\sim$12.0 ms RTT (min $\sim$9.6 ms) 82 PPS
+        %\\\textbf{RSA-2048:} $\sim$14.0 ms RTT (min $\sim$11.4 ms) 68 PPS
+        \vspace{0.5em}
+        \\$\rightarrow$ Authentication: +0.1--10.7 ms RTT (+3--325 \%)
+    \end{blueblock}
 \end{frame}
 
 \section{Conclusion}
