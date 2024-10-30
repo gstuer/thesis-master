@@ -1,5 +1,5 @@
-ip_passive = 192.168.0.100
-ip_active = 192.168.0.101
+ip_passive = 192.168.0.50
+ip_active = 192.168.0.51
 host_passive = pi@$(ip_passive)
 host_active = pi@$(ip_active)
 port = 8000

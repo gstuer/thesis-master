@@ -1,6 +1,7 @@
 from Communicator import Communicator
 from Entity import Entity, printTimed
 from statistics import fmean
+import json
 import sys
 import time
 
@@ -10,9 +11,9 @@ class ActiveEntity(Entity, Communicator):
         Communicator.__init__(self, port)
         self.destination = destination
 
-    def estimateRoundTripTime(self, readings, initializationPackets = 5, initializationThreshold = 0.8, intermessageTimeout = 0, receiveTimeout = 0.75, initializationTimeout = 0):
+    def estimateRoundTripTime(self, readings, initializationPackets = 5, initializationThreshold = 0.8, intermessageTimeout = 0, receiveTimeout = 1.5, preInitializationTimeout = 0, postInitializationTimeout = 0):
         # Wait until passive entity is ready
-        time.sleep(initializationTimeout)
+        time.sleep(preInitializationTimeout)
 
         # Test and initialize "connection"
         # -> Due to unknown reasons the first packet(s) has a significantly different RTT than other packets
@@ -24,6 +25,9 @@ class ActiveEntity(Entity, Communicator):
                 packetsLost += 1
         if (1 - packetsLost / initializationPackets) < initializationThreshold:
             return None
+
+        # Wait until system has processed initialization packets
+        time.sleep(postInitializationTimeout)
 
         # Send readings many messages and estimate roundtriptime
         roundTripTimes = []
@@ -50,6 +54,7 @@ if __name__ == "__main__":
     destination = str(sys.argv[1])
     port = int(sys.argv[2])
     readings = int(sys.argv[3])
+    label = str(sys.argv[4])
     entity = ActiveEntity(destination, port)
 
     printTimed(f"Starting to estimate RTT.")
@@ -62,3 +67,6 @@ if __name__ == "__main__":
     else:
         roundTripTimes = [x for x in roundTripTimes if x is not None]
         printTimed(f"Estimation successful.\nMin:{min(roundTripTimes)} Max:{max(roundTripTimes)} Avg:{fmean(roundTripTimes)} Lost:{readings - len(roundTripTimes)} PPS:{readings / (endTime - startTime) * pow(10, 9)}")
+        estimation = {"label": label, "roundTripTimes": roundTripTimes}
+        with open("./" + label + ".json", "w") as file:
+            json.dump(estimation, file)
