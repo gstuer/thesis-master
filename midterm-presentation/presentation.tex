@@ -106,8 +106,8 @@
 
     \begin{greenblock}{Solution: Server-Aided Access Control}
         Delegation of authorization \& access control to semi-trusted server (PDP)
-        \\$\rightarrow$ Authentication at each device ($\rightarrow$ server-aided)
-        \\$\rightarrow$ Speedup Techniques: Evaluation Pre-Computation \& Access Decision Caching
+        \\$\rightarrow$ Authentication at each device (server-aided)
+        \\$\rightarrow$ Speedup Techniques: Evaluation pre-computation \& access decision caching
     \end{greenblock}
 
     \begin{grayblock}{Architecture \parencite{Hu2014,Oasis2013}}
@@ -142,7 +142,7 @@
     \end{blueblock}
     \begin{blueblock}{Milestone: Evaluation}
         \textbf{Finished:} Testbed construction \& preliminary performance results
-        \\\textbf{In Progress:} Evaluation of CASA \& SABAAC performance, security, compatibility
+        \\\textbf{In Progress:} Evaluation of performance, security, \& compatibility
         \\$\rightarrow$ Planned: Code \& results of experiments published open-source
     \end{blueblock}
 \end{frame}
@@ -155,9 +155,9 @@
         \\\textbf{Final Presentation:} Preparation, proofreading, \& review
     \end{blueblock}
     \begin{redblock}{Estimated Time of Completion (ETC)}
-        \textbf{Draft:} 25. of November 2024
-        \\\textbf{Final:} 01. of January 2025
-        \\\textbf{Deadline:} 03. of February 2025
+        \textbf{Draft:} November 25, 2024
+        \\\textbf{Final:} January 01, 2025
+        \\\textbf{Deadline:} February 03, 2025
     \end{redblock}
 \end{frame}
 
@@ -180,7 +180,7 @@
 \begin{frame}{Discussion: 10k Sequential Packets}
     \begin{blueblock}{Access Control Overhead}
         \begin{tabular}{r r r r}
-            & \multicolumn{1}{c}{Avg} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Packets/s}\\
+            & \multicolumn{1}{c}{Avg} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Throughput}\\
             \textbf{Unauthorized} & 2.0 ms & 1.7 ms & 465 PPS\\
             \textbf{Unsigned} & 3.3 ms & 2.8 ms & 292 PPS
         \end{tabular}
@@ -191,7 +191,7 @@
     \end{blueblock}
     \begin{blueblock}{Authentication Overhead}
         \begin{tabular}{r r r r}
-            & \multicolumn{1}{c}{Avg} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Packets/s}\\
+            & \multicolumn{1}{c}{Avg} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Throughput}\\
             \textbf{HMAC} & 3.4 ms & 2.9 ms & 285 PPS\\
             \textbf{Ed25519} & 12.0 ms & 9.6 ms & 82 PPS\\
             \textbf{RSA-2048} & 14.0 ms & 11.4 ms & 68 PPS
@@ -207,7 +207,7 @@
 \section{Conclusion}
 \begin{frame}{Conclusion}
     \begin{redblock}{Problem}
-        Current ICT-based cyberattack mitigation approaches: Not applicable to the SAS domain!
+        Current IT cyberattack mitigation approaches: Not applicable to the SAS domain!
         \\$\rightarrow$ Constraints: Resources, time, \& communication patterns
     \end{redblock}
     \begin{blueblock}{Contribution}
