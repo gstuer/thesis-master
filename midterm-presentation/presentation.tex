@@ -55,11 +55,6 @@
     \nonumberfootnote{IED\dots Intelligent Electronic Device | MU\dots Merging Unit | RTU\dots Remote Terminal Unit}
     \nonumberfootnote{MTU\dots Master Terminal Unit | ICT\dots Information and Communications Technology}
 \end{frame}
-\begin{frame}{System Model: Substation Automation System (SAS)}
-    \centering
-    \includegraphics[width=0.7\textwidth]{./figures/substation_architecture.drawio.pdf}
-    \nonumberfootnote{IED\dots Intelligent Electronic Device | MU\dots Merging Unit | HMI\dots Human-Machine Interface}
-\end{frame}
 \begin{frame}{SAS Communication: Requirements \& Constraints}
     \begin{blueblock}{Requirements}
         \begin{itemize}
@@ -169,7 +164,7 @@
 \section{Evaluation}
 \begin{frame}{Performance Evaluation}
     \begin{greenblock}{Question}
-        Is CASC-SAS capable of securing time-constrained communication of an SAS?
+        Is CASC-SAS capable of securing time-constrained communication of a SAS?
         \\$\rightarrow$ Computational complexity, supported message types, \& network exception resilience
     \end{greenblock}
     \begin{blueblock}{Approach}
@@ -210,27 +205,26 @@
 \end{frame}
 
 \section{Conclusion}
-\begin{frame}{Limitations \& Future Work}
-    TODO
-\end{frame}
 \begin{frame}{Conclusion}
     \begin{redblock}{Problem}
         Current ICT-based cyberattack mitigation approaches: Not applicable to the SAS domain!
         \\$\rightarrow$ Constraints: Resources, time, \& communication patterns
     \end{redblock}
-    \begin{greenblock}{Idea}
-        Security Architecture: Authentication, Authorization, \& Access Control
-    \end{greenblock}
     \begin{blueblock}{Contribution}
-        CASC-SAS Security Framework\dots
+        CASC-SAS Security Architecture \& Framework\dots
         \\\dots employs mandatory authentication, authorization, \& access control
         \\\dots for time-critical SAS communication
         \\\dots in time-variable SAS environment.
     \end{blueblock}
+    \vspace{0.5em}
+    \centering
+    \huge
+    Thank you!
 \end{frame}
 
 \appendix
 \beginbackup
+\section{System Model}
 \begin{frame}{Motivation}
     \begin{columns}
         \column{.4\textwidth}
@@ -250,16 +244,13 @@
         \end{redblock}
     \end{columns}
 \end{frame}
+\begin{frame}{System Model: Substation Automation System (SAS)}
+    \centering
+    \includegraphics[width=0.7\textwidth]{./figures/substation_architecture.drawio.pdf}
+    \nonumberfootnote{IED\dots Intelligent Electronic Device | MU\dots Merging Unit | HMI\dots Human-Machine Interface}
+\end{frame}
 
 \section{Related Work}
-\begin{frame}{Traditional Authorization, Authentication, \& Access Control}
-    \centering
-	\includegraphics[width=0.9\textwidth]{./figures/access_control_request_traditional.drawio.pdf}
-    \begin{redblock}{Problem}
-        Too many provider responsibilities
-        \\$\rightarrow$ Policy Management/Decisions/Enforcement, Request Verification, \& Response Creation
-    \end{redblock}
-\end{frame}
 \begin{frame}{Related Work}
     \begin{blueblock}{IEC 62351 \parencite*{IEC62351P6,IEC62351P8}}
         Standard for Cybersecurity: Energy-Related Systems \& Communication Networks
@@ -301,6 +292,15 @@
     % Message Authentication, Asym. Performance Evaluation, BitW- \& HW-Solutions, Access Control
 \end{frame}
 
+\section{Access Control}
+\begin{frame}{Traditional Authorization, Authentication, \& Access Control}
+    \centering
+	\includegraphics[width=0.9\textwidth]{./figures/access_control_request_traditional.drawio.pdf}
+    \begin{redblock}{Problem}
+        Too many provider responsibilities
+        \\$\rightarrow$ Policy Management/Decisions/Enforcement, Request Verification, \& Response Creation
+    \end{redblock}
+\end{frame}
 \begin{frame}{Attribute-Based Access Control (ABAC)}
     \begin{greenblock}{Definition \parencite{JTF2020}}
         Access control model enabling access decisions based on attributes associated with \textbf{subjects}, \textbf{objects}, \textbf{actions}, and the \textbf{environment} of a system.
