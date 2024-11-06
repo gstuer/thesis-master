@@ -1,0 +1,327 @@
+<mxfile host="app.diagrams.net" modified="2024-06-28T10:05:17.078Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36" etag="m7GwOhQ7ZPk9JnBpTOix" version="24.6.3" type="device">
+  <diagram name="Page-1" id="zJpJ5VMaL2OZMmUuj0XS">
+    <mxGraphModel dx="1047" dy="575" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="540" pageHeight="200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="qLFB22mYU3NqT-pX-Pgg-1" value="SAS&lt;div&gt;Device&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="40" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="qLFB22mYU3NqT-pX-Pgg-2" value="SAS&lt;div&gt;Device&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="360" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="qLFB22mYU3NqT-pX-Pgg-3" value="Domain-Specific&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;Message&lt;/span&gt;" style="endArrow=classic;startArrow=classic;html=1;rounded=0;labelBackgroundColor=none;dashed=1;" parent="1" edge="1">
+          <mxGeometry x="-0.0001" y="10" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="130" y="19.759999999999998" as="sourcePoint" />
+            <mxPoint x="350" y="20" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qLFB22mYU3NqT-pX-Pgg-5" value="PDP" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="200" y="120" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="qLFB22mYU3NqT-pX-Pgg-6" value="PEP" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="40" y="120" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="qLFB22mYU3NqT-pX-Pgg-7" value="PEP" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="360" y="120" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="qLFB22mYU3NqT-pX-Pgg-8" value="Insecure&lt;div&gt;Message&lt;/div&gt;" style="endArrow=classic;startArrow=classic;html=1;rounded=0;labelBackgroundColor=none;" parent="1" edge="1">
+          <mxGeometry y="30" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="60" y="110" as="sourcePoint" />
+            <mxPoint x="60" y="50" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qLFB22mYU3NqT-pX-Pgg-9" value="&lt;span style=&quot;color: rgb(0, 0, 0); font-family: Helvetica; font-size: 11px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: nowrap; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;Insecure&lt;/span&gt;&lt;div style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-size: 11px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: nowrap; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;Message&lt;/div&gt;" style="endArrow=classic;startArrow=classic;html=1;rounded=0;labelBackgroundColor=none;" parent="1" edge="1">
+          <mxGeometry y="-30" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="420" y="110" as="sourcePoint" />
+            <mxPoint x="420" y="50" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qLFB22mYU3NqT-pX-Pgg-10" value="Access&lt;div&gt;Request&lt;/div&gt;" style="endArrow=classic;startArrow=none;html=1;rounded=0;endFill=1;startFill=0;labelBackgroundColor=none;" parent="1" edge="1">
+          <mxGeometry y="20" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="130" y="130" as="sourcePoint" />
+            <mxPoint x="190" y="130" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qLFB22mYU3NqT-pX-Pgg-12" value="KGC" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="200" y="240" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="qLFB22mYU3NqT-pX-Pgg-13" value="UCS" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="200" y="320" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="qLFB22mYU3NqT-pX-Pgg-14" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="100" y="170" as="sourcePoint" />
+            <mxPoint x="190" y="260" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="100" y="260" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qLFB22mYU3NqT-pX-Pgg-15" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="240" y="170" as="sourcePoint" />
+            <mxPoint x="240" y="230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qLFB22mYU3NqT-pX-Pgg-16" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="380" y="170" as="sourcePoint" />
+            <mxPoint x="290" y="260" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="380" y="260" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qLFB22mYU3NqT-pX-Pgg-17" value="&lt;span style=&quot;background-color: initial;&quot;&gt;Secure&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Message&lt;/span&gt;" style="endArrow=classic;startArrow=classic;html=1;rounded=0;labelBackgroundColor=none;" parent="1" edge="1">
+          <mxGeometry y="10" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="100" y="110" as="sourcePoint" />
+            <mxPoint x="380" y="110" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="100" y="80" />
+              <mxPoint x="380" y="80" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qLFB22mYU3NqT-pX-Pgg-19" value="Server-Aided&lt;div&gt;Cryptography&lt;/div&gt;" style="endArrow=classic;startArrow=classic;html=1;rounded=0;labelBackgroundColor=none;" parent="1" edge="1">
+          <mxGeometry x="-0.5333" y="-20" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="190" y="340" as="sourcePoint" />
+            <mxPoint x="60" y="170" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="60" y="340" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qLFB22mYU3NqT-pX-Pgg-20" value="&lt;span style=&quot;color: rgb(0, 0, 0); font-family: Helvetica; font-size: 11px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: nowrap; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;Server-Aided&lt;/span&gt;&lt;div style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-size: 11px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: nowrap; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;Cryptography&lt;/div&gt;" style="endArrow=classic;startArrow=classic;html=1;rounded=0;labelBackgroundColor=none;" parent="1" edge="1">
+          <mxGeometry x="-0.5333" y="20" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="290" y="340" as="sourcePoint" />
+            <mxPoint x="420" y="170" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="420" y="340" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qLFB22mYU3NqT-pX-Pgg-21" value="Access&lt;div&gt;Decision&lt;/div&gt;" style="endArrow=classic;startArrow=none;html=1;rounded=0;endFill=1;startFill=0;labelBackgroundColor=none;" parent="1" edge="1">
+          <mxGeometry y="20" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="190" y="150" as="sourcePoint" />
+            <mxPoint x="130" y="150" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qLFB22mYU3NqT-pX-Pgg-22" value="Access&lt;div&gt;Request&lt;/div&gt;" style="endArrow=classic;startArrow=none;html=1;rounded=0;endFill=1;startFill=0;labelBackgroundColor=none;" parent="1" edge="1">
+          <mxGeometry y="-20" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="350" y="130" as="sourcePoint" />
+            <mxPoint x="290" y="130" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qLFB22mYU3NqT-pX-Pgg-23" value="Access&lt;div&gt;Decision&lt;/div&gt;" style="endArrow=classic;startArrow=none;html=1;rounded=0;endFill=1;startFill=0;labelBackgroundColor=none;" parent="1" edge="1">
+          <mxGeometry y="-20" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="290" y="150" as="sourcePoint" />
+            <mxPoint x="350" y="150" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qLFB22mYU3NqT-pX-Pgg-26" value="Layer 3&lt;div&gt;Domain&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="600" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="qLFB22mYU3NqT-pX-Pgg-27" value="Layer 2&lt;div&gt;Cybersecurity (SABAC)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="600" y="120" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="qLFB22mYU3NqT-pX-Pgg-28" value="&lt;div&gt;Layer 1&lt;/div&gt;Cryptography (CASA)" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="600" y="240" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="qLFB22mYU3NqT-pX-Pgg-29" value="&lt;div&gt;Layer 0&lt;/div&gt;Message Exchange" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="600" y="360" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="qLFB22mYU3NqT-pX-Pgg-30" value="Access&lt;div&gt;Control&lt;div&gt;Policy&lt;/div&gt;&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;" parent="1" edge="1">
+          <mxGeometry y="-30" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="830" y="50" as="sourcePoint" />
+            <mxPoint x="830" y="110" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qLFB22mYU3NqT-pX-Pgg-32" value="" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="qLFB22mYU3NqT-pX-Pgg-27" target="qLFB22mYU3NqT-pX-Pgg-26" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="590" y="200" as="sourcePoint" />
+            <mxPoint x="760" y="50" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qLFB22mYU3NqT-pX-Pgg-33" value="" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="qLFB22mYU3NqT-pX-Pgg-28" target="qLFB22mYU3NqT-pX-Pgg-27" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="770" y="130" as="sourcePoint" />
+            <mxPoint x="770" y="50" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qLFB22mYU3NqT-pX-Pgg-34" value="" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="qLFB22mYU3NqT-pX-Pgg-29" target="qLFB22mYU3NqT-pX-Pgg-28" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="780" y="140" as="sourcePoint" />
+            <mxPoint x="780" y="60" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qLFB22mYU3NqT-pX-Pgg-37" value="Security&lt;div&gt;Assurance&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;" parent="1" edge="1">
+          <mxGeometry y="-30" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="850" y="110" as="sourcePoint" />
+            <mxPoint x="850" y="50" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qLFB22mYU3NqT-pX-Pgg-38" value="&lt;div&gt;Insecure&lt;/div&gt;Domain-Specific&lt;div&gt;Message&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry y="-50" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="700" y="50" as="sourcePoint" />
+            <mxPoint x="700" y="110" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qLFB22mYU3NqT-pX-Pgg-43" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="720" y="110" as="sourcePoint" />
+            <mxPoint x="720" y="50" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qLFB22mYU3NqT-pX-Pgg-44" value="&lt;div&gt;Insecure&lt;/div&gt;Domain-Specific&lt;div&gt;Message&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry y="-50" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="700" y="170" as="sourcePoint" />
+            <mxPoint x="700" y="230" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qnWD-MGTKsQbxRVK3_dl-1" value="Layer 3&lt;div style=&quot;font-size: 14px;&quot;&gt;Domain&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry y="600" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="qnWD-MGTKsQbxRVK3_dl-2" value="Layer 2&lt;div style=&quot;font-size: 14px;&quot;&gt;Cybersecurity (SABAC)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry y="720" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="qnWD-MGTKsQbxRVK3_dl-3" value="&lt;div style=&quot;font-size: 14px;&quot;&gt;Layer 1&lt;/div&gt;Cryptography (CASA)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="160" y="840" width="160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="qnWD-MGTKsQbxRVK3_dl-4" value="&lt;div style=&quot;font-size: 14px;&quot;&gt;Layer 0&lt;/div&gt;Message Exchange" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry y="960" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="qnWD-MGTKsQbxRVK3_dl-5" value="Layer 3&lt;div style=&quot;font-size: 14px;&quot;&gt;Domain&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="520" y="600" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="qnWD-MGTKsQbxRVK3_dl-6" value="Layer 2&lt;div style=&quot;font-size: 14px;&quot;&gt;Cybersecurity (SABAC)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="520" y="720" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="qnWD-MGTKsQbxRVK3_dl-7" value="&lt;div style=&quot;font-size: 14px;&quot;&gt;Layer 1&lt;/div&gt;Cryptography (CASA)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="520" y="840" width="160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="qnWD-MGTKsQbxRVK3_dl-8" value="&lt;div style=&quot;font-size: 14px;&quot;&gt;Layer 0&lt;/div&gt;Message Exchange" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="520" y="960" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="qnWD-MGTKsQbxRVK3_dl-9" value="Domain-Specific&lt;div&gt;Communication&lt;/div&gt;" style="endArrow=classic;startArrow=classic;html=1;rounded=0;labelBackgroundColor=none;dashed=1;fontSize=12;" edge="1" parent="1">
+          <mxGeometry x="-0.0006" y="20" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="330" y="619.5" as="sourcePoint" />
+            <mxPoint x="510" y="620" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qnWD-MGTKsQbxRVK3_dl-10" value="&lt;div style=&quot;font-size: 12px;&quot;&gt;Domain-Specific&lt;/div&gt;&lt;div style=&quot;font-size: 12px;&quot;&gt;Message&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=12;" edge="1" parent="1">
+          <mxGeometry x="0.014" y="-60" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="160" y="650" as="sourcePoint" />
+            <mxPoint x="159.57999999999998" y="710" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qnWD-MGTKsQbxRVK3_dl-12" value="Signature&lt;div style=&quot;font-size: 12px;&quot;&gt;Request&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=12;" edge="1" parent="1">
+          <mxGeometry x="0.0094" y="-40" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="230.42000000000002" y="770" as="sourcePoint" />
+            <mxPoint x="230" y="830" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qnWD-MGTKsQbxRVK3_dl-14" value="Signed&lt;div style=&quot;font-size: 12px;&quot;&gt;Message&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=12;" edge="1" parent="1">
+          <mxGeometry y="-40" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="250" y="830" as="sourcePoint" />
+            <mxPoint x="250" y="770" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qnWD-MGTKsQbxRVK3_dl-16" value="Authorized &amp;amp;&amp;nbsp;&lt;span style=&quot;background-color: initial; font-size: 12px;&quot;&gt;Signed&lt;/span&gt;&lt;div style=&quot;font-size: 12px;&quot;&gt;Message&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=12;" edge="1" parent="1">
+          <mxGeometry y="-60" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="119.85000000000001" y="770" as="sourcePoint" />
+            <mxPoint x="119.43" y="950" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qnWD-MGTKsQbxRVK3_dl-17" value="&lt;div style=&quot;font-size: 12px;&quot;&gt;Domain-Specific&lt;/div&gt;&lt;div style=&quot;font-size: 12px;&quot;&gt;Message&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=12;" edge="1" parent="1">
+          <mxGeometry y="-60" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="680" y="710" as="sourcePoint" />
+            <mxPoint x="680" y="650" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qnWD-MGTKsQbxRVK3_dl-19" value="Transport&lt;div style=&quot;font-size: 12px;&quot;&gt;Segment / Datagram&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=12;" edge="1" parent="1">
+          <mxGeometry y="20" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="330" y="980" as="sourcePoint" />
+            <mxPoint x="510" y="980" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qnWD-MGTKsQbxRVK3_dl-21" value="Authorized &amp;amp;&amp;nbsp;&lt;span style=&quot;background-color: initial; font-size: 12px;&quot;&gt;Signed&lt;/span&gt;&lt;div style=&quot;font-size: 12px;&quot;&gt;Message&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=12;" edge="1" parent="1">
+          <mxGeometry x="0.0015" y="-60" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="720" y="950" as="sourcePoint" />
+            <mxPoint x="720" y="770" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qnWD-MGTKsQbxRVK3_dl-22" value="Verification&lt;div style=&quot;font-size: 12px;&quot;&gt;Request&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=12;" edge="1" parent="1">
+          <mxGeometry x="-0.0093" y="40" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="610.4200000000001" y="770" as="sourcePoint" />
+            <mxPoint x="610" y="830" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qnWD-MGTKsQbxRVK3_dl-23" value="&lt;div style=&quot;font-size: 12px;&quot;&gt;Verified&lt;/div&gt;&lt;div style=&quot;font-size: 12px;&quot;&gt;Message&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=12;" edge="1" parent="1">
+          <mxGeometry y="40" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="590" y="830" as="sourcePoint" />
+            <mxPoint x="590" y="770" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qnWD-MGTKsQbxRVK3_dl-29" value="&lt;div&gt;Authorization&lt;/div&gt;&lt;div&gt;&amp;amp; Access Control&lt;/div&gt;" style="endArrow=classic;startArrow=classic;html=1;rounded=0;labelBackgroundColor=none;dashed=1;fontSize=12;" edge="1" parent="1">
+          <mxGeometry x="-0.0038" y="20" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="330" y="739.66" as="sourcePoint" />
+            <mxPoint x="510" y="740.16" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qnWD-MGTKsQbxRVK3_dl-30" value="Authentication" style="endArrow=classic;startArrow=classic;html=1;rounded=0;labelBackgroundColor=none;dashed=1;fontSize=12;" edge="1" parent="1">
+          <mxGeometry x="-0.0003" y="10" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="330" y="859.66" as="sourcePoint" />
+            <mxPoint x="510" y="860.16" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qnWD-MGTKsQbxRVK3_dl-32" value="&lt;div&gt;Cryptographic&lt;/div&gt;&lt;div&gt;Control&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;Message&lt;/span&gt;&lt;/div&gt;" style="endArrow=classic;startArrow=classic;html=1;rounded=0;fontSize=12;labelBackgroundColor=none;" edge="1" parent="1">
+          <mxGeometry y="-60" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="200" y="950" as="sourcePoint" />
+            <mxPoint x="200" y="890" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qnWD-MGTKsQbxRVK3_dl-33" value="&lt;div&gt;Cryptographic&lt;/div&gt;&lt;div&gt;Control&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;Message&lt;/span&gt;&lt;/div&gt;" style="endArrow=classic;startArrow=classic;html=1;rounded=0;fontSize=12;labelBackgroundColor=none;" edge="1" parent="1">
+          <mxGeometry y="60" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="640" y="950" as="sourcePoint" />
+            <mxPoint x="640" y="890" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qnWD-MGTKsQbxRVK3_dl-34" value="Entity A (Sender)" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry y="560" width="320" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="qnWD-MGTKsQbxRVK3_dl-35" value="Entity B (Receiver)" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="520" y="560" width="320" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

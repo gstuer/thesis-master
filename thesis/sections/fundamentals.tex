@@ -1,0 +1,501 @@
+\chapter{Fundamentals}
+\label{ch:fundamentals}
+The purpose of this chapter is to introduce, define, and describe the fundamental terms and concepts of this thesis proposal.
+Moreover, this chapter provides an introduction into the foundational literature.
+The terms and concepts defined within this chapter are assumed to be known in the following chapters. 
+
+At the beginning of this chapter, in \autoref{sec:itot} and \autoref{sec:ics}, the concepts of information technology, operational technology, and industrial control systems are introduced.
+Moreover, this chapter defines the terms information security in \autoref{sec:security} and safety in \autoref{sec:safety} for the scope of the proposed thesis.
+Furthermore, this chapter provides an introduction for access control including five access control models.
+The introduction of access control can be found in \autoref{sec:accesscontrol}.
+%At the end of this chapter in \autoref{sec:securitypolicymodels} an overview of four different classes of security policy models is presented.
+At the end of this chapter, in \autoref{sec:fundamentals:cryptography}, an overview of symmetric and asymmetric cryptography is provided.
+
+\section{Information Technology (IT) \& Operational Technology (OT)}
+\label{sec:itot}
+The term Information Technology (IT) encompasses the technological concepts and systems required to create, process, store, present, and communicate information.
+In the scope of IT, information is an abstract concept which is represented by so-called data or data objects \cite{Eckert2023}.
+The meaning of data is assigned to a data object by using a specific information interpretation rule.
+Data objects can be distinguished based on their abilities by being either passive or active.
+Passive data objects can only represent information for storage, whereas active data objects can store and process information.
+
+As stated by \citeauthor{Eckert2023} \cite{Eckert2023}, an IT system is a dynamic technical system which is able to process and store information.
+An IT system is a part of a sociotechnical system and provides information-based services to more abstract social, economical or political structures.
+Moreover, the users of an IT system may have different goals, levels of experience, and technical know-how.
+
+When shifting the scope from abstract information storage and processing to the interaction with the physical world, the term Operational Technology (OT) arises.
+As a consequence, OT describes the application and interactions of information storage and processing procedures in a physical environment.
+According to \citeauthor{Stouffer2023} \cite{Stouffer2023} OT encompasses systems and devices interacting with the physical environment directly or through managed devices.
+The systems and devices interact with the physical environment by detecting changes through monitoring or by causing changes through control of devices or processes.
+In the context of OT systems the term process refers to the part of a system producing an output, whereas a controller represents a part of a system that maintains the conformance with specifications.
+Besides the Industrial Control Systems (ICS), further discussed in \autoref{sec:ics}, other examples of OT systems are building automation systems and transportation systems.
+
+Although the evolution from analog systems to OT systems by inserting IT into existing physical systems might provide new functionality and enhance system parameters like costs or performance, new challenges may arise \cite{Stouffer2023}.
+Especially the typical long life cycle of OT systems and their unique requirements regarding performance, reliability, security, safety, privacy, and environmental impact have to be taken into account when designing, operating, and maintaining OT systems.
+In the following, the proposed thesis especially focuses on the security implications as well as the design and implementation of secure OT systems.
+\todo{800-82r3 OT System Design Considerations}
+
+\section{Industrial Control System (ICS)}
+\label{sec:ics}
+The term ICS encompasses different types of control systems consisting of monitoring, control and network components acting together to achieve an industrial objective \cite{Stouffer2015}.
+In the scope of the thesis proposal, an ICS represents a specific type of OT system that gathers, processes, and stores information while interacting with a physical environment to achieve an industrial objective.
+According to \citeauthor{Stouffer2015} \cite{Stouffer2015} the control in an ICS can be partially or fully automated.
+Moreover, an ICS can be configured to operate in three different modes:
+\begin{enumerate}
+    \item Manual Mode: The ICS is completely controlled by humans.
+    \item Open-Loop Control Mode: The output of the system process is controlled by established settings rather than process feedback.
+    \item Closed-Loop Control Mode: The ICS uses the process output as feedback to achieve the control objective.
+\end{enumerate}
+
+\subsection{Architectures}
+\label{sec:architectures}
+ICS as well as generic control systems consisting of multiple interconnected components can be classified regarding their control system architecture.
+According to \citeauthor{Galloway2013} \cite{Galloway2013} an ICS architecture or architecture of an ICS network is typically deeper regarding the levels of hierarchy than a company network.
+Moreover, the technologies including devices as well as the communication links and protocols in an ICS network are often heterogeneous.
+
+In the following sections the main types of control system architectures and topologies are presented.
+While these architectures introduce different and partially incompatible concepts, the approaches can be complementing when used on different levels of hierarchy of a complex ICS network \cite{Stouffer2023}.
+\todo{Add Galloway2013 difference Company vs. ICS networks}
+
+\subsubsection{Supervisory Control \& Data Acquisition (SCADA)}
+Supervisor Control And Data Acquisition (SCADA) is a type of control system architecture.
+As stated by \citeauthor{bailey2003} \cite{bailey2003}, SCADA refers to a combination of telemetry and data acquisition.
+The objective of SCADA is to collect data of a remote process, transfer it to a central site, process and analyze the data, and present it to a human operator via Human Machine Interfaces (HMI).
+Moreover, SCADA enables sending control actions back to the remote process.
+
+The collection of data from devices of a remote process and the delivery of control actions back to the remote devices requires a communication path between the central and remote site \cite{Stouffer2023}.
+Within the scope of OT and ICS, the central site is referred to as control center and the remote site is referred to as field or field site.
+Specialized network components at the field site enable remote devices to communicate with the control center via telecommunication technologies.
+These specialized network components at the field are referred to as gateways or Remote Terminal Units (RTU).
+The RTUs communicate with a device at the control center also known as Master Terminal Unit (MTU).
+The network components of an ICS network are further discussed in \autoref{sec:networkcomponents}.
+Examples for telecommunication technologies used for the communication are Wide Area Networks (WAN), satellite, cellular, and radio technology.
+
+Although the SCADA approach not necessarily requires a communication network to exist but rather works via direct connection between remote devices and the central site, modern SCADA systems rely on bus-based field networks or Ethernet-based solutions \cite{bailey2003}.
+As a consequence, according to \citeauthor{bailey2003} the benefits of modern SCADA approaches are minimal required wiring, plug-and-play installation and replacement of devices, remote access to data from anywhere, easier large-scale data storage, and higher flexibility for visualization and incorporation of real data simulations.
+The disadvantages of modern SCADA approaches are the higher complexity of components, the functional limitations induced by the network components, the requirement of better trained employees, the higher reliance on communication networks, and the high prices of intelligent field equipment.
+
+\citeauthor{Stouffer2023} \cite{Stouffer2023} further described four basic communication topologies for modern SCADA networks that were initially introduced by the \citeauthor{aga2006} \cite{aga2006}.
+The four topologies introduced are point-to-point, series, series-star, and multi-drop.
+The point-to-point topology connects each field device using an individual communication channel.
+The series, series-star, and multi-drop topologies use daisy-chaining and switching to connect multiple devices using a single shared channel.
+The sharing of a single channel among multiple devices increases the efficiency and operation complexity but decreases the costs and system complexity.
+
+\subsubsection{Distributed Control System (DCS)}
+A Distributed Control System (DCS) is a control system architecture without centralized remote control of the field site \cite{Stouffer2023}.
+Instead of controlling the field site remotely from a control center, a DCS realizes supervisory control of multiple process sub-systems at the field site.
+Therefore, a DCS is typically implemented for the control of a process and its sub-processes within the same geographic location.
+
+As stated by \citeauthor{Galloway2013} \cite{Galloway2013}, a DCS is a process-driven system rather than an event-driven system like SCADA.
+Moreover, the objective of a DCS is the control of integrated systems that are closely located, whereas SCADA focuses on independent systems with large geographical extent. 
+Due to the small geographical area and high interconnection within a DCS, the communication with control devices is more reliable and less prone to issues based on the data quality.
+
+\subsubsection{Programmable Logic Controller (PLC)}
+A Programmable Logic Controller (PLC) is a control system component responsible for locally managing and controlling a certain process \cite{Stouffer2023}.
+Therefore, a PLC may represent the primary controller in a PLC-based topology for small OT systems.
+Moreover, PLCs can be used as building blocks to realize more complex hierarchical topologies like SCADA or DCS.
+In the latter case, a PLC may integrate or use the services and communication abilities of a RTU further discussed in \autoref{sec:networkcomponents}.
+
+PLCs can provide fixed functionality or be modular.
+Fixed functionality PLCs may also be programmable but limited to certain I/O, processing or communication abilities.
+According to \citeauthor{Galloway2013} \cite{Galloway2013}, modularity of PLCs eases maintenance and grants more flexibility for the installation.
+A modular PLC generally consists of a power supply, processing modules, I/O modules, and communication modules.
+
+\subsection{Network Components}
+\label{sec:networkcomponents}
+An ICS consists of different components providing functionalities for the monitoring and control of industrial processes \cite{Stouffer2023}.
+As mentioned above, the field devices of an ICS interact with a physical environment to achieve an industrial control objective.
+These field devices include different types of sensors and actuators.
+
+As discussed in \autoref{sec:architectures}, ICS network architectures with certain topologies integrate multiple devices into a single complex centralized or distributed ICS system achieving a control objective.
+To integrate field devices like sensors and actuators into an ICS network, specialized network devices provide communication services.
+These provided services enable communication between devices at the same field site or to remote devices like a SCADA MTU. 
+
+\subsubsection{Remote Terminal Unit (RTU)}
+A RTU is a network device at the field site that forwards information from connected field devices to other network devices and vice versa \cite{Stouffer2023}.
+As a consequence, an RTU acts as a gateway between field devices and network devices at a higher level of the network hierarchy.
+In other words, an RTU provides an interface for the physical environment to an ICS based on SCADA or DCS.
+According to \citeauthor{Galloway2013} \cite{Galloway2013}, an RTU is usually a special type of PLC. 
+
+\subsubsection{Intelligent Electronic Device (IED)}
+An Intelligent Electronic Device (IED) is a network device with one or more processors capable of sending data to external sources or receiving data \cite{aga2006}.
+As stated by \citeauthor{Stouffer2023} \cite{Stouffer2023}, an IED provides a direct interface for controlling and monitoring of field devices to a supervisory controller.
+Moreover, an IED can be distinguished from an RTU as it is able to act without direct instructions of a supervisory controller.
+
+According to \citeauthor{Stouffer2023} \cite{Stouffer2023}, the control timing requirements have to be considered when designing OT systems.
+Therefore, automated control devices are required to perform necessary control actions as human operators may not be reliable, consistent or fast enough.
+Especially in an ICS with large geographical extent, it may be required to perform computations close to the field devices to reduce or avoid communication latency.
+IEDs can provide the computational performance and features required to realize time-constrained control functionality at the field.
+
+% \subsection{Substations}
+% \todo{Introduction: SS is OT, Definition \& Modelling via IEC61850, Availability \& Integrity over Confidentiality, typical communication in a scada system, commonly used protocols, possible attack vectors}
+% \todo{Describe layers: Process bus, Station bus, bay level, and describe where IED and merging units (MUs) are used, see ABB paper sec comm of ieds in digi ss}
+\todo{Subsection: Substations}
+
+\section{Security}
+\label{sec:security}
+\citeauthor{Eckert2023} \cite{Eckert2023} states that security is a characteristic of an IT system.
+A secure IT system does not allow any system states leading to unauthorized information extraction or manipulation.
+Security in the scope of computer systems is also referred to as information security or IT security.
+
+Within the scope of OT, the risks and priorities differ from IT systems \cite{Stouffer2023}.
+While security approaches for IT systems were developed and refined over the years, OT systems were often isolated and widely used proprietary solutions.
+As modern OT systems increasingly integrate IT technology for connectivity and remote access, proprietary solutions get replaced with widely available solutions.
+This leads to less isolation and a requirement for OT security solutions.
+According to \citeauthor{Stouffer2023} \cite{Stouffer2023}, precautions have to be taken when introducing OT security solutions resembling IT solutions due to the differing requirements of OT systems.
+\citeauthor{Stouffer2023} state that considerations for OT security have to include the special requirements regarding timeliness, performance, constrained resources, availability, communication protocols, and risk management.
+Moreover, they mention the physical effect an OT system has on its environment, its typically longer component lifecycle including the differing change management, and the geographical distribution of physical components.
+\todo{Describe NIST 800-82r3 difference between IT OT System Security more clearly}
+
+\subsection{Subject \& Object}
+Within the scope of information security, the entities of a system are either referred to as subjects or objects \cite{JTF2020}.
+A subject of a system is an active entity that represents an individual, process, or device causing information to flow among objects or changing the system state. 
+On the other hand, an object is a passive entity of a system representing devices, files, records, or programs.
+In other words, an object is an entity used to store, access, and process information.
+
+\subsection{Objective}
+As state by the \citeauthor{nsa2009} \cite{nsa2009}, a security objective is a statement of intent to counter a given threat or enforce a given organizational security policy.
+In other words, security objectives define the security requirements of a system.
+The security objectives of a system are referred to as security goals or protection goals.
+As stated by \citeauthor{Eckert2023} \cite{Eckert2023}, literature typically mentions three main security goals for IT systems.
+These goals are referred to as CIA which stands for confidentiality, integrity, and availability.
+The relative importance of a specific security goal depends on the concrete system and its environment.
+Therefore, within the scope of IT systems confidentiality and integrity may be more important than availability.
+The six security goals described by \citeauthor{Eckert2023} including CIA are discussed in the following sections.
+\todo{Source for more important goals?}
+
+According to \citeauthor{Stouffer2023} \cite{Stouffer2023}, the characteristics of an OT system may differ from the characteristics of an IT system.
+As a consequence, the relative importance of specific security goals may differ.
+Especially if the operation of an OT system has an impact on human health and safety or may cause environmental damage, the security goals integrity and availability may be prioritized over confidentiality of information.
+
+\subsubsection{Confidentiality}
+A system has the characteristic of confidentiality if it prevents unauthorized access or extraction of information \cite{Eckert2023}.
+To prohibit direct unauthorized access of sensitive information, encryption techniques and access control as described in \autoref{sec:accesscontrol} are used.
+
+Moreover, besides preventing the direct access of information in an unauthorized manner, a system must be protected against leakage of data.
+This leakage can occur if multiple programs or processes communicate to provide a certain service.
+According to \citeauthor{Lampson1973} \cite{Lampson1973}, a program that is unable to leak data is called confined.
+The corresponding problem is referred to as confinement problem.
+
+\subsubsection{Integrity}
+A system has the characteristic of integrity if the system prevents undetected unauthorized or accidental manipulation of data \cite{Eckert2023}.
+If a manipulation cannot be prevented due to the environment, for example when data is exchanged using a shared network, the manipulation has to be detected by the system.
+As a consequence, a system with integrity always detects manipulation and never processes manipulated data.
+To detect manipulation, cryptographic hash functions can be used to verify the integrity of data.
+
+\subsubsection{Availability}
+A system satisfies the conditions of availability, if authenticated and authorized access to the services and data provided by the system is possible at any time \cite{Eckert2023}.
+An available system has to prevent accidentally and maliciously caused discontinuities and disturbances.
+
+\subsubsection{Authenticity}
+Authenticity is a characteristic of data objects or entities accessing data objects \cite{Eckert2023}.
+A data object or subject is authentic, if it is genuine and trustworthy.
+The authenticity of a subject can be proven using its unique identity and certain characteristics.
+The characteristics to prove the trustworthiness of a subject may include credentials like username and password or biometric information.
+The authenticity of a data object can be proven by verifying the corresponding source and originator.
+
+\subsubsection{Non-Repudiation}
+A system ensures non-repudiation by making it impossible for a subject or author of data to dispute its authorship \cite{Eckert2023}.
+Non-repudiation can be realized within a system using digital signatures and mechanisms to audit and log user activity.
+
+\subsubsection{Privacy}
+The term privacy describes the ability of a person to control the usage of personal information \cite{Eckert2023}.
+Moreover, privacy requires special mechanisms for protection of personal information to prevent unauthorized access and fraudulent use.
+Besides techniques to ensure confidentiality and integrity, data anonymization and pseudonymization can be used.
+
+According to \citeauthor{Eckert2023} \cite{Eckert2023}, the term anonymization comprises techniques to change personal data in a certain way to make it impossible to infer the identity of a person from the personal data.
+Pseudonymization is a weaker form of anonymization allowing the processing of personal data as long as the identity of a person cannot be inferred from the personal data directly without the use of additional information.
+\todo{Describe anonym. and pseudonym. with examples.}
+
+\subsection{Level \& Category}
+The security level and security category represent a characteristic of data objects and subjects denoting their degree of sensitivity \cite{Stine2008}.
+A security level represents a hierarchical or ordered sensitivity, whereas the security category defines a non-hierarchical group to assign degrees of sensitivity to objects and subjects.
+As stated by \citeauthor{Stine2008} \cite{Stine2008}, the degree of sensitivity is a measure of importance of information assigned by its owner.
+As a consequence, the degree of sensitivity denotes its need for protection.
+
+The security label is the concrete attribute associated with an object or subject indicating its security level or categories \cite{JTF2020}.
+In other words, each object and subject within the system is labeled according to its security levels or categories.
+The security labels of a subject are referred to as clearances, whereas the security labels of an object are referred to as classifications \cite{CNSS2022}.
+
+\subsection{Policy}
+According to \citeauthor{Anderson2002} \cite{Anderson2002}, a security policy is a set of documents or a high-level specification stating the security goals and properties to be achieved by the security mechanisms of a system.
+In other words, a security policy is a set of criteria for the provision of security capabilities and functions to support one or more security objectives \cite{JTF2020}.
+Moreover, a security policy can be seen as a set of rules for system entity behavior.
+As a consequence, a security policy defines the conditions under which a system grants or denies the access to an object for a specific subject. 
+
+\section{Safety}
+\label{sec:safety}
+While information security as described in \autoref{sec:security} serves the purpose of avoiding unauthorized access and manipulation of the system, the consequences for the environment due to an erroneous state of the system are not considered.
+Therefore, safety represents a characteristic of an IT system that is present if the system cannot transition into a functionally invalid state under possible operating conditions \cite{Eckert2023}.
+As a consequence, a safe system does not pose a threat to its physical environment including its human operators.
+
+As an OT system may be able to directly interact with its physical environment, safety requirements have to be considered in the OT system design \cite{Stouffer2023}.
+OT systems have to detect unsafe states and trigger actions to transition into safe states.
+Moreover, the impact of failures has to be considered and solutions to continue operations may be required.
+To continue operations, redundancy or the ability to operate in a degraded state can be used.
+Besides automatic procedures, human oversight and manual supervisory control are essential for safety-critical processes.
+
+\section{Access Control}
+\label{sec:accesscontrol}
+As stated by the \citeauthor{NIST2022} \cite{NIST2022}, Access Control (AC) is the process of granting and denying specific requests to logical or physical services and resources.
+Based on the type of service or resource guarded by the access control, two types of access control can be distinguished.
+Physical access control supervises access requests of subjects to specific physical facilities like federal buildings or military establishments.
+Logical access control monitors and controls the access and usage of information and related information processing services.
+Within the scope of the thesis proposal, the term access control is going to be used to describe logical access control for IT and OT systems.
+
+In other words, as stated by \citeauthor{Hu2014} \cite{Hu2014}, logical access control protects objects like data, services, executable applications, or network devices from unauthorized operations.
+An operation is performed by a subject on a specific object.
+Operations include access, utilization, manipulation, and deletion of objects.
+An operation may also be referred to as action.
+To protect an object, the owners of the objects establish access control policies.
+These policies describe which subjects may perform certain operations on a specific object.
+
+The policies are enforced by logical components referred to as Access Control Mechanisms (ACM).
+\citeauthor{Hu2014} \cite{Hu2014} state that the ACM receives the access request from the subject, decides whether the request should be granted or denied, and enforces the decision taken.
+The ACM takes the decision based on a framework called access control model.
+The access control model defines the functionalities and environment including subjects, objects, and rules for the ACM to take and enforce a decision.
+In the following sections, five different access control models are introduced.
+The access control models presented differ regarding their applicability and flexibility.
+Moreover, each model has specific advantages and disadvantages.
+\todo{General introduction how the concept (-> "Reference Monitor") looks like.}
+\todo{Explain Identification/Authorization/Authentication, see Access Control at $https://en.wikipedia.org/wiki/Information_security$}
+
+\subsection{Discretionary Access Control (DAC)}
+Discretionary Access Control (DAC) is an object-based access control model \cite{Eckert2023}.
+An owner has to monitor and control the access of other subjects to its own objects.
+The owner grants or denies the access to its own objects individually.
+Dependencies between objects have to be considered and solved for each object manually which may lead to inconsistencies.
+
+The \citeauthor{JTF2020} \cite{JTF2020} defines DAC as an access control policy that enables a subject, that has been granted access to information, to pass the information and its own privileges to other subjects.
+Moreover, a subject may choose the security attributes of newly created objects, change security attributes, and change rules governing access control.
+
+\subsection{Mandatory Access Control (MAC)}
+Mandatory Access Control (MAC) is a system-based access control model \cite{Eckert2023}.
+MAC specifies system-wide or global access policies.
+MAC can complement DAC and vice-versa.
+If the DAC grants access and the MAC does not, the access request is denied.
+Moreover, if the MAC grants access to an object the DAC can further restrict the access.
+
+The \citeauthor{JTF2020} \cite{JTF2020} defines MAC as an access control policy uniformly enforced over all subjects and objects within a system.
+Moreover, MAC is considered a non-discretionary access control prohibiting and preventing authorized subjects from passing information and privileges to unauthorized subjects.
+
+\subsection{Identity-Based Access Control (IBAC)}
+Identity-Based Access Control (IBAC) is a user-centric access control model employing mechanisms that use the identities of subjects to take authorization decisions \cite{Hu2014}.
+In other words, as stated by the \citeauthor{CNSS2022} \cite{CNSS2022}, IBAC represents an access control assigning access authorizations to objects based on the user identity.
+
+An example of an IBAC mechanism capturing the identities of subjects and their access privileges is an access control list (ACL) \cite{Hu2014}.
+Each object is associated with an ACL containing privileges assigned to each subject and a representation of a subject identity like credentials.
+If a subject requests access to a specific object and the presented identity matches the ACL entry, the request is granted or denied as indicated by the ACL entry.
+As a consequence, an ACL makes authorization decision statically based on its entries prior to the access request.
+The static behavior of ACLs leads to the disadvantage that the entries have to be reevaluated and revoked regularly to avoid users accumulating privileges.
+
+\subsection{Role-Based Access Control (RBAC)}
+The Role-Based Access Control (RBAC) is a task-centric or responsibility-centric access control model \cite{Eckert2023}.
+Instead of assigning privileges to each subject individually, roles for different tasks or responsibilities within the system are created.
+These roles are assigned to subjects explicitly and subjects inherit the privileges of their roles.
+As stated by \citeauthor{Hu2014} \cite{Hu2014}, a role can be seen as a subject attribute evaluated by the ACM to take an access decision.
+
+According to the \citeauthor{JTF2020} \cite{JTF2020}, a role may apply to a single or multiple individuals.
+The privileges of a role reflect the permissions an individual requires within an organization and may be inherited through a role hierarchy.
+
+\subsection{Attribute-Based Access Control (ABAC)}
+The Attribute-Based Access Control (ABAC) is an access control model enabling access decisions based on attributes associated with subjects, objects, actions, and the environment of a system \cite{JTF2020}.
+In other words, as stated by \citeauthor{Hu2014} \cite{Hu2014}, in ABAC an access request of a subject to perform operations on objects is decided based on assigned attributes of the subject and object, environment conditions, and a set of policies.
+As a consequence, ABAC is also referred to as aspect-based access control \cite{Anderson2020} or policy-based access control.
+
+Within the context of ABAC, an attribute is a characteristic containing information in the form of a name-value pair \cite{Hu2014}.
+A subject attribute describes the characteristics of a person or non-person entity like identity, clearance, or department.
+An object attribute describes the resource for which the access is requested, including the object classification, type, or owner.
+An operation or action attribute describes the function performed on an object by a subject.
+Operations include create, read, update, delete, or execute.
+The environment conditions or environment attributes describe the context of an access request.
+Environment conditions include dynamic characteristics like time of the day, day of the week, and request location of the subject.
+
+A policy represents a rule based on which an access decision is taken for specific attributes \cite{Hu2014}.
+As a consequence, a policy can be seen as a relationship between subject, object, environment, and operation attributes describing under which circumstances the ACM grants or denies an access request.
+
+According to \citeauthor{Hu2014} \cite{Hu2014}, RBAC and IBAC represent special cases of ABAC regarding their attributes used.
+Furthermore, ABAC is capable of enforcing DAC as well as MAC concepts.
+An advantage of ABAC compared to different access control models is the higher flexibility regarding multifactor policy expression.
+Moreover, ABAC can take access control decisions based on ad-hoc knowledge and knowledge from separate infrastructure.
+This is possible due to ABAC taking decisions at request time by evaluating policies instead of static decision-making as found in IBAC and RBAC.
+As a consequence, pre-provisioning of requesting subjects in a multi-organization environment can be avoided.
+\todo{Overhaul benefits and challenges based on Guide to ABAC Definition and Considerations Page 8}
+\todo{Describe/Present architecture of XACML based on RFC 2904 including PEP, PDP, and PIP}
+
+\subsection{NIST Recommendations}
+The National Institute of Standards and Technology (NIST) provides recommendations and guidance for authentication, authorization, and access control in ICS \cite{Stouffer2015} and OT systems \cite{Stouffer2023}.
+With regard to authentication, NIST recommends considering the identity management lifecycle in OT environments.
+This lifecycle includes the issuance, update, and revocation of authentication credentials.
+Furthermore, NIST recommends the consideration of centralized identity management and authentication to improve management and monitoring.
+NIST mentions Active Directory (AD) and Lightweight Directory Access Protocol (LDAP) as centralization supporting network technologies.
+Nevertheless, NIST points out that authentication might not be advisable if it has an impact on performance, reliability, and safety.
+This is especially the case in emergency situations in which authentication may impede procedures and result in negative consequences for system safety.
+
+With regard to authorization and access control, NIST emphasizes the importance of considering physical and logical means for OT security.
+NIST states that organizations are not limited to a single access control approach, but may rather employ different approaches resulting in higher effectiveness and efficiency.
+A combination of ACLs, RBAC, and ABAC is mentioned as an example for achieving the access control requirements of an organization.
+
+NIST recommends considering logical access control to minimize errors and costs of maintaining access privileges.
+It is recommended that approaches support the Principle of Least Privilege (PoLP) and Separation of Duties (SoD).
+Furthermore, NIST recommends solutions that incorporate credential management, authentication, authorization, access control, and system monitoring.
+These solutions represent secure platforms enabling the access to OT devices.
+Solutions that verify the identity of individuals or devices before granting access are recommended, as they lead to lower access and command processing latencies.
+Moreover, solutions should be highly reliable and designed to reduce the impact on OT operations and safety.
+
+% \section{Classes of Security Policy Models}
+% \label{sec:securitypolicymodels}
+
+% \subsection{Access Control Models}
+% \subsubsection{Identity-Based Access Control (IBAC)}
+% \subsubsection{Role-Based Access Control (RBAC)}
+% \subsubsection{Attribute-Based Access Control (ABAC)}
+
+% \subsection{Information Flow Models}
+% \todo{Introduction + Chinese Wall Model}
+
+% \subsection{Multi-Level Security Models}
+% \todo{Introduction + Bell-La Padula Model}
+
+% \subsection{Non-Interference Models}
+
+\section{Cryptography}
+\label{sec:fundamentals:cryptography}
+Cryptography is a scientific discipline concerned with the study of methodologies, algorithms, schemes, and protocols for the encryption and verification of information~\cite{Barker2016,Barker2020,CNSS2022}.
+In other words, cryptography provides means to prevent unauthorized access and to enable the verification of information.
+The objective of cryptography is to satisfy specific security goals, including the assurance of confidentiality, integrity, authenticity, and non-repudiation.
+
+Cryptographic algorithms are well-defined computational procedures that transform a variable input into an output~\cite{Barker2020}.
+The input of an algorithm comprises a cryptographic key that determines the algorithm's operation.
+Algorithms are classified based on their complexity and degree of distribution.
+Cryptographic primitives represent low-level cryptographic algorithms.
+The purpose of primitives is to act as building blocks for more complex algorithms.
+A cryptographic scheme represents a set of unambiguously specified transformations providing a cryptographic service.
+Accordingly, schemes are more abstract or higher-level constructs than primitives.
+Cryptographic protocols specify the information exchange between communicating entities.
+For this purpose, protocols define the message order and data structures for exchanged information.
+Consequently, protocols are more abstract or higher-level constructs than schemes.
+
+A cryptographic system, also referred to as cryptosystem, is a set of cryptographic algorithms~\cite{Menezes1996}.
+Moreover, a cryptosystem comprises sets of valid inputs and outputs as well as required cryptographic keys~\cite{Eckert2023}.
+The goal of a cryptosystem is to provide specific cryptographic services such as encryption or verification.
+Verification describes the process of proving the integrity, authenticity, or non-repudiation of information~\cite{Boneh2023}.
+The verification of information is based on a so-called tag or signature created by a signature algorithm.
+Encryption describes the process of transforming plain information into an unintelligible form to maintain its secrecy~\cite{Barker2016,Boneh2023}.
+The inverse process of encryption is referred to as decryption.
+The intelligible plain information is referred to as plaintext.
+The unintelligible or encrypted form of information is referred to as ciphertext.
+
+Two important principles for the design of cryptosystems were formulated by \citeauthor{Kerckhoffs1883} and \citeauthor{Shannon1949}.
+As stated by \citeauthor{Kerckhoffs1883}, the cryptosystem must not require secrecy and must be able to be known by the adversary without inconvenience~\cite{Kerckhoffs1883}.
+According to \citeauthor{Shannon1949}, it shall be assumed that the adversary knows the system being used~\cite{Shannon1949}.
+
+\subsection{Symmetric Cryptography (Secret-Key Cryptography)}
+Symmetric cryptography relies on algorithms which use the same key for a cryptographic operation and its inverse operation~\cite{Barker2020,Eckert2023}.
+In other words, the same so-called secret key is used for encryption and decryption, or signing and verification.
+Consequently, the key must be kept secret to satisfy the security objectives.
+
+To encrypt and decrypt information, an entity uses a secret key~\cite{Boneh2023}.
+Sender and receiver of confidential messages must agree upon a common secret key prior to the exchange of messages.
+The secret key has to be exchange via a secure communication channel or with the assistance of a secure key exchange protocol.
+For the purpose of verification, so-called Message Authentication Codes (MAC) are used in symmetric cryptography.
+Therefor, the sender computes a so-called MAC tag for a specific message using the secret key.
+The MAC tag is then appended to the message.
+The receiver is able to prove the authenticity and integrity of the message by verifying the appended MAC tag using the secret key.
+
+Consider, for instance, two subjects called Alice and Bob, who wish to exchange confidential messages via an unsecure communication channel.
+At the beginning, Alice and Bob agree upon a common secret key $s$ with the assistance of a secure key exchange protocol.
+Subsequently, Alice uses $s$ to encrypt a plaintext message $m$ and transmits the ciphertext message $c$ to Bob via the unsecure communication channel.
+Upon receipt, Bob retrieves $m$ by using $s$ to decrypt $c$.
+
+Symmetric cryptography has advantages in comparison with asymmetric cryptography~\cite{Barker2020}.
+Firstly, symmetric-key algorithms are faster than asymmetric-key algorithms.
+Secondly, for a given level of security, symmetric cryptographic keys are shorter.
+This reduces the memory and bandwidth requirements for key storage and transmission.
+
+\subsection{Asymmetric Cryptography (Public-Key Cryptography)}
+Asymmetric cryptography, also referred to as Public-Key Cryptography (PKC), relies on algorithms which use a pair of two related keys for a cryptographic operation and its inverse operation~\cite{Barker2020,CNSS2022,Eckert2023}.
+This pair of related keys consists of a private key and a public key.
+The private key must be kept secret.
+The public key may be shared without consequences for security, as long as its authenticity and integrity is ensured.
+Although the two keys are related, the private key cannot be efficiently derived from the public key.
+
+To encrypt a plaintext, a sending entity uses the public key of a receiving entity~\cite{Boneh2023}.
+Only the receiving entity, whose public key was used for encryption, is able to decrypt the ciphertext using its own private key.
+For the purpose of verification, so-called digital signatures are used in PKC.
+Therefor, a sending entity computes a digital signature for a specific message using its own private key.
+The digital signature is then appended to the message.
+The receiver is able to prove the authenticity and integrity of the message by verifying the appended digital signature using the sender's public key.
+
+Consider, for instance, two subjects called Alice and Bob, who wish to exchange confidential messages via an unsecure communication channel.
+At the beginning, Alice generates a private key $s_{Alice}$ and a corresponding public key $p_{Alice}$, and transmits $p_{Alice}$ to Bob.
+Alice's private key $s_{Alice}$ is never exchanged.
+Subsequently, Bob uses $p_{Alice}$ to encrypt a plaintext message $m$ for Alice.
+The ciphertext message $c_{Alice}$ is then transmitted to Alice via the unsecure communication channel.
+Since Bob encrypted the message with $p_{Alice}$, only Alice is able to decrypt the message using the corresponding private key $s_{Alice}$.
+Upon receipt, Alice retrieves $m$ by using $s_{Alice}$ to decrypt $c_{Alice}$.
+
+PKC offers the following advantages over symmetric cryptography~\cite{Barker2020,Eckert2023}:
+Firstly, PKC does not require a secure channel or secure protocol to exchange keys.
+Secondly, the overall number of required keys using PKC is lower.
+Moreover, the number of keys scales linear with the number of communication entities.
+For example in a network with $n$ entities, $n$ key pairs or $2n$ keys have to be established.
+In the same network, pairwise symmetric cryptography would require $n(n-1)/2$ keys.
+
+\subsubsection{Identity-Based Public-Key Cryptography}
+The concept of identity-based cryptosystems and schemes was initially proposed by \textcite{Shamir1985}.
+Identity-Based Public-Key Cryptography (ID-PKC) approaches allow the derivation of public keys from subject identities~\cite{Shamir1985,Boneh2023}.
+Therefore, no certificates are required to verify that a public key belongs to a certain subject, since the subject identity is used to derive the public key.
+In ID-PKC the existence of a public key does not depend on the existence of a corresponding private key.
+In other words, the public key is not derived from the private key and may therefore exist before the private key.
+
+ID-PKC employs a Trusted Third Party (TTP) called Private Key Generator (PKG) to generate private keys for entities~\cite{AlRiyami2003,Boneh2023}.
+The PKG generates a system-wide key pair consisting of the master public key and master secret key.
+The master public key is known to all entities.
+The master secret key is only known to the PKG.
+If an entity wishes to obtain its own private key, it has to prove its identity to the PKG.
+If the identity is proven to the PKG successfully, the PKG generates a private key based on the entity's identity and the master secret key.
+
+Consider, for instance, two subjects called Alice and Bob, who wish to exchange confidential messages via an unsecure communication channel.
+Alice obtains Bob's public key $p_{Bob}$ from Bob's identity, e.g., an email address, and the master public key.
+Subsequently, Alice uses $p_{Bob}$ to encrypt a plaintext message $m$ for Bob and transmits the ciphertext message $c_{Bob}$ via an unsecure communication channel.
+Upon receipt, Bob obtains the private key $s_{Bob}$ from the PKG via a secure communication channel and decrypts $c_{Bob}$ to retrieve $m$.
+
+Since the PKG is able to generate private keys for arbitrary identities, ID-PKC leads to the key escrow problem~\cite{AlRiyami2003}.
+This allows a misbehaving PKG to decrypt confidential messages or forge subject's signatures.
+Key escrow is a mechanism that enables a TTP, e.g., a company, to retain the private component of a key pair~\cite{CNSS2021,Boneh2023}.
+The goal of key escrow is to recover encrypted information, even if the encrypting entity and the corresponding secret key is not available.
+
+\subsubsection{Certificateless Public-Key Cryptography}
+Certificateless Public-Key Cryptography (CL-PKC) can be seen as an intermediate approach between ID-PKC and certificate-based PKC approaches such as Public Key Infrastructure (PKI)~\cite{AlRiyami2003}.
+Certificate-based PKC approaches such as PKI use a TTP called Certificate Authority (CA) to issue, store, and revoke digital certificates~\cite{Eckert2023}.
+These digital certificates are used to verify that a certain public key belongs to a specific subject which holds the corresponding private key.
+
+CL-PKC approaches make use of a TTP called Key Generating Center (KGC) to generate partial private keys for entities based on the entity's identity and a master key~\cite{AlRiyami2003}.
+To obtain the private key, the entity combines the partial private key with a secret value.
+The generated private key is never shared with the KGC or other entities.
+Consequently, CL-PKC neither suffers from the key escrow problem nor requires a secure communication channel for the key distribution.
+
+To obtain the public key, the entity generates it based on public parameters and the secret value~\cite{AlRiyami2003}.
+After the generation, the public key may be shared with other entities directly or via public directories.
+Similar to ID-PKC, the public key is not derived from the private key and may therefore exist prior to it.
+The only restriction is that the public key and the private key must use the same secret value.
+However, CL-PKC is not identity-based, as the public key is not solely based on the identity of an entity.
+
+\subsubsection{Attribute-Based Public-Key Cryptography}
+Attribute-Based Public-Key Cryptography (AB-PKC) is a generalization of the ID-PKC concept~\cite{Sahai2005,Goyal2006,Hu2023}.
+Attribute-Based Encryption (ABE) combines the principles of ABAC with the concept of PKC.
+Therefor, attribute-based policies are integrated into cryptographic algorithms in the form of access structures and attributes.
+This integration enables encryption based on arbitrary attributes and provides fine-grained access control via attribute-based decryption.
+Communication complexity for key distribution in ID-PKC scales linear with the number of communication entities, i.e., users or devices.
+In ABE the communication complexity scales linear with the number of attributes.
+Similar to the concept of ABE, Attribute-Based Signatures (ABS) enable the integration of attributes into signing and verification algorithms~\cite{Li2010,Maji2011}.
+
+ABE approaches are classified as either Key-Policy ABE (KP-ABE) or Ciphertext-Policy ABE (CP-ABE), depending on whether the access structure is associated with a key or a ciphertext~\cite{Goyal2006,Bethencourt2007,Hu2023}.
+In KP-ABE the access structure is associated with a key.
+The ciphertext is labeled with a set of attributes.
+A user's secret key is able to decrypt the ciphertext if the attributes of the ciphertext satisfy the key-associated access structure.
+Consequently, a data owner cannot control who is able to access the data and has to trust a TTP to issue appropriate keys~\cite{Bethencourt2007}.
+In CP-ABE the access structure is associated with a ciphertext, and keys are associated with a set of attributes.
+A user's secret key is able to decrypt the ciphertext if the key-associated attributes satisfy the ciphertext's access structure.
+Accordingly, each data owner manages the access control policies for its own data, which makes CP-ABE more flexible and scalable than KP-ABE.

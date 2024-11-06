@@ -1,0 +1,471 @@
+<mxfile host="app.diagrams.net" modified="2024-07-11T19:42:41.285Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36" etag="1eVe7LPOmTOBy2rv6rcq" version="24.6.4" type="device">
+  <diagram name="Page-1" id="Sx6cnYfhKBIANFqM2tHo">
+    <mxGraphModel dx="1260" dy="876" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="540" pageHeight="200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-1" value="PEP" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="160" y="80" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-3" value="PEP" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="380" y="80" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-4" value="Payload Exchange Request&lt;div style=&quot;font-size: 10px;&quot;&gt;[Seq. &amp;amp; Signature]&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry y="-20" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="370" y="100" as="sourcePoint" />
+            <mxPoint x="230" y="100" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-8" value="UCS" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="-60" y="80" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-9" value="Verification&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;Request&lt;/span&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry y="-10" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="150" y="90" as="sourcePoint" />
+            <mxPoint x="10" y="90" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-10" value="Partial&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;Verification&lt;/span&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry y="-10" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="10" y="110" as="sourcePoint" />
+            <mxPoint x="150" y="110" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-12" value="Sender" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="380" y="-80" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-15" value="Domain-Specific&lt;div&gt;Request&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;align=center;" edge="1" parent="1">
+          <mxGeometry y="50" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="410" y="-30" as="sourcePoint" />
+            <mxPoint x="410" y="70" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-16" value="Receiver" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="160" y="-80" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-17" value="Domain-Specific&lt;div&gt;Request&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;align=center;" edge="1" parent="1">
+          <mxGeometry y="50" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="190" y="70" as="sourcePoint" />
+            <mxPoint x="190" y="-30" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-18" value="PEP" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="800" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-19" value="PEP" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1100" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-20" value="Session Initialization Request&lt;div style=&quot;font-size: 10px;&quot;&gt;[Initial Seq. &amp;amp; Signature]&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry y="-20" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1090" y="10" as="sourcePoint" />
+            <mxPoint x="870" y="10" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-21" value="Initialization Acknowledgement&lt;div style=&quot;font-size: 10px;&quot;&gt;[Initial Seq. &amp;amp; Signature]&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry y="-20" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="870" y="30" as="sourcePoint" />
+            <mxPoint x="1090" y="30" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-22" value="PDP" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="-160" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-23" value="PDP" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="800" y="-160" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-24" value="Access&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;Request&lt;/span&gt;&lt;div&gt;&lt;div style=&quot;font-size: 10px;&quot;&gt;[Timestamp &amp;amp; Signature]&lt;/div&gt;&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry y="60" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1120" y="-10" as="sourcePoint" />
+            <mxPoint x="1120" y="-110" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-25" value="Access Decision&lt;div style=&quot;font-size: 10px;&quot;&gt;[Signature]&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry y="40" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1140" y="-110" as="sourcePoint" />
+            <mxPoint x="1140" y="-10" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-26" value="&lt;div&gt;Access Decision&lt;/div&gt;Verification&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;Request&lt;/span&gt;&lt;div&gt;&lt;div style=&quot;font-size: 10px;&quot;&gt;[Signature]&lt;/div&gt;&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry y="50" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="820" y="-10" as="sourcePoint" />
+            <mxPoint x="820" y="-110" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-27" value="Verification&lt;div&gt;Acknowledgement&lt;br&gt;&lt;div style=&quot;font-size: 10px;&quot;&gt;[Signature]&lt;/div&gt;&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry y="50" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="840" y="-110" as="sourcePoint" />
+            <mxPoint x="840" y="-10" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-28" value="UCS" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="650" y="160" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-31" value="KGC" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="950" y="160" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-32" value="&lt;div&gt;Public Key&lt;/div&gt;&lt;div&gt;Exchange&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry x="-0.5833" y="20" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="940" y="190" as="sourcePoint" />
+            <mxPoint x="840" y="50" as="targetPoint" />
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="840" y="190" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-33" value="Public Key&lt;div&gt;Request&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry x="0.6" y="20" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="860" y="50" as="sourcePoint" />
+            <mxPoint x="940" y="170" as="targetPoint" />
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="860" y="170" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-34" value="&lt;div&gt;Public Key&lt;/div&gt;&lt;div&gt;Request&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry x="0.5455" y="-20" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1120" y="50" as="sourcePoint" />
+            <mxPoint x="1020" y="170" as="targetPoint" />
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="1120" y="170" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-35" value="&lt;div&gt;Public Key&lt;/div&gt;&lt;div&gt;Exchange&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry x="-0.5385" y="-20" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1020" y="190" as="sourcePoint" />
+            <mxPoint x="1140" y="50" as="targetPoint" />
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="1140" y="190" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-36" value="&lt;div&gt;Partial&lt;/div&gt;&lt;div&gt;Verification&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry x="-0.5833" y="-20" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="720" y="190" as="sourcePoint" />
+            <mxPoint x="820" y="50" as="targetPoint" />
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="820" y="190" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-37" value="Verification&lt;div&gt;Request&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry x="0.6" y="-20" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="800" y="50" as="sourcePoint" />
+            <mxPoint x="720" y="170" as="targetPoint" />
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="800" y="170" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-38" value="Sender" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="650" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-39" value="Domain-Specific&lt;div&gt;Request&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;align=center;" edge="1" parent="1">
+          <mxGeometry x="-0.1429" y="-20" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="790" y="20" as="sourcePoint" />
+            <mxPoint x="720" y="20" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-40" value="Receiver" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1250" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-41" value="Domain-Specific&lt;div&gt;Request&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;align=center;" edge="1" parent="1">
+          <mxGeometry x="-0.1429" y="-20" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1240" y="19.71" as="sourcePoint" />
+            <mxPoint x="1170" y="19.71" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-42" value="PEP" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="790" y="710" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-43" value="PEP" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1090" y="710" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-44" value="Session Initialization Request&lt;div style=&quot;font-size: 10px;&quot;&gt;[Initial Seq. &amp;amp; Signature]&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry y="-20" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1080" y="720" as="sourcePoint" />
+            <mxPoint x="860" y="720" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-45" value="Initialization Acknowledgement&lt;div style=&quot;font-size: 10px;&quot;&gt;[Initial Seq. &amp;amp; Signature]&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry y="-20" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="860" y="740" as="sourcePoint" />
+            <mxPoint x="1080" y="740" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-46" value="PDP" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1090" y="550" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-47" value="PDP" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="790" y="550" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-48" value="Access&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;Request&lt;/span&gt;&lt;div&gt;&lt;div style=&quot;font-size: 10px;&quot;&gt;[Timestamp &amp;amp; Signature]&lt;/div&gt;&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry y="60" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1110" y="700" as="sourcePoint" />
+            <mxPoint x="1110" y="600" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-49" value="Access Decision&lt;div style=&quot;font-size: 10px;&quot;&gt;[Signature]&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry y="40" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1130" y="600" as="sourcePoint" />
+            <mxPoint x="1130" y="700" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-50" value="&lt;div&gt;Access Decision&lt;/div&gt;Verification&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;Request&lt;/span&gt;&lt;div&gt;&lt;div style=&quot;font-size: 10px;&quot;&gt;[Signature]&lt;/div&gt;&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry y="50" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="810" y="700" as="sourcePoint" />
+            <mxPoint x="810" y="600" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-51" value="Verification&lt;div&gt;Acknowledgement&lt;br&gt;&lt;div style=&quot;font-size: 10px;&quot;&gt;[Signature]&lt;/div&gt;&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry y="50" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="830" y="600" as="sourcePoint" />
+            <mxPoint x="830" y="700" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-52" value="UCS" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="940" y="1000" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-53" value="KGC" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="940" y="870" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-54" value="&lt;div&gt;Public Key&lt;/div&gt;&lt;div&gt;Exchange&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry x="-0.5833" y="20" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="930" y="900" as="sourcePoint" />
+            <mxPoint x="830" y="760" as="targetPoint" />
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="830" y="900" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-55" value="Public Key&lt;div&gt;Request&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry x="0.6" y="20" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="850" y="760" as="sourcePoint" />
+            <mxPoint x="930" y="880" as="targetPoint" />
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="850" y="880" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-56" value="&lt;div&gt;Public Key&lt;/div&gt;&lt;div&gt;Request&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry x="0.6" y="-20" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1090" y="760" as="sourcePoint" />
+            <mxPoint x="1010" y="880" as="targetPoint" />
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="1090" y="880" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-57" value="&lt;div&gt;Public Key&lt;/div&gt;&lt;div&gt;Exchange&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry x="-0.5833" y="-20" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1010" y="900" as="sourcePoint" />
+            <mxPoint x="1110" y="760" as="targetPoint" />
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="1110" y="900" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-58" value="&lt;div&gt;Partial&lt;/div&gt;&lt;div&gt;Verification&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry x="-0.6757" y="-20" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="930" y="1010" as="sourcePoint" />
+            <mxPoint x="810" y="760" as="targetPoint" />
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="810" y="1010" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-59" value="Verification&lt;div&gt;Request&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry x="0.6585" y="-20" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="790" y="760" as="sourcePoint" />
+            <mxPoint x="930" y="1030" as="targetPoint" />
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="790" y="1030" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-60" value="Sender" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="640" y="710" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-61" value="Domain-Specific&lt;div&gt;Request&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;align=center;" edge="1" parent="1">
+          <mxGeometry x="-0.1429" y="-20" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="780" y="730" as="sourcePoint" />
+            <mxPoint x="710" y="730" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-62" value="Receiver" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1240" y="710" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-63" value="Domain-Specific&lt;div&gt;Request&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;align=center;" edge="1" parent="1">
+          <mxGeometry x="-0.1429" y="-20" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1230" y="729.71" as="sourcePoint" />
+            <mxPoint x="1160" y="729.71" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-64" value="&lt;div&gt;Partial&lt;/div&gt;&lt;div&gt;Verification&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry x="-0.6757" y="20" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1010" y="1010" as="sourcePoint" />
+            <mxPoint x="1130" y="760" as="targetPoint" />
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="1130" y="1010" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-65" value="Verification&lt;div&gt;Request&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry x="0.6585" y="20" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1150" y="760" as="sourcePoint" />
+            <mxPoint x="1010" y="1030" as="targetPoint" />
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="1150" y="1030" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-66" value="Dynamic&lt;div&gt;Authorization&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry y="-40" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="780" y="560" as="sourcePoint" />
+            <mxPoint x="780" y="580" as="targetPoint" />
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="760" y="560" />
+              <mxPoint x="760" y="580" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-67" value="Dynamic&lt;div&gt;Authorization&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry y="40" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1160" y="560" as="sourcePoint" />
+            <mxPoint x="1160" y="580" as="targetPoint" />
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="1180" y="560" />
+              <mxPoint x="1180" y="580" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-68" value="PAP" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="940" y="400" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-69" value="PSP" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1240" y="400" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-70" value="Human&lt;div&gt;Operator&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="490" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-71" value="Policy&lt;div&gt;Modification&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;Request&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;[Timestamp &amp;amp; Signature]&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry y="30" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="710" y="410" as="sourcePoint" />
+            <mxPoint x="930" y="410" as="targetPoint" />
+            <mxPoint as="offset" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-73" value="CRUD Request&lt;div&gt;[Timestamp &amp;amp; Signature]&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry y="20" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1010" y="410" as="sourcePoint" />
+            <mxPoint x="1230" y="410" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-74" value="CRUD Acknowledgement&lt;div&gt;[Signature]&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry y="20" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1230" y="430" as="sourcePoint" />
+            <mxPoint x="1010" y="430" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-75" value="HMI" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="640" y="400" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-76" value="" style="endArrow=classic;html=1;rounded=0;dashed=1;startArrow=classic;startFill=1;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="670" y="480" as="sourcePoint" />
+            <mxPoint x="670" y="450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-77" value="Static&lt;div&gt;Authorization&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry y="20" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="950" y="390" as="sourcePoint" />
+            <mxPoint x="990" y="390" as="targetPoint" />
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="950" y="370" />
+              <mxPoint x="990" y="370" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-78" value="Policy Exchange&lt;div&gt;[Timestamp &amp;amp; Signature]&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry x="0.9558" y="-56" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="930" y="440" as="sourcePoint" />
+            <mxPoint x="840" y="540" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-79" value="&lt;div&gt;Policy&lt;/div&gt;Exchange&lt;div&gt;Acknowledgement&lt;br&gt;&lt;div&gt;[Signature]&lt;/div&gt;&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry x="0.7569" y="-42" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="860" y="550" as="sourcePoint" />
+            <mxPoint x="950" y="450" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-80" value="" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry x="0.7569" y="-42" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1080" y="550" as="sourcePoint" />
+            <mxPoint x="990" y="450" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-81" value="Policy Exchange&lt;div&gt;[Timestamp &amp;amp; Signature]&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry x="0.9558" y="56" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1010" y="440" as="sourcePoint" />
+            <mxPoint x="1100" y="540" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4zwiTL4ddY7CS9pdVhmB-82" value="&lt;span style=&quot;background-color: initial;&quot;&gt;Modification Acknowledgement&lt;/span&gt;&lt;div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;[Signature]&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;fontSize=10;" edge="1" parent="1">
+          <mxGeometry y="20" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="930" y="430" as="sourcePoint" />
+            <mxPoint x="710" y="430" as="targetPoint" />
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="930" y="430" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
