@@ -775,6 +775,7 @@ The phases of the access control protocol are defined as follows:
 
 \section{Realization}
 \label{sec:approach:realization}
+\todo{TODO: Rewrite and add subsections}
 In the following section, we discuss the proposed realization of the CASC-SAS approach and its two core concepts CASA and SABAAC.
 The approach and its two concepts introduce components that are defined and discussed in \autoref{sec:approach:casa} and \autoref{sec:approach:sabaac}.
 % These components have to be integrated into the SAS system model to employ the CASC-SAS approach.
@@ -814,69 +815,3 @@ Therefore, these services are invisible to the corresponding service consumers.
 This BITW pattern is inspired by the security filter approach presented by \citeauthor{Ishchenko2018} \cite{Ishchenko2018}.
 Taking the differing provision patterns and deployment structures into account, we propose the usage of performance-oriented server hardware for the PAP, PSP, PDP, UCS, and KGC to avoid bottlenecks and mitigate the risk of accidental or malicious DoS.
 Moreover, we propose the usage of inexpensive off-the-shelf hardware for the highly distributed PEP instances.
-
-\section{Evaluation}
-\label{sec:approach:evaluation}
-In this section, the evaluation of the CASC-SAS approach is discussed.
-The goal of the evaluation is to derive quantitative and qualitative characteristics of the approach.
-These characteristics are used to verify the applicability of the proposed approach in the presented field of application.
-Moreover, the characteristics are used to identify limitations and future work of the proposed approach.
-
-\subsection{Strategy}
-The evaluation is performed theoretically as well as experimentally.
-For the theoretical parts of the evaluation, formal and informal methods are used to proof certain characteristics of the proposed approach.
-The experimentally performed part of the evaluation is based on the realization presented in \autoref{sec:approach:realization}.
-The component implementations are used to construct a network simulation and network test bed.
-The proposed network test bed is visualized in \autoref{fig:evaluation_test_bed}.
-The components depicted in blue represent computers that mimic the behavior of domain-specific senders and receivers of an SAS.
-The components depicted in red are part of the CASC-SAS approach.
-The components depicted in yellow represent message-forwarding intermediate network devices.
-
-These test environments mimic the behavior of a real interconnected SAS for occurring message exchanges.
-The simulation and test bed strategy have differing advantages and disadvantages.
-On the one hand, the simulation strategy has the advantage of repeatability and reproducibility due to deterministic behavior, whereas the behavior of the test bed is non-deterministic.
-On the other hand, the test bed results are practice-oriented and transferable to the physical SAS domain, whereas the behavior of a real SAS cannot be compared to the deterministic behavior of the network simulation.
-\begin{figure}
-    \centering
-    \includegraphics[width=1.0\linewidth]{figures/network_testbed_color.drawio.pdf}
-    \caption{Architecture of the network test bed.
-    % Architecture of the network test bed used for the experimental evaluation of the CASC-SAS approach. The components depicted in blue represent computers that mimic the behavior of domain-specific senders and receivers of an SAS. The components depicted in red are part of the CASC-SAS approach. The components depicted in yellow represent message-forwarding intermediate network devices.
-    }
-    \label{fig:evaluation_test_bed}
-\end{figure}
-
-\subsection{Evaluation Areas \& Metrics}
-The evaluation aims to derive quantitative and qualitative metrics for different areas of interest.
-We propose three areas of interest for the evaluation of the CASC-SAS approach.
-The three areas of interest and their corresponding metrics are defined as follows:
-\begin{description}
-    \item[Security Evaluation] Does CASC-SAS provide security against typical SAS adversaries and attacks?
-    \begin{enumerate}
-        \item Satisfied security, safety, and availability requirements
-        \item Assumed system characteristics
-        \item Assumed adversary characteristics
-        \item Mitigated attacks
-        \item Introduced attack surface
-    \end{enumerate}
-    \item[Performance Evaluation] Is CASC-SAS capable of securing time-constrained communication of an SAS?
-    \begin{enumerate}
-        \item Satisfied performance requirements
-        \item Assumed communication characteristics
-        \item Supported message types
-        \item Resistance against network exceptions including congestion, delay, jitter, duplicated packets, lost packets, and out-of-order packet delivery
-    \end{enumerate}
-    \item[Economic Evaluation] Is CASC-SAS an economically feasible solution for the construction or retrofitting of an SAS?
-    \begin{enumerate}
-        \item Satisfied compatibility requirements
-        \item Assumed device requirements
-        \item Additional costs for SAS construction and retrofitting
-        \item Feasibility with regard to SAS retrofitting
-        \item Cost-benefit efficiency compared to alternative approaches
-    \end{enumerate}
-\end{description}
-
-% \section{Limitations}
-% \label{sec:approach:limitations}
-% \todo{Reactivate reference in approach introduction}
-% \todo{Limitations: No intrusion detection but prevention/mitigation, might not be usable for fast messages, not every crypto for every message type, possible new attack vectors by adding new components, applicability to other ics domains, time protocol interference, physical access control -> future work}
-\todo{Section: Limitations}
