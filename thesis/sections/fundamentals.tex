@@ -9,7 +9,7 @@ Moreover, this chapter defines the terms information security in \autoref{sec:se
 Furthermore, this chapter provides an introduction for access control including five access control models.
 The introduction of access control can be found in \autoref{sec:accesscontrol}.
 %At the end of this chapter in \autoref{sec:securitypolicymodels} an overview of four different classes of security policy models is presented.
-At the end of this chapter, in \autoref{sec:fundamentals:cryptography}, an overview of symmetric and asymmetric cryptography is provided.
+At the end of this chapter, in \autoref{sec:fundamentals:cryptography}, an overview of secret key cryptography and public key cryptography is provided.
 
 \section{Information Technology (IT) \& Operational Technology (OT)}
 \label{sec:itot}
@@ -368,6 +368,7 @@ The objective of cryptography is to satisfy specific security goals, including t
 Cryptographic algorithms are well-defined computational procedures that transform a variable input into an output~\cite{Barker2020}.
 The input of an algorithm comprises a cryptographic key that determines the algorithm's operation.
 Algorithms are classified based on their complexity and degree of distribution.
+\todo{TODO: Add inline enumeration for algorithm classes.}
 Cryptographic primitives represent low-level cryptographic algorithms.
 The purpose of primitives is to act as building blocks for more complex algorithms.
 A cryptographic scheme represents a set of unambiguously specified transformations providing a cryptographic service.
@@ -390,15 +391,15 @@ Two important principles for the design of cryptosystems were formulated by \cit
 As stated by \citeauthor{Kerckhoffs1883}, the cryptosystem must not require secrecy and must be able to be known by the adversary without inconvenience~\cite{Kerckhoffs1883}.
 According to \citeauthor{Shannon1949}, it shall be assumed that the adversary knows the system being used~\cite{Shannon1949}.
 
-\subsection{Symmetric Cryptography (Secret-Key Cryptography)}
-Symmetric cryptography relies on algorithms which use the same key for a cryptographic operation and its inverse operation~\cite{Barker2020,Eckert2023}.
+\subsection{Secret Key Cryptography (SKC)}
+Secret Key Cryptography (SKC), also referred to as symmetric cryptography, relies on algorithms which use the same key for a cryptographic operation and its inverse operation~\cite{Barker2020,Eckert2023}.
 In other words, the same so-called secret key is used for encryption and decryption, or signing and verification.
 Consequently, the key must be kept secret to satisfy the security objectives.
 
 To encrypt and decrypt information, an entity uses a secret key~\cite{Boneh2023}.
 Sender and receiver of confidential messages must agree upon a common secret key prior to the exchange of messages.
 The secret key has to be exchange via a secure communication channel or with the assistance of a secure key exchange protocol.
-For the purpose of verification, so-called Message Authentication Codes (MAC) are used in symmetric cryptography.
+For the purpose of verification, so-called Message Authentication Codes (MAC) are used in SKC.
 Therefor, the sender computes a so-called MAC tag for a specific message using the secret key.
 The MAC tag is then appended to the message.
 The receiver is able to prove the authenticity and integrity of the message by verifying the appended MAC tag using the secret key.
@@ -413,8 +414,8 @@ Firstly, symmetric-key algorithms are faster than asymmetric-key algorithms.
 Secondly, for a given level of security, symmetric cryptographic keys are shorter.
 This reduces the memory and bandwidth requirements for key storage and transmission.
 
-\subsection{Asymmetric Cryptography (Public-Key Cryptography)}
-Asymmetric cryptography, also referred to as Public-Key Cryptography (PKC), relies on algorithms which use a pair of two related keys for a cryptographic operation and its inverse operation~\cite{Barker2020,CNSS2022,Eckert2023}.
+\subsection{Public Key Cryptography (PKC)}
+Public Key Cryptography (PKC), also referred to as asymmetric cryptography, relies on algorithms which use a pair of two related keys for a cryptographic operation and its inverse operation~\cite{Barker2020,CNSS2022,Eckert2023}.
 This pair of related keys consists of a private key and a public key.
 The private key must be kept secret.
 The public key may be shared without consequences for security, as long as its authenticity and integrity is ensured.
@@ -435,16 +436,16 @@ The ciphertext message $c_{Alice}$ is then transmitted to Alice via the unsecure
 Since Bob encrypted the message with $p_{Alice}$, only Alice is able to decrypt the message using the corresponding private key $s_{Alice}$.
 Upon receipt, Alice retrieves $m$ by using $s_{Alice}$ to decrypt $c_{Alice}$.
 
-PKC offers the following advantages over symmetric cryptography~\cite{Barker2020,Eckert2023}:
-Firstly, PKC does not require a secure channel or secure protocol to exchange keys.
+PKC offers the following advantages over SKC~\cite{Barker2020,Eckert2023}:
+Firstly, PKC does not require a secure channel to exchange keys.
 Secondly, the overall number of required keys using PKC is lower.
 Moreover, the number of keys scales linear with the number of communication entities.
 For example in a network with $n$ entities, $n$ key pairs or $2n$ keys have to be established.
 In the same network, pairwise symmetric cryptography would require $n(n-1)/2$ keys.
 
-\subsubsection{Identity-Based Public-Key Cryptography}
+\subsubsection{Identity-Based Public Key Cryptography}
 The concept of identity-based cryptosystems and schemes was initially proposed by \textcite{Shamir1985}.
-Identity-Based Public-Key Cryptography (ID-PKC) approaches allow the derivation of public keys from subject identities~\cite{Shamir1985,Boneh2023}.
+Identity-Based Public Key Cryptography (ID-PKC) approaches allow the derivation of public keys from subject identities~\cite{Shamir1985,Boneh2023}.
 Therefore, no certificates are required to verify that a public key belongs to a certain subject, since the subject identity is used to derive the public key.
 In ID-PKC the existence of a public key does not depend on the existence of a corresponding private key.
 In other words, the public key is not derived from the private key and may therefore exist before the private key.
@@ -466,8 +467,8 @@ This allows a misbehaving PKG to decrypt confidential messages or forge subject'
 Key escrow is a mechanism that enables a TTP, e.g., a company, to retain the private component of a key pair~\cite{CNSS2021,Boneh2023}.
 The goal of key escrow is to recover encrypted information, even if the encrypting entity and the corresponding secret key is not available.
 
-\subsubsection{Certificateless Public-Key Cryptography}
-Certificateless Public-Key Cryptography (CL-PKC) can be seen as an intermediate approach between ID-PKC and certificate-based PKC approaches such as Public Key Infrastructure (PKI)~\cite{AlRiyami2003}.
+\subsubsection{Certificateless Public Key Cryptography}
+Certificateless Public Key Cryptography (CL-PKC) can be seen as an intermediate approach between ID-PKC and certificate-based PKC approaches such as Public Key Infrastructure (PKI)~\cite{AlRiyami2003}.
 Certificate-based PKC approaches such as PKI use a TTP called Certificate Authority (CA) to issue, store, and revoke digital certificates~\cite{Eckert2023}.
 These digital certificates are used to verify that a certain public key belongs to a specific subject which holds the corresponding private key.
 
@@ -482,8 +483,8 @@ Similar to ID-PKC, the public key is not derived from the private key and may th
 The only restriction is that the public key and the private key must use the same secret value.
 However, CL-PKC is not identity-based, as the public key is not solely based on the identity of an entity.
 
-\subsubsection{Attribute-Based Public-Key Cryptography}
-Attribute-Based Public-Key Cryptography (AB-PKC) is a generalization of the ID-PKC concept~\cite{Sahai2005,Goyal2006,Hu2023}.
+\subsubsection{Attribute-Based Public Key Cryptography}
+Attribute-Based Public Key Cryptography (AB-PKC) is a generalization of the ID-PKC concept~\cite{Sahai2005,Goyal2006,Hu2023}.
 Attribute-Based Encryption (ABE) combines the principles of ABAC with the concept of PKC.
 Therefor, attribute-based policies are integrated into cryptographic algorithms in the form of access structures and attributes.
 This integration enables encryption based on arbitrary attributes and provides fine-grained access control via attribute-based decryption.
