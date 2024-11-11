@@ -145,21 +145,17 @@ The communication at the station bus is typically session-based unicast communic
 SAS-external message exchange between devices on the station level and network level use WAN telecommunication technologies including Internet, satellite, cellular, and radio technology.
 Secure tunneling approaches like Virtual Private Networks (VPN) can be used to enhance the security of SAS message exchange over an unsecure communication medium.
 
-%\subsection{Threats}
-%\todo{System Threats + Adversaries + Attack Trees}
-\todo{Subsection: System Threats}
-
 \subsection{Requirements}
+\todo{TODO: Rewrite \& replace with paper requirements.}
 In the following, we introduce the requirements of the presented system model.
 Based on the identified requirements, functional and non-functional characteristics of the proposed approach are derived and evaluated.
-Each system model requirement is associated with a requirement category.
+Each requirement is associated with a requirement category.
 We define five requirement categories for the introduced system requirements.
-The requirement categories include security (RQ.SEC), safety (RQ.SAF), availability (RQ.AVA), performance (RQ.PER), and compatibility (RQ.COM).
-\todo{Add forward/backward secrecy and more.}
+The requirement categories consist of security (RQ.SEC), safety (RQ.SAF), availability (RQ.AVA), performance (RQ.PER), and compatibility (RQ.COM).
 
 \subsubsection{Security}
-The system model has to satisfy six requirements related to information security.
-The security requirements of the system model are defined as follows:
+The system has to satisfy six requirements related to information security.
+The security requirements of the system are defined as follows:
 \begin{description}
     %\paragraph{RQ.SEC.1 Confidentiality}
     %The system prohibits unauthorized access to sensitive information stored on devices and payload of messages exchanged within the system and between systems \cite{Eckert2023}.
@@ -186,8 +182,8 @@ The security requirements of the system model are defined as follows:
 \end{description}
 
 \subsubsection{Safety}
-The system model has to satisfy two safety-related requirements.
-The safety requirements of the system model are defined as follows:
+The system has to satisfy two safety-related requirements.
+The safety requirements of the system are defined as follows:
 \begin{description}
     \item[RQ.SAF.1] Safe Operation\\
     Under possible operating conditions, the system must not pose a threat to itself and its environment.
@@ -197,8 +193,8 @@ The safety requirements of the system model are defined as follows:
 \end{description}
 
 \subsubsection{Availability}
-The system model has to satisfy two availability-related requirements.
-The availability requirements of the system model are defined as follows:
+The system has to satisfy two availability-related requirements.
+The availability requirements of the system are defined as follows:
 \begin{description}
     \item[RQ.AVA.1] Continuing Operation\\
     Under possible operating conditions, the system must continue its operation as stated by the system requirements.
@@ -208,8 +204,8 @@ The availability requirements of the system model are defined as follows:
 \end{description}
 
 \subsubsection{Performance}
-The system model has to satisfy three requirements related to system performance.
-The performance requirements of the system model are defined as follows:
+The system has to satisfy three requirements related to system performance.
+The performance requirements of the system are defined as follows:
 \begin{description}
     \item[RQ.PER.1] Communication Latency\\
     The system must respect the latency constraints for network communication defined in \autoref{sec:approach:system_model:communication:message_types}.
@@ -222,8 +218,8 @@ The performance requirements of the system model are defined as follows:
 \end{description}
 
 \subsubsection{Compatibility}
-The system model has to satisfy two requirements related to system compatibility.
-The compatibility requirements of the system model are defined as follows:
+The system has to satisfy two requirements related to system compatibility.
+The compatibility requirements of the system are defined as follows:
 \begin{description}
     \item[RQ.COM.1] Interoperability\\
     The system components are capable of exchanging information and providing services, irrespective of whether they originate from a single vendor or multiple vendors~\cite{IEC61850P5}.
@@ -231,8 +227,17 @@ The compatibility requirements of the system model are defined as follows:
     The system's behavior and functionality may not be influenced by an exchange of devices with an equal range of functions from a single vendor or multiple vendors~\cite{IEC61850P5}.
 \end{description}
 
+\subsection{Adversarial Attacks}
+\todo{TODO: Rewrite -> System Threats + Adversaries + Attack Trees}
+\todo{TODO: Move to approach (with requirements)?}
+In addition to the aforementioned requirements, the approach has to provide mitigation strategies against various types of attacks.
+The objective of these strategies is not merely to safeguard the equipment of the CASC-SAS approach, but rather to ensure the continuous operation of SAS devices, including intelligent electronic devices and merging units.
+The approach must be able to mitigate adaptive chosen-message, collusion, (distributed) denial-of-service, man-in-the-middle, replay, spoofing, and false data injection attacks.
+However, the approach does not address confidentiality-related attacks.
+
 \section[Certificateless Attribute-Based Server-Aided Cryptosystem for SAS (CASC-SAS)]{Certificateless Attribute-Based Server-Aided Cryptosystem for Substation Automation Systems (CASC-SAS)}
 \label{sec:approach:casc}
+\todo{TODO: Merge with approach introduction?}
 To satisfy the requirements of the above-mentioned system model, we propose a \textbf{C}ertificateless \textbf{A}ttribute-Based \textbf{S}erver-Aided \textbf{C}ryptosystem for \textbf{S}ubstation \textbf{A}utomation \textbf{S}ystems (CASC-SAS).
 The CASC-SAS approach is a cryptosystem that provides security policies, cybersecurity mechanisms, and cryptographic algorithms and schemes.
 The goal of the approach is the enhancement of SAS security by providing secure authentication, authorization, and attribute-based access control for time-critical SAS communication.
@@ -331,13 +336,8 @@ The cryptography layer uses control messages for key generation, distribution, a
 The cybersecurity layer uses control messages for tasks such as policy management.
 As a result, the communication occurring on the control path is less traffic-intensive and less time-critical.
 
-% \subsubsection{Stakeholders}
-% \todo{Stakeholders of CASC-SAS}
-\todo{Subsubsection: Stakeholders}
-
-% \subsection{Security Policies}
-% \todo{Security Policies -> Link to Requirements \& Attacks}
-\todo{Subsubsection: Security Policies}
+\subsection{Security Policies}
+\todo{TODO: Security Policies -> Link to Requirements \& Attacks}
 
 \section{Certificateless Attribute-Based Server-Aided Authentication (CASA)}
 \label{sec:approach:casa}
