@@ -3,18 +3,30 @@
 In the following section, we introduce our proposed security approach for substation automation systems.
 With the aim of securing the time-critical communication between resource-constrained devices in a time-variable environment, we propose a \textbf{C}ertificateless \textbf{A}ttribute-Based \textbf{S}erver-Aided \textbf{C}ryptosystem for \textbf{S}ubstation \textbf{A}utomation \textbf{S}ystems (CASC-SAS).
 The CASC-SAS cryptography and cybersecurity approach is able to prevent and mitigate cyberattacks by providing security schemes and mechanisms, and enforcing mandatory communication policies.
+The goal of the approach is the enhancement of SAS security by providing secure authentication, authorization, and attribute-based access control for time-critical SAS communication.
+
+The CASC-SAS approach comprises two core concepts.
+The first core concept of the approach is the Certificateless Attribute-Based Server-Aided Authentication (CASA).
+This concept represents the foundation of the CASC-SAS approach.
+The concept provides cryptographic algorithms and schemes for authentication including a PKC signature scheme for key generation, signing, and verification.
+Communicating SAS devices as well as more abstract cybersecurity services can rely on the provided communication integrity, authenticity, and non-repudiation.
+The CASA concept is further discussed in \autoref{sec:approach:casa}.
+The second core concept of the approach is the Server-Aided Attribute-Based Authorization and Access Control (SABAAC).
+This concept provides mechanisms to enable attribute-based authorization and ABAC for time-critical SAS communication.
+The concept represents a more abstract cybersecurity means to provide access control, PoLP, and SoD.
+For this purpose, the concept relies on authentication services provided by CASA.
+This concept is further discussed in \autoref{sec:approach:sabaac}.
 
 The introduction and discussion of the proposed approach is organized as follows.
-At the beginning of this chapter in \autoref{sec:approach:system_model}, we discuss the field of application of the proposed approach by introducing a system model and defining its requirements.
-Based on the presented system model and requirements, we introduce the CASC-SAS approach in \autoref{sec:approach:casc}.
+At the beginning of this chapter, in \autoref{sec:approach:system_model}, we discuss the field of application of the proposed approach by introducing a system model.
+Based on the presented system model, we define the requirements of the proposed approach in \autoref{sec:approach:requirements}.
+\autoref{sec:approach:attacks} addresses potential adversarial attacks, for which the approach must provide mitigation strategies.
+To satisfy the aforementioned requirements and mitigate adversarial attacks, the CASC-SAS approach enforces security policies, which are discussed in \autoref{sec:approach:security_policies}.
+Subsequently, in \autoref{sec:approach:casc:architecture}, the dual-path four-layered security architecture of CASC-SAS is defined.
 The two main CASC-SAS concepts, its cryptographic scheme and server-aided access control, are introduced in \autoref{sec:approach:casa} and \autoref{sec:approach:sabaac}.
-In \autoref{sec:approach:realization} we present the planned realization of the CASC-SAS approach.
-Subsequently, we present the proposed evaluation strategies and metrics of the approach in \autoref{sec:approach:evaluation}.
+Finally, in \autoref{sec:approach:realization}, we present the realization of the CASC-SAS approach.
+% Subsequently, we present the proposed evaluation strategies and metrics of the approach in \autoref{sec:approach:evaluation}.
 % Finally, in \autoref{sec:approach:limitations} we discuss limitations of the proposed approach.
-%\todo{Own idea, concept, protocol, evaluation, proof, testing, expected benefits and limitations}
-%\todo{SECURITY: Security Goals (CIA + Privacy Preserving)}
-%\todo{IDEA: Wrap packages of arbitrary protocols by encripting payload of ethernet package, and adding a new header with ABAC-SS information. Maybe as HW Middleware? If other endpoint does not support the ABAC-SS wrapping fall back to proofing endpoint via identity provider only.}
-%\todo{PERF EVALUATION: 1. Run approach on network simulator, and 2. Run approach on raspberry pi's representing different roles like server, DER, user \dots}
 
 \section{System Model}
 \label{sec:approach:system_model}
@@ -145,7 +157,8 @@ The communication at the station bus is typically session-based unicast communic
 SAS-external message exchange between devices on the station level and network level use WAN telecommunication technologies including Internet, satellite, cellular, and radio technology.
 Secure tunneling approaches like Virtual Private Networks (VPN) can be used to enhance the security of SAS message exchange over an unsecure communication medium.
 
-\subsection{Requirements}
+\section{Requirements}
+\label{sec:approach:requirements}
 \todo{TODO: Rewrite \& replace with paper requirements.}
 In the following, we introduce the requirements of the presented system model.
 Based on the identified requirements, functional and non-functional characteristics of the proposed approach are derived and evaluated.
@@ -153,7 +166,7 @@ Each requirement is associated with a requirement category.
 We define five requirement categories for the introduced system requirements.
 The requirement categories consist of security (RQ.SEC), safety (RQ.SAF), availability (RQ.AVA), performance (RQ.PER), and compatibility (RQ.COM).
 
-\subsubsection{Security}
+\subsection{Security}
 The system has to satisfy six requirements related to information security.
 The security requirements of the system are defined as follows:
 \begin{description}
@@ -181,7 +194,7 @@ The security requirements of the system are defined as follows:
     %\todo{TODO: Does this conflict with the idea of proofing the origin of a request? In other words, is it possible to check if the subject who requested the access decision is still the same subject who used it in its request?}
 \end{description}
 
-\subsubsection{Safety}
+\subsection{Safety}
 The system has to satisfy two safety-related requirements.
 The safety requirements of the system are defined as follows:
 \begin{description}
@@ -192,7 +205,7 @@ The safety requirements of the system are defined as follows:
     In other words, the system never transitions into an unsafe state.
 \end{description}
 
-\subsubsection{Availability}
+\subsection{Availability}
 The system has to satisfy two availability-related requirements.
 The availability requirements of the system are defined as follows:
 \begin{description}
@@ -203,7 +216,7 @@ The availability requirements of the system are defined as follows:
     The selective termination of non-essential system functions in case of a failure is also referred to as fail-soft~\cite{rfc4949}.
 \end{description}
 
-\subsubsection{Performance}
+\subsection{Performance}
 The system has to satisfy three requirements related to system performance.
 The performance requirements of the system are defined as follows:
 \begin{description}
@@ -217,7 +230,7 @@ The performance requirements of the system are defined as follows:
     The system must respect the energy and power constraints of resource-constrained devices in the SAS.
 \end{description}
 
-\subsubsection{Compatibility}
+\subsection{Compatibility}
 The system has to satisfy two requirements related to system compatibility.
 The compatibility requirements of the system are defined as follows:
 \begin{description}
@@ -227,7 +240,8 @@ The compatibility requirements of the system are defined as follows:
     The system's behavior and functionality may not be influenced by an exchange of devices with an equal range of functions from a single vendor or multiple vendors~\cite{IEC61850P5}.
 \end{description}
 
-\subsection{Adversarial Attacks}
+\section{Adversarial Attacks}
+\label{sec:approach:attacks}
 \todo{TODO: Rewrite -> System Threats + Adversaries + Attack Trees}
 \todo{TODO: Move to approach (with requirements)?}
 In addition to the aforementioned requirements, the approach has to provide mitigation strategies against various types of attacks.
@@ -235,33 +249,18 @@ The objective of these strategies is not merely to safeguard the equipment of th
 The approach must be able to mitigate adaptive chosen-message, collusion, (distributed) denial-of-service, man-in-the-middle, replay, spoofing, and false data injection attacks.
 However, the approach does not address confidentiality-related attacks.
 
-\section[Certificateless Attribute-Based Server-Aided Cryptosystem for SAS (CASC-SAS)]{Certificateless Attribute-Based Server-Aided Cryptosystem for Substation Automation Systems (CASC-SAS)}
-\label{sec:approach:casc}
-\todo{TODO: Merge with approach introduction?}
-To satisfy the requirements of the above-mentioned system model, we propose a \textbf{C}ertificateless \textbf{A}ttribute-Based \textbf{S}erver-Aided \textbf{C}ryptosystem for \textbf{S}ubstation \textbf{A}utomation \textbf{S}ystems (CASC-SAS).
-The CASC-SAS approach is a cryptosystem that provides security policies, cybersecurity mechanisms, and cryptographic algorithms and schemes.
-The goal of the approach is the enhancement of SAS security by providing secure authentication, authorization, and attribute-based access control for time-critical SAS communication.
+\section{Security Policies}
+\label{sec:approach:security_policies}
+\todo{TODO: Security Policies -> Link to Requirements \& Attacks}
 
-The CASC-SAS approach comprises two core concepts.
-The first core concept of the approach is the Certificateless Attribute-Based Server-Aided Authentication (CASA).
-This concept represents the foundation of the CASC-SAS approach.
-The concept provides cryptographic algorithms and schemes for authentication including a PKC signature scheme for key generation, signing, and verification.
-Communicating SAS devices as well as more abstract cybersecurity services can rely on the provided communication integrity, authenticity, and non-repudiation.
-This core concept is further discussed in \autoref{sec:approach:casa}.
-
-The second core concept of the approach is the Server-Aided Attribute-Based Authorization and Access Control (SABAAC).
-This concept provides mechanisms to enable attribute-based authorization and ABAC for time-critical SAS communication.
-The concept represents a more abstract cybersecurity means to provide access control, PoLP, and SoD.
-For this purpose, the concept relies on authentication services provided by CASA.
-This concept is further discussed in \autoref{sec:approach:sabaac}.
-
-\subsection{Security Architecture}
+\section{Security Architecture}
+\label{sec:approach:casc:architecture}
 In the following, we present the security architecture of the proposed approach.
 The CASC-SAS approach is based on a dual-path four-layered architecture.
 The four layers of the architecture are presented in \autoref{sec:approach:casc:architecture:layers}.
 Moreover, the two paths of the architecture are further discussed in \autoref{sec:approach:casc:architecture:paths}.
 
-\subsubsection{Four-Layered Architecture}
+\subsection{Four-Layered Architecture}
 \label{sec:approach:casc:architecture:layers}
 The CASC-SAS architecture is non-strictly layered and consists of four open layers.
 The goal of the layered architecture is the separation of different domains and levels of abstraction within the CASC-SAS approach.
@@ -269,14 +268,14 @@ An upper layer may use services provided by a lower layer but not vice versa.
 Moreover, since the layering is non-strict, an upper layer is not restricted to the services provided by its direct predecessor, but may rather bypass lower layers.
 The four layers of the CASC-SAS architecture and their provided services are defined in the following sections.
 
-\paragraph{Layer 3: Domain}
+\subsubsection{Layer 3: Domain}
 The domain layer is the uppermost layer of the architecture.
 The domain layer represents the domain-specific applications and the exchange of domain-specific messages.
 We assume that the domain layer does not provide means for secure message exchange between entities.
 As a consequence, the domain layer relies on the secure message exchange provided by lower layers.
 %Provides insecure domain-specific messages to be exchanged between two different SAS devices\dots
 
-\paragraph{Layer 2: Cybersecurity}
+\subsubsection{Layer 2: Cybersecurity}
 The cybersecurity layer encompasses algorithms and protocols used to satisfy the security requirements.
 Additionally, security workflows and mechanisms for the enforcement of security policies are located at this layer.
 Consequently, the cybersecurity layer provides secure message exchange services to the domain layer.
@@ -284,7 +283,7 @@ The SABAAC concept of CASC-SAS is part of this architectural layer.
 SABAAC provides authorization and access control to satisfy the security requirements access control, PoLP, and SoD.
 %Provides authorization and access control to satisfy access control, PoLP, and SoD.
 
-\paragraph{Layer 1: Cryptography}
+\subsubsection{Layer 1: Cryptography}
 The cryptography layer provides cryptographic algorithms and schemes to higher layers of the architecture.
 It relies on reliable and unreliable control message exchange.
 The exchange of cryptographic control messages enables cryptographic workflows such as key generation, key distribution, key revocation, and server-aided cryptography.
@@ -292,13 +291,13 @@ The CASA core concept of CASC-SAS is located at the cryptography layer.
 CASA provides authentication means via digital signatures to higher levels of the architecture.
 Accordingly, CASA provides services that satisfy the security requirements integrity, authenticity, and non-repudiation.
 
-\paragraph{Layer 0: Message Exchange}
+\subsubsection{Layer 0: Message Exchange}
 The lowermost layer of the CASC-SAS architecture is referred to as message exchange layer.
 The message exchange layer provides reliable and unreliable message exchange between devices in a network to higher layers.
 The message exchange layer represents an abstraction of the physical layer, data link layer, network layer, and transport layer of a conventional network stack.
 %Provides reliable and unreliable message exchange between devices in a network.
 
-\paragraph{Example: Domain-Specific Communication}
+\subsubsection{Example: Domain-Specific Communication}
 \begin{figure}
     \centering
     \includegraphics[width=1.0\linewidth]{figures/layers_request_example.drawio.pdf}
@@ -319,7 +318,7 @@ The messages are then verified by the cybersecurity layer before forwarding them
 For the purpose of message verification, the cybersecurity layer enforces access control policies by verifying the validity of the message authorization.
 Moreover, the message is forwarded to the cryptography layer for cryptographic verification.
 
-\subsubsection{Dual-Path Architecture}
+\subsection{Dual-Path Architecture}
 \label{sec:approach:casc:architecture:paths}
 %Data Path (Online, time-critical communication, Domain-Specific Messages) \& Control Path (Offline, Non-Time Critical communication, CASC-SAS Messages)\dots
 In addition to the separation into different layers, the occurring message exchanges within the CASC-SAS architecture are logically divided into two communication paths.
@@ -336,10 +335,7 @@ The cryptography layer uses control messages for key generation, distribution, a
 The cybersecurity layer uses control messages for tasks such as policy management.
 As a result, the communication occurring on the control path is less traffic-intensive and less time-critical.
 
-\subsection{Security Policies}
-\todo{TODO: Security Policies -> Link to Requirements \& Attacks}
-
-\section{Certificateless Attribute-Based Server-Aided Authentication (CASA)}
+\section{Certificateless Attribute-Based Server-Aided Authentication}
 \label{sec:approach:casa}
 In the following section, we present the \textbf{C}ertificateless \textbf{A}ttribute-Based \textbf{S}erver-Aided \textbf{A}uthentication (CASA) concept.
 CASA is a CL-PKC approach.
@@ -442,7 +438,7 @@ To create an existential forgery, i.e., output a valid pair of message and signa
 While non-adaptive CMA restricts the adversary to a fixed set of messages chosen prior to the attack, adaptive CMA allows the adversary to request signatures of messages depending on previously obtained signatures.
 % \citeauthor{Goldwasser1988} describe an adaptive CMA as most powerful attack possible for an enemy restricted to using the signature scheme.
 
-\section{Server-Aided Attribute-Based Authorization \& Access Control (SABAAC)}
+\section{Server-Aided Attribute-Based Authorization \& Access Control}
 \label{sec:approach:sabaac}
 The second core concept of the CASC-SAS approach is the \textbf{S}erver-Aided \textbf{A}ttribute-\textbf{B}ased \textbf{A}uthorization and \textbf{A}ccess \textbf{C}ontrol (SABAAC).
 The SABAAC approach enables the employment of attribute-based authorization and access control for time-critical SAS communication.
