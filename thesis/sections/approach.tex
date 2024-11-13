@@ -188,33 +188,24 @@ Secure tunneling approaches like Virtual Private Networks (VPN) can be used to e
 
 \section{Requirements}
 \label{sec:approach:requirements}
-\todo{TODO: Rewrite \& replace with paper requirements.}
-In the following, we introduce the requirements of the presented system model.
+In the following, we introduce the requirements of the presented approach.
 Based on the identified requirements, functional and non-functional characteristics of the proposed approach are derived and evaluated.
 Each requirement is associated with a requirement category.
 We define five requirement categories for the introduced system requirements.
 The requirement categories consist of security (RQ.SEC), safety (RQ.SAF), availability (RQ.AVA), performance (RQ.PER), and compatibility (RQ.COM).
 
 \subsection{Security}
-The system has to satisfy six requirements related to information security.
-The security requirements of the system are defined as follows:
 \begin{description}
     %\paragraph{RQ.SEC.1 Confidentiality}
     %The system prohibits unauthorized access to sensitive information stored on devices and payload of messages exchanged within the system and between systems \cite{Eckert2023}.
-    \item[RQ.SEC.1] Integrity\\
-    The system detects unauthorized manipulation of stored and exchanged data \cite{Eckert2023}.
-    \begin{description}
-        \item[RQ.SEC.1A] Device Integrity\\
-        The system detects unauthorized manipulation of data that is stored on system devices.
-        \item[RQ.SEC.1B] Message Integrity\\
-        The system detects unauthorized manipulation of data that is exchanged between system devices.
-    \end{description}
-    \item[RQ.SEC.2] Authenticity\\
-    The system can proof the authenticity and trustworthiness of subjects and data objects present in the system \cite{Eckert2023}.
-    \item[RQ.SEC.3] Access Control\\
+    \item[RQ.SEC.1] Data Frame Payload Integrity\\
+    A SAS device detects unauthorized manipulation of data frames that are exchanged between itself and another device.
+    \item[RQ.SEC.2] Data Frame Sender Authenticity\\
+    Each SAS device can proof the authenticity and trustworthiness of a sender of a data frame.
+    \item[RQ.SEC.3] Data Frame Authorship Non-Repudiation\\
+    A SAS device cannot dispute its authorship of a data frame sent.
+    \item[RQ.SEC.4] Access Control\\
     The system prohibits unauthorized access to sensitive information stored on devices.
-    \item[RQ.SEC.4] Non-Repudiation\\
-    The system ensures that a subject cannot dispute its authorship of data and requests~\cite{Eckert2023}.
     \item[RQ.SEC.5] Principle of Least Privilege  (PoLP)\\
     The system ensures that each subject has the least number of privileges necessary to perform its function \cite{JTF2020}.
     \item[RQ.SEC.6] Separation of Duties (SoD)\\
@@ -224,8 +215,6 @@ The security requirements of the system are defined as follows:
 \end{description}
 
 \subsection{Safety}
-The system has to satisfy two safety-related requirements.
-The safety requirements of the system are defined as follows:
 \begin{description}
     \item[RQ.SAF.1] Safe Operation\\
     Under possible operating conditions, the system must not pose a threat to itself and its environment.
@@ -235,8 +224,6 @@ The safety requirements of the system are defined as follows:
 \end{description}
 
 \subsection{Availability}
-The system has to satisfy two availability-related requirements.
-The availability requirements of the system are defined as follows:
 \begin{description}
     \item[RQ.AVA.1] Continuing Operation\\
     Under possible operating conditions, the system must continue its operation as stated by the system requirements.
@@ -246,22 +233,19 @@ The availability requirements of the system are defined as follows:
 \end{description}
 
 \subsection{Performance}
-The system has to satisfy three requirements related to system performance.
-The performance requirements of the system are defined as follows:
 \begin{description}
-    \item[RQ.PER.1] Communication Latency\\
-    The system must respect the latency constraints for network communication defined in \autoref{sec:approach:system_model:communication:message_types}.
-    Consequently, the maximum communication latency for low latency message exchange on the data path must not exceed three milliseconds.
-    \item[RQ.PER.2] Computational Complexity\\
-    The system must respect the limited performance of resource-constrained devices in the SAS.
-    Consequently, computationally complex algorithms have to be executed by performance-oriented servers.
-    \item[RQ.PER.3] Energy \& Power Saving\\
-    The system must respect the energy and power constraints of resource-constrained devices in the SAS.
+    \item[RQ.PER.1] Constrained Data Frame Delivery Time\\
+    The latency constraints for network communication defined in \autoref{sec:approach:system_model:communication:message_types} must be satisfied.
+    To support Ethernet-based SAS protocols, the approach must be able to satisfy time constraints for each individual data frame of the data link layer.
+    \item[RQ.PER.2] Constrained Computational Performance\\
+    The limited performance of resource-constrained devices of an SAS must be taken into account.
+    Consequently, computationally complex algorithms must be executed by performance-oriented TTPs.
+    \item[RQ.PER.3] Constrained Energy \& Power\\
+    The limited energy and power of resource-constrained devices of an SAS must be taken into account.
+    Consequently, energy-intensive tasks, such as long-running computations, or power-intensive tasks, such as tasks leading to high CPU loads, must be executed by performance-oriented TTPs.
 \end{description}
 
 \subsection{Compatibility}
-The system has to satisfy two requirements related to system compatibility.
-The compatibility requirements of the system are defined as follows:
 \begin{description}
     \item[RQ.COM.1] Interoperability\\
     The system components are capable of exchanging information and providing services, irrespective of whether they originate from a single vendor or multiple vendors~\cite{IEC61850P5}.
