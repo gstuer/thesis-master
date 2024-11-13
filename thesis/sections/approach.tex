@@ -506,6 +506,7 @@ The four components of the architecture are discussed in the following:
 According to \citeauthor{Hu2014} \cite{Hu2014}, ABAC is an access control model that enables access decisions based on attributes associated with subjects, objects, actions, and the environment of a system.
 An ABAC policy represents a set of rules that describe under which environmental conditions a certain subject is granted to perform certain actions on a specific protected object.
 
+\subsubsection{Policy Classification}
 The SABAAC approach relies on the concept of attribute-based policies and access control due to the following benefits:
 ABAC enables multifactor policy expression, while RBAC and IBAC limit the policy expressiveness by only relying on either roles or identities.
 Consequently, the multifactor policy expression enables fine-grained and flexible access control.
@@ -527,7 +528,21 @@ To handle policies based on their degree of time-variability, the SABAAC approac
     Moreover, due to the non-frequent attribute retrieval and evaluation as well as access decision caching, static policies are a viable solution for low latency message exchange.
     A static policy is also referred to as non-real-time policy.
 \end{description}
-\todo{Policy DSL}
+
+\subsubsection{Policy Specification Language}
+\todo{Write + Remove duplicate ideas from protocols}
+\paragraph{Policy Structure}
+\paragraph{Attribute Types}
+\paragraph{Grammar}
+
+\subsection{Access Control Decision}
+\todo{TODO: Write + Remove duplicate ideas from protocols}
+
+\subsubsection{Evaluation Strategies}
+\todo{TODO: Ad-hoc vs. precomputation}
+
+\subsubsection{Caching}
+\todo{TODO: Ad-hoc vs. precomputation}
 
 \subsection{Delegated Attribute-Based Authorization Protocol}
 \label{sec:approach:sabaac:authorization}
