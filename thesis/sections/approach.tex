@@ -255,23 +255,38 @@ The requirement categories consist of security (RQ.SEC), safety (RQ.SAF), availa
 
 \section{Adversarial Attacks}
 \label{sec:approach:attacks}
-\todo{TODO: Rewrite -> System Threats + Adversaries + Attack Trees}
-\todo{TODO: Move to approach (with requirements)?}
-In addition to the aforementioned requirements, the approach has to provide mitigation strategies against various types of attacks.
-The objective of these strategies is not merely to safeguard the equipment of the CASC-SAS approach, but rather to ensure the continuous operation of SAS devices, including intelligent electronic devices and merging units.
-The approach must be able to mitigate adaptive chosen-message, collusion, (distributed) denial-of-service, man-in-the-middle, replay, spoofing, and false data injection attacks.
-However, the approach does not address confidentiality-related attacks.
+%In addition to the aforementioned requirements, the approach has to provide mitigation strategies against various types of attacks in order to secure an SAS.
+%The objective of these strategies is not merely to safeguard the equipment of the CASC-SAS approach, but rather to ensure the continuous operation of SAS devices, including intelligent electronic devices and merging units.
+%The approach must be able to mitigate adaptive chosen-message, collusion, (distributed) denial-of-service, man-in-the-middle, replay, spoofing, and false data injection attacks.
+%However, the approach does not address confidentiality-related attacks.
+%
+%Threat Model -> Attacker with complete topological and network knowledge able to intrude the substation
+%FDI -> Different goals, e.g. load redistribution
+%Classification
+%Mitigation Strategy, Affected Requirements (Availability/Security), Network-Based (e.g. Flooding), Protocol-Based (e.g. FDI), Device-Based (e.g. Malware), Access Requirement (Direct Bus Access vs. Remote Access)
+%
+In addition to the aforementioned requirements, this section introduces an adversary model and provides an enumeration and classification of cyberattacks.
+While not being exclusively relevant to SAS, the presented adversaries and attacks pose a threat to the state and operation of systems that correspond to the system model defined in \autoref{sec:approach:system_model}.
+A plethora of different threats, adversaries, and cyberattack classifications applicable to SCADA, SAS, ICS, or smart grid systems are discussed in the literature \cite{Nicholson2012,Aloul2012,Rizzetti2015,Cai2016,Hussain2021}.
+In the following paragraphs, these concepts are aggregated and transferred to the area of application of the CASC-SAS approach.
 
-Threat Model -> Attacker with complete topological and network knowledge able to intrude the substation
-FDI -> Different goals, e.g. load redistribution
+For the purpose of design, realization, and evaluation of the CASC-SAS approach, we assume an adversary corresponding to the Dolev-Yao model \cite{Dolev1983}.
+The Dolev-Yao adversary is adapted to the SAS-specific network characteristics, including the usage of two separated buses for the exchange of messages.
+Based on the adversary classification presented by \citeauthor{Hof2007} \cite{Hof2007} and \citeauthor{Ponikwar2016} \cite{Ponikwar2016}, the defined Dolev-Yao-like CASC-SAS adversary is a malicious, global, cooperative, dynamic, active, insider adversary.
+Accordingly, a possible CASC-SAS adversary is characterized by five assumptions:
+\begin{enumerate}
+    \item The adversary has physical or remote access to at least one of the internal SAS networks, i.e., the process bus or the station bus.
+    \item The adversary is able to initiate arbitrary message exchanges with any device on the networks.
+    \item The adversary is able to receive messages from any device on the networks.
+    \item The adversary is able to capture, alter, and drop messages exchanged on the networks.
+    \item The adversary is unable to bypass or break cryptographic procedures without first obtaining the necessary key material.
+\end{enumerate}
 
-Classification
-Mitigation Strategy, Affected Requirements (Availability/Security), Network-Based (e.g. Flooding), Protocol-Based (e.g. FDI), Device-Based (e.g. Malware), Access Requirement (Direct Bus Access vs. Remote Access)
-
-Attacks
-Malware Attack -> Viruses, Worms, Trojans...
-Network Attack -> DDos, MitM, Replay
-
+The types of cyberattacks that a CASC-SAS adversary can carry out are visualized in \autoref{fig:attack_classification}.
+Each cyberattack is classified based on the security objective affected.
+The objective of availability-focused attacks, as illustrated in \autoref{fig:attacks_availability}, is to disrupt system services in a manner that renders the continuation of operations impossible.
+In contrast, integrity-focused attacks, as illustrated in \autoref{fig:attacks_integrity}, aim to disturb the system's integrity by transitioning the system into a state that is either invalid or beneficial for an adversary.
+The authenticity-focused attacks shown in \autoref{fig:attacks_authenticity} enable an adversary to impersonate a legitimate subject of the system, thereby abusing the subject's granted privileges.
 \begin{figure}
     \centering
     \begin{subfigure}[t]{0.38\linewidth}
@@ -297,12 +312,34 @@ Network Attack -> DDos, MitM, Replay
     \caption{Classification of adversarial attacks based on security objectives.}
     \label{fig:attack_classification}
 \end{figure}
+
+In addition to the classification based on the affected security objective, we propose a classification of potential cyberattacks based on the adversary's objective.
+These objectives are modeled as attack trees, as the objective of an adversary is typically unachievable by a single operation but rather requires a sequence of attacks to be achieved.
+This modeling approach allows for a more comprehensive understanding of the adversary's strategy and the potential avenues for defense.
+With regard to the CASC-SAS approach, two primary objectives of an adversary were identified.
+The first objective is an attack against the SAS network communication, i.e., against the SAS protocols.
+The second objective is an attack against SAS devices.
+Accordingly, two independent attack trees are provided in \autoref{fig:attack_tree_communication} and \autoref{fig:attack_tree_device}.
+The colors utilized for the visualization of attacks within the attack trees correspond to the colors utilized in \autoref{fig:attack_classification} and, thus, represent the affected security objective.
+
+The first attack tree, as illustrated in \autoref{fig:attack_tree_communication}, represents an adversary with the objective of compromising the system by disrupting communication between two or more legitimate system subjects.
+In order to achieve this objective, the adversary may either replay messages that have been captured on the network or modify them.
+While replaying only requires the adversary to be able to eavesdrop on communication, message modification additionally requires the adversary to masquerade as a legitimate subject.
+This can be achieved by either breaking authenticity and integrity protection mechanisms, such as digital signatures, or colluding with other adversaries, such as infiltrated system devices.
 \begin{figure}
     \centering
     \includegraphics[width=0.5\linewidth]{figures/attack_tree_communication.drawio.pdf}
     \caption{Attack tree comprising cyberattacks that endanger SAS message exchange protocols.}
     \label{fig:attack_tree_communication}
 \end{figure}
+
+The second attack tree, as illustrated in \autoref{fig:attack_tree_device}, represents an adversary with the objective of compromising the system by directly attacking the system devices.
+An adversary may seek to either disrupt the device's availability or compromise its integrity.
+An adversary may achieve disruption of the device's availability via the deployment of malware or (distributed) denial of service (DoS) attacks.
+Examples of such DoS attacks in a SAS include the intentional delay of time-critical messages, also known as time-delay attacks, and flooding attacks.
+A device's integrity can be compromised by modifying its state via accessible service interfaces.
+Consequently, an adversary may either create a legitimate request, in case of an unsecured service, or forge a request.
+As discussed above with regard to message modification, request forgery might require an adversary to masquerade as a legitimate subject to circumvent authenticity and integrity protection mechanisms.
 \begin{figure}
     \centering
     \includegraphics[width=1.0\linewidth]{figures/attack_tree_device.drawio.pdf}
