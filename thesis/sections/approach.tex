@@ -267,7 +267,7 @@ The requirement categories consist of security (RQ.SEC), safety (RQ.SAF), availa
 %
 In addition to the aforementioned requirements, this section introduces an adversary model and provides an enumeration and classification of cyberattacks.
 While not being exclusively relevant to SAS, the presented adversaries and attacks pose a threat to the state and operation of systems that correspond to the system model defined in \autoref{sec:approach:system_model}.
-A plethora of different threats, adversaries, and cyberattack classifications applicable to SCADA, SAS, ICS, or smart grid systems are discussed in the literature \cite{Nicholson2012,Aloul2012,Rizzetti2015,Cai2016,Hussain2021}.
+A plethora of different threats, adversaries, and cyberattack classifications applicable to SCADA, SAS, ICS, or smart grid systems are discussed in the literature \cite{Nicholson2012,Aloul2012,Rizzetti2015,Youssef2016,Cai2016,Hussain2021}.
 In the following paragraphs, these concepts are aggregated and transferred to the area of application of the CASC-SAS approach.
 
 For the purpose of design, realization, and evaluation of the CASC-SAS approach, we assume an adversary corresponding to the Dolev-Yao model \cite{Dolev1983}.
@@ -336,7 +336,7 @@ This can be achieved by either breaking authenticity and integrity protection me
 The second attack tree, as illustrated in \autoref{fig:attack_tree_device}, represents an adversary with the objective of compromising the system by directly attacking the system devices.
 An adversary may seek to either disrupt the device's availability or compromise its integrity.
 An adversary may achieve disruption of the device's availability via the deployment of malware or (distributed) denial of service (DoS) attacks.
-Examples of such DoS attacks in a SAS include the intentional delay of time-critical messages, also known as time-delay attacks, and flooding attacks.
+Examples of such DoS attacks in a SAS include the intentional delay of time-critical messages, also known as time-delay attacks \cite{Bianchin2018}, and flooding attacks.
 A device's integrity can be compromised by modifying its state via accessible service interfaces.
 Consequently, an adversary may either create a legitimate request, in case of an unsecured service, or forge a request.
 As discussed above with regard to message modification, request forgery might require an adversary to masquerade as a legitimate subject to circumvent authenticity and integrity protection mechanisms.
