@@ -262,6 +262,54 @@ The objective of these strategies is not merely to safeguard the equipment of th
 The approach must be able to mitigate adaptive chosen-message, collusion, (distributed) denial-of-service, man-in-the-middle, replay, spoofing, and false data injection attacks.
 However, the approach does not address confidentiality-related attacks.
 
+Threat Model -> Attacker with complete topological and network knowledge able to intrude the substation
+FDI -> Different goals, e.g. load redistribution
+
+Classification
+Mitigation Strategy, Affected Requirements (Availability/Security), Network-Based (e.g. Flooding), Protocol-Based (e.g. FDI), Device-Based (e.g. Malware), Access Requirement (Direct Bus Access vs. Remote Access)
+
+Attacks
+Malware Attack -> Viruses, Worms, Trojans...
+Network Attack -> DDos, MitM, Replay
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[t]{0.38\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/attacks_availability.drawio.pdf}
+        \caption{Availability-focused attacks.}
+        \label{fig:attacks_availability}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.295\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/attacks_integrity.drawio.pdf}
+        \caption{Integrity-focused attacks.}
+        \label{fig:attacks_integrity}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.30\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/attacks_authenticity.drawio.pdf}
+        \caption{Authenticity-focused attacks.}
+        \label{fig:attacks_authenticity}
+    \end{subfigure}
+    \caption{Classification of adversarial attacks based on security objectives.}
+    \label{fig:attack_classification}
+\end{figure}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{figures/attack_tree_communication.drawio.pdf}
+    \caption{Attack tree comprising cyberattacks that endanger SAS message exchange protocols.}
+    \label{fig:attack_tree_communication}
+\end{figure}
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\linewidth]{figures/attack_tree_device.drawio.pdf}
+    \caption{Attack tree comprising cyberattacks that endanger the functionality of SAS devices.}
+    \label{fig:attack_tree_device}
+\end{figure}
+
 \section{Security Policies}
 \label{sec:approach:security_policies}
 \todo{TODO: Security Policies -> Link to Requirements \& Attacks}
