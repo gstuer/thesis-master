@@ -382,6 +382,54 @@ While the attack trees discussed in \autoref{sec:approach:attacks} provide insig
     The flow-based buffer management limits the number of processed messages of a network traffic flow within a specific time interval.
     If the processing limit is reached, a receiver may either reject received data frames belonging to the network traffic flow or replace buffered data frames with received ones.
 \end{description}
+\begin{table}
+    \centering
+    \small
+    \caption{Adversarial attacks mitigated by CASC-SAS security policies.}
+    \label{tab:security_policies:attacks}
+    \begin{tabular}{c c | c c c c c}
+    \toprule
+    \multicolumn{2}{c |}{Adversarial Attack} & \multicolumn{5}{c}{Policy}\\
+    Name & Classification & I & II & III & IV & V\\
+    \midrule
+    % Availability
+    Malware            & Availability &   & X & X &   &   \\
+    Flooding           & Availability &   &   &   &   & X \\
+    Time-Delay         & Availability &   &   &   & X &   \\
+    % Integrity
+    False Data Injection  & Integrity & X & X & X &   &   \\
+    Message Forgery       & Integrity & X &   &   &   &   \\
+    Message Modification  & Integrity & X &   &   &   &   \\
+    Replay                & Integrity &   &   &   & X &   \\
+    % Authenticity
+    Spoofing / Masquerading & Authenticity & X &   &   &   &   \\
+    Adaptive Chosen-Message & Authenticity & X &   &   &   &   \\
+    Collusion               & Authenticity & X &   &   &   &   \\
+    \bottomrule
+    \end{tabular}
+\end{table}
+\begin{table}
+    \centering
+    \small
+    \caption{Security requirements satisfied by CASC-SAS security policies.}
+    \label{tab:security_policies:requirements}
+    \begin{tabular}{r l | c c c c c}
+    \toprule
+    \multicolumn{2}{c |}{Requirement} & \multicolumn{5}{c}{Policy}\\
+    & & I & II & III & IV & V\\
+    \midrule
+    RQ.SEC.1: & Payload Integrity & X & & & X\textsuperscript{1} & X\textsuperscript{2} \\
+    RQ.SEC.2: & Sender Authenticity & X & & & & \\
+    RQ.SEC.3: & Authorship Non-Repudiation & X & & & & \\
+    RQ.SEC.4: & Access Control & & X & & & \\
+    RQ.SEC.5: & Principle of Least Privilege & & & X & & \\
+    RQ.SEC.6: & Separation of Duties & & & X & & \\
+    \bottomrule
+    \end{tabular}\\
+    \footnotesize
+    \textsuperscript{1} Prevents re-ordering, replaying, and delaying of valid messages.\\
+    \textsuperscript{2} Prevents loss of valid messages due to message flooding.
+\end{table}
 
 \section{Security Architecture}
 \label{sec:approach:casc:architecture}
