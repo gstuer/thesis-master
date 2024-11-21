@@ -255,16 +255,6 @@ The requirement categories consist of security (RQ.SEC), safety (RQ.SAF), availa
 
 \section{Adversarial Attacks}
 \label{sec:approach:attacks}
-%In addition to the aforementioned requirements, the approach has to provide mitigation strategies against various types of attacks in order to secure an SAS.
-%The objective of these strategies is not merely to safeguard the equipment of the CASC-SAS approach, but rather to ensure the continuous operation of SAS devices, including intelligent electronic devices and merging units.
-%The approach must be able to mitigate adaptive chosen-message, collusion, (distributed) denial-of-service, man-in-the-middle, replay, spoofing, and false data injection attacks.
-%However, the approach does not address confidentiality-related attacks.
-%
-%Threat Model -> Attacker with complete topological and network knowledge able to intrude the substation
-%FDI -> Different goals, e.g. load redistribution
-%Classification
-%Mitigation Strategy, Affected Requirements (Availability/Security), Network-Based (e.g. Flooding), Protocol-Based (e.g. FDI), Device-Based (e.g. Malware), Access Requirement (Direct Bus Access vs. Remote Access)
-%
 In addition to the aforementioned requirements, this section introduces an adversary model and provides an enumeration and classification of cyberattacks.
 While not being exclusively relevant to SAS, the presented adversaries and attacks pose a threat to the state and operation of systems that correspond to the system model defined in \autoref{sec:approach:system_model}.
 A plethora of different threats, adversaries, and cyberattack classifications applicable to SCADA, SAS, ICS, or smart grid systems are discussed in the literature \cite{Nicholson2012,Aloul2012,Rizzetti2015,Youssef2016,Cai2016,Hussain2021}.
@@ -349,7 +339,49 @@ As discussed above with regard to message modification, request forgery might re
 
 \section{Security Policies}
 \label{sec:approach:security_policies}
-\todo{TODO: Security Policies -> Link to Requirements \& Attacks}
+The CASC-SAS approach enforces a set of security policies with the purpose of satisfying the aforementioned requirements and defending a SAS against cyberattacks.
+The objective of these policies is not merely to safeguard the equipment of the CASC-SAS approach, but rather to ensure the continuous operation of SAS devices, including IEDs and MUs.
+The security policies represent mandatory rules for the operation of a SAS secured by the CASC-SAS approach.
+While the attack trees discussed in \autoref{sec:approach:attacks} provide insight into potential adversarial strategies, the proposed security policies represent mitigation strategies for potential cyberattacks.
+
+\begin{description}
+    \item[Policy I:] Data Frame Signing and Verification\\%SEC 1/2/3
+    The authenticity, integrity, and non-repudiation of exchanged messages on SAS networks are safeguarded by employing cryptographic mechanisms for signing and verification, i.e., digital signatures if PKC is used or Message Authentication Codes (MAC) if SKC is used.
+    This security policy is enforced for each individual data frame of the data link layer to support Ethernet-based SAS protocols such as GOOSE and SV.
+    The integration of signing and verification into the OSI protocol stack of two generic Ethernet-based SAS applications within a switched LAN is visualized in \autoref{fig:ethernet_app_protocol_stack}.
+    In the shown protocol stack, signing and verification reside within the presentation layer just below an Ethernet-based application, e.g., a GOOSE or SV application.
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\linewidth]{figures/signed_ethernet_app_protocol_stack.drawio.pdf}
+        \caption{Protocol stack of Ethernet-based SAS applications using data verification.}
+        \label{fig:ethernet_app_protocol_stack}
+    \end{figure}
+    %
+    \item[Policy II:] Data Frame Access Control\\%SEC 4
+    Unauthorized access to service interfaces provided by SAS devices is prevented by employing access control.
+    As discussed above, this security policy is enforced for each individual data frame of the data link layer to support Ethernet-based SAS protocols.
+    In other words, CASC-SAS checks if a data frame is authorized before delivering it to a SAS application.
+    %
+    \item[Policy III:] Flow-Based Time-Dependent Authorization\\%SEC 5/6
+    Authorization mechanisms are deployed to specify the privileges of communicating entities in a SAS and, thus, enable access control.
+    Since a SAS environment is non-static with regard to its state, authorizations have to be time-dependent as well.
+    Moreover, authorizations have to be fine-grained and flexible to satisfy the PoLP and SoD security requirements.
+    Nevertheless, authorizations have to be network-traffic-flow-based, i.e., applicable to any sequence of data frames with common properties passing through the SAS network, to reduce evaluation overhead and management overhead.
+    %
+    \item[Policy IV:] Data Frame Sequencing\\%SEC 1, AVA 1/2
+    Sequencing of exchanged messages is used to safeguard the system's integrity by mitigating intentional or accidental re-ordering, replaying, and delaying of messages.
+    For this purpose, a timestamp is appended to each individual data frame sent.
+    A receiver may utilize the timestamp for two distinct purposes.
+    Firstly, the receiver interprets the timestamp as sequence number to reject re-ordered and replayed data frames of a network traffic flow.
+    Secondly, the receiver may use the timestamp to calculate the average communication latency and its standard deviation to detect infrequent delaying of data frames.
+    For the latter case, no time synchronization between sender and receiver is required, as only the deviation from the average is relevant for the classification of delayed data frames.
+    %
+    \item[Policy V:] Flow-Based Ingress Buffer Management\\%SEC 1, AVA 1/2
+    Congestions of exchanged messages in network ingress buffers of SAS devices have to be avoided to mitigate intentional or accidental DoS due to message flooding.
+    CASC-SAS employs flow-based buffer management to avoid message congestions.
+    The flow-based buffer management limits the number of processed messages of a network traffic flow within a specific time interval.
+    If the processing limit is reached, a receiver may either reject received data frames belonging to the network traffic flow or replace buffered data frames with received ones.
+\end{description}
 
 \section{Security Architecture}
 \label{sec:approach:casc:architecture}
