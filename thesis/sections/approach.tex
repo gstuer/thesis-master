@@ -313,20 +313,21 @@ Accordingly, two independent attack trees are provided in \autoref{fig:attack_tr
 The colors utilized for the visualization of attacks within the attack trees correspond to the colors utilized in \autoref{fig:attack_classification} and, thus, represent the affected security objective.
 
 The first attack tree, as illustrated in \autoref{fig:attack_tree_communication}, represents an adversary with the objective of compromising the system by disrupting communication between two or more legitimate system subjects.
-In order to achieve this objective, the adversary may either replay messages that have been captured on the network or modify them.
+In order to achieve this objective by compromising the communication integrity, the adversary may either replay messages that have been captured on the network, or modify them.
 While replaying only requires the adversary to be able to eavesdrop on communication, message modification additionally requires the adversary to masquerade as a legitimate subject.
 This can be achieved by either breaking authenticity and integrity protection mechanisms, such as digital signatures, or colluding with other adversaries, such as infiltrated system devices.
+Furthermore, an adversary may disrupt communication via (distributed) denial of service (DoS) attacks.
+Examples of such DoS attacks in a SAS include the intentional delay of time-critical messages, also known as time-delay attacks \cite{Bianchin2018}, and dropping of messages.
 \begin{figure}
     \centering
-    \includegraphics[width=0.5\linewidth]{figures/attack_tree_communication.drawio.pdf}
+    \includegraphics[width=1.0\linewidth]{figures/attack_tree_communication.drawio.pdf}
     \caption{Attack tree comprising cyberattacks that endanger SAS message exchange protocols.}
     \label{fig:attack_tree_communication}
 \end{figure}
 
 The second attack tree, as illustrated in \autoref{fig:attack_tree_device}, represents an adversary with the objective of compromising the system by directly attacking the system devices.
 An adversary may seek to either disrupt the device's availability or compromise its integrity.
-An adversary may achieve disruption of the device's availability via the deployment of malware or (distributed) denial of service (DoS) attacks.
-Examples of such DoS attacks in a SAS include the intentional delay of time-critical messages, also known as time-delay attacks \cite{Bianchin2018}, and flooding attacks.
+An adversary may achieve disruption of the device's availability via the deployment of malware or (distributed) DoS attacks, such as flooding attacks.
 A device's integrity can be compromised by modifying its state via accessible service interfaces.
 Consequently, an adversary may either create a legitimate request, in case of an unsecured service, or forge a request.
 As discussed above with regard to message modification, request forgery might require an adversary to masquerade as a legitimate subject to circumvent authenticity and integrity protection mechanisms.
@@ -396,14 +397,14 @@ Moreover, the security requirements, as introduced in \autoref{sec:approach:requ
     & Security Objective & Adversarial Objective & I & II & III & IV & V\\
     \midrule
     % Availability
-    Malware            & Availability & Device &   & X & X &   &   \\
-    Flooding           & Availability & Device &   &   &   &   & X \\
+    Malware            & Availability & Device        &   & X & X &   &   \\
+    Flooding           & Availability & Device        &   &   &   &   & X \\
     Time-Delay         & Availability & Communication &   &   &   & X &   \\
     % Integrity
-    False Data Injection  & Integrity & Device & X & X & X &   &   \\
-    Message Forgery       & Integrity & Dev. / Comm. & X &   &   &   &   \\
+    False Data Injection  & Integrity & Dev. / Comm.  & X & X & X &   &   \\
+    Message Forgery       & Integrity & Device        & X &   &   &   &   \\
     Message Modification  & Integrity & Communication & X &   &   &   &   \\
-    Replay                & Integrity & Communication &   &   &   & X &   \\
+    Message Replay        & Integrity & Communication &   &   &   & X &   \\
     % Authenticity
     Spoofing / Masquerading & Authenticity & Dev. / Comm. & X &   &   &   &   \\
     Adaptive Chosen-Message & Authenticity & Dev. / Comm. & X &   &   &   &   \\
