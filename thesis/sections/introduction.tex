@@ -9,14 +9,18 @@ According to \citeauthor{Stouffer2023} \cite{Stouffer2023}, the typical long lif
 In the following, we focus on the information security of OT systems.
 Although a variety of information security solutions exist for IT, migration of existing approaches to the OT domain may not be a viable solution due to the differing system characteristics, risks, and priorities.
 An example for the differing priorities are information confidentiality and access control.
-While the prevention of unauthorized access represents the core objective of IT security approaches, OT systems and especially OT-based critical infrastructures prioritize system availability and reliability.
+While the prevention of unauthorized access represents the core objective of IT security approaches, OT systems and especially OT-based critical infrastructure prioritize system availability and reliability.
 
-Within the scope of this thesis, we focus on the occurring communication in a specific type of OT system.
-The field of application of the approach proposed by this thesis is known as Substation Automation System (SAS).
-A SAS represents the entirety of communication and control equipment of a substation~\cite{Padilla2015}.
-A substation is a facility of a high-voltage electricity grid connecting power transmission and distribution lines that use different voltage levels~\cite{oshaSubstation}.
-A substation and its SAS represent a specific type of ICS.
-The tasks of a SAS are time-critical and have to be executed reliably, as the electricity sector and its substations are critical infrastructures.
+In the energy-related sector, the infrastructure currently transforms from traditional top-down energy transmission and distribution systems to so-called smart grids with bidirectional data and energy flow \cite{Fang2012}.
+In contrast to traditional energy grids, smart grids are adaptive, self-monitoring and self-healing infrastructures that enable pervasive control and monitoring of distributed heterogeneous grid participants.
+As illustrated in \autoref{fig:smart_grid_overview}, a smart grid interconnects not only producers, consumers, and control centers, but also integrates prosumers, substations, and other grid-related elements.
+The distribution of formerly centralized entities, such as power plants and control centers, necessitates not only changes in energy infrastructure but also leads to an increased reliance on communication solutions.
+\begin{figure}
+    \centering
+    \includegraphics[width=.9\linewidth]{figures/smart_grid_overview_extended_color.drawio.pdf}
+    \caption{Bidirectional power and data distribution in a smart electricity grid.}
+    \label{fig:smart_grid_overview}
+\end{figure}
 
 The IEC 61850 series provides standards for the communication networks of digital energy systems~\cite{IEC61850P5}.
 The goal of the IEC 61850 series is seamless communication and interoperability of systems in a smart energy grid.
@@ -24,6 +28,14 @@ Although standards for the communication in a SAS are provided by the IEC 61850 
 To overcome this problem, the IEC 62351 standard series was created by the~\citeauthor{IEC62351P6}.
 Part 6 of the IEC 62351 series provides standardized security means for communication compliant to IEC 61850~\cite{IEC62351P6}.
 Moreover, Part 8 of the IEC 62351 series provides a role-based access control concept for power system~\cite{IEC62351P8}.
+
+The focus of this thesis is on the communication aspects of smart grids.
+To enhance the communication security and overcome the limitations of existing standards, we propose an approach that can be integrated into smart electricity grids.
+The field of application of the approach proposed in this thesis is known as a Substation Automation System (SAS).
+A SAS represents the entirety of communication and control equipment of a substation~\cite{Padilla2015}.
+A substation is a facility of a high-voltage electricity grid connecting power transmission and distribution lines that use different voltage levels~\cite{oshaSubstation}.
+A substation and its SAS represent a specific type of ICS.
+The tasks of a SAS are time-critical and have to be executed reliably, as the electricity sector and its substations are critical infrastructures.
 
 \section{Objective}
 \label{sec:introduction:objective}
@@ -39,7 +51,7 @@ This thesis focuses on these remaining challenges to enhance the information sec
 As stated by \citeauthor{Ishchenko2018} \cite{Ishchenko2018}, these challenges include, among others, ensuring the integrity and authenticity of substation control and protection communication without compromising the time criticality.
 For this purpose, cryptographic signature and verification approaches can be employed in the SAS environment.
 According to \citeauthor{Elbez2019} \cite{Elbez2019}, the strict time constraints of the low latency communication in substations are key factors for the information security.
-Accordingly, Public Key Cryptography (PKC) formerly specified by the IEC 62351 standards is not appropriate due to computational complexity and latency.
+Accordingly, Public Key Cryptography (PKC), which was formerly specified by the IEC 62351 standards, seemed to be inappropriate due to computational complexity and latency.
 
 % Based on this proposed approach, the following research questions are going to be answered in the course of this thesis:
 Due to an increase in processing performance of IT and OT devices nowadays, this thesis examines the applicability of effective and efficient PKC in substations.
@@ -49,7 +61,7 @@ Therefore, the following research questions are going to be answered in the cour
 \begin{description}
     \item[RQ1] How can expressive and flexible but yet computationally expensive access control approaches such as Attribute-Based Access Control (ABAC) be employed to enable prevention of unauthorized access, enable the Separation of Duties (SoD), and ensure the Principle of Least Privilege (PoLP) in a time-critical SAS environment?
     \item[RQ2] How can a secure and lightweight PKC approach be designed and implemented, that is able to ensure the authenticity, integrity, and non-repudiation of communication in a time-critical SAS environment?
-    \item[RQ3] How can authentication, authorization, and access control be integrated into a malleable, scalable, and lightweight cryptosystem for time-critical SAS communication?
+    \item[RQ3] How can authentication, authorization, and access control be integrated into a malleable, scalable, and lightweight system that secures time-critical SAS communication?
 \end{description}
 
 \section{Contribution}
@@ -63,7 +75,7 @@ To address the aforementioned objectives and considerations, this thesis compris
     \item Identification of security, safety, availability, performance, and compatibility requirements of the proposed approach, and development of a system model, which represents the corresponding field of application.
     \item Design of a server-aided attribute-based authorization and access control approach called SABAAC, which relies on speedup techniques such as access decision caching and policy evaluation precomputation.
     \item Design of a certificateless attribute-based public key cryptography approach for digital signatures called CASA, which features server-aided verification and online/offline cryptography.
-    \item Design of a certificateless attribute-based server-aided cryptosystem for SAS called CASC-SAS, which integrates SABAAC and CASA into a dual-path four-layered system architecture.
+    \item Design of a certificateless attribute-based server-aided system for SAS communication security called CASC-SAS, which integrates SABAAC and CASA into a dual-path four-layered system architecture.
     \item Implementation of the proposed approach using high-level programming languages, and deployment of the implementation to a fully functional test bed that mimics the behavior of an interconnected OT system.
     \item Security evaluation to proof the security characteristics of the approach.
     \item Performance evaluation to demonstrate the applicability of the approach in an OT environment with strict time and resource constraints.
@@ -72,20 +84,27 @@ To address the aforementioned objectives and considerations, this thesis compris
 
 \section{Structure}
 \label{sec:introduction:structure}
-\todo{TODO: Rewrite section to fit to final structure.}
-The following section outlines the planned structure of the proposed thesis.
-The proposed thesis will be divided into seven chapters.
-The preliminary work, comprising the initial four chapters of the proposed thesis, is presented in this thesis proposal.
+The following section presents the structure of this thesis.
+The structure consists of six chapters and is illustrated in \autoref{fig:thesis_structure}.
 
-\Cref{ch:introduction} of the thesis serves to introduce the topic.
-The introduction includes the objective, research questions, and contribution of this thesis.
-\Cref{ch:fundamentals} presents the fundamental concepts that form the basis for this thesis.
-The fundamentals introduce the concepts of OT, ICS, information security, system safety, access control, and cryptography.
-Subsequently, \cref{ch:relatedwork} presents a review of the existing literature on this topic.
-\Cref{ch:approach} defines the proposed cryptosystem and its system model.
-Furthermore, this chapter describes the components, algorithms, schemes, and protocols of the proposed cryptosystem.
-The fifth chapter of the thesis will address the realization of the proposed cryptosystem.
-The proposed realization is discussed in \cref{sec:approach:realization}.
-The sixth chapter will provide a security, performance, and compatibility evaluation of the proposed approach.
-The proposed evaluation is discussed in \cref{sec:approach:evaluation}.
-Finally, the seventh chapter will provide a conclusion and identify the limitations as well as possible future work of the thesis.
+\Cref{ch:introduction} serves to motivate communication security in OT and SAS.
+In addition, the chapter presents the research questions and outlines the objective and contributions of the proposed approach.
+
+\Cref{ch:fundamentals} presents the fundamental concepts upon which this thesis and its proposed approach are based.
+Among other concepts, it introduces the fundamentals of OT, ICS, information security, system safety, access control, and cryptography.
+
+\Cref{ch:relatedwork} presents a review of the existing literature and offers a delineation between it and the proposed approach.
+
+\Cref{ch:approach} defines the proposed SAS security approach, including its system model, requirements, potential adversarial attacks, security policies, security architecture, and realization.
+Furthermore, this chapter elucidates the components, algorithms, schemes, and protocols of the proposed security approach.
+
+\Cref{ch:evaluation} presents a comprehensive evaluation of the proposed approach, encompassing security, performance, and compatibility considerations.
+Furthermore, the chapter discusses the results of the evaluation, contextualizes the approach within the existing literature by comparing it to related approaches, and describes the limitations and constraints inherent to the evaluation and proposed approach.
+
+In conclusion, \cref{ch:conclusion} provides insight into prospective future research and presents a summary of the thesis.
+\begin{figure}
+    \centering
+    \includegraphics[width=1.\linewidth]{figures/thesis_structure.drawio.pdf}
+    \caption{Structure of the thesis consisting of six interrelated chapters.}
+    \label{fig:thesis_structure}
+\end{figure}
