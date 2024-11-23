@@ -344,6 +344,7 @@ The objective of these policies is not merely to safeguard the equipment of the 
 The security policies represent mandatory rules for the operation of a SAS secured by the CASC-SAS approach.
 While the attack trees discussed in \autoref{sec:approach:attacks} provide insight into potential adversarial strategies, the proposed security policies represent mitigation strategies for potential cyberattacks.
 The cyberattacks that can be mitigated by enforcing the security policies are shown in \autoref{tab:security_policies:attacks}.
+The classification of the cyberattacks is based on the classifications illustrated in \autoref{fig:attack_classification}, \autoref{fig:attack_tree_communication}, and \autoref{fig:attack_tree_device}.
 Moreover, the security requirements, as introduced in \autoref{sec:approach:requirements}, that can be satisfied by enforcing the security policies are shown in \autoref{tab:security_policies:requirements}.
 
 \begin{description}
@@ -389,24 +390,24 @@ Moreover, the security requirements, as introduced in \autoref{sec:approach:requ
     \small
     \caption{Adversarial attacks mitigated by CASC-SAS security policies.}
     \label{tab:security_policies:attacks}
-    \begin{tabular}{c c | c c c c c}
+    \begin{tabular}{c c c | c c c c c}
     \toprule
-    \multicolumn{2}{c |}{Adversarial Attack} & \multicolumn{5}{c}{Policy}\\
-    Name & Classification & I & II & III & IV & V\\
+    Adversarial Attack & \multicolumn{2}{c |}{Classification} & \multicolumn{5}{c}{Policy}\\
+    & Security Objective & Adversarial Objective & I & II & III & IV & V\\
     \midrule
     % Availability
-    Malware            & Availability &   & X & X &   &   \\
-    Flooding           & Availability &   &   &   &   & X \\
-    Time-Delay         & Availability &   &   &   & X &   \\
+    Malware            & Availability & Device &   & X & X &   &   \\
+    Flooding           & Availability & Device &   &   &   &   & X \\
+    Time-Delay         & Availability & Communication &   &   &   & X &   \\
     % Integrity
-    False Data Injection  & Integrity & X & X & X &   &   \\
-    Message Forgery       & Integrity & X &   &   &   &   \\
-    Message Modification  & Integrity & X &   &   &   &   \\
-    Replay                & Integrity &   &   &   & X &   \\
+    False Data Injection  & Integrity & Device & X & X & X &   &   \\
+    Message Forgery       & Integrity & Dev. / Comm. & X &   &   &   &   \\
+    Message Modification  & Integrity & Communication & X &   &   &   &   \\
+    Replay                & Integrity & Communication &   &   &   & X &   \\
     % Authenticity
-    Spoofing / Masquerading & Authenticity & X &   &   &   &   \\
-    Adaptive Chosen-Message & Authenticity & X &   &   &   &   \\
-    Collusion               & Authenticity & X &   &   &   &   \\
+    Spoofing / Masquerading & Authenticity & Dev. / Comm. & X &   &   &   &   \\
+    Adaptive Chosen-Message & Authenticity & Dev. / Comm. & X &   &   &   &   \\
+    Collusion               & Authenticity & Dev. / Comm. & X &   &   &   &   \\
     \bottomrule
     \end{tabular}
 \end{table}
