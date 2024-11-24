@@ -467,7 +467,6 @@ SABAAC provides authorization and access control to satisfy the security require
 
 \subsubsection{Layer 1: Cryptography}
 The cryptography layer provides cryptographic algorithms and schemes to higher layers of the architecture.
-It relies on reliable and unreliable control message exchange.
 The exchange of cryptographic control messages enables cryptographic workflows such as key generation, key distribution, key revocation, and server-aided cryptography.
 The CASA core concept of CASC-SAS is located at the cryptography layer.
 CASA provides authentication means via digital signatures to higher levels of the architecture.
@@ -476,7 +475,7 @@ Accordingly, CASA provides services that satisfy the security requirements integ
 \subsubsection{Layer 0: Message Exchange}
 The lowermost layer of the CASC-SAS architecture is referred to as message exchange layer.
 The message exchange layer provides reliable and unreliable message exchange between devices in a network to higher layers.
-The message exchange layer represents an abstraction of the physical layer, data link layer, network layer, and transport layer of a conventional network stack.
+The message exchange layer represents an abstraction of the physical layer, data link layer, network layer, and transport layer of a conventional OSI network stack.
 %Provides reliable and unreliable message exchange between devices in a network.
 
 \subsubsection{Example: Domain-Specific Communication}
@@ -490,15 +489,16 @@ The message exchange layer represents an abstraction of the physical layer, data
 An exemplary domain-specific communication between a sending entity and receiving entity is shown in \autoref{fig:layers_request_example}.
 The figure shows the four layers of the CASC-SAS architecture at the sender and receiver.
 Moreover, the different messages exchanged between the layers are shown.
-While the invocation of services is restricted to predecessor layers, message exchange resulting from an invocation may occur bidirectional.
+While the invocation of services is restricted to predecessor layers, message exchange resulting from an invocation may occur bidirectionally.
 The presented domain-specific communication is initiated by entity A.
-Therefor, entity A creates a single or multiple domain-specific messages and delivers them to the cybersecurity layer.
-The yet unsigned and non-authorized messages are then authorized by SABAAC and forwarded to CASA at the cryptography layer for signing.
-Subsequently, the signed and authorized messages are forwarded to the receiver using the reliable and unreliable network transport services provided by the message exchange layer.
-Upon arrival at the receiver, the message exchange layer delivers the signed and authorized messages to the cybersecurity layer.
+Therefor, an application at the domain layer of entity A creates a domain-specific message and delivers it to the cybersecurity layer.
+The yet unsigned and non-authorized message is then authorized by SABAAC and forwarded to CASA at the cryptography layer for signing.
+Subsequently, the signed and authorized message is forwarded to the receiver using the either reliable or unreliable network transport services provided by the message exchange layer.
+Upon arrival at the receiver, the message exchange layer delivers the signed and authorized message to the cybersecurity layer.
 The messages are then verified by the cybersecurity layer before forwarding them to the domain layer and application.
-For the purpose of message verification, the cybersecurity layer enforces access control policies by verifying the validity of the message authorization.
-Moreover, the message is forwarded to the cryptography layer for cryptographic verification.
+For the purpose of message verification, the cybersecurity layer enforces the CASC-SAS security policies.
+The access control policy is enforced by verifying the message authorization.
+Moreover, the message is forwarded to the cryptography layer for digital signature verification.
 
 \subsection{Dual-Path Architecture}
 \label{sec:approach:casc:architecture:paths}
@@ -506,12 +506,12 @@ Moreover, the message is forwarded to the cryptography layer for cryptographic v
 In addition to the separation into different layers, the occurring message exchanges within the CASC-SAS architecture are logically divided into two communication paths.
 The two paths are referred to as data path and control path.
 
-The messages on the data path are used for the forwarding of domain-specific payload from a sending entity to a receiving entity.
-Besides the concrete domain-specific messages, communication required for the message forwarding are transported on the data path.
+The messages on the data path are directly related to the forwarding of domain-specific payload from a sending entity to a receiving entity.
+Besides the domain-specific messages, control messages required for the message forwarding are transported on the data path.
 This message-related communication includes server-aided signing and verification requests as well as access control.
 As a consequence, the data path is used for traffic-intensive and time-critical message exchange.
 
-The messages on the control path are used for the exchange of management information and do not carry domain-specific payload.
+The messages on the control path are used for the exchange of management information and do not carry payload that is directly related to domain-specific messages.
 The components of the CASC-SAS approach use control path messages for layer-internal communication between different devices.
 The cryptography layer uses control messages for key generation, distribution, and revocation.
 The cybersecurity layer uses control messages for tasks such as policy management.
