@@ -521,31 +521,40 @@ As a result, the communication occurring on the control path is less traffic-int
 \label{sec:approach:casa}
 In the following section, we present the \textbf{C}ertificateless \textbf{A}ttribute-Based \textbf{S}erver-Aided \textbf{A}uthentication (CASA) concept.
 CASA is a CL-PKC approach.
-The goal of CASA is to provide cryptographic algorithms and schemes for key generation, key distribution, key revocation, signing, and verification.
+Consequently, neither certificates nor key escrow are required~\cite{AlRiyami2003}.
+The goal of CASA is to provide cryptographic protocols, algorithms, and schemes for key generation, key distribution, key revocation, signing, and verification.
 Moreover, the goal of CASA is to enable and support more abstract cybersecurity mechanisms like authorization and access control of the CASC-SAS approach.
 Therefore, CASA represents the foundation of the employed CASC-SAS cybersecurity mechanisms.
 
-Since CASA is a CL-PKC approach, neither certificates nor key escrow is required~\cite{AlRiyami2003}.
-Moreover, the CASA approach proposes a key generation that is not only based on subject identities but rather enables public keys and private keys based on arbitrary attributes of subjects or even groups of subjects.
-The key generation of the CASA approach is inspired by the alternative CL-PKC key generation technique proposed by \citeauthor{AlRiyami2003} \cite{AlRiyami2003}.
-The defining characteristics of the alternative key generation is the derivation of partial private keys from public keys and identities.
-As a consequence, an entity has to generate its public key before it can request a partial private key from the KGC.
-This alternative key generation enables sending of partial private keys over unsecure channels and reduces the required trust in the KGC.
-Furthermore, this technique allows only one public key to be created for a specific private key.
+%Since CASA is a CL-PKC approach, neither certificates nor key escrow is required~\cite{AlRiyami2003}.
+%Moreover, the CASA approach proposes a key generation that is not only based on subject identities but rather enables public keys and private keys based on arbitrary attributes of subjects or even groups of subjects.
+%The key generation of the CASA approach is inspired by the alternative CL-PKC key generation technique proposed by \citeauthor{AlRiyami2003} \cite{AlRiyami2003}.
+%The defining characteristics of the alternative key generation is the derivation of partial private keys from public keys and identities.
+%As a consequence, an entity has to generate its public key before it can request a partial private key from the CAPP.
+%This alternative key generation enables sending of partial private keys over unsecure channels and reduces the required trust in the CAPP.
+%Furthermore, this technique allows only one public key to be created for a specific private key.
 
-\subsection{Server-Aided Cryptography}
-As PKC mechanisms may consist of computationally complex algorithms and operations such as bilinear pairing, we propose a server-aided PKC approach.
-Therefor, we propose an extension of the CL-PKC concept and schemes to make time-critical steps server-aided.
-To make CASA server-aided, an Untrusted Cryptography Server (UCS) supports devices by handling computationally expensive algorithms instead of executing them locally on resource-constrained devices.
-To minimize the required trust, the UCS may only handle certain computations, i.e., partially sign or verify a request of a device.
-This server-aided approach enables resource-constrained devices to apply secure algorithms and schemes of CASA in a time-critical OT environment.
+\subsection{Administration \& Processing Platform}
+The CASA Administration and Processing Platform (CAPP) represents the central component of the CASA approach.
+The main objective of the CAPP is the provisioning of services required for the realization of cryptographic protocols.
+While CASA also provides its own signature scheme $\mathcal{S}_{CASA}$, which is further discussed in \autoref{sec:casa:scheme}, the CAPP and its protocols are algorithm-agnostic.
+The concept of an algorithm-agnostic central component of the CASA approach is based on the idea, that different cryptographic algorithms and schemes might be optimal solutions for different problems.
+This idea is inspired by the cipher suites and cipher transitioning of the Transport Layer Security (TLS) protocol \cite{rfc8446}.
+The support of different algorithms and schemes enables devices to choose the cryptographic approach, that fits their security requirements and performance constraints best.
+
+\subsubsection{Server-Aided Cryptography}
+As PKC mechanisms may consist of computationally complex algorithms and operations such as bilinear pairing, a core task of the CAPP is the support of server-aided PKC.
+By supporting server-aided PKC, CASA encourages the utilization of server-aided CL-PKC schemes for time-critical applications.
+To make CASA server-aided, the CAPP supports devices by handling computationally expensive algorithms instead of executing them locally on resource-constrained devices.
+To minimize the required trust, the CAPP may only handle certain computations, e.g., partially sign or verify a request of a device.
+This server-aided approach enables resource-constrained devices to apply secure PKC algorithms and schemes in a time-critical OT environment.
+
 In the following, we employ the concept of server-aided PKC for the verification process.
-
 As stated by \citeauthor{Wu2008} \cite{Wu2008}, a server-aided verification process has to satisfy the property of being computation-saving.
 A server-aided verification process $V_{Aided}$ is computation-saving if the computational costs for the verifier are strictly less than the costs of non-server-aided verification $V_{Conventional}$.
 In other words, $V_{Aided}$ is computation-saving if the equation $Cost(V_{Aided}) < Cost(V_{Conventional})$ holds.
 
-\subsection{Online \& Offline Cryptography}
+\subsubsection{Online \& Offline Cryptography}
 Since CASA is tailored for time-critical communication, the approach aims to reduce the required time for cryptographic algorithms.
 In addition to server-aided cryptography, this time reduction is achieved by precomputation.
 For this purpose, each step of an algorithm is classified as either online or offline.
@@ -553,9 +562,10 @@ Online steps depend on the sender's public key, the digital signature, or the me
 Consequently, online steps cannot be precomputed.
 Nevertheless, specific online steps can be accelerated via server-aided cryptography.
 Offline steps depend on information that is available before any message exchange occurs.
-Therefore, offline steps can be precomputed to reduce the required time for cryptographic algorithms.
+Therefore, offline steps can be precomputed either at the CAPP or at client-side to reduce the required time for cryptographic operations.
 
 \subsection{Signature Scheme $\mathcal{S}_{CASA}$}
+\label{sec:casa:scheme}
 The CASA signature scheme $\mathcal{S}_{CASA} = (I, G_{VAL}, G_{PK}, G_{PPK}, G_{SK}, S, V_{ENT}, V_{SAV}, V_{FIN})$ is a nine-tuple of algorithms.
 The algorithms comprise an initialization algorithm $I$, a secret value generation algorithm $G_{VAL}$, a public key generation algorithm $G_{PK}$, a partial private key generation algorithm $G_{PPK}$, a private key generation algorithm $G_{SK}$, a signing algorithm $S$, a partial entity verification algorithm $V_{ENT}$, a partial server verification algorithm $V_{SAV}$, and a final entity verification algorithm $V_{FIN}$.
 In the following sections, the specific algorithms are further discussed.
@@ -564,10 +574,16 @@ The definition of the CASA signature scheme is based on the definition of digita
 Moreover, since CASA is a CL-PKC approach, the signature scheme has been adapted from the schemes and concepts presented by \citeauthor{AlRiyami2003} \cite{AlRiyami2003} and \citeauthor{Ramadan2023} \cite{Ramadan2023}.
 The proposed server-aided verification concept and algorithms are inspired by schemes proposed by \citeauthor{Ramadan2020} \cite{Ramadan2020}, \citeauthor{Girault2005} \cite{Girault2005} and \citeauthor{Wu2008} \cite{Wu2008}.
 
+\subsubsection{Security Model}
+The proposed signature scheme $\mathcal{S}_{CASA}$ is a secure signature scheme if it is existentially unforgeable under an adaptive chosen-message attack (EUF-CMA)~\cite{Boneh2023, Goldwasser1988}.
+To create an existential forgery, i.e., output a valid pair of message and signature for a new message, an adversary carrying out a CMA can request valid signatures from an entity for any message of his choice.
+While non-adaptive CMA restricts the adversary to a fixed set of messages chosen prior to the attack, adaptive CMA allows the adversary to request signatures of messages depending on previously obtained signatures.
+% \citeauthor{Goldwasser1988} describe an adaptive CMA as most powerful attack possible for an enemy restricted to using the signature scheme.
+
 \subsubsection{Initialization Algorithm $I$}
 The initialization algorithm $(\rho, s) \leftarrow I(\lambda)$ takes the security parameter $\lambda$ as input and outputs the public system parameters $\rho$ and the private master key $s$.
-The initialization algorithm is executed by the KGC.
-After the execution, $\rho$ is publicly available to all entities, whereas $s$ is only known by the KGC.
+The initialization algorithm is executed by the CAPP.
+After the execution, $\rho$ is publicly available to all entities, whereas $s$ is only known by the CAPP.
 
 \subsubsection{Secret Value Generation Algorithm $G_{VAL}$}
 The secret value generation algorithm $\chi_A \leftarrow G_{VAL}(\rho)$ takes the public system parameters $\rho$ as input and outputs the secret value $\chi_A$ of an entity $A$.
@@ -580,10 +596,10 @@ The algorithm outputs the public verification key $pk_A$ of entity $A$.
 The algorithm is executed by an entity.
 
 \subsubsection{Partial Private Key Generation Algorithm $G_{PPK}$}
-The partial private key generation algorithm $ppk_A \leftarrow G_{PPK}(\rho, s, ATT_A, pk_A)$ takes the public system parameters $\rho$, the private master key of the KGC $s$, the defining attributes of entity $A$ $ATT_A$, and the $A$'s public verification key $pk_A$ as input.
+The partial private key generation algorithm $ppk_A \leftarrow G_{PPK}(\rho, s, ATT_A, pk_A)$ takes the public system parameters $\rho$, the private master key of the CAPP $s$, the defining attributes of entity $A$ $ATT_A$, and the $A$'s public verification key $pk_A$ as input.
 The algorithm outputs the partial private key $ppk_A$ of entity $A$.
-The partial private key generation is executed by the KGC on request of an entity.
-After the execution, the KGC provides the partial private key to the corresponding entity.
+The partial private key generation is executed by the CAPP on request of an entity.
+After the execution, the CAPP provides the partial private key to the corresponding entity.
 
 \subsubsection{Private Key Generation Algorithm $G_{SK}$}
 The private key generation algorithm $sk_A \leftarrow G_{SK}(\rho, \chi_A, ppk_A)$ takes the public system parameters $\rho$, the secret value of an entity $\chi_A$, and the partial private key $ppk_A$ of entity $A$ as input.
@@ -599,13 +615,13 @@ The generated digital signature $\sigma$ is associated with the message $m$ and 
 The partial entity verification algorithm $\sigma_{ENT} \leftarrow V_{ENT}(\rho, pk_A, m, \sigma)$ represents the first step of the server-aided verification process.
 The algorithm takes the public system parameters $\rho$, the public verification key $pk_A$ of entity $A$, the message $m$, and the signature $\sigma$ as input.
 The algorithm outputs the partially verified signature $\sigma_{ENT}$.
-The receiver of a message executes the partial entity verification algorithm $V_{ENT}$ and sends the partially verified signature $\sigma_{ENT}$ to the UCS for server-aided verification.
+The receiver of a message executes the partial entity verification algorithm $V_{ENT}$ and sends the partially verified signature $\sigma_{ENT}$ to the CAPP for server-aided verification.
 
 \subsubsection{Partial Server Verification Algorithm $V_{SAV}$}
 The partial server verification algorithm $\sigma_{SAV} \leftarrow V_{SAV}(\sigma_{ENT})$ represents the second step of the server-aided verification process.
 The algorithm takes the partially verified signature $\sigma_{ENT}$ as input and outputs the partially verified signature $\sigma_{SAV}$.
-The algorithm is executed by the UCS on request of a message receiving entity.
-After the execution, the UCS provides the partially verified signature $\sigma_{SAV}$ to the requestor.
+The algorithm is executed by the CAPP on request of a message receiving entity.
+After the execution, the CAPP provides the partially verified signature $\sigma_{SAV}$ to the requestor.
 
 \subsubsection{Final Entity Verification Algorithm $V_{FIN}$}
 The final entity verification algorithm $\delta \in \{accept, reject\} \leftarrow V_{FIN}(\rho, pk_A, m, \sigma, \sigma_{ENT}, \sigma_{SAV})$ represents the third and last step of the server-aided verification process.
@@ -613,12 +629,6 @@ The algorithm takes the public system parameters $\rho$, the public verification
 The algorithm outputs the verification decision $\delta$ which is either $accept$ or $reject$.
 In other words, the verification algorithm $V_{FIN}$ is used by the receiver to verify a received message $m$ sent by entity $A$ based on an appended signature $\sigma$.
 As $\sigma$ is associated with the message $m$ and the sender's private signing key $sk_A$, it allows the receiver to verify the integrity and authenticity of the received message $m$ using the sender's public verification key $pk_A$.
-
-\subsection{Security Model}
-The proposed signature scheme $\mathcal{S}_{CASA}$ is a secure signature scheme if it is existentially unforgeable under an adaptive chosen-message attack (EUF-CMA)~\cite{Boneh2023, Goldwasser1988}.
-To create an existential forgery, i.e., output a valid pair of message and signature for a new message, an adversary carrying out a CMA can request valid signatures from an entity for any message of his choice.
-While non-adaptive CMA restricts the adversary to a fixed set of messages chosen prior to the attack, adaptive CMA allows the adversary to request signatures of messages depending on previously obtained signatures.
-% \citeauthor{Goldwasser1988} describe an adaptive CMA as most powerful attack possible for an enemy restricted to using the signature scheme.
 
 \section{Server-Aided Attribute-Based Authorization \& Access Control}
 \label{sec:approach:sabaac}
@@ -887,12 +897,12 @@ The phases of the access control protocol are defined as follows:
     As illustrated in the figure, the session initialization relies on an interaction between two PEP instances.
     Moreover, a server-aided access decision verification at the receiving PEP is shown.
     The receiver's PEP uses a server-aided access decision verification provided by a PDP to reduce the trust in another PDP.
-    Additionally, the shown SABAAC components, especially resource-constrained PEP instances, rely on the services provided by a CASA UCS for SAV.
+    Additionally, the shown SABAAC components, especially resource-constrained PEP instances, rely on the services provided by a CASA CAPP for SAV.
     \begin{figure}
         \centering
         \includegraphics[width=1.0\linewidth]{figures/SABAAC_protocols_accesscontrol_initialization.drawio.pdf}
         \caption{Exchanged messages of an access request, unidirectional session initialization, and access decision verification.
-        % The access request procedure relies on an interaction between a PDP and a PEP and is a prerequisite for the session initialization. The session initialization relies on an interaction between two PEP instances. The receiver's PEP uses a server-aided access decision verification provided by a PDP to reduce the trust in another PDP. The shown SABAAC components, especially resource-constrained PEP instances, rely on the services provided by a CASA UCS for SAV.
+        % The access request procedure relies on an interaction between a PDP and a PEP and is a prerequisite for the session initialization. The session initialization relies on an interaction between two PEP instances. The receiver's PEP uses a server-aided access decision verification provided by a PDP to reduce the trust in another PDP. The shown SABAAC components, especially resource-constrained PEP instances, rely on the services provided by a CASA CAPP for SAV.
         }
         \label{fig:sabaac_accesscontrol_initialization}
     \end{figure}
@@ -976,7 +986,7 @@ The adaptation of the layered SAS architecture to the CASC-SAS approach entails 
 This integration of CASC-SAS components into the SAS architecture is visualized in \autoref{fig:casc_architecture}.
 The components depicted in blue represent elements of the SAS architecture, whereas the components depicted in red are introduced by the CASC-SAS approach.
 The components with a color gradient represent elements of the SAS architecture that have been adapted to support CASC-SAS concepts.
-The PEP, PDP, UCS, and KGC components have to be present locally in every adapted SAS.
+The PEP, PDP, and CAPP components have to be present locally in every adapted SAS.
 This is necessary due to the strict time constraints of SAS-internal low latency message exchange.
 The PAP and PSP instances may be centrally deployed, since static authorization is part of the non-time-critical control path communication.
 Any non-intermediate SAS component that participates in a communication relationship must either support the CASC-SAS protocols or use the services provided by a PEP to secure occurring message exchanges.
@@ -999,12 +1009,12 @@ The second part is dedicated to the SABAAC components and protocols.
 
 The employed components of CASA and SABAAC provide different services.
 Furthermore, the components have to be deployed differently to correspond to the proposed protocols.
-While PAP and PSP may be deployed centrally, components such as PEP, PDP, UCS, and KGC are distributed to individual SAS instances.
+While PAP and PSP may be deployed centrally, components such as PEP, PDP, and CAPP are distributed to individual SAS instances.
 This leads to differing hardware requirements for the implemented components.
 Moreover, with the exception of PEP instances, the components provide their services by using a client-server pattern.
 The PEP instances partially use a client-server pattern and partially provide their services in the form of a Bump-In-The-Wire (BITW) solution.
 The services provided by PEP instances via BITW pattern are automatically applied to captured packets.
 Therefore, these services are invisible to the corresponding service consumers.
 This BITW pattern is inspired by the security filter approach presented by \citeauthor{Ishchenko2018} \cite{Ishchenko2018}.
-Taking the differing provision patterns and deployment structures into account, we propose the usage of performance-oriented server hardware for the PAP, PSP, PDP, UCS, and KGC to avoid bottlenecks and mitigate the risk of accidental or malicious DoS.
+Taking the differing provision patterns and deployment structures into account, we propose the usage of performance-oriented server hardware for the PAP, PSP, PDP, and CAPP to avoid bottlenecks and mitigate the risk of accidental or malicious DoS.
 Moreover, we propose the usage of inexpensive off-the-shelf hardware for the highly distributed PEP instances.
