@@ -564,6 +564,37 @@ Nevertheless, specific online steps can be accelerated via server-aided cryptogr
 Offline steps depend on information that is available before any message exchange occurs.
 Therefore, offline steps can be precomputed either at the CAPP or at client-side to reduce the required time for cryptographic operations.
 
+\subsection{Algorithm-Agnostic Public-Key Exchange Protocol}
+The Algorithm-agnostic PKC EXchange (APEX) protocol represents the primary protocol of CASA.
+The main objective of the protocol is the exchange of information between the CAPP and other devices within a SAS.
+An APEX message exchange is always initiated by sending a request to the CAPP.
+Consequently, the protocol can be classified as a request-response client-server protocol.
+Furthermore, the protocol is based on a stateless communication pattern that establishes no sessions at the CAPP.
+In other words, a message exchange is completed as soon as the APEX reply is sent to the requestor.
+
+The APEX protocol comprises five so-called transactions.
+A transaction represents a request-response pair of the protocol.
+The transactions of the protocol are defined as follows:
+\begin{description}
+    \item[Transaction I:] Registration\\
+    A device within a SAS sends a registration request to establish its identity and its initial public key at the CAPP.
+    For this purpose, the device encapsulates its public key and its identifying attributes in the registration request.
+    \item[Transaction II:] Re-Registration\\
+    The process of linking a new public key to existing attributes, or modifying an already registered public key is referred to as re-registration. 
+    By issuing a re-registration, devices may register multiple public keys, e.g., for different cryptographic algorithms supported.
+    A re-registration request has to be verifiable with one of the registered public keys of a device.
+    If the re-registration request cannot be verified, it is rejected by the CAPP.
+    \item[Transaction III:] Revocation\\
+    The revocation transaction allows devices to revoke a registered public key by removing it from the CAPP.
+    The revocation is referred to as deregistration, if it is used to revoke the last registered public key of a device.
+    \item[Transaction IV:] Query\\
+    The query transaction allows devices to retrieve a specific public key from the CAPP.
+    To identify the requested public key, the sender of the request has to encapsulate the identifying attributes of the key owner.
+    \item[Transaction V:] Computation\\
+    A device may issue a computation request in order to make use of server-aided operations provided by the CAPP.
+    Besides the operation-dependent parameters, the request must contain an identification of the requested operation.
+\end{description}
+
 \subsection{Signature Scheme $\mathcal{S}_{CASA}$}
 \label{sec:casa:scheme}
 The CASA signature scheme $\mathcal{S}_{CASA} = (I, G_{VAL}, G_{PK}, G_{PPK}, G_{SK}, S, V_{ENT}, V_{SAV}, V_{FIN})$ is a nine-tuple of algorithms.
