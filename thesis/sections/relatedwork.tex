@@ -1,6 +1,6 @@
 \chapter{Related Work}
 \label{ch:relatedwork}
-In the following section, the related work of the proposed thesis is presented.
+In the following section, the related work of the thesis is presented.
 The introduced related work serves as a foundation for the proposed approach presented in \autoref{ch:approach}.
 Moreover, the similarities, differences, and applications of the related work within the scope of the proposed approach are going to be highlighted.
 \todo{Add introduction of subsections to rel work introduction}
@@ -27,7 +27,7 @@ In advisory mode the security filter selectively tags and verifies packets based
 Additionally, the operation of the security filter can be disabled in case of internal errors allowing all packets to pass through.
 \citeauthor{Ishchenko2018} showed that the security filter is able to meet the IEC 61850 performance requirements of GOOSE and SV \cite{IEC61850P5} using a HMAC and GMAC algorithm even on commodity of-the-shelf ARM hardware.
 
-This thesis proposal introduces an approach similar to the security filter approach presented by \citeauthor{Ishchenko2018}.
+This thesis introduces an approach similar to the security filter approach presented by \citeauthor{Ishchenko2018}.
 The architecture and security procedures of the proposed approach are inspired by the security filter.
 The concept of authenticated communication is proposed as a foundation for secure communication in substations.
 Moreover, the proposed approach aims to extend the employed access control from identity-based to attribute-based authorization.
@@ -66,7 +66,7 @@ The authors conducted the evaluation of the presented architecture using simulat
 As stated by the authors, the hardware implementation is able to process GOOSE and SV packets with a fixed latency in the order of microseconds.
 Consequently, the authors state that the presented hardware architecture is able to provide integrity and confidentiality without exceeding the maximum delivery time of three milliseconds introduced by IEC 61850 for GOOSE and SV packets~\cite{IEC61850P5}.
 
-Besides securing the intra-substation communication based on the GOOSE and SV protocol, the thesis proposal extends the idea of providing integrity, authenticity, and non-repudiation to inter-substation and remote communication.
+Besides securing the intra-substation communication based on the GOOSE and SV protocol, the thesis extends the idea of providing integrity, authenticity, and non-repudiation to inter-substation and remote communication.
 To achieve flexibility and interoperability with regard to different ICS environments including different protocols and algorithms used, the proposed approach is software-based rather than hardware-based.
 Furthermore, the proposed approach does not rely on a symmetric-key algorithms, but rather on asymmetric-key algorithms.
 This is possible due to an increase in processing performance of IT and OT devices nowadays.
@@ -87,7 +87,7 @@ As a consequence, new types of attacks as well as errors caused by substation op
 The presented attack scenarios are an accidental or malicious IED configuration change, false sensor data injection, and false device command injection.
 Collaborating devices can block these attacks by validating sensor data and configuration changes based on measurements and metrics as well as predicting consequences of control actions.
 
-The approach presented in the thesis proposal is inspired by the usage of domain-specific knowledge to detect and block attacks.
+The approach presented in the thesis is inspired by the usage of domain-specific knowledge to detect and block attacks.
 The proposed approach uses available domain-specific knowledge to design and implement a substation-specific cryptosystem.
 Moreover, the incremental framework of the proposed approach for the system design, threat analysis, and mitigation strategy design is based on the research framework presented by \citeauthor{Hong2019}.
 
@@ -106,7 +106,7 @@ The access control firewall enforces access request decisions based on ABAC poli
 The ABAC policies used in the presented approach are defined, communicated, and evaluated using the eXtensible Access Control Markup Language (XACML) standard \cite{Oasis2013}.
 According to \citeauthor{Ruland2018}, the access request decisions are made by a Policy Decision Point (PDP) that can either be part of the access control firewall or be implemented as an external server on the outer station bus.
 
-The approach presented in the thesis proposal employs ABAC similarly to the access control approach presented by \citeauthor{Ruland2018}.
+The approach presented in the thesis employs ABAC similarly to the access control approach presented by \citeauthor{Ruland2018}.
 Besides employing ABAC to secure the communication between devices on the station bus, the proposed approach controls access requests to any device within the substation that requires access control. 
 For this purpose, not a single but rather distributed ABAC firewall is used.
 As a consequence, the firewall does not represent a communication bottleneck or single point of failure of an ICS in the proposed approach.
@@ -146,7 +146,7 @@ An IED of a substation incorporates an IEC 61850 server and RBAC client.
 The implementation demonstrates the feasibility of RBAC for substations as specified by IEC 62351~\cite{IEC62351P8}.
 Furthermore, as stated by the authors, the presented implementation is capable of processing and responding to MMS requests within the 500 millisecond time requirement for type 3 messages (low speed messages) specified by IEC 61850-5~\cite{IEC61850P5}.
 
-Instead of exclusively relying on roles, the approach presented in the thesis proposal employs ABAC to enable the usage of fine-grained and flexible attribute-based access policies.
+Instead of exclusively relying on roles, the approach presented in the thesis employs ABAC to enable the usage of fine-grained and flexible attribute-based access policies.
 Moreover, the goal of the proposed approach is to secure any communication within substations including type 1 messages (fast messages) and type 2 messages (medium speed messages) as described by IEC 61850-5~\cite{IEC61850P5}.
 
 %%% Ma2006 - Constraint-Enabled Distributed RBAC for Subscription-Based Remote Network Services (10.1109/CIT.2006.63)
@@ -168,7 +168,7 @@ The DRBAC policies are realized in the form of authorization policy certificates
 Each DRBAC policy is associated to a certain distributed role and contains a domain-dependent resource operation permission.
 Moreover, the authors state that their DRBAC approach supports temporal, contextual, or cardinality constraints to enhance the semantic expressiveness of access control and enable the definition of higher-level organizational policies.
 
-The authentication and authorization approach employed in the thesis proposal is inspired by the concept of delegation presented by \citeauthor{Ma2006}.
+The authentication and authorization approach employed in the thesis is inspired by the concept of delegation presented by \citeauthor{Ma2006}.
 The authors illustrate the concept of delegation within the context of a subscription-based remote network service environment.
 The proposed approach entails the utilization of authentication and authorization delegation in substations.
 Moreover, the proposed approach elevates the degree of abstraction of the presented delegation concept by decoupling it from the concrete access control model used.
@@ -192,7 +192,7 @@ Moreover, the presented PDM is based on a rule-based expert system and a context
 The last phase of the presented approach is referred to as interoperability.
 During the interoperability phase the PEP transparently applies the security policies as indicated by the authorization token and performs the action requested by the subject.
 
-The approach presented in the thesis proposal relies on a system model with an architecture similar to the approach presented by \citeauthor{Alcaraz2016}.
+The approach presented in the thesis relies on a system model with an architecture similar to the approach presented by \citeauthor{Alcaraz2016}.
 Moreover, the two approaches resemble in their usage of authentication and authorization delegation as well as their awareness regarding the request context realized via PDP decision-making.
 Nevertheless, the approaches differ in their degree of dependence on specific access control models.
 The approach presented by \citeauthor{Alcaraz2016} depends on the subject-role associations of RBAC for decision-making as specified by IEC 62351-8~\cite{IEC62351P8}.
