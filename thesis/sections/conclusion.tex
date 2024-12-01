@@ -1,9 +1,58 @@
 \chapter{Conclusion}
 \label{ch:conclusion}
-\todo{TODO: Add conclusion intro}
+%In this last chapter, we conclude the thesis by presenting the potential future work of the proposed approach.
+%The potential future work is discussed in \autoref{sec:conclusion:future_work}.
+%Furthermore, in \autoref{sec:conclusion:summary}, we present a summary of the contributions and findings of the thesis.
+This concluding chapter presents the potential future work of the proposed approach.
+The potential future work is discussed in detail in \autoref{sec:conclusion:future_work}.
+Furthermore, \autoref{sec:conclusion:summary} provides a summary of the contributions and findings of the thesis.
 
 \section{Future Work}
-\todo{TODO: Add future work}
+\label{sec:conclusion:future_work}
+% AB-PKC - Pure Cryptography
+We demonstrated that the CASC-SAS approach, its cryptography approach CASA, and its authorization and access control approach SABAAC are able to enhance the communication security in a SAS.
+In the CASC-SAS approach, the enhancement of communication security was achieved by combining cryptographic services provided by CASA with authorization and access control services provided by SABAAC.
+Further research could be conducted to determine, whether this enhancement of security is also achievable by employing a purely cryptographic approach.
+To answer this question, we suggest the design and realization of an AB-PKC approach that satisfies the requirements of the SAS domain.
+In contrast to cryptography-dependent but scheme-agnostic ABAC, as we proposed it in CASC-SAS, the AB-PKC approach could allow the accomplishment of additional security objectives, including privacy and anonymity.
 
+% Encryption \& Decryption
+Besides the changes in the approach paradigm, further research might explore if the existing CASC-SAS approach could be extended to support encryption and decryption alongside its signing and verification operations.
+While confidentiality for power systems via encryption is explicitly non-recommended for time-critical communication in the IEC standards \cite{IEC62351P6}, further research might elucidate how confidentiality can be achieved even in such time-critical systems.
+
+% Hardware Cryptography Accelerators
+With regard to the cryptographic services provided by CASA, further studies could be carried out to evaluate the advantages and disadvantages of hardware-based cryptography acceleration.
+We expect a decrease of the required computation time and, thus, an increase of the message throughput by utilizing hardware accelerators for cryptographic algorithms.
+Nevertheless, factors such as algorithm compatibility, costs per acceleration unit, and computation time consistency might lead to a less beneficial influence on the system than currently expected.
+
+% NTP/PTP/ARP Support \& Time Consistency
+The evaluation demonstrated the ability of CASC-SAS to secure application protocols of an SAS as well as multipurpose transport protocols.
+However, network time protocols such as NTP and PTP were bypassed by the PEP entities, since the operation of these protocols is influenced by time inconsistencies caused by authentication and access control.
+Further research could investigate how network time protocols could benefit from being processed by a PEP and what additional requirement and constraints have to be satisfied with regard to computation performance and time consistency.
+Furthermore, lower layer network management protocols such as ARP were bypassed, because these protocols provide services not only to SAS devices but also to auxiliary intermediate devices, including network switches and routers.
+Future studies could evaluate the feasibility of CASC-SAS to process these network management protocols and mitigate attacks related to them.
+
+% Redundancy Protocols
+Furthermore, future studies could investigate what impact redundancy protocols of time-critical networks have on the operation of our approach.
+For this purpose, CASC-SAS could be deployed and evaluated in systems using the Parallel Redundancy Protocol (PRP) or Media Redundancy Protocol (MRP). 
+
+% Implementation of CASC-SAS in Switch/SDN Controller
+To simplify the architectural complexity of CASC-SAS, reduce the overall costs of deployment, and enable processing of the above-mentioned network protocols, we propose the implementation of CASC-SAS in network switches as an alternative realization approach.
+For this purpose, further research could explore how CASC-SAS might be realized using Software Defined Networking (SDN) solutions.
+This SDN-based CASC-SAS might aggregate the tasks of multiple PEPs by deploying a virtual PEP for each port of a network switch.
+Furthermore, distributed SDN controllers might provide the PAP, PSP, PDP and CAPP services.
+
+% AI for Policy Management
+While the proposed PAP entities provide policy management services for human operators, future research could investigate how CASC-SAS might benefit from the utilization of artificial intelligence (AI).
+Approaches such as AI-based intrusion detection could create and modify the security policies that are enforced within a SAS.
+As a consequence, CASC-SAS might mitigate a larger variety of cyberattacks in a more timely manner.
+
+% Deployment of CASC-SAS in Time-Critical Non-SAS Enviroments
+In addition to the deployment in a SAS, further research is needed to evaluate the applicability of CASC-SAS for other time-critical systems.
+Therefor, we propose the evaluation of our approach in time-critical systems which have similar requirements as a SAS.
+Systems that might potentially benefit from the enhanced communication security provided by our approach include industry 4.0, robotics, avionics, and medical systems.
+
+%intra \& inter SAS communication
 \section{Summary}
+\label{sec:conclusion:summary}
 \todo{TODO: Add summary}
