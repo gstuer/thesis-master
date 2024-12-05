@@ -54,4 +54,25 @@ Systems that might potentially benefit from the enhanced communication security 
 %intra \& inter SAS communication
 \section{Summary}
 \label{sec:conclusion:summary}
-\todo{TODO: Add summary}
+To address the increasing relevance of cybersecurity for smart grid systems and to overcome the limitations of existing standards like IEC 62351, we proposed CASC-SAS, a novel cryptography and cybersecurity approach for SASs compliant with IEC 61850.
+The two attribute-based and server-aided core concepts CASA and SABAAC represent the central parts of the four-layer dual-path CASC-SAS security architecture.
+
+CASA provides protocols, algorithms, and schemes for PKC-based authentication, to safeguard the integrity, authenticity, and non-repudiation of SAS communication.
+As a central component of the CASA approach, we proposed an algorithm-agnostic administration and processing platform, that provides key generation, key distribution, key revocation, and server-aided computation services via the proposed APEX protocol to resource-constrained devices of a SAS.
+SABAAC enables the administration and enforcement of ABAC policies for time-critical and time-variable environments.
+We introduced the concept of time-dependency for attributes and ABAC policies, and discussed methods to manage, distribute, and enforce such expressive and flexible but yet computationally expensive access control policies.
+With regard to the management and evaluation of access control policies, this thesis proposed a delegated attribute-based authorization protocol responsible for the policy creation, management, storage, and distribution.
+With regard to the enforcement of policies, we introduced a delegated attribute-based access control protocol.
+To facilitate the enforcement of policies in time-critical systems, we proposed a novel policy enforcement strategy, which combines server-sided precomputation and client-sided caching of access decisions.
+
+We implemented CASC-SAS using the object-oriented programming paradigm and the programming language Java.
+The implementation is published open source on GitHub under the European Union Public Licence (EUPL).
+To assess the applicability of our approach for SAS environments, we conducted a theoretical and experimental evaluation based on the implementation.
+The experiments and evaluation results were published open source alongside the implementation.
+Based on formal methods, the evaluation has shown that CASC-SAS is capable of enhancing the communication security of a SAS.
+While SAS-typical cyberattacks can be mitigated by employing the approach, we also discussed the changed attack surface, leading to an increased risk of DoS attacks.
+The evaluation demonstrated that our approach is a feasible solution for SAS environments not only security-wise but also cost-wise and due to its highly-compatible BITW concept, that allows retrofitting of existing systems.
+Moreover, based on testbed-based and lab-based experiments, the evaluation demonstrated the ability of the approach to secure time-critical message exchanges.
+Accordingly, CASC-SAS is capable of securing low-latency MMS, GOOSE, and SV message exchanges between the IEDs and MUs of a SAS.
+\todo{TODO: GitHub/EUPL reference einfügen}
+\todo{TODO: Finish summary -> Add evaluation results}
