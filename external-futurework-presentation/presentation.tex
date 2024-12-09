@@ -299,10 +299,6 @@
     % ABAC Benefit vs. traditional IBAC/RBAC solutions including RT-Attribute like network congestion
     % ABAC Requirements -> Authentication \& Authorization
 \end{frame}
-\begin{frame}{Server-Aided ABAC}
-    \centering
-    \includegraphics[width=1.0\textwidth]{./figures/access_control_request_delegation.drawio.pdf}
-\end{frame}
 \begin{frame}{CASC-SAS: Authentication, Authorization, \& Access Control}
     \begin{redblock}{Problem: Policy Evaluation Complexity}
         Fine-grained \& flexible access control relying on dynamic authorization \& authentication
@@ -321,6 +317,14 @@
             \item Policy Enforcement Point (PEP) $\rightarrow$ Enforces policy decisions by controlling access to protected objects
         \end{itemize}
     \end{grayblock}
+\end{frame}
+\begin{frame}{SABAAC: Session Initialization}
+    \centering
+    \includegraphics[width=0.75\textwidth]{./figures/SABAAC_protocols_accesscontrol_initialization.drawio.pdf}
+\end{frame}
+\begin{frame}{SABAAC: Payload Exchange}
+    \centering
+    \includegraphics[width=0.9\textwidth]{./figures/SABAAC_protocols_accesscontrol_payloadexchange.drawio.pdf}
 \end{frame}
 
 \section{Evaluation}
