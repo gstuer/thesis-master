@@ -33,7 +33,6 @@ Besides the Industrial Control Systems (ICS), further discussed in \autoref{sec:
 Although the evolution from analog systems to OT systems by inserting IT into existing physical systems might provide new functionality and enhance system parameters like costs or performance, new challenges may arise \cite{Stouffer2023}.
 Especially the typical long life cycle of OT systems and their unique requirements regarding performance, reliability, security, safety, privacy, and environmental impact have to be taken into account when designing, operating, and maintaining OT systems.
 In the following, the thesis especially focuses on the security implications as well as the design and implementation of secure OT systems.
-\todo{800-82r3 OT System Design Considerations}
 
 \section{Industrial Control System (ICS)}
 \label{sec:ics}
@@ -55,7 +54,6 @@ Moreover, the technologies including devices as well as the communication links 
 
 In the following sections the main types of control system architectures and topologies are presented.
 While these architectures introduce different and partially incompatible concepts, the approaches can be complementing when used on different levels of hierarchy of a complex ICS network \cite{Stouffer2023}.
-\todo{Add Galloway2013 difference Company vs. ICS networks}
 
 \subsubsection{Supervisory Control \& Data Acquisition (SCADA)}
 Supervisor Control And Data Acquisition (SCADA) is a type of control system architecture.
@@ -127,11 +125,6 @@ Therefore, automated control devices are required to perform necessary control a
 Especially in an ICS with large geographical extent, it may be required to perform computations close to the field devices to reduce or avoid communication latency.
 IEDs can provide the computational performance and features required to realize time-constrained control functionality at the field.
 
-% \subsection{Substations}
-% \todo{Introduction: SS is OT, Definition \& Modelling via IEC61850, Availability \& Integrity over Confidentiality, typical communication in a scada system, commonly used protocols, possible attack vectors}
-% \todo{Describe layers: Process bus, Station bus, bay level, and describe where IED and merging units (MUs) are used, see ABB paper sec comm of ieds in digi ss}
-\todo{Subsection: Substations}
-
 \section{Security}
 \label{sec:security}
 \citeauthor{Eckert2023} \cite{Eckert2023} states that security is a characteristic of an IT system.
@@ -145,7 +138,6 @@ This leads to less isolation and a requirement for OT security solutions.
 According to \citeauthor{Stouffer2023} \cite{Stouffer2023}, precautions have to be taken when introducing OT security solutions resembling IT solutions due to the differing requirements of OT systems.
 \citeauthor{Stouffer2023} state that considerations for OT security have to include the special requirements regarding timeliness, performance, constrained resources, availability, communication protocols, and risk management.
 Moreover, they mention the physical effect an OT system has on its environment, its typically longer component lifecycle including the differing change management, and the geographical distribution of physical components.
-\todo{Describe NIST 800-82r3 difference between IT OT System Security more clearly}
 
 \subsection{Subject \& Object}
 Within the scope of information security, the entities of a system are either referred to as subjects or objects \cite{JTF2020}.
@@ -162,7 +154,6 @@ These goals are referred to as CIA which stands for confidentiality, integrity, 
 The relative importance of a specific security goal depends on the concrete system and its environment.
 Therefore, within the scope of IT systems confidentiality and integrity may be more important than availability.
 The six security goals described by \citeauthor{Eckert2023} including CIA are discussed in the following sections.
-\todo{Source for more important goals?}
 
 According to \citeauthor{Stouffer2023} \cite{Stouffer2023}, the characteristics of an OT system may differ from the characteristics of an IT system.
 As a consequence, the relative importance of specific security goals may differ.
@@ -205,7 +196,6 @@ Besides techniques to ensure confidentiality and integrity, data anonymization a
 
 According to \citeauthor{Eckert2023} \cite{Eckert2023}, the term anonymization comprises techniques to change personal data in a certain way to make it impossible to infer the identity of a person from the personal data.
 Pseudonymization is a weaker form of anonymization allowing the processing of personal data as long as the identity of a person cannot be inferred from the personal data directly without the use of additional information.
-\todo{Describe anonym. and pseudonym. with examples.}
 
 \subsection{Level \& Category}
 The security level and security category represent a characteristic of data objects and subjects denoting their degree of sensitivity \cite{Stine2008}.
@@ -257,8 +247,6 @@ The access control model defines the functionalities and environment including s
 In the following sections, five different access control models are introduced.
 The access control models presented differ regarding their applicability and flexibility.
 Moreover, each model has specific advantages and disadvantages.
-\todo{General introduction how the concept (-> "Reference Monitor") looks like.}
-\todo{Explain Identification/Authorization/Authentication, see Access Control at $https://en.wikipedia.org/wiki/Information_security$}
 
 \subsection{Discretionary Access Control (DAC)}
 Discretionary Access Control (DAC) is an object-based access control model \cite{Eckert2023}.
@@ -320,8 +308,6 @@ An advantage of ABAC compared to different access control models is the higher f
 Moreover, ABAC can take access control decisions based on ad-hoc knowledge and knowledge from separate infrastructure.
 This is possible due to ABAC taking decisions at request time by evaluating policies instead of static decision-making as found in IBAC and RBAC.
 As a consequence, pre-provisioning of requesting subjects in a multi-organization environment can be avoided.
-\todo{Overhaul benefits and challenges based on Guide to ABAC Definition and Considerations Page 8}
-\todo{Describe/Present architecture of XACML based on RFC 2904 including PEP, PDP, and PIP}
 
 \subsection{NIST Recommendations}
 The National Institute of Standards and Technology (NIST) provides recommendations and guidance for authentication, authorization, and access control in ICS \cite{Stouffer2015} and OT systems \cite{Stouffer2023}.
@@ -343,22 +329,6 @@ These solutions represent secure platforms enabling the access to OT devices.
 Solutions that verify the identity of individuals or devices before granting access are recommended, as they lead to lower access and command processing latencies.
 Moreover, solutions should be highly reliable and designed to reduce the impact on OT operations and safety.
 
-% \section{Classes of Security Policy Models}
-% \label{sec:securitypolicymodels}
-
-% \subsection{Access Control Models}
-% \subsubsection{Identity-Based Access Control (IBAC)}
-% \subsubsection{Role-Based Access Control (RBAC)}
-% \subsubsection{Attribute-Based Access Control (ABAC)}
-
-% \subsection{Information Flow Models}
-% \todo{Introduction + Chinese Wall Model}
-
-% \subsection{Multi-Level Security Models}
-% \todo{Introduction + Bell-La Padula Model}
-
-% \subsection{Non-Interference Models}
-
 \section{Cryptography}
 \label{sec:fundamentals:cryptography}
 Cryptography is a scientific discipline concerned with the study of methodologies, algorithms, schemes, and protocols for the encryption and verification of information~\cite{Barker2016,Barker2020,CNSS2022}.
@@ -368,7 +338,6 @@ The objective of cryptography is to satisfy specific security goals, including t
 Cryptographic algorithms are well-defined computational procedures that transform a variable input into an output~\cite{Barker2020}.
 The input of an algorithm comprises a cryptographic key that determines the algorithm's operation.
 Algorithms are classified based on their complexity and degree of distribution.
-\todo{TODO: Add inline enumeration for algorithm classes.}
 Cryptographic primitives represent low-level cryptographic algorithms.
 The purpose of primitives is to act as building blocks for more complex algorithms.
 A cryptographic scheme represents a set of unambiguously specified transformations providing a cryptographic service.
