@@ -2,9 +2,14 @@
 \label{ch:relatedwork}
 In the following section, the related work of the thesis is presented.
 The introduced related work serves as a foundation for the proposed approach presented in \autoref{ch:approach}.
-Moreover, the similarities, differences, and applications of the related work within the scope of the proposed approach are going to be highlighted.
-\todo{Add introduction of subsections to rel work introduction}
-\todo{Alternative division: ICT-based security layer/measures (e.g. enc/auth of messages) \& Domain-based security layer/measures (e.g. intrusion detection \& access control)}
+Moreover, similarities and differences of the related work and the proposed approach are discussed.
+
+The related work consists of two parts.
+On the one hand, the first part of the related work introduces means to secure the communication, i.e., frame or packet exchange between devices in a SAS.
+For this purpose, we discuss approaches which safeguard the confidentiality, authenticity, integrity, and non-repudiation of SAS communication.
+On the other hand, the second part of the related work is dedicated to the prevention of unauthorized access.
+Accordingly, we discuss approaches which enable access control and satisfy the Principle of Least Privilege (PoLP) and Separation of Duties (SoD).
+% Alternative division: ICT-based security layer/measures (e.g. enc/auth of messages) \& Domain-based security layer/measures (e.g. intrusion detection \& access control)
 
 \section{Secure Communication in Substations}
 %%% Ishchenko2018 - Secure Communication of Intelligent Electronic Devices in Digital Substations
@@ -50,8 +55,13 @@ As a consequence, the authors implemented the authentication approaches and comp
 In addition to the presented implementations, computation times from three other papers were taken into account.
 According to \citeauthor{Elbez2019}, the presented computational times show that asymmetric cryptography solutions based on RSA and RSASSA-PSS are not suitable for the timing constraints of GOOSE messages.
 However, the authentication time of the HMAC approach is of the order of microseconds.
-Consequently, as stated by the authors, HMAC is a viable approach for the authentication and integrity of GOOSE messages.
-\todo{Describe similarities, differences, and applications of the paper and the proposed approach.}
+Consequently, as stated by the authors, HMAC is a viable approach for the authentication and integrity protection of GOOSE messages.
+
+This thesis backs the results of the authors by evaluating different cryptographic algorithms for low-latency communication in substations.
+While our approach is based on an algorithm-agnostic cryptography concept, the focus of the thesis is on digital signature schemes.
+The algorithm-agnostic approach is inspired by the Transport Layer Security (TLS) protocol \cite{rfc8446}.
+As a consequence, our approach is based on the idea that not a single cryptographic algorithm should be used, but rather different cryptographic algorithms and schemes might be optimal solutions for different communications in a SAS.
+Moreover, our approach emphasizes the advantages of PKC in a SAS, including lightweight and secure key distribution as well as malleability with regard to satisfied security requirements.
 
 %%% Rodriguez2021 - A Fixed-Latency Architecture to Secure GOOSE and Sampled Value Messages in Substation Systems
 An authentication and encryption approach for substation communication using the protocols GOOSE and SV is presented by \citeauthor{Rodriguez2021} \cite{Rodriguez2021}.
@@ -115,17 +125,20 @@ As a consequence, the firewall does not represent a communication bottleneck or 
 A real-time capable ABAC approach is presented by \citeauthor{Burmester2013} \cite{Burmester2013}.
 The presented approach identifies the requirements of cyber-physical systems including confidentiality, integrity, and availability.
 In particular, according to the authors, employing ABAC in real-time availability scenarios can be challenging due to the dynamic and large event space determining the attribute values.
-In other words, resources may not be available in time leading to events threatening the system state not being addressed within strict time limits.
+In these real-time availability scenarios, events threatening the system state might not be addressed within strict time limits if attribute values are not available in time.
 For this purpose, the authors propose an extended ABAC model that is based on real-time attributes to support availability within the strict time constraints of cyber-physical systems.
 A real-time attribute represents an attribute whose value is time-dependent.
 The availability of a time-dependent attribute can be expressed with an availability label that is dynamically determined based on user and system events as well as the context of the requested service.
 An availability label is referred to as priority if it is associated to a subject attribute, congestion for an object attribute, and criticality for an environment attribute.
 The authors demonstrate the real-time ABAC approach for IP multicast in Trusted Computing (TC) compliant networks.
-Therefor, the authors propose a congestion control algorithm based on the real-time availability labels.
+Therefor, the authors propose a congestion control algorithm based on the availability labels.
 The proposed algorithm guarantees that high priority packets are delivered timely.
 In case of a congestion, lower priority packets may be buffered or dropped to support the real-time requirement of high priority packets.
 As stated by the authors, the extended ABAC model is applicable to substation automation systems and medical cyber-physical systems.
-\todo{Describe similarities, differences, and applications of the paper and the proposed approach.}
+
+The access control policy classification and evaluation presented in the thesis are inspired by the authors' concept of real-time attributes.
+In our approach, real-time attributes together with static attributes form dynamic and static ABAC policies, i.e., access control policies whose evaluation does or does not rely on time-variable subject, object, environment, or action attributes.
+Consequently, while relying on a similar concept of real-time attributes, the approaches differ in their utilization of these attributes.
 
 %%% Lee2015 - Role-based access control for substation automation systems using XACML (10.1016/j.is.2015.01.007)
 An IEC 61850 and IEC 62351 compliant RBAC approach for substations is presented by \citeauthor{Lee2015} \cite{Lee2015}.
@@ -207,4 +220,8 @@ Moreover, the authors present an algorithm for access privilege parsing to retri
 In the presented access control approach the parsed role-based access policies are used to establish identity-based access control matrices.
 An access control matrix of the presented approach controls the access to logical nodes of a substation IED.
 For this purpose, an access control matrix associates subject identities with permitted operations for each individual data object.
-\todo{Describe similarities, differences, and applications of the paper and the proposed approach.}
+
+In contrast to the approach presented by the authors, our approach relies on attribute-based authorization and access control.
+While both approaches aim to secure IEC 61850 substation communication, the thesis is based on a certificateless communication concept.
+This concept enables the server-aided evaluation and enforcement of expressive and flexible but yet computationally expensive ABAC policies.
+Moreover, we emphasize the importance of securing not only bay level but also station and process level devices of a SAS.
