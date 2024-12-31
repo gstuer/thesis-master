@@ -597,69 +597,130 @@ The transactions of the protocol are defined as follows:
 
 \subsection{Signature Scheme $\mathcal{S}_{CASA}$}
 \label{sec:casa:scheme}
-The CASA signature scheme $\mathcal{S}_{CASA} = (I, G_{VAL}, G_{PK}, G_{PPK}, G_{SK}, S, V_{ENT}, V_{SAV}, V_{FIN})$ is a nine-tuple of algorithms.
-The algorithms comprise an initialization algorithm $I$, a secret value generation algorithm $G_{VAL}$, a public key generation algorithm $G_{PK}$, a partial private key generation algorithm $G_{PPK}$, a private key generation algorithm $G_{SK}$, a signing algorithm $S$, a partial entity verification algorithm $V_{ENT}$, a partial server verification algorithm $V_{SAV}$, and a final entity verification algorithm $V_{FIN}$.
+The CASA signature scheme $\mathcal{S}_{CASA} = (I, G_{PPK}, G_{SK}, S_i, S_{AGG}, V_{SAV}, V_{ENT})$ is a seven-tuple of algorithms.
+The algorithms comprise an initialization algorithm $I$, a partial private key generation algorithm $G_{PPK}$, a private key generation algorithm $G_{SK}$, a signing algorithm $S_i$, a signature aggregation algorithm $S_{AGG}$, a partial server verification algorithm $V_{SAV}$, and an entity verification algorithm $V_{ENT}$.
 In the following sections, the specific algorithms are further discussed.
 
-The definition of the CASA signature scheme is based on the definition of digital signature schemes provided by \citeauthor{Boneh2023} \cite{Boneh2023}.
-Moreover, since CASA is a CL-PKC approach, the signature scheme has been adapted from the schemes and concepts presented by \citeauthor{AlRiyami2003} \cite{AlRiyami2003} and \citeauthor{Ramadan2023} \cite{Ramadan2023}.
-The proposed server-aided verification concept and algorithms are inspired by schemes proposed by \citeauthor{Ramadan2020} \cite{Ramadan2020}, \citeauthor{Girault2005} \cite{Girault2005} and \citeauthor{Wu2008} \cite{Wu2008}.
+%The definition of the CASA signature scheme is based on the definition of digital signature schemes provided by \citeauthor{Boneh2023} \cite{Boneh2023}.
+%Moreover, since CASA is a CL-PKC approach, the signature scheme has been adapted from the schemes and concepts presented by \citeauthor{AlRiyami2003} \cite{AlRiyami2003} and \citeauthor{Ramadan2023} \cite{Ramadan2023}.
+%The proposed server-aided verification concept and algorithms are inspired by schemes proposed by \citeauthor{Ramadan2020} \cite{Ramadan2020}, \citeauthor{Girault2005} \cite{Girault2005} and \citeauthor{Wu2008} \cite{Wu2008}.
 
-\subsubsection{Security Model}
-The proposed signature scheme $\mathcal{S}_{CASA}$ is a secure signature scheme if it is existentially unforgeable under an adaptive chosen-message attack (EUF-CMA)~\cite{Boneh2023, Goldwasser1988}.
-To create an existential forgery, i.e., output a valid pair of message and signature for a new message, an adversary carrying out a CMA can request valid signatures from an entity for any message of his choice.
-While non-adaptive CMA restricts the adversary to a fixed set of messages chosen prior to the attack, adaptive CMA allows the adversary to request signatures of messages depending on previously obtained signatures.
+%\subsubsection{Security Model}
+%The proposed signature scheme $\mathcal{S}_{CASA}$ is a secure signature scheme if it is existentially unforgeable under an adaptive chosen-message attack (EUF-CMA)~\cite{Boneh2023, Goldwasser1988}.
+%To create an existential forgery, i.e., output a valid pair of message and signature for a new message, an adversary carrying out a CMA can request valid signatures from an entity for any message of his choice.
+%While non-adaptive CMA restricts the adversary to a fixed set of messages chosen prior to the attack, adaptive CMA allows the adversary to request signatures of messages depending on previously obtained signatures.
 % \citeauthor{Goldwasser1988} describe an adaptive CMA as most powerful attack possible for an enemy restricted to using the signature scheme.
 
 \subsubsection{Initialization Algorithm $I$}
-The initialization algorithm $(\rho, s) \leftarrow I(\lambda)$ takes the security parameter $\lambda$ as input and outputs the public system parameters $\rho$ and the private master key $s$.
+The initialization algorithm $(\rho, s) \leftarrow I(\lambda)$ takes the security parameter $\lambda$ as input and outputs the public system parameters $\rho$ and the master secret $s$.
 The initialization algorithm is executed by the CAPP.
 After the execution, $\rho$ is publicly available to all entities, whereas $s$ is only known by the CAPP.
-
-\subsubsection{Secret Value Generation Algorithm $G_{VAL}$}
-The secret value generation algorithm $\chi_A \leftarrow G_{VAL}(\rho)$ takes the public system parameters $\rho$ as input and outputs the secret value $\chi_A$ of an entity $A$.
-The secret value generation algorithm is executed by an entity.
-The secret value $\chi_A$ is never shared with other entities and may only be known to entity $A$.
-
-\subsubsection{Public Key Generation Algorithm $G_{PK}$}
-The public key generation algorithm $pk_A \leftarrow G_{PK}(\rho, \chi_A, ATT_A)$ takes the public system parameters $\rho$, the secret value of an entity $\chi_A$, and the defining attributes of entity $A$ $ATT_A$ as input.
-The algorithm outputs the public verification key $pk_A$ of entity $A$.
-The algorithm is executed by an entity.
+The initialization algorithm consists of the following steps:
+\begin{enumerate}
+    \item Define the cyclic groups $G$ and $G_T$ of prime order $q$, a generator $g$ of $G$, and a symmetric bilinear pairing $e$:
+    \[
+        g \in G,
+        \quad e: G \times G \rightarrow G_T
+    \]
+    A map $e$ is a bilinear pairing if it fulfills the following properties:
+    \begin{enumerate}
+        \item Bilinearity: $e(aP, bQ) = e(P, Q)^{ab}$ for all $P, Q \in G$ and $a, b \in \mathbb{Z}_q^*$.
+        \item Non-Degeneracy: $e(P, P) \neq 1$ for $P \in G$
+        \item Computability: There is an efficient algorithm to compute $e(P, Q)$ for any $P, Q \in G$
+    \end{enumerate}
+    \item Define the cryptographic hash functions $H_1$, $H_2$, and $H_3$:
+    \[
+        H_1: \{0,1\}^* \to G,
+        \quad H_2: \{0,1\}^* \to \mathbb{Z}_q^*,
+        \quad H_3: \{0,1\}^* \to G.
+    \]
+    \item Generate the master secret $s$ and compute the master public key $p$:
+    \[
+        s \in \mathbb{Z}_q^*,
+        \quad p = g^{s}.
+    \]
+    \item Publish the public system parameters $\rho$:
+    \[
+        \rho = (G, G_T, e, g, p, H_{1}, H_{2}, H_{3}).
+    \]
+\end{enumerate}
 
 \subsubsection{Partial Private Key Generation Algorithm $G_{PPK}$}
-The partial private key generation algorithm $ppk_A \leftarrow G_{PPK}(\rho, s, ATT_A, pk_A)$ takes the public system parameters $\rho$, the private master key of the CAPP $s$, the defining attributes of entity $A$ $ATT_A$, and the $A$'s public verification key $pk_A$ as input.
-The algorithm outputs the partial private key $ppk_A$ of entity $A$.
-The partial private key generation is executed by the CAPP on request of an entity.
+The partial private key generation algorithm $ppk_i \leftarrow G_{PPK}(\rho, s, ID_i, ATT_i)$ takes the public system parameters $\rho$, the master secret of the CAPP $s$, the identifier $ID_i$ of entity $A_i$, and the attributes $ATT_i$ of entity $A_i$ as input.
+The algorithm outputs the partial private key $ppk_i$ of entity $A_i$.
+The partial private key generation is executed by the CAPP on request of entity $A_i$.
 After the execution, the CAPP provides the partial private key to the corresponding entity.
+The partial private key generation algorithm consists of the following steps:
+\begin{enumerate}
+    \item Compute the partial private key $ppk_i$ on request of entity $A_i$:
+    \[
+        ppk_i = H_1(ID_i || ATT_i)^{s}.
+    \]
+    \item Provide the partial private key $ppk_i$ to entity $A_i$.
+\end{enumerate}
 
 \subsubsection{Private Key Generation Algorithm $G_{SK}$}
-The private key generation algorithm $sk_A \leftarrow G_{SK}(\rho, \chi_A, ppk_A)$ takes the public system parameters $\rho$, the secret value of an entity $\chi_A$, and the partial private key $ppk_A$ of entity $A$ as input.
-The algorithm outputs the private signing key $sk_A$ of entity $A$.
+The private key generation algorithm $sk_i \leftarrow G_{SK}(\rho, ppk_i)$ takes the public system parameters $\rho$, and the partial private key $ppk_i$ of entity $A_i$ as input.
+The algorithm outputs the private signing key $sk_i$ of entity $A_i$.
+The private key generation algorithm consists of the following steps:
+\begin{enumerate}
+    \item Generate a secret value $\chi_i$ and compute $y_i$:
+    \[
+        \chi_i \in \mathbb{Z}_q^*, \quad y_i = g^{\chi_i}.
+    \]
+    \item Set the private signing key $sk_i$:
+    \[
+        sk_i = (ppk_i, \chi_i).
+    \]
+\end{enumerate}
 
-\subsubsection{Signing Algorithm $S$}
-The signing algorithm $\sigma \leftarrow S(sk_A, m)$ takes the private signing key $sk_A$ and message $m$ as input, and outputs the signature $\sigma$.
-In other words, the signing algorithm $S$ is used by the sender $A$ of a message $m$ to generate a digital signature $\sigma$.
-The generated digital signature $\sigma$ is associated with the message $m$ and the sender's private signing key $sk_A$.
-\todo{Introduce Server-Aided Signing Techniques (Server-Partial-Signing, Sender-Signing) and Online/Offline Algorithm Steps.}
+\subsubsection{Signing Algorithm $S_i$}
+The signing algorithm $\sigma_{i} \leftarrow S_i(sk_i, m)$ takes the private signing key $sk_i$ of entity $A_i$ and message $m$ as input, and outputs the signature $\sigma_{i}$.
+In other words, the signing algorithm $S_i$ is used by the sender $A_i$ of a message $m$ to generate a digital signature $\sigma_{i}$.
+The generated digital signature $\sigma_{i}$ is associated with the message $m$ and the sender's private signing key $sk_i$.
+The signing algorithm consists of the following steps:
+\begin{enumerate}
+    \item Compute the hash $h$ of the message $m$:
+    \[
+        h = H_2(m || ATT_i).
+    \]
+    \item Compute the signature $\sigma_i$ using the private signing key $sk_i$:
+    \[
+        \sigma_i = \big(ppk_i \cdot H_3(h)\big)^{\chi_i}.
+    \]
+\end{enumerate}
 
-\subsubsection{Partial Entity Verification Algorithm $V_{ENT}$}
-The partial entity verification algorithm $\sigma_{ENT} \leftarrow V_{ENT}(\rho, pk_A, m, \sigma)$ represents the first step of the server-aided verification process.
-The algorithm takes the public system parameters $\rho$, the public verification key $pk_A$ of entity $A$, the message $m$, and the signature $\sigma$ as input.
-The algorithm outputs the partially verified signature $\sigma_{ENT}$.
-The receiver of a message executes the partial entity verification algorithm $V_{ENT}$ and sends the partially verified signature $\sigma_{ENT}$ to the CAPP for server-aided verification.
+\subsubsection{Signature Aggregation Algorithm $S_{AGG}$}
+The signature aggregation algorithm $\sigma_{agg} \leftarrow S_{AGG}(\sigma_{1 \dots n})$ takes $n$ signatures $\{\sigma_i | 1 \leq i \leq n\}$ as input.
+The algorithm outputs an aggregated signature $\sigma_{agg}$:
+\[
+    \sigma_{agg} = \prod_{i=1}^n \sigma_i.
+\]
 
 \subsubsection{Partial Server Verification Algorithm $V_{SAV}$}
-The partial server verification algorithm $\sigma_{SAV} \leftarrow V_{SAV}(\sigma_{ENT})$ represents the second step of the server-aided verification process.
-The algorithm takes the partially verified signature $\sigma_{ENT}$ as input and outputs the partially verified signature $\sigma_{SAV}$.
-The algorithm is executed by the CAPP on request of a message receiving entity.
-After the execution, the CAPP provides the partially verified signature $\sigma_{SAV}$ to the requestor.
+The partial server verification algorithm $y_{agg} \leftarrow V_{SAV}(\rho, ID_{1 \dots n}, ATT_{1 \dots n})$ takes the public system parameters $\rho$, the entity identifiers $\{ID_i | 1 \leq i \leq n\}$, and the entity attributes $\{ATT_i | 1 \leq i \leq n\}$ as input.
+The algorithm outputs $y_{agg}$:
+\[
+    y_{agg} = \prod_{i=1}^n H_1(\mathsf{ID}_i || \mathsf{Att}_i)^{p}.
+\]
 
-\subsubsection{Final Entity Verification Algorithm $V_{FIN}$}
-The final entity verification algorithm $\delta \in \{accept, reject\} \leftarrow V_{FIN}(\rho, pk_A, m, \sigma, \sigma_{ENT}, \sigma_{SAV})$ represents the third and last step of the server-aided verification process.
-The algorithm takes the public system parameters $\rho$, the public verification key $pk_A$ of entity $A$, the message $m$, the signature $\sigma$, and the partially verified signatures $\sigma_{ENT}$ and $\sigma_{SAV}$ as input.
+\subsubsection{Entity Verification Algorithm $V_{ENT}$}
+The entity verification algorithm $\delta \in \{accept, reject\} \leftarrow V_{ENT}(\rho, m, \sigma_{agg}, y_{agg}, ATT_i)$ represents the final step of the verification process.
+The algorithm takes the public system parameters $\rho$, the message $m$, the aggregated signature $\sigma_{agg}$, the server-aided verification result $y_{agg}$, and the attributes $ATT_i$ as input.
 The algorithm outputs the verification decision $\delta$ which is either $accept$ or $reject$.
-In other words, the verification algorithm $V_{FIN}$ is used by the receiver to verify a received message $m$ sent by entity $A$ based on an appended signature $\sigma$.
-As $\sigma$ is associated with the message $m$ and the sender's private signing key $sk_A$, it allows the receiver to verify the integrity and authenticity of the received message $m$ using the sender's public verification key $pk_A$.
+In other words, the verification algorithm $V_{ENT}$ is used by a message receiver to verify a message $m$ sent by entity $A_i$ based on an appended signature $\sigma_{agg}$.
+As $\sigma_{agg}$ is associated with the message $m$ and the sender's private signing key $sk_i$, it allows the receiver to verify the integrity and authenticity of the received message $m$.
+To verify a received message $m$ an entity performs the following steps:
+\begin{enumerate}
+    \item Compute the hash $h$ of the message $m$ with the attributes $ATT_i$:
+    \[
+        h = H_2(m || ATT_i).
+    \]
+    \item Accept if the following equation holds and reject otherwise:
+    \[
+        e(\sigma_{agg}, g) {=} e\big(H_3(h), y_{agg}\big)
+    \]
+\end{enumerate}
 
 \section{Server-Aided Attribute-Based Authorization \& Access Control}
 \label{sec:approach:sabaac}
