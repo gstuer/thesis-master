@@ -844,12 +844,12 @@ The auxiliary attributes $ATT_{auxiliary_{\rho}}$ consist of all non-flow-relate
 To handle policies based on their degree of time-variability, the SABAAC approach classifies policies as follows:
 \begin{description}
     \item[Dynamic Policy] A dynamic policy $\rho$ is an ABAC policy whose evaluation relies on at least one time-variable subject, object, environment, or action attribute.
-    A policy $\rho$ is dynamic iff $\exists a \in ATT_{\rho}: \exists t_i \neq t_j: E(a,t_i) \neq E(a,t_j)$.
+    A policy $\rho$ is dynamic iff $\exists a \in ATT_{\rho}: \exists t_i \neq t_j: E_{ATT}(a,t_i) \neq E_{ATT}(a,t_j)$.
     Due to the time-variable evaluation of dynamic policies, access decisions must have a limited time of validity that corresponds to the change rate of the underlying attribute values.
     As a result, caching of access decisions that are based on dynamic policies should be avoided.
     A dynamic policy is also referred to as real-time policy.
     \item[Static Policy] A static policy $\rho$ is an ABAC policy whose evaluation does not rely on time-variable subject, object, environment, or action attributes.
-    A policy $\rho$ is static iff $\forall a \in ATT_{\rho}: \forall t_i,t_j: E(a,t_i) = E(a,t_j)$.
+    A policy $\rho$ is static iff $\forall a \in ATT_{\rho}: \forall t_i,t_j: E_{ATT}(a,t_i) = E_{ATT}(a,t_j)$.
     Since static policies do not rely on time-variable attributes, access decisions can be cached.
     Moreover, due to the non-frequent attribute retrieval and evaluation as well as access decision caching, static policies are a viable solution for low latency message exchange.
     A static policy is also referred to as non-real-time policy.
