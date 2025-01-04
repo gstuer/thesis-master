@@ -730,7 +730,7 @@ Therefore, the approach prevents unauthorized access and extraction of informati
 The approach enables CASC-SAS to satisfy the access control, PoLP, and SoD security requirements.
 Moreover, the expressive and flexible but yet computationally expensive ABAC policies are handled in a server-aided manner to satisfy the strict time constraints of the SAS domain.
 
-Our authorization and access control approach represents a cybersecurity concept that is located on the cybersecurity layer of the CASC-SAS architecture.
+Our authorization and access control approach represents a security concept that is located on the cybersecurity layer of the CASC-SAS architecture.
 Since the approach is located on the cybersecurity layer, it relies on secure authentication services provided by CASA.
 As a consequence, the approach assumes that efficient and secure signing and verification algorithms are available.
 In other words, CASA provides secure cryptographic algorithms and schemes that enable SABAAC to realize secure authorization and access control.
@@ -759,10 +759,11 @@ An overview of the SABAAC architecture, components, and protocols as well as the
 \label{sec:approach:sabaac:architecture}
 The component-based architecture of our authorization and access control approach consists of four functional units.
 These functional units have been adapted from the access control mechanism functional points presented by \citeauthor{Hu2014} \cite{Hu2014}.
-Each functional unit is represented by a component that offers function-oriented services.
+Each functional unit is represented by a component that offers a set of services.
 The components of the architecture are TTPs since the semantic validity of their provided services is not verifiable by the service consumers.
-We specify the components as semi-trusted for the access control problem due to the restriction to access control tasks and available mitigation approaches such as multiple instances of a single component.
-The four components of the architecture are discussed in the following:
+%We specify the components as semi-trusted for the access control problem due to the restriction to access control tasks and available mitigation approaches such as multiple instances of a single component.
+Strategies to reduce the required trust in specific components, including the deployment of multiple instances of a single component, are discussed in the following sections.
+The four components of the architecture are defined below:
 \begin{description}
     \item[Policy Administration Point (PAP)] The PAP offers services for the policy creation, management, and distribution.
     The PAP is a component of the delegated attribute-based authorization process and executes the corresponding authorization protocols.
@@ -789,43 +790,124 @@ The four components of the architecture are discussed in the following:
 \label{sec:approach:sabaac:policy}
 According to \citeauthor{Hu2014} \cite{Hu2014}, ABAC is an access control model that enables access decisions based on attributes associated with subjects, objects, actions, and the environment of a system.
 An ABAC policy represents a set of rules that describe under which environmental conditions a certain subject is granted to perform certain actions on a specific protected object.
-
-\subsubsection{Policy Classification}
 The SABAAC approach relies on the concept of attribute-based policies and access control due to the following benefits:
 ABAC enables multifactor policy expression, while RBAC and IBAC limit the policy expressiveness by only relying on either roles or identities.
 Consequently, the multifactor policy expression enables fine-grained and flexible access control.
-Moreover, as stated by \citeauthor{Hu2014} \cite{Hu2014}, the use of ABAC can avoid explicit authorizations prior to a request.
+
+\subsubsection{Policy Specification}
+The SABAAC approach features a novel strategy for the representation and specification of access control policies.
+In this section we introduce the structure of the policies and define the different types of attributes that are supported.
+% Moreover, we introduce the SABAAC Policy Specification Language (SPSL) that is used by human operators to specify access control policies.
+As defined by the second and third security policy of CASC-SAS in \autoref{sec:approach:security_policies}, the policies are enforced for data frame flows, i.e., sets of data frames with common properties passing through the SAS network.
+Accordingly, the objective of an access control policy is twofold.
+On the one hand, a policy has to contain information that specifies whether the policy is applicable to a certain data frame flow.
+On the other hand, a policy must specify which actions should be taken for a matching data frame flow.
+
+\paragraph{Access Control Policy:} $\rho = (action_{\rho}, flow_{\rho}, auxiliary_{\rho})$.\\
+A SABAAC policy $\rho$ is represented by a three-tuple, which contains the $action$ to be taken, the $flow$-specifying pattern, and a set of $auxiliary$ attributes specifying additional non-flow-related system characteristics.
+
+\paragraph{Action:} $action \in \{GRANT, DENY\}$.\\
+The action of a policy specifies whether a matching data frame flow should be granted or denied.
+A data frame from a granted flow may be delivered to a SAS device, whereas a data frame from a denied flow is dropped by a PEP.
+The default action of SABAAC is $DENY$ which leads to dropping of all data frames of non-explicitly granted flows.
+
+\paragraph{Flow Pattern:} $flow = \{p_1, \dots, p_n\}$, $p_i(frame) \in \{TRUE, FALSE\}$.\\
+The flow pattern of a policy specifies whether the policy is applicable to a specific data frame or not.
+For this purpose, the flow pattern consists of a set of frame predicates $p_1, \dots, p_n$.
+A frame predicate $p_i$ is a function that assigns a boolean value to an arbitrary data frame.
+A predicate $p_i$ matches a frame $f$, if $p_i(f) = TRUE$.
+A policy is applicable to a specific data frame if all frame predicates match the frame.
+In other words, a policy $\rho = (action_{\rho}, flow_{\rho}, auxiliary_{\rho})$ is applicable to a frame $f$ if the following equation holds:
+\[
+    \forall p_i \in flow_{\rho}: p_i(f) = TRUE
+\]
+
+\paragraph{Auxiliary Attributes:} $auxiliary = \{a_1, \dots, a_n\}$, $a_i(system) \in \{TRUE, FALSE\}$.\\
+The auxiliary attributes of a policy specify non-flow-related system attributes that have to be taken into account in order to apply an access control policy.
+The auxiliary attributes are specified in the form of so-called system predicates $a_1, \dots, a_n$.
+A system predicate $a_i$ is a function that assigns a boolean value to the current system state.
+A policy $\rho = (action_{\rho}, flow_{\rho}, auxiliary_{\rho})$ is applicable in a system $s$ if all system predicates match the current system state, i.e., a policy is applicable if the following equation holds:
+\[
+    \forall a_i \in auxiliary_{\rho}: a_i(s) = TRUE
+\]
+
+\subsubsection{Policy Classification}
+The utilization of ABAC can avoid explicit authorizations prior to a request \cite{Hu2014}.
 In other words, an ABAC policy can be dynamically evaluated at the time of a request.
 This dynamic evaluation allows the use of attributes from a time-variable environment.
 As stated by \citeauthor{Burmester2013} \cite{Burmester2013}, a real-time attribute represents an attribute whose value is time-dependent.
 Given an attribute evaluation function $E_{ATT}$ and a point of time $t$, the value $\lambda_a$ of a real-time attribute $a$ is defined by $E_{ATT}(a, t) = \lambda_a$.
+
+Each SABAAC policy $\rho$ is related to a set of attributes $ATT_{\rho} = ATT_{flow_{\rho}} \cup ATT_{auxiliary_{\rho}}$.
+The flow attributes $ATT_{flow_{\rho}}$ consist of all frame-related attributes required for the evaluation of the frame predicates $p_1, \dots, p_n$.
+The auxiliary attributes $ATT_{auxiliary_{\rho}}$ consist of all non-flow-related system attributes required for the evaluation of the system predicates $a_1, \dots, a_n$.
 To handle policies based on their degree of time-variability, the SABAAC approach classifies policies as follows:
 \begin{description}
     \item[Dynamic Policy] A dynamic policy $\rho$ is an ABAC policy whose evaluation relies on at least one time-variable subject, object, environment, or action attribute.
-    A policy $\rho$ is dynamic iff $\exists a \in \rho: \exists t_i \neq t_j: E(a,t_i) \neq E(a,t_j)$.
+    A policy $\rho$ is dynamic iff $\exists a \in ATT_{\rho}: \exists t_i \neq t_j: E(a,t_i) \neq E(a,t_j)$.
     Due to the time-variable evaluation of dynamic policies, access decisions must have a limited time of validity that corresponds to the change rate of the underlying attribute values.
     As a result, caching of access decisions that are based on dynamic policies should be avoided.
     A dynamic policy is also referred to as real-time policy.
     \item[Static Policy] A static policy $\rho$ is an ABAC policy whose evaluation does not rely on time-variable subject, object, environment, or action attributes.
-    A policy $\rho$ is static iff $\forall a \in \rho: \forall t_i,t_j: E(a,t_i) = E(a,t_j)$.
+    A policy $\rho$ is static iff $\forall a \in ATT_{\rho}: \forall t_i,t_j: E(a,t_i) = E(a,t_j)$.
     Since static policies do not rely on time-variable attributes, access decisions can be cached.
     Moreover, due to the non-frequent attribute retrieval and evaluation as well as access decision caching, static policies are a viable solution for low latency message exchange.
     A static policy is also referred to as non-real-time policy.
 \end{description}
 
-\subsubsection{Policy Specification Language}
-\todo{Write + Remove duplicate ideas from protocols}
-\paragraph{Policy Structure}
-\paragraph{Attribute Types}
-\paragraph{Grammar}
+\subsubsection{Policy Evaluation}
+The policy evaluation is the process of deriving an access control decision from an access control policy and enforcing the decision in the SAS.
+While the access control policy may depend upon the current system state, the corresponding access control decision is static during a specified period of validity.
+As a consequence, the process of evaluating a SABAAC policy can be divided into two related processes:
+The PDP-driven dynamic authorization derives an access control decision from an access control policy for the current system state.
+The PEP-driven decision enforcement utilizes the result of the dynamic authorization to enforce the SAS policies in a timely manner.
 
-\subsection{Access Control Decision}
-\todo{TODO: Write + Remove duplicate ideas from protocols}
+\paragraph{Access Control Decision:} $decision_{\rho} = \{flow_\rho, action_\rho, nexthop, validity\}$.\\
+An access control decision or access decision consists of a $flow$-specifying pattern, an $action$ to be taken, a $nexthop$ set specifying the PEPs a matching data frame should be forwarded to, and a period of $validity$.
+An access decision is valid for a specific data frame flow in a specific system at a specified period of time.
 
-\subsubsection{Evaluation Strategies}
+\paragraph{Dynamic Authorization:} $E_{POL}: Policy \times System \rightarrow Decision$.\\
+In the SABAAC approach, the policy evaluation is server-aided and takes partially place at the PDP.
+To derive an access decision from an access control policy at the PDP, the dynamic authorization function is used.
+The dynamic authorization function of SABAAC is defined as follows:
+\[
+    E_{POL}(\rho, s) =
+    \begin{cases}
+        (flow_\rho, action_\rho, nexthop, validity) & \text{, if } \forall a_i \in auxiliary_{\rho}: a_i(s) = TRUE\\
+        (flow_\rho, DENY, \emptyset, validity) & \text{, otherwise}
+    \end{cases}
+\]
+Thus, if the system predicates of the policy match the current system state, the policy is applicable to data frame flows in the system.
+To evaluate the system predicates, the PDP fetches the auxiliary attributes $ATT_{auxiliary_{\rho}}$ prior to the evaluation of $a_1, \dots, a_n$.
+The validity of the resulting access decision at the point of time $t$ equals the minimal validity of the attribute values in $\{\lambda_i = E_{ATT}(k_i, t) | k_i \in ATT_{auxiliary_{\rho}}\}$.
+The validity of an access decision of a dynamic policy is determined by the attribute value that expires first.
+To avoid the utilization of modified or removed policies, the validity of an access decision of a static policy may be limited by specifying a maximum time of validity for all policies.
+
+\paragraph{Decision Enforcement:} $E_{DEC}: Decision \times Frame \rightarrow (Action, Nexthop)$.\\
+A PEP uses an access control decision $d_{\rho}$ taken by a PDP to enforce a policy $\rho$ in the SAS.
+For this purpose, each data frame $f$ traversing a PEP is matched using $flow_\rho$ to identify the corresponding access decision $d_{\rho}$.
+The process of enforcing a policy based on a priorly taken access decision is referred to as decision enforcement.
+At the PEPs the decision enforcement for a decision $d_{\rho} = \{flow_\rho, action_\rho, nexthop, validity\}$ and a frame $f$ is performed using the decision enforcement function $E_{DEC}$:
+\[
+    E_{DEC}(d_{\rho}, f) =
+    \begin{cases}
+        (action_\rho, nexthop) & \text{, if } \forall p_i \in flow_{\rho}: p_i(f) = TRUE\\
+        & \quad \land validity.contains(time.now)\\
+        (DENY, \emptyset) & \text{, otherwise}
+    \end{cases}
+\]
+Thus, if the flow predicates of a decision match a data frame, and the decision is still valid the decision enforcement function returns the action to be taken and the PEPs the frame has to be forwarded to.
+A PEP may choose the decision corresponding to the most specific matching flow predicates, if multiple decisions match a data frame.
+Two cases have to be distinguished, if $E_{DEC}(d_{\rho}, f) = (action_\rho, nexthop)$:
+\begin{itemize}
+    \item \textbf{Outgoing Data Frame:} An outgoing data frame $f$ is forwarded to the each $PEP \in nexthop$, if $action_\rho = GRANT$.
+    \item \textbf{Incoming Data Frame:} An incoming data frame $f$ is accepted by a receiving $PEP$, if $action_\rho = GRANT$ and $PEP \in nexthop$.
+\end{itemize}
+
+\paragraph{Evaluation Strategies}
 \todo{TODO: Ad-hoc vs. precomputation}
 
-\subsubsection{Caching}
+\paragraph{Caching}
 \todo{TODO: Ad-hoc vs. precomputation}
 
 \subsection{Delegated Attribute-Based Authorization Protocol}
