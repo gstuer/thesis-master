@@ -904,11 +904,34 @@ Two cases have to be distinguished, if $E_{DEC}(d_{\rho}, f) = (action_\rho, nex
     \item \textbf{Incoming Data Frame:} An incoming data frame $f$ is accepted by a receiving $PEP$, if $action_\rho = GRANT$ and $PEP \in nexthop$.
 \end{itemize}
 
-\paragraph{Evaluation Strategies}
-\todo{TODO: Ad-hoc vs. precomputation}
+\paragraph{Evaluation Strategies:} A Priori, A Posteriori, \& Predicted Evaluation\\
+To speed up the policy evaluation and increase the data frame throughput, PEP and PDP instances may rely upon different policy evaluation strategies.
+The SABAAC approach distinguishes between three evaluation approaches:
+\begin{itemize}
+    \item \textbf{A Priori:} The a priori or precomputed evaluation aims to maximize the policy evaluation speed.
+    At the PDP, the strategy is applied via precomputation of the dynamic authorization function $E_{POL}$ for all available access control policies of the SAS.
+    Accordingly, a PDP refreshes and caches each access decision periodically, and provides it to PEPs if requested.
+    At the PEP, a priori evaluation can be achieved by requesting access decisions before data frames are matched and forwarded, i.e., before $E_{DEC}$ is evaluated.
+    For this purpose, a PEP requests all relevant access decisions at startup and re-request them from a PDP before the period of validity ends.
+    The precomputation strategy results in an increased policy evaluation speed, increased data frame throughput, and decreased network jitter sensitivity.
+    The a priori strategy is particularly suitable for periodic message exchanges, such as messages exchanges of the SV protocol.
+    However, precomputation and caching of access decisions leads to increased memory utilization.
+    Moreover, periodic refreshing of unused or rarely used access decision results in non-optimal power efficiency.
+    
+    \item \textbf{A Posteriori:} The a posteriori or ad-hoc evaluation aims to minimize the memory utilization.
+    In contrast to the a priori strategy, neither the PDP-driven dynamic authorization nor the PEP-driven access decision requests are precomputed or cached.
+    As a consequence, for each traversing data frame a PEP requests an access decision from a PDP.
+    The PDP evaluates $E_{POL}$ on request and provides the result to the PEP.
+    As no access decisions are cached at the PDP and PEP, the a posteriori strategy minimizes the memory utilization.
+    The strategy is particularly suitable for non-recurring and non-periodic message exchanges without message fragmentation.
+    However, for periodic messages exchanges and frequently matching flow patterns the strategy results in non-optimal power efficiency, as access policies are repeatedly evaluated even if the corresponding access decisions are still valid.
 
-\paragraph{Caching}
-\todo{TODO: Ad-hoc vs. precomputation}
+    \item \textbf{Predicted:} The predicted, conditional, or hybrid evaluation aims to optimize evaluation speed, memory utilization, and power efficiency.
+    This strategy is inspired by the branch prediction used in microprocessor architectures.
+    Instead of relying exclusively upon a priori or a posteriori evaluation, the hybrid evaluation uses a predictor to decide whether an access decision should be refreshed and cached.
+    By predicting whether an access decision is required in the next prediction period, PDPs and PEPs are able to avoid unnecessary computation, requesting, and caching of non-required access decisions.
+    As for branch predictors in microprocessor architectures, the primary objective of an access decision predictor is the avoidance of cache misses, while optimizing the memory utilization and power efficiency. 
+\end{itemize}
 
 \subsection{Delegated Attribute-Based Authorization Protocol}
 \label{sec:approach:sabaac:authorization}
