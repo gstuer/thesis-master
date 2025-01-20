@@ -20,25 +20,25 @@ Data objects can be distinguished based on their abilities by being either passi
 Passive data objects can only represent information for storage, whereas active data objects can store and process information.
 
 As stated by \citeauthor{Eckert2023} \cite{Eckert2023}, an IT system is a dynamic technical system which is able to process and store information.
-An IT system is a part of a sociotechnical system and provides information-based services to more abstract social, economical or political structures.
+An IT system is part of a sociotechnical system and provides information-based services to more abstract social, economical or political structures.
 Moreover, the users of an IT system may have different goals, levels of experience, and technical know-how.
 
 When shifting the scope from abstract information storage and processing to the interaction with the physical world, the term Operational Technology (OT) arises.
-As a consequence, OT describes the application and interactions of information storage and processing procedures in a physical environment.
-According to \citeauthor{Stouffer2023} \cite{Stouffer2023} OT encompasses systems and devices interacting with the physical environment directly or through managed devices.
+As a consequence, OT describes the application and interaction of information storage and processing procedures in a physical environment.
+According to \citeauthor{Stouffer2023} \cite{Stouffer2023}, OT encompasses systems and devices interacting with the physical environment directly or through managed devices.
 The systems and devices interact with the physical environment by detecting changes through monitoring or by causing changes through control of devices or processes.
 In the context of OT systems the term process refers to the part of a system producing an output, whereas a controller represents a part of a system that maintains the conformance with specifications.
 Besides the Industrial Control Systems (ICS), further discussed in \autoref{sec:ics}, other examples of OT systems are building automation systems and transportation systems.
 
 Although the evolution from analog systems to OT systems by inserting IT into existing physical systems might provide new functionality and enhance system parameters like costs or performance, new challenges may arise \cite{Stouffer2023}.
 Especially the typical long life cycle of OT systems and their unique requirements regarding performance, reliability, security, safety, privacy, and environmental impact have to be taken into account when designing, operating, and maintaining OT systems.
-In the following, the thesis especially focuses on the security implications as well as the design and implementation of secure OT systems.
+In the following, the thesis focuses on the security implications as well as the design and implementation of secure OT systems.
 
 \section{Industrial Control System (ICS)}
 \label{sec:ics}
 The term ICS encompasses different types of control systems consisting of monitoring, control and network components acting together to achieve an industrial objective \cite{Stouffer2015}.
 In the scope of the thesis, an ICS represents a specific type of OT system that gathers, processes, and stores information while interacting with a physical environment to achieve an industrial objective.
-According to \citeauthor{Stouffer2015} \cite{Stouffer2015} the control in an ICS can be partially or fully automated.
+According to \citeauthor{Stouffer2015} \cite{Stouffer2015}, the control in an ICS can be partially or fully automated.
 Moreover, an ICS can be configured to operate in three different modes:
 \begin{enumerate}
     \item Manual Mode: The ICS is completely controlled by humans.
@@ -49,10 +49,10 @@ Moreover, an ICS can be configured to operate in three different modes:
 \subsection{Architectures}
 \label{sec:architectures}
 ICS as well as generic control systems consisting of multiple interconnected components can be classified regarding their control system architecture.
-According to \citeauthor{Galloway2013} \cite{Galloway2013} an ICS architecture or architecture of an ICS network is typically deeper regarding the levels of hierarchy than a company network.
+According to \citeauthor{Galloway2013} \cite{Galloway2013}, an ICS architecture or architecture of an ICS network is typically deeper regarding the levels of hierarchy than a company network.
 Moreover, the technologies including devices as well as the communication links and protocols in an ICS network are often heterogeneous.
 
-In the following sections the main types of control system architectures and topologies are presented.
+In the following sections, the main types of control system architectures and topologies are presented.
 While these architectures introduce different and partially incompatible concepts, the approaches can be complementing when used on different levels of hierarchy of a complex ICS network \cite{Stouffer2023}.
 
 \subsubsection{Supervisory Control \& Data Acquisition (SCADA)}
@@ -70,14 +70,14 @@ The network components of an ICS network are further discussed in \autoref{sec:n
 Examples for telecommunication technologies used for the communication are Wide Area Networks (WAN), satellite, cellular, and radio technology.
 
 Although the SCADA approach not necessarily requires a communication network to exist but rather works via direct connection between remote devices and the central site, modern SCADA systems rely on bus-based field networks or Ethernet-based solutions \cite{bailey2003}.
-As a consequence, according to \citeauthor{bailey2003} the benefits of modern SCADA approaches are minimal required wiring, plug-and-play installation and replacement of devices, remote access to data from anywhere, easier large-scale data storage, and higher flexibility for visualization and incorporation of real data simulations.
+As a consequence, according to \citeauthor{bailey2003}, the benefits of modern SCADA approaches are minimal required wiring, plug-and-play installation and replacement of devices, remote access to data from anywhere, easier large-scale data storage, and higher flexibility for visualization and incorporation of real data simulations.
 The disadvantages of modern SCADA approaches are the higher complexity of components, the functional limitations induced by the network components, the requirement of better trained employees, the higher reliance on communication networks, and the high prices of intelligent field equipment.
 
 \citeauthor{Stouffer2023} \cite{Stouffer2023} further described four basic communication topologies for modern SCADA networks that were initially introduced by the \citeauthor{aga2006} \cite{aga2006}.
 The four topologies introduced are point-to-point, series, series-star, and multi-drop.
 The point-to-point topology connects each field device using an individual communication channel.
 The series, series-star, and multi-drop topologies use daisy-chaining and switching to connect multiple devices using a single shared channel.
-The sharing of a single channel among multiple devices increases the efficiency and operation complexity but decreases the costs and system complexity.
+The sharing of a single channel among multiple devices increases the efficiency and operation complexity, while it decreases the costs and system complexity.
 
 \subsubsection{Distributed Control System (DCS)}
 A Distributed Control System (DCS) is a control system architecture without centralized remote control of the field site \cite{Stouffer2023}.
@@ -85,19 +85,19 @@ Instead of controlling the field site remotely from a control center, a DCS real
 Therefore, a DCS is typically implemented for the control of a process and its sub-processes within the same geographic location.
 
 As stated by \citeauthor{Galloway2013} \cite{Galloway2013}, a DCS is a process-driven system rather than an event-driven system like SCADA.
-Moreover, the objective of a DCS is the control of integrated systems that are closely located, whereas SCADA focuses on independent systems with large geographical extent. 
+The objective of a DCS is the control of integrated systems that are closely located, whereas SCADA focuses on independent systems with large geographical extent.
 Due to the small geographical area and high interconnection within a DCS, the communication with control devices is more reliable and less prone to issues based on the data quality.
 
 \subsubsection{Programmable Logic Controller (PLC)}
 A Programmable Logic Controller (PLC) is a control system component responsible for locally managing and controlling a certain process \cite{Stouffer2023}.
 Therefore, a PLC may represent the primary controller in a PLC-based topology for small OT systems.
 Moreover, PLCs can be used as building blocks to realize more complex hierarchical topologies like SCADA or DCS.
-In the latter case, a PLC may integrate or use the services and communication abilities of a RTU further discussed in \autoref{sec:networkcomponents}.
+In the latter case, a PLC may integrate or use the services and communication abilities of a RTU, as further discussed in \autoref{sec:networkcomponents}.
 
 PLCs can provide fixed functionality or be modular.
-Fixed functionality PLCs may also be programmable but limited to certain I/O, processing or communication abilities.
+Fixed functionality PLCs may also be programmable but limited to certain inputs and outputs, processing abilities, or communication abilities.
 According to \citeauthor{Galloway2013} \cite{Galloway2013}, modularity of PLCs eases maintenance and grants more flexibility for the installation.
-A modular PLC generally consists of a power supply, processing modules, I/O modules, and communication modules.
+A modular PLC generally consists of a power supply, processing modules, input and output modules, and communication modules.
 
 \subsection{Network Components}
 \label{sec:networkcomponents}
@@ -204,13 +204,12 @@ As stated by \citeauthor{Stine2008} \cite{Stine2008}, the degree of sensitivity 
 As a consequence, the degree of sensitivity denotes its need for protection.
 
 The security label is the concrete attribute associated with an object or subject indicating its security level or categories \cite{JTF2020}.
-In other words, each object and subject within the system is labeled according to its security levels or categories.
+In other words, each object or subject within the system is labeled according to its security level or categories.
 The security labels of a subject are referred to as clearances, whereas the security labels of an object are referred to as classifications \cite{CNSS2022}.
 
 \subsection{Policy}
 According to \citeauthor{Anderson2002} \cite{Anderson2002}, a security policy is a set of documents or a high-level specification stating the security goals and properties to be achieved by the security mechanisms of a system.
 In other words, a security policy is a set of criteria for the provision of security capabilities and functions to support one or more security objectives \cite{JTF2020}.
-Moreover, a security policy can be seen as a set of rules for system entity behavior.
 As a consequence, a security policy defines the conditions under which a system grants or denies the access to an object for a specific subject. 
 
 \section{Safety}
@@ -233,7 +232,7 @@ Physical access control supervises access requests of subjects to specific physi
 Logical access control monitors and controls the access and usage of information and related information processing services.
 Within the scope of the thesis, the term access control is going to be used to describe logical access control for IT and OT systems.
 
-In other words, as stated by \citeauthor{Hu2014} \cite{Hu2014}, logical access control protects objects like data, services, executable applications, or network devices from unauthorized operations.
+As stated by \citeauthor{Hu2014} \cite{Hu2014}, logical access control protects objects like data, services, executable applications, or network devices from unauthorized operations.
 An operation is performed by a subject on a specific object.
 Operations include access, utilization, manipulation, and deletion of objects.
 An operation may also be referred to as action.
@@ -265,11 +264,11 @@ If the DAC grants access and the MAC does not, the access request is denied.
 Moreover, if the MAC grants access to an object the DAC can further restrict the access.
 
 The \citeauthor{JTF2020} \cite{JTF2020} defines MAC as an access control policy uniformly enforced over all subjects and objects within a system.
-Moreover, MAC is considered a non-discretionary access control prohibiting and preventing authorized subjects from passing information and privileges to unauthorized subjects.
+MAC is considered a non-discretionary access control prohibiting and preventing authorized subjects from passing information and privileges to unauthorized subjects.
 
 \subsection{Identity-Based Access Control (IBAC)}
 Identity-Based Access Control (IBAC) is a user-centric access control model employing mechanisms that use the identities of subjects to take authorization decisions \cite{Hu2014}.
-In other words, as stated by the \citeauthor{CNSS2022} \cite{CNSS2022}, IBAC represents an access control assigning access authorizations to objects based on the user identity.
+In other words, IBAC represents an access control assigning access authorizations to objects based on the user identity \cite{CNSS2022}.
 
 An example of an IBAC mechanism capturing the identities of subjects and their access privileges is an access control list (ACL) \cite{Hu2014}.
 Each object is associated with an ACL containing privileges assigned to each subject and a representation of a subject identity like credentials.
@@ -288,7 +287,7 @@ The privileges of a role reflect the permissions an individual requires within a
 
 \subsection{Attribute-Based Access Control (ABAC)}
 The Attribute-Based Access Control (ABAC) is an access control model enabling access decisions based on attributes associated with subjects, objects, actions, and the environment of a system \cite{JTF2020}.
-In other words, as stated by \citeauthor{Hu2014} \cite{Hu2014}, in ABAC an access request of a subject to perform operations on objects is decided based on assigned attributes of the subject and object, environment conditions, and a set of policies.
+In other words, in ABAC an access request of a subject to perform operations on objects is decided based on assigned attributes of the subject and object, environment conditions, and a set of policies \cite{Hu2014}.
 As a consequence, ABAC is also referred to as aspect-based access control \cite{Anderson2020} or policy-based access control.
 
 Within the context of ABAC, an attribute is a characteristic containing information in the form of a name-value pair \cite{Hu2014}.
@@ -368,8 +367,8 @@ Consequently, the key must be kept secret to satisfy the security objectives.
 To encrypt and decrypt information, an entity uses a secret key~\cite{Boneh2023}.
 Sender and receiver of confidential messages must agree upon a common secret key prior to the exchange of messages.
 The secret key has to be exchange via a secure communication channel or with the assistance of a secure key exchange protocol.
-For the purpose of verification, so-called Message Authentication Codes (MAC) are used in SKC.
-Therefor, the sender computes a so-called MAC tag for a specific message using the secret key.
+For the purpose of verification, Message Authentication Codes (MAC) are used in SKC.
+Therefor, the sender computes a MAC tag for a specific message using the secret key.
 The MAC tag is then appended to the message.
 The receiver is able to prove the authenticity and integrity of the message by verifying the appended MAC tag using the secret key.
 
