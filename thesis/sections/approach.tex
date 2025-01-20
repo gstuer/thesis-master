@@ -900,7 +900,7 @@ Thus, if the flow predicates of a decision match a data frame, and the decision 
 A PEP may choose the decision corresponding to the most specific matching flow predicates, if multiple decisions match a data frame.
 Two cases have to be distinguished, if $E_{DEC}(d_{\rho}, f) = (action_\rho, nexthop)$:
 \begin{itemize}
-    \item \textbf{Outgoing Data Frame:} An outgoing data frame $f$ is forwarded to the each $PEP \in nexthop$, if $action_\rho = GRANT$.
+    \item \textbf{Outgoing Data Frame:} An outgoing data frame $f$ is forwarded to each $PEP \in nexthop$, if $action_\rho = GRANT$.
     \item \textbf{Incoming Data Frame:} An incoming data frame $f$ is accepted by a receiving $PEP$, if $action_\rho = GRANT$ and $PEP \in nexthop$.
 \end{itemize}
 
@@ -1126,7 +1126,7 @@ The phases of the access control protocol are defined as follows:
     \begin{figure}
         \centering
         \includegraphics[width=1.0\linewidth]{figures/SABAAC_protocols_accesscontrol_initialization.drawio.pdf}
-        \caption{Exchanged messages of an access request, unidirectional session initialization, and access decision verification.
+        \caption{Exchanged messages of an access request with unidirectional session initialization and access decision verification.
         % The access request procedure relies on an interaction between a PDP and a PEP and is a prerequisite for the session initialization. The session initialization relies on an interaction between two PEP instances. The receiver's PEP uses a server-aided access decision verification provided by a PDP to reduce the trust in another PDP. The shown SABAAC components, especially resource-constrained PEP instances, rely on the services provided by a CASA CAPP for SAV.
         }
         \label{fig:sabaac_accesscontrol_initialization}
