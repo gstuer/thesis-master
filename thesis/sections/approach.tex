@@ -737,16 +737,16 @@ In other words, CASA provides secure cryptographic algorithms and schemes that e
 
 The proposed authorization and access control approach is based on a function-oriented component-based architecture.
 The architecture and components are further discussed in \autoref{sec:approach:sabaac:architecture}.
-Furthermore, the approach is divided into two central tasks or protocols.
+Furthermore, the approach is divided into two central tasks.
 The first task is referred to as delegated attribute-based authorization.
 The delegated attribute-based authorization is responsible for the access control policy creation, management, storage, and distribution.
-This process partially takes place prior to occurring access requests and corresponding access decisions.
+This task partially takes place prior to occurring access requests and corresponding access decisions.
 The delegated attribute-based authorization protocol is further discussed in \autoref{sec:approach:sabaac:authorization}.
 The second central task is referred to as delegated ABAC.
 The delegated ABAC is responsible for the policy decision exchange and policy enforcement.
-This process takes place when an entity initiates the communication with another entity.
+This task takes place when an entity initiates the communication with another entity.
 The delegated ABAC protocol is further discussed in \autoref{sec:approach:sabaac:accesscontrol}.
-An overview of the SABAAC architecture, components, and protocols as well as the integration of CASA components and services into the SABAAC approach are shown in \autoref{fig:sabaac_protocols_overview}.
+An overview of the SABAAC architecture, components, and protocols is shown in \autoref{fig:sabaac_protocols_overview}.
 \begin{figure}
     \centering
     \includegraphics[width=1.0\linewidth]{figures/SABAAC_protocols_overview.drawio.pdf}
@@ -770,7 +770,7 @@ The four components of the architecture are defined below:
     Moreover, it provides interfaces for policy management services to human operators.
     The PAP accesses the PSP to persist policies and policy changes.
     \item[Policy Storage Point (PSP)] The PSP acts as a repository to make created policies and changes to policies persistent.
-    Therefor, the PSP offers Create, Read, Update, and Delete (CRUD) services to PAP instances.
+    For this purpose, the PSP offers Create, Read, Update, and Delete (CRUD) services to PAP instances.
     The physical PSP instance may be integrated with the PAP component to avoid network communication overhead.
     \item[Policy Decision Point (PDP)] The PDP takes access control decisions by evaluating policies.
     The PDP takes decision on request of a PEP and provides the access control decision to the requesting PEP.
@@ -864,7 +864,7 @@ The PEP-driven decision enforcement utilizes the result of the dynamic authoriza
 
 \paragraph{Access Control Decision:} $decision_{\rho} = \{flow_\rho, action_\rho, nexthop, validity\}$.\\
 An access control decision or access decision consists of a $flow$-specifying pattern, an $action$ to be taken, a $nexthop$ set specifying the PEPs a matching data frame should be forwarded to, and a period of $validity$.
-An access decision is valid for a specific data frame flow in a specific system at a specified period of time.
+Accordingly, an access decision is valid for a specific data frame flow in a specific system during a specified period of time.
 
 \paragraph{Dynamic Authorization:} $E_{POL}: Policy \times System \rightarrow Decision$.\\
 In the SABAAC approach, the policy evaluation is server-aided and takes partially place at the PDP.
@@ -873,31 +873,31 @@ The dynamic authorization function of SABAAC is defined as follows:
 \[
     E_{POL}(\rho, s) =
     \begin{cases}
-        (flow_\rho, action_\rho, nexthop, validity) & \text{, if } \forall a_i \in auxiliary_{\rho}: a_i(s) = TRUE\\
-        (flow_\rho, DENY, \emptyset, validity) & \text{, otherwise}
+        (flow_\rho, action_\rho, nexthop, validity) & \text{, if } \forall a_i \in auxiliary_{\rho}: a_i(s) = TRUE,\\
+        (flow_\rho, DENY, \emptyset, validity) & \text{, otherwise.}
     \end{cases}
 \]
 Thus, if the system predicates of the policy match the current system state, the policy is applicable to data frame flows in the system.
 To evaluate the system predicates, the PDP fetches the auxiliary attributes $ATT_{auxiliary_{\rho}}$ prior to the evaluation of $a_1, \dots, a_n$.
-The validity of the resulting access decision at the point of time $t$ equals the minimal validity of the attribute values in $\{\lambda_i = E_{ATT}(k_i, t) | k_i \in ATT_{auxiliary_{\rho}}\}$.
-The validity of an access decision of a dynamic policy is determined by the attribute value that expires first.
-To avoid the utilization of modified or removed policies, the validity of an access decision of a static policy may be limited by specifying a maximum time of validity for all policies.
+The validity of the resulting access decision at the point of time $t$ equals the minimal validity of the attribute values in $\{\lambda_k = E_{ATT}(k, t) | k \in ATT_{auxiliary_{\rho}}\}$.
+Consequently, the validity of an access decision of a dynamic policy is determined by the attribute value that expires first.
+The validity of an access decision of a static policy may be limited by specifying a non-attribute-related maximum time of validity, to avoid the utilization of invalid or outdated access decisions.
 
 \paragraph{Decision Enforcement:} $E_{DEC}: Decision \times Frame \rightarrow (Action, Nexthop)$.\\
 A PEP uses an access control decision $d_{\rho}$ taken by a PDP to enforce a policy $\rho$ in the SAS.
-For this purpose, each data frame $f$ traversing a PEP is matched using $flow_\rho$ to identify the corresponding access decision $d_{\rho}$.
+For this purpose, each data frame $f$ traversing a PEP is matched using $flow_\rho$ to identify the corresponding access decision.
 The process of enforcing a policy based on a priorly taken access decision is referred to as decision enforcement.
 At the PEPs the decision enforcement for a decision $d_{\rho} = \{flow_\rho, action_\rho, nexthop, validity\}$ and a frame $f$ is performed using the decision enforcement function $E_{DEC}$:
 \[
     E_{DEC}(d_{\rho}, f) =
     \begin{cases}
         (action_\rho, nexthop) & \text{, if } \forall p_i \in flow_{\rho}: p_i(f) = TRUE\\
-        & \quad \land validity.contains(time.now)\\
-        (DENY, \emptyset) & \text{, otherwise}
+        & \quad \land validity.contains(time.now),\\
+        (DENY, \emptyset) & \text{, otherwise.}
     \end{cases}
 \]
-Thus, if the flow predicates of a decision match a data frame, and the decision is still valid the decision enforcement function returns the action to be taken and the PEPs the frame has to be forwarded to.
-A PEP may choose the decision corresponding to the most specific matching flow predicates, if multiple decisions match a data frame.
+Thus, if the flow predicates of a decision match a data frame, and the decision is still valid, the decision enforcement function returns the action to be taken and the PEPs the frame has to be forwarded to.
+If multiple decisions match a data frame, a PEP may choose the decision corresponding to the most specific matching flow predicates.
 Two cases have to be distinguished, if $E_{DEC}(d_{\rho}, f) = (action_\rho, nexthop)$:
 \begin{itemize}
     \item \textbf{Outgoing Data Frame:} An outgoing data frame $f$ is forwarded to each $PEP \in nexthop$, if $action_\rho = GRANT$.
@@ -909,7 +909,7 @@ To speed up the policy evaluation and increase the data frame throughput, PEP an
 The SABAAC approach distinguishes between three evaluation strategies shown in \autoref{fig:policy_evaluation_strategies} and defined below:
 \begin{itemize}
     \item \textbf{A Priori:} The a priori or precomputed evaluation aims to maximize the policy evaluation speed.
-    The a priori evaluation strategy is shown in \autoref{fig:apriori_policy_evaluation_strategy}.
+    A finite-state machine representing the a priori evaluation strategy at a PDP and PEP is shown in \autoref{fig:apriori_policy_evaluation_strategy}.
     At the PDP, the strategy is applied via precomputation of the dynamic authorization function $E_{POL}$ for all available access control policies of the SAS.
     Accordingly, a PDP refreshes and caches each access decision periodically, and provides it to PEPs if requested.
     At the PEP, a priori evaluation can be achieved by requesting access decisions before data frames are matched and forwarded, i.e., before $E_{DEC}$ is evaluated.
@@ -917,19 +917,19 @@ The SABAAC approach distinguishes between three evaluation strategies shown in \
     The precomputation strategy results in an increased policy evaluation speed, increased data frame throughput, and decreased network jitter sensitivity.
     The a priori strategy is particularly suitable for periodic message exchanges, such as messages exchanges of the SV protocol.
     However, precomputation and caching of access decisions leads to increased memory utilization.
-    Moreover, periodic refreshing of unused or rarely used access decision results in non-optimal power efficiency.
+    Furthermore, periodic refreshing of unused or rarely used access decision results in non-optimal power efficiency.
     
     \item \textbf{A Posteriori:} The a posteriori or ad-hoc evaluation aims to minimize the memory utilization.
-    The a posteriori evaluation strategy is shown in \autoref{fig:aposteriori_policy_evaluation_strategy}.
+    A finite-state machine representing the a posteriori evaluation strategy at a PDP and PEP is shown in \autoref{fig:aposteriori_policy_evaluation_strategy}.
     In contrast to the a priori strategy, neither the PDP-driven dynamic authorization nor the PEP-driven access decision requests are precomputed or cached.
     As a consequence, for each traversing data frame a PEP requests an access decision from a PDP.
     The PDP evaluates $E_{POL}$ on request and provides the result to the PEP.
     As no access decisions are cached at the PDP and PEP, the a posteriori strategy minimizes the memory utilization.
     The strategy is particularly suitable for non-recurring and non-periodic message exchanges without message fragmentation.
-    However, for periodic messages exchanges and frequently matching flow patterns the strategy results in non-optimal power efficiency, as access policies are repeatedly evaluated even if the corresponding access decisions are still valid.
+    However, for periodic message exchanges and frequently matching flow patterns the strategy results in non-optimal power efficiency and decreased data frame throughput, as access policies are repeatedly evaluated even if the corresponding access decisions are still valid.
 
-    \item \textbf{Predicted:} The predicted, conditional, or hybrid evaluation aims to optimize evaluation speed, memory utilization, and power efficiency.
-    The predicted evaluation strategy is shown in \autoref{fig:predicted_policy_evaluation_strategy}.
+    \item \textbf{Predicted:} The predicted, conditional, or hybrid evaluation aims to optimize data frame throughput, memory utilization, and power efficiency.
+    A finite-state machine representing the predicted evaluation strategy at a PDP and PEP is shown in \autoref{fig:predicted_policy_evaluation_strategy}.
     This strategy is inspired by the branch prediction used in microprocessor architectures.
     Instead of relying exclusively upon a priori or a posteriori evaluation, the hybrid evaluation uses a predictor to decide whether an access decision should be refreshed and cached.
     By predicting whether an access decision is required in the next prediction period, PDPs and PEPs are able to avoid unnecessary computation, requesting, and caching of non-required access decisions.
