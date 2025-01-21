@@ -15,7 +15,7 @@
 %% Available page modes: oneside, twoside
 %% Available languages: english, ngerman
 %% Available modes: draft, final (see README)
-\documentclass[twoside, english, draft]{sdqthesis}
+\documentclass[twoside, english]{sdqthesis}
 
 %% Todonotes package
 \usepackage[obeyFinal]{todonotes}
@@ -37,6 +37,13 @@
 \usepackage{cleveref}
 
 \usepackage{amsmath}
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\algrenewcommand\algorithmiccomment[1]{//~#1}
+\newcommand*\LineComment[1]{\State //~#1}
+\newcommand*\ForIn[2]{\ForAll{#1 $\in$ #2}}
+\newcommand*\Let[2]{\State #1 $\gets$ #2}
 
 %% ---------------------------------
 %% | Information about the thesis  |

@@ -871,15 +871,15 @@ In the SABAAC approach, the policy evaluation is server-aided and takes partiall
 To derive an access decision from an access control policy at the PDP, the dynamic authorization function is used.
 The dynamic authorization function of SABAAC is defined as follows:
 \[
-    E_{POL}(\rho, s) =
+    E_{POL}(\rho, s_t) =
     \begin{cases}
         (flow_\rho, action_\rho, nexthop, validity) & \text{, if } \forall a_i \in auxiliary_{\rho}: a_i(s) = TRUE,\\
         (flow_\rho, DENY, \emptyset, validity) & \text{, otherwise.}
     \end{cases}
 \]
-Thus, if the system predicates of the policy match the current system state, the policy is applicable to data frame flows in the system.
-To evaluate the system predicates, the PDP fetches the auxiliary attributes $ATT_{auxiliary_{\rho}}$ prior to the evaluation of $a_1, \dots, a_n$.
-The validity of the resulting access decision at the point of time $t$ equals the minimal validity of the attribute values in $\{\lambda_k = E_{ATT}(k, t) | k \in ATT_{auxiliary_{\rho}}\}$.
+Thus, if the system predicates $a_1, \dots, a_n$ of the policy match the current system state $s_t$, the policy is applicable to data frame flows in the system $s$.
+To evaluate the system predicates, the PDP fetches the auxiliary attributes $ATT_{auxiliary_{\rho}} \subseteq s_t$ prior to the evaluation of $a_1, \dots, a_n$.
+The validity of the resulting access decision at the point of time $t$ equals the minimal validity of the attribute values in $\{\lambda_k = E_{ATT}(k, t) | k \in ATT_{auxiliary_{\rho}} \subseteq s_t\}$.
 Consequently, the validity of an access decision of a dynamic policy is determined by the attribute value that expires first.
 The validity of an access decision of a static policy may be limited by specifying a non-attribute-related maximum time of validity, to avoid the utilization of invalid or outdated access decisions.
 
@@ -965,37 +965,29 @@ The SABAAC approach distinguishes between three evaluation strategies shown in \
 \label{sec:approach:sabaac:authorization}
 In the following, we discuss the delegated attribute-based authorization protocol of the SABAAC approach.
 Authorization is the process of assigning access privileges for protected objects to subjects \cite{Eckert2023}.
-According to \citeauthor{Eckert2023} \cite{Eckert2023}, a subject is said to be authorized for a specific request if it has the required access privileges for the request.
-We propose an authorization protocol that is responsible for the policy creation, management, storage, and distribution.
-For this purpose, the authorization protocol provides policy management services for human operators at the PAP.
+A subject is said to be authorized for a specific request if it has the required access privileges for the request.
+We propose an authorization protocol that is responsible for the policy creation, modification, storage, and distribution.
+For this purpose, the authorization protocol provides policy management services at the PAP.
 Moreover, the authorization protocol provides services for the exchange of policies between the PAP, PSP, and PDP.
 
-The delegated attribute-based authorization protocol is a message-based protocol.
-It uses digital signatures and verification provided by CASA to verify the integrity and authenticity of messages.
-Moreover, the services provided by the authorization protocol use reliable and acknowledged transport layer protocols for the message exchange.
-Since the authorization protocol is delegated, authorizations are not managed by the protected devices, but management is rather delegated to a TTP.
-In the SABAAC approach this TTP is represented by the PAP, PSP, and PDP.
-Accordingly, the protected objects or devices delegate the authorization process to these SABAAC components.
-Therefore, the authorization can also be referred to as server-aided authorization.
+The delegated attribute-based authorization protocol offers reliable services to entities involved in the policy management process, including human operators or intrusion detection and prevention systems. 
+It uses signing and verification services provided by CASA to safeguard the integrity and authenticity of messages.
+The exchanged messages of the protocol are sequenced, as defined by security policy IV in \autoref{sec:approach:security_policies}, to protect the protocol against intentional or accidental re-ordering, replaying, and delaying of messages.
+To guarantee the delivery of messages, the protocol relies on an Automatic Repeat Query (ARQ) approach.
+Accordingly, positive acknowledgements and timeout-based retransmissions are used to achieve reliable message transmission over an unreliable communication channel.
 
-Since no cybersecurity layer sessions are established and consequently neither nonces nor sequence numbers can be used, message exchange of the authorization protocol is vulnerable to replay attacks.
-Therefore, we propose using timestamp-based replay protection for authorization messages.
-At the sender, timestamp-based replay protection can be achieved by adding a timestamp to the message and digitally signing the message and timestamp together.
-The message is then sent over the network to the receiver.
-The receiver only processes the message payload if its timestamp has a reasonable deviation from the current time.
-Moreover, if the receiver keeps record of the last timestamp received from each sender, the receiver can acknowledge duplicated and older packets without processing them.
-
-Authorizations in the SABAAC approach are realized using ABAC policies.
 As discussed in \autoref{sec:approach:sabaac:policy}, access control policies are classified as either static or dynamic.
-Consequently, the authorization protocol has to take the time-variability into account.
+Consequently, the authorization protocol has to take the time-variability of access control policies into account.
 For this purpose, the authorization protocol consists of three parts or sub-protocols:
 \begin{description}
-    \item[Static Authorization] The static authorization process is responsible for the creation, modification, and deletion of policies.
-    The static authorization is initiated by a human operator.
-    The human operator sends a policy creation, modification, or deletion request to a PAP.
-    The PAP then translates the request into a valid SABAAC policy or policy modification and sends it to the PSP in the form of a CRUD request.
-    Finally, the PSP persists the created or modified policy and sends a response to the PAP.
-    The static authorization process, the involved components, and the occurring message exchanges are visualized in \autoref{fig:sabaac_authorization_static}.
+    \item[Static Authorization] The static authorization process is responsible for handling CRUD requests for access control policies.
+    The process, the involved components, and the occurring message exchanges are visualized in \autoref{fig:sabaac_authorization_static}.
+    The static authorization is initiated by a human operator or an external system responsible for the management of policies.
+    When a policy CRUD request arrives at a PAP, it is processed by the PAP according to the requested action.
+    In case of a read request, the PAP fetches the requested access control policy from its PSP and returns it to the requestor.
+    Create, updated, and delete requests are processed by computing a set of changes to be made to the persistent set of access control policies.
+    These changes are sent to the PSP via persistence requests.
+    As soon as all changes are made to the access control policies, the PSP sends a persistence acknowledgement to the PAP and the PAP acknowledges the initial policy CRUD request.
     \begin{figure}
         \centering
         \includegraphics[width=0.9\linewidth]{figures/SABAAC_protocols_authorization_static.drawio.pdf}
@@ -1004,15 +996,12 @@ For this purpose, the authorization protocol consists of three parts or sub-prot
         }
         \label{fig:sabaac_authorization_static}
     \end{figure}
-    \item[Policy Exchange] After a policy is created or modified via static authorization, it is shared with the PDPs via policy exchange.
-    The policy exchange is an interaction between a PAP and a PDP either initiated by a static authorization or on request of the involved PDP.
-    The static authorization is a prerequisite for both policy exchange procedures.
-    The policy exchange is a prerequisite for dynamic authorization at a PDP.
-    A repeatedly executed dynamic authorization process may be initially triggered by a policy exchange.
+    \item[Policy Exchange] After a policy is created, modified, or deleted during static authorization, it is shared with the PDPs via policy exchange.
+    The policy exchange is an interaction between a PAP and a PDP.
+    The interaction is either initiated by a PAP as a result of a static authorization, or on request of a PDP.
 
-    In the event that a static authorization triggers the policy exchange, the PAP sends a policy exchange message to a PDP, which contains the newly created or modified policy.
-    This type of policy exchange is an incremental process.
-    Consequently, only newly created or modified policies are exchanged.
+    If a static authorization triggers the policy exchange, the PAP sends a policy exchange message to a PDP.
+    This type of policy exchange is referred to as incremental policy exchange., i.e., only newly created, modified, or removed policies are exchanged.
     The incremental policy exchange is shown in \autoref{fig:sabaac_authorization_dynamic_policyexchange_incremental}.
 
     A policy exchange containing all relevant policies can be initiated by a PDP by sending a policy exchange request to a PAP.
@@ -1038,15 +1027,47 @@ For this purpose, the authorization protocol consists of three parts or sub-prot
         }
         \label{fig:sabaac_authorization_dynamic_policyexchange}
     \end{figure}
-    \item[Dynamic Authorization] The dynamic authorization process is responsible for the evaluation of SABAAC policies.
-    The dynamic authorization process is executed by the PDP.
-    The goal of the process is to compute whether a certain subject is authorized for a specific request.
-    Therefor, the PDP retrieves the attributes related to a policy and derives an access decision.
-    The dynamic authorization is either executed ad-hoc to respond to an access control request or executed prior to a request.
-    The former execution strategy has less management overhead, since it requires no caching of policy evaluations.
-    On the contrary, ad-hoc policy evaluation increases the response time for access control requests.
-    The latter execution strategy evaluates policies prior to a request and caches the corresponding access decision.
-    Consequently, this precomputation strategy enables low latency communication by reducing the response time for access control requests.
+    \item[Dynamic Authorization] The dynamic authorization process is responsible for deriving an access decision from an access control policy at the PDP.
+    The process, the involved components, and the occurring message exchanges are visualized in \autoref{fig:sabaac_authorization_dynamic}.
+    \Cref{alg:dynamic_authorization} shows the steps of the dynamic authorization process executed by a PDP, i.e., the process of deriving an access control decision in a given system for each access control policy available to the PDP.
+    Depending on the evaluation strategy used, the dynamic authorization might either be triggered automatically prior to an access request of a PEP, or be triggered by an access request.
+    As discussed in \autoref{sec:approach:sabaac:policy}, the dynamic authorization process is based on the dynamic authorization function $E_{POL}: Policy \times System \rightarrow Decision$.
+    Prior to the evaluation of the dynamic authorization function for a policy, the PDP fetches the auxiliary attributes from other system entities via attribute request messages.
+    These entities respond to the attribute requests with attribute resolution messages.
+    As soon as the auxiliary attributes of a policy are available at the PDP, the dynamic authorization function $E_{POL}$ is evaluated.
+    \begin{algorithm}
+        \caption{Dynamic authorization process of a PDP deriving an access control decision for each access control policy in a given system.}
+        \label{alg:dynamic_authorization}
+        \begin{algorithmic}
+        \Function{DynamicAuthorization}{$Policies$, $System$}
+            \Let{$Decisions$}{$\left\{\,\right\}$} \Comment{Initialize an empty set of access decisions}
+            \Let{$ATT_{System}$}{$\left\{\,\right\}$} \Comment{Initialize an empty system state}
+            \\
+            \ForIn{$\rho = (action_{\rho}, flow_{\rho}, auxiliary_{\rho})$}{$Policies$}
+                \Let{$ATT_{auxiliary_{\rho}}$}{$\left\{\,\right\}$} \Comment{Initialize the auxiliary attributes of policy $\rho$}
+                \ForIn{$a_i$}{$auxiliary_{\rho}$}
+                    \LineComment{Request the attribute values for $a_i \in auxiliary_{\rho}$ from the system}
+                    \Let{$ATT_{a_i}$}{\Call{ResolveAttributes}{$a_i, System$}}
+                    \Let{$ATT_{auxiliary_{\rho}}$}{$ATT_{auxiliary_{\rho}} \cup ATT_{a_i}$}
+                \EndFor
+                \\
+                \LineComment{Add the auxiliary attributes of policy $\rho$ to the current system state $ATT_{System}$}
+                \Let{$ATT_{System}$}{$ATT_{System} \cup ATT_{auxiliary_{\rho}}$}
+                \\
+                \LineComment{Derive an access decision from policy $\rho$ \& the current system state $ATT_{System}$}
+                \Let{$Decisions$}{$Decisions \cup E_{POL}(\rho, ATT_{System})$}
+            \EndFor
+            \State \Return $Decisions$
+        \EndFunction
+        \end{algorithmic}
+    \end{algorithm}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.9\linewidth]{figures/SABAAC_protocols_authorization_dynamic.drawio.pdf}
+        \caption{Exchanged messages of the dynamic authorization process.
+        }
+        \label{fig:sabaac_authorization_dynamic}
+    \end{figure}
 \end{description}
 
 \subsection{Delegated Attribute-Based Access Control Protocol}
