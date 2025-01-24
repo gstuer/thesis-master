@@ -1230,18 +1230,29 @@ The phases of the access control protocol are defined as follows:
 
 \section{Realization}
 \label{sec:approach:realization}
-\todo{TODO: Rewrite and add subsections}
-In the following section, we discuss the proposed realization of the CASC-SAS approach and its two core concepts CASA and SABAAC.
-The approach and its two concepts introduce components that are defined and discussed in \autoref{sec:approach:casa} and \autoref{sec:approach:sabaac}.
-% These components have to be integrated into the SAS system model to employ the CASC-SAS approach.
-The adaptation of the layered SAS architecture to the CASC-SAS approach entails a modification of the architecture to accommodate these additional components.
-This integration of CASC-SAS components into the SAS architecture is visualized in \autoref{fig:casc_architecture}.
-The components depicted in blue represent elements of the SAS architecture, whereas the components depicted in red are introduced by the CASC-SAS approach.
-The components with a color gradient represent elements of the SAS architecture that have been adapted to support CASC-SAS concepts.
-The PEP, PDP, and CAPP components have to be present locally in every adapted SAS.
-This is necessary due to the strict time constraints of SAS-internal low latency message exchange.
-The PAP and PSP instances may be centrally deployed, since static authorization is part of the non-time-critical control path communication.
-Any non-intermediate SAS component that participates in a communication relationship must either support the CASC-SAS protocols or use the services provided by a PEP to secure occurring message exchanges.
+In the following section, we discuss the realization of the CASC-SAS approach and its two core concepts CASA and SABAAC.
+The approach and its two core concepts introduce components that are defined and discussed in \autoref{sec:approach:casa} and \autoref{sec:approach:sabaac}.
+To employ the CASC-SAS approach in a SAS, these components have to be integrated into the system architecture of a newly constructed or retrofitted SAS.
+The three-layered architecture of a SAS, as introduced in the IEC 61850 standards \cite{IEC61850P8}, is shown in \autoref{fig:substation_architecture}.
+Our adaptation of the layered SAS architecture integrating the introduced components of the CASC-SAS approach is shown in \autoref{fig:casc_architecture}.
+Any non-intermediate SAS devices that participate in a communication relationship must either support the CASC-SAS protocols or use the services provided by a PEP to secure occurring message exchanges according to the CASC-SAS security policies introduced in \autoref{sec:approach:security_policies}.
+The components depicted in blue represent devices of a typical SAS, whereas the components depicted in red are introduced by the CASC-SAS approach.
+The components with a color gradient represent SAS devices that have been adapted to support CASC-SAS concepts.
+
+The employed components of CASA and SABAAC provide different types of services, and have to be deployed differently to correspond to the presented protocols.
+Since the delegated attribute-based authorization protocol is part of the time-critical and traffic-intensive data path of CASC-SAS, the PEPs and PDPs have to be present locally in every adapted SAS.
+Furthermore, at least one CAPP instance has to be present locally in a SAS to support query and computation transactions in a timely manner, i.e., to take the strict time constraints of SAS-internal low latency message exchanges into account.
+The PAP and PSP may be centrally deployed, as the delegated attribute-based authorization protocol of SABAAC is part of the non-time-critical control path communication.
+Consequently, while some components may be deployed centrally, other components have to be distributed to individual substations.
+This leads to differing hardware requirements for the deployed components.
+With the exception of PEP instances, the components provide their services by using a client-server pattern.
+The PEP instances partially use a client-server pattern and partially provide their services in the form of a Bump-In-The-Wire (BITW) solution.
+The services of the delegated attribute-based access control protocol at the PEPs are provided via BITW pattern.
+Therefore, these services are invisible to the corresponding service consumers, i.e., to the SAS devices secured by the PEPs.
+The BITW pattern is inspired by the security filter approach presented by \citeauthor{Ishchenko2018} \cite{Ishchenko2018}.
+Taking the differing provision patterns and deployment structures into account, we propose the usage of performance-oriented server hardware for the PAP, PSP, PDP, and CAPP to avoid bottlenecks and mitigate the risk of accidental or malicious DoS.
+For the highly distributed PEP instances, we propose the usage of inexpensive off-the-shelf hardware.
+To reduce the trust in single component instances and achieve a fault-tolerant and scalable system, components can be deployed redundantly, as discussed for access decision verification in \autoref{sec:approach:sabaac:accesscontrol}.
 \begin{figure}
     \centering
     \includegraphics[width=1.0\linewidth]{figures/casc_architecture_color.drawio.pdf}
@@ -1250,23 +1261,11 @@ Any non-intermediate SAS component that participates in a communication relation
     }
     \label{fig:casc_architecture}
 \end{figure}
-
-To examine the feasibility and perform the above-mentioned integration, we propose a hardware and software realization of our approach.
-The aim of the realization is to provide implementations of CASA and SABAAC with a full range of functions.
-The software is going to be implemented component-wise using high-level programming languages.
-Depending on the complexity and time constraints of a specific component, different programming languages might be used for the implementation.
-Due to internal dependencies, the software implementation is split into two parts.
-The first part is dedicated to the CASA approach, as it represents the foundation of all employed protocols.
-The second part is dedicated to the SABAAC components and protocols.
-
-The employed components of CASA and SABAAC provide different services.
-Furthermore, the components have to be deployed differently to correspond to the proposed protocols.
-While PAP and PSP may be deployed centrally, components such as PEP, PDP, and CAPP are distributed to individual SAS instances.
-This leads to differing hardware requirements for the implemented components.
-Moreover, with the exception of PEP instances, the components provide their services by using a client-server pattern.
-The PEP instances partially use a client-server pattern and partially provide their services in the form of a Bump-In-The-Wire (BITW) solution.
-The services provided by PEP instances via BITW pattern are automatically applied to captured packets.
-Therefore, these services are invisible to the corresponding service consumers.
-This BITW pattern is inspired by the security filter approach presented by \citeauthor{Ishchenko2018} \cite{Ishchenko2018}.
-Taking the differing provision patterns and deployment structures into account, we propose the usage of performance-oriented server hardware for the PAP, PSP, PDP, and CAPP to avoid bottlenecks and mitigate the risk of accidental or malicious DoS.
-Moreover, we propose the usage of inexpensive off-the-shelf hardware for the highly distributed PEP instances.
+%
+% To examine the feasibility and perform the above-mentioned integration, we propose a hardware and software realization of our approach.
+% The aim of the realization is to provide implementations of CASA and SABAAC with a full range of functions.
+% The software is going to be implemented component-wise using high-level programming languages.
+% Depending on the complexity and time constraints of a specific component, different programming languages might be used for the implementation.
+% Due to internal dependencies, the software implementation is split into two parts.
+% The first part is dedicated to the CASA approach, as it represents the foundation of all employed protocols.
+% The second part is dedicated to the SABAAC components and protocols.
