@@ -447,7 +447,7 @@ Consequently, CL-PKC neither suffers from the key escrow problem nor requires a 
 
 To obtain the public key, the entity generates it based on public parameters and the secret value~\cite{AlRiyami2003}.
 After the generation, the public key may be shared with other entities directly or via public directories.
-Similar to ID-PKC, the public key is not derived from the private key and may therefore exist prior to it.
+As with ID-PKC, the public key is not derived from the private key and may therefore exist prior to it.
 The only restriction is that the public key and the private key must use the same secret value.
 However, CL-PKC is not identity-based, as the public key is not solely based on the identity of an entity.
 
@@ -458,7 +458,7 @@ Therefor, attribute-based policies are integrated into cryptographic algorithms 
 This integration enables encryption based on arbitrary attributes and provides fine-grained access control via attribute-based decryption.
 Communication complexity for key distribution in ID-PKC scales linear with the number of communication entities, i.e., users or devices.
 In ABE the communication complexity scales linear with the number of attributes.
-Similar to the concept of ABE, Attribute-Based Signatures (ABS) enable the integration of attributes into signing and verification algorithms~\cite{Li2010,Maji2011}.
+As with the concept of ABE, Attribute-Based Signatures (ABS) enable the integration of attributes into signing and verification algorithms~\cite{Li2010,Maji2011}.
 
 ABE approaches are classified as either Key-Policy ABE (KP-ABE) or Ciphertext-Policy ABE (CP-ABE), depending on whether the access structure is associated with a key or a ciphertext~\cite{Goyal2006,Bethencourt2007,Hu2023}.
 In KP-ABE the access structure is associated with a key.

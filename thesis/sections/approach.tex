@@ -1095,13 +1095,13 @@ The delegated attribute-based access control protocol comprises reliable and unr
 These services are provided by PDPs and used by PEPs.
 Since the services provided by the protocol are directly related to domain-specific messages, the protocol is part of the CASC-SAS data path.
 Accordingly, the occurring message exchanges are time-critical and traffic-intensive.
-Similar to the delegated attribute-based authorization protocol, the access control protocol uses signing and verification services provided by CASA to safeguard the integrity and authenticity of messages.
+As with the delegated attribute-based authorization protocol, the access control protocol uses signing and verification services provided by CASA to safeguard the integrity and authenticity of messages.
 Furthermore, messages of the protocol are sequenced, as defined by security policy IV in \autoref{sec:approach:security_policies}, to protect the protocol against intentional or accidental re-ordering, replaying, and delaying of messages.
 The parts of the protocol that guarantee the delivery of messages, use an ARQ approach with positive acknowledgements and timeout-based retransmissions to achieve reliable message exchange.
 As the message exchanges of the protocol are time-critical, negative acknowledgements are used in addition to timeout-based retransmissions to indicate errors and trigger retransmissions.
 
 % The access control protocol of the SABAAC approach uses digitally signed and partially acknowledged message exchange.
-% Similar to the authorization protocol, it uses digital signatures and verification provided by CASA to verify the integrity and authenticity of messages.
+% As with the authorization protocol, it uses digital signatures and verification provided by CASA to verify the integrity and authenticity of messages.
 % To exchange messages on the control path, the access control protocol relies on reliable transport services provided by the message exchange layer.
 % Data path message exchange of the access control protocol relies on either reliable or unreliable transport services depending on requirements such as message integrity and congestion tolerance.
 % Moreover, the protocol is based on discontinuous message-based communication as well as continuous session-based communication at the cybersecurity layer.
