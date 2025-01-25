@@ -13,11 +13,11 @@ Communicating SAS devices as well as more abstract cybersecurity services can re
 The CASA concept is further discussed in \autoref{sec:approach:casa}.
 The second core concept of the approach is the \textbf{S}erver-Aided \textbf{A}ttribute-\textbf{B}ased \textbf{A}uthorization and \textbf{A}ccess \textbf{C}ontrol (SABAAC).
 This concept provides mechanisms to enable attribute-based authorization and ABAC for time-critical SAS communication.
-The concept represents a more abstract cybersecurity means to provide access control, PoLP, and SoD.
+Accordingly, this concept represents cybersecurity means to provide access control, PoLP, and SoD.
 For this purpose, the concept relies on authentication services provided by CASA.
 The SABAAC concept is further discussed in \autoref{sec:approach:sabaac}.
 
-The introduction and discussion of the proposed approach is organized as follows.
+In the following sections, we introduce and discuss our proposed approach.
 At the beginning of this chapter, in \autoref{sec:approach:system_model}, we discuss the field of application of the proposed approach by introducing a system model.
 Based on the presented system model, we define the requirements of the proposed approach in \autoref{sec:approach:requirements}.
 In \autoref{sec:approach:attacks} we address potential adversarial attacks, for which the approach must provide mitigation strategies.
@@ -36,21 +36,21 @@ The system model serves the purpose of delimiting the scope and area of applicat
 The area of application of the proposed approach consists of ICSs in the power system domain.
 More specifically, the proposed approach is tailored to the communication and control systems of substations in the electricity grid.
 The communication and control equipment of an ICS is referred to as secondary equipment.
-The entirety of secondary equipment of a substation is referred to as Substation Automation System (SAS) \cite{Padilla2015}.
+The entirety of secondary equipment of a substation is referred to as SAS \cite{Padilla2015}.
 Although the proposed approach is tailored to the power system domain and substation environment, its main concepts may also be applied to other ICSs with similar requirements and constraints.
 
 \subsection{Architecture}
 The architecture of the presented system model is based on the IEC 61850 standards \cite{IEC61850P5}.
-The presented system model architecture consists of four layers called network level, station level, bay level, and process level.
+The presented system model architecture consists of four layers called network, station, bay, and process level.
 The process, bay, and station level represent the internal layers of a SAS architecture.
-The SAS architecture containing the process, bay, and station level as well as the station and process bus is shown in \autoref{fig:substation_architecture}.
+The SAS architecture containing the three internal layers as well as the station and process bus is shown in \autoref{fig:substation_architecture}.
 The shown busses are further discussed in \autoref{sec:approach:system_model:communication}.
 The network level represents a SAS-external layer to integrate multiple SAS instances and supervisory controllers into a comprehensive power system.
 Each of the four layers consists of different devices and provides different control and automation functions:
 \begin{enumerate}
     \item Process Level: The process level provides functions to interact with the physical process via sensors and actuators.
     As a consequence, SAS devices located at the process level provide interfaces to the physical process.
-    In other words, devices located at the process level transform analog measurement signals or control signals into digital values and vice versa.
+    In other words, devices located at the process level transform analog measurements or control signals into digital values and vice versa.
     Devices restricted to the transformation and provision of measurement and control values are referred to as Merging Units (MU).
     Moreover, IEDs can be employed at the process level to combine MU functions with higher-level functions such as protection or communication tasks.
 
@@ -83,15 +83,15 @@ Furthermore, we discuss the bus-based device interactions occurring in the above
 
 \subsubsection{Classification Characteristics}
 The communication relationships between devices within a SAS can be classified using different communication characteristics.
-In the following sections, classification based on topology, continuity, and latency are further discussed.
+In the following sections, classifications based on topology, continuity, and latency are further discussed.
 
 \paragraph{Topology-Based Classification}
 Topological communication characteristics can be used to classify the device relationships based on their relative or absolute location within the system model.
 Accordingly, communication can either occur between devices on the same layer or different layers of the system model.
 Communication on the same layer of the system model is referred to as horizontal communication, whereas communication between devices on different layers is referred to as vertical communication.
 Moreover, communication can occur between devices of the same or different subsystems.
-Communication between devices of the same subsystem is classified as (subsystem) internal communication, whereas communication relationships including an external device are classified as (subsystem) external communication.
-Furthermore, a communication relationship is not limited to a single receiver (unicast) but rather a group of devices (multicast) or all devices (broadcast) may receive a sender's message.
+Communication between devices of the same subsystem is classified as internal communication, whereas communication relationships including an external device are classified as external communication.
+Furthermore, a communication relationship is not limited to a single receiver using unicast, but rather a group of devices via multicast or all devices via broadcast may receive a sender's message.
 
 \paragraph{Continuity-Based Classification}
 Besides the topology-based classification, communication relationships can be classified based on their continuity.
@@ -102,7 +102,7 @@ Consequently, discontinuous communication does not lead to latency emerging from
 
 \paragraph{Latency-Based Classification}
 Since communication in ICS and SAS is time-critical, communication relationships can be classified based on their communication latency constraints.
-Within the scope of the proposed approach, we define communication latency as sum of processing times and transmission times required to exchange information between involved devices.
+Within the scope of the proposed approach, we define communication latency as sum of processing time and transmission time required to exchange information between involved devices.
 As a consequence, the communication latency represents the time an individual message requires to be delivered from the sending buffer of a host to the receiving buffer of another host.
 
 Transmission time is the time required to transmit a message over a network link with a specific throughput, whereas processing time represents the time required for a device to send, forward, or receive a message.
@@ -115,14 +115,14 @@ In \autoref{fig:frame_delivery_time_composition:unverified}, the communication l
 In \autoref{fig:frame_delivery_time_composition:verified}, device-local data verification is employed, which leads to additional processing time required for signing ($t_{Sig}$) and verification ($t_{Ver}$).
 \begin{figure}
     \centering
-    \begin{subfigure}[t]{0.48\linewidth}
+    \begin{subfigure}[t]{0.85\linewidth}
         \centering
         \includegraphics[width=\linewidth]{figures/frame_delivery_time_without_signature.drawio.pdf}
         \caption{No data verification.}
         \label{fig:frame_delivery_time_composition:unverified}
+        \vspace{1.0\baselineskip}
     \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.48\linewidth}
+    \begin{subfigure}[t]{0.85\linewidth}
         \centering
         \includegraphics[width=\linewidth]{figures/frame_delivery_time_with_signature.drawio.pdf}
         \caption{Device-local data verification.}
@@ -136,16 +136,16 @@ In \autoref{fig:frame_delivery_time_composition:verified}, device-local data ver
 \label{sec:approach:system_model:communication:message_types}
 The defined message types of the presented system model are based on the classification characteristics defined above.
 Furthermore, the defined message types have been adapted from the message types and performance classes of the IEC 61850 standards \cite{IEC61850P5}.
-The defined message type as well as their typical communication topology, continuity, and latency constraints are shown in \autoref{tab:message_types}.
+The defined message types as well as their typical communication topology, continuity, and latency constraints are shown in \autoref{tab:message_types}.
 
 The low latency message type corresponds to the IEC 61850 \cite{IEC61850P5} message types 1A and 4.
 These messages are used for SAS-internal exchange of sampled values and state values.
-In IEC-compliant substations, the sampled values are exchanged via multicast using the Sampled Values (SV) protocol between MUs and IEDs (vertical) or between MUs (horizontal).
-Moreover, state values and state changes are exchanged between IEDs (horizontal) using the Generic Object Oriented Substation Events (GOOSE) protocol.
+In IEC-compliant substations, the sampled values are exchanged via multicast using the SV protocol between MUs and IEDs (vertical) or between MUs (horizontal).
+Moreover, state values and state changes are exchanged between IEDs (horizontal) using the GOOSE protocol.
 
 The medium latency message type corresponds to the IEC 61850 message types 1B and 2.
 These messages are used for SAS-internal and SAS-external, as well as horizontal and vertical session-based client-server communication.
-In IEC-compliant substations, IEDs use the Manufacturing Message Specification (MMS) protocol to communicate with other IEDs and higher-level devices.
+In IEC-compliant substations, IEDs use the MMS protocol to communicate with other IEDs and higher-level devices.
 
 The high latency message type corresponds to the IEC 61850 message types 3 and 5.
 This message type is used for HMI interactions as well as non-time-critical operations like file transfers.
@@ -159,6 +159,7 @@ In IEC-compliant substations, MMS as well as SCADA protocols are used for high l
     \begin{tabular}{l c c c c c}
     \toprule
     \multicolumn{1}{c}{Message Type} & \multicolumn{3}{c}{Topology} & Continuity & Latency\\
+    \cmidrule(lr){2-4}
     & Externality & Verticality & Receiver & & Constraint\\
     \midrule
     Low Latency & Internal & Horiz./Vert. & Multicast & Message-Based & 3 ms\\
@@ -175,7 +176,7 @@ The bus-based approach as well as the two specific buses introduced in the follo
 
 The first bus for SAS-internal message exchange is referred to as process bus.
 The process bus is located between the bay level and the process level.
-The process bus is used for time-critical message-based publisher-subscriber, i.e., multicast or broadcast communication.
+The process bus is used for time-critical message-based publisher-subscriber communication, i.e., multicast or broadcast communication.
 GOOSE and SV are the protocols used for process bus communication.
 
 The second bus for SAS-internal message exchange is referred to as station bus.
