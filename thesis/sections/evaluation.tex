@@ -1,66 +1,89 @@
 \chapter{Evaluation}
 \label{ch:evaluation}
-In this section, the evaluation of the CASC-SAS approach is discussed.
+In this section, we analyze and evaluate the CASC-SAS approach and discuss the findings of the evaluation.
 The goal of the evaluation is to derive quantitative and qualitative characteristics of the approach.
-These characteristics are used to verify the applicability of the proposed approach in the presented field of application.
-Moreover, the characteristics are used to identify limitations and future work of the proposed approach.
-\todo{TODO: Rewrite and add subsections}
+These characteristics are used to verify the applicability of the approach in the presented field of application, i.e., the employment of the approach in newly constructed or retrofitted substations.
+Furthermore, the characteristics are used to identify limitations and future directions of the approach.
 
 \section{Method}
 The evaluation is performed theoretically as well as experimentally.
 For the theoretical parts of the evaluation, formal and informal methods are used to proof certain characteristics of the proposed approach.
-The experimentally performed part of the evaluation is based on the realization presented in \autoref{sec:approach:realization}.
+The experimentally performed parts of the evaluation are based on a testbed implementation of our approach and the concepts discussed in \autoref{sec:approach:realization}.
+The areas and metrics covered by the different parts of the evaluation are discussed in the following section.
 
 \subsection{Evaluation Areas \& Metrics}
-The evaluation aims to derive quantitative and qualitative metrics for different areas of interest.
-We propose three areas of interest for the evaluation of the CASC-SAS approach.
-The three areas of interest and their corresponding metrics are defined as follows:
+The evaluation of our approach is based on the goal-question-metric (GQM) approach \cite{Basili84,Basili92}.
+The GQM approach aims to analyze whether an overall goal was achieved by answering a set of questions that represent the different areas of interest of the evaluation.
+These questions are answered by deriving and evaluating quantitative and qualitative metrics.
+The evaluation of the CASC-SAS approach covers three areas of interest.
+The three areas of interest, i.e., questions to be answered, and their corresponding metrics are defined below:
 \begin{description}
-    \item[Security Evaluation] Does CASC-SAS provide security against typical SAS adversaries and attacks?
-    \begin{enumerate}
-        \item Satisfied security, safety, and availability requirements
-        \item Assumed system characteristics
-        \item Assumed adversary characteristics
-        \item Mitigated attacks
-        \item Introduced attack surface
-    \end{enumerate}
-    \item[Performance Evaluation] Is CASC-SAS capable of securing time-constrained communication of an SAS?
-    \begin{enumerate}
-        \item Satisfied performance requirements
-        \item Assumed communication characteristics
-        \item Supported message types
-        \item Resistance against network exceptions including congestion, delay, jitter, duplicated packets, lost packets, and out-of-order packet delivery
-    \end{enumerate}
-    \item[Compatibility Evaluation] Is CASC-SAS a feasible solution for the construction or retrofitting of an SAS?
-    \begin{enumerate}
-        \item Satisfied compatibility requirements
-        \item Assumed device requirements
-        \item Additional costs for SAS construction and retrofitting
-        \item Feasibility with regard to SAS retrofitting
-        \item Cost-benefit efficiency compared to alternative approaches
-    \end{enumerate}
+    \item[Goal:] Protect the time-constrained and traffic-intensive communication of a newly constructed or retrofitted SAS against domain-typical adversaries and attacks.
+    \begin{description}
+        \item[Question: Security] Does CASC-SAS provide security against typical SAS adversaries and attacks?
+        \begin{description}
+            \item[Metric:] Which security, safety, and availability requirements can be satisfied by deploying the approach in a SAS?
+            \item[Metric:] Which adversary and system characteristics are assumed?
+            \item[Metric:] Which attacks can be mitigated, and how can these attacks be mitigated with regard to their corresponding mitigation strategy?
+            \item[Metric:] How does the attack surface of the SAS change?
+        \end{description}
+        \item[Question: Performance] Is CASC-SAS capable of securing time-constrained and traffic-intensive communication of an SAS in an efficient and scalable manner?
+        \begin{description}
+            \item[Metric:] Which performance requirements can be satisfied by deploying the approach in a SAS?
+            \item[Metric:] Which communication characteristics are assumed?
+            \item[Metric:] Which message types are supported?
+            % \item Resistance against network exceptions including congestion, delay, jitter, duplicated packets, lost packets, and out-of-order packet delivery
+        \end{description}
+        \item[Question: Compatibility] Is CASC-SAS a viable solution to enhance the security of newly constructed or retrofitted substations?
+        \begin{description}
+            \item[Metric:] Which compatibility requirements can be satisfied by deploying the approach in a SAS?
+            \item[Metric:] Which device requirements are assumed?
+            \item[Metric:] What are the additional costs for SAS construction and retrofitting?
+            \item[Metric:] Is the approach feasible with regard to SAS retrofitting?
+            % \item Cost-benefit efficiency compared to alternative approaches
+        \end{description}
+    \end{description}
 \end{description}
 
 \subsection{Testbed}
-The component implementations discussed in \autoref{sec:approach:realization} are used to construct a network testbed.
-The proposed network testbed is visualized in \autoref{fig:evaluation_test_bed}.
-The components depicted in blue represent computers that mimic the behavior of domain-specific senders and receivers of an SAS.
-The components depicted in red are part of the CASC-SAS approach.
-The components depicted in yellow represent message-forwarding intermediate network devices.
-
-\todo{TODO: Remove simulation from text}
-These test environments mimic the behavior of a real interconnected SAS for occurring message exchanges.
-The simulation and testbed strategy have differing advantages and disadvantages.
-On the one hand, the simulation strategy has the advantage of repeatability and reproducibility due to deterministic behavior, whereas the behavior of the testbed is non-deterministic.
-On the other hand, the testbed results are practice-oriented and transferable to the physical SAS domain, whereas the behavior of a real SAS cannot be compared to the deterministic behavior of the network simulation.
+To analyze and evaluate the integration of our approach into the SAS architecture, as discussed in \autoref{sec:approach:realization}, we implemented the approach in hardware and software as a testbed.
+The software is implemented component-wise using object-oriented high-level programming languages.
+The implementation of the components is mainly based on the programming languages Java and Kotlin.
+The implementation is divided into three main packages.
+These packages, their sub-packages, and the package interrelationships are shown in \autoref{fig:casc_package_structure}.
+The common package contains functionalities that are required by all other parts of the implementation.
+Among others, the common package contains classes and interfaces related to message ingress and egress, message serialization, concurrency, and cryptography.
+The second package and its sub-packages are dedicated to the CASA components and protocols.
+The third package and its sub-packages are dedicated to the SABAAC components and protocols.
+To avoid circular dependencies between the packages and achieve loose coupling of components, we employ the dependency inversion principle by using interfaces.
 \begin{figure}
     \centering
-    \includegraphics[width=1.0\linewidth]{figures/network_testbed_color.drawio.pdf}
-    \caption{Architecture of the network testbed.
-    % Architecture of the network testbed used for the experimental evaluation of the CASC-SAS approach. The components depicted in blue represent computers that mimic the behavior of domain-specific senders and receivers of an SAS. The components depicted in red are part of the CASC-SAS approach. The components depicted in yellow represent message-forwarding intermediate network devices.
-    }
+    \includegraphics[width=0.9\linewidth]{figures/package_structure.drawio.pdf}
+    \caption{Structural package diagram of the CASC-SAS testbed implementation.}
+    \label{fig:casc_package_structure}
+\end{figure}
+
+To be able to conduct experiments while taking the behavior of physical network communication into account, we transformed the software implementation into a physical system by deploying the SABAAC and CASA components to hardware.
+In contrast to deterministic software-based analysis, the testbed evaluation results are practice-oriented and transferable to the SAS domain.
+The topology of our testbed network is visualized in \autoref{fig:evaluation_test_bed}.
+The components depicted in blue represent domain-specific devices of an SAS, including IEDs and MUs.
+%and computers that mimic the behavior of domain-specific devices of an SAS
+The components depicted in yellow represent intermediate network devices for frame and datagram forwarding on the data link layer and network layer.
+The components depicted in red are part of the CASC-SAS approach.
+The specific hardware used for the experiments is discussed for each experiment individually in the following sections.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/network_testbed_color.drawio.pdf}
+    \caption{Topology of the CASC-SAS testbed network.}
     \label{fig:evaluation_test_bed}
 \end{figure}
+%The specific hardware used for the experiments is shown in \autoref{tab:testbed_hardware}.
+%We conducted the experiments using a single TTP server that provided the PDP, PAP, PSP, and CAPP services.
+%For experiments without real SAS devices, we deployed the PEPs as well as machines that mimic the behavior of domain-specific SAS devices to individual off-the-shelf Raspberry Pi 5 computers.
+%For experiments with real IEDs and MUs, only the PEPs were deployed to Raspberry Pi 5 computers.
+%
+%The simulation and testbed strategy have differing advantages and disadvantages.
+%On the one hand, the simulation strategy has the advantage of repeatability and reproducibility due to deterministic behavior, whereas the behavior of the testbed is non-deterministic.
 
 \section{Security Analysis}
 \todo{TODO: Security analysis for CASA}
