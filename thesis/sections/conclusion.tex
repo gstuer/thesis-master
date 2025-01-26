@@ -3,11 +3,11 @@
 %In this last chapter, we conclude the thesis by presenting the potential future work of the proposed approach.
 %The potential future work is discussed in \autoref{sec:conclusion:future_work}.
 %Furthermore, in \autoref{sec:conclusion:summary}, we present a summary of the contributions and findings of the thesis.
-This concluding chapter presents the potential future work of the proposed approach.
-The potential future work is discussed in detail in \autoref{sec:conclusion:future_work}.
+This concluding chapter presents the potential future directions of our approach.
+The potential future directions are discussed in detail in \autoref{sec:conclusion:future_work}.
 Furthermore, \autoref{sec:conclusion:summary} provides a summary of the contributions and findings of the thesis.
 
-\section{Future Work}
+\section{Future Directions}
 \label{sec:conclusion:future_work}
 % AB-PKC - Pure Cryptography
 Our findings indicate that the CASC-SAS approach, its cryptographic approach CASA, and its authorization and access control approach SABAAC serve to enhance the communication security of a SAS.
@@ -52,6 +52,9 @@ Therefore, we propose the evaluation of our approach in time-critical systems th
 Systems that might potentially benefit from the enhanced communication security provided by our approach include industry 4.0, robotics, avionics, and medical systems.
 
 %intra \& inter SAS communication
+%\section{Limitations}
+%\label{sec:approach:limitations}
+\todo{TODO Limitations: Clarify limitations to motivate future work. Ideas -> No intrusion detection but prevention/mitigation, might not be usable for fast messages, not every crypto for every message type, possible new attack vectors by adding new components, applicability to other ics domains, time protocol interference, physical access control}
 \section{Summary}
 \label{sec:conclusion:summary}
 To address the increasing relevance of cybersecurity for smart grid systems and to overcome the limitations of existing standards like IEC 62351, we proposed CASC-SAS, a novel cryptography and cybersecurity approach for SASs compliant with IEC 61850.
@@ -74,5 +77,4 @@ While SAS-typical cyberattacks can be mitigated by employing the approach, we al
 The evaluation demonstrated that our approach is a feasible solution for SAS environments not only security-wise but also cost-wise and due to its highly-compatible BITW concept, that allows retrofitting of existing systems.
 Moreover, based on testbed-based and lab-based experiments, the evaluation demonstrated the ability of the approach to secure time-critical message exchanges.
 Accordingly, CASC-SAS is capable of securing low-latency MMS, GOOSE, and SV message exchanges between the IEDs and MUs of a SAS.
-\todo{TODO: GitHub/EUPL reference einfügen}
-\todo{TODO: Finish summary -> Add evaluation results}
+\todo{TODO: Add evaluation results}

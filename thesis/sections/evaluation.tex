@@ -86,7 +86,6 @@ The specific hardware used for the experiments is discussed for each experiment 
 %On the one hand, the simulation strategy has the advantage of repeatability and reproducibility due to deterministic behavior, whereas the behavior of the testbed is non-deterministic.
 
 \section{Security Analysis}
-\todo{TODO: Security analysis for CASA}
 \begin{description}
     \item[Definition I.] Unforgeability.\\
     Unforgeability ensures that no adversary can create a valid signature for a message under a policy unless their set of attributes satisfies the policy.
@@ -144,23 +143,15 @@ The specific hardware used for the experiments is discussed for each experiment 
     Thus, collusion cannot compromise security. The $\mathcal{S}_{CASA}$ scheme is secure against collusion attacks.
 
     \item[Theorem III.] CASC-SAS is resistant against replay attacks.\\
-    \todo{Add proof.}
+    \todo{TODO: Security analysis of SABAAC}
 \end{description}
 
-\section{Security Compositions}
-\todo{TODO: Security compositions for SABAAC}
-
 \section{Performance Analysis}
-\todo{TODO: Security analysis for CASC-SAS}
+\todo{TODO: Performance analysis of CASC-SAS}
 
 \section{Compatibility Analysis}
-\todo{TODO: Compatibility analysis for CASC-SAS}
+\todo{TODO: Demonstration of applicability and compatibility analysis of CASC-SAS}
 Maybe physical compatibility, communication compatibility, economy ("price compatibility")\dots
 
-\section{Discussion}
+\section{Discussion \& Comparison}
 \todo{TODO: Discussion of results and comparison to different approaches}
-
-\section{Limitations}
-\label{sec:approach:limitations}
-\todo{TODO: Reactivate reference in approach introduction}
-\todo{TODO: Limitations: No intrusion detection but prevention/mitigation, might not be usable for fast messages, not every crypto for every message type, possible new attack vectors by adding new components, applicability to other ics domains, time protocol interference, physical access control -> future work}
