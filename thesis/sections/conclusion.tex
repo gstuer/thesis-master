@@ -3,9 +3,9 @@
 %In this last chapter, we conclude the thesis by presenting the potential future work of the proposed approach.
 %The potential future work is discussed in \autoref{sec:conclusion:future_work}.
 %Furthermore, in \autoref{sec:conclusion:summary}, we present a summary of the contributions and findings of the thesis.
-This concluding chapter presents the potential future directions of our approach.
+This concluding chapter presents a summary and potential future directions of our approach.
 The potential future directions are discussed in detail in \autoref{sec:conclusion:future_work}.
-Furthermore, \autoref{sec:conclusion:summary} provides a summary of the contributions and findings of the thesis.
+In \autoref{sec:conclusion:summary} we provide a summary of the contributions and findings of the thesis.
 
 \section{Future Directions}
 \label{sec:conclusion:future_work}
@@ -17,7 +17,7 @@ To answer this question, we propose the design and realization of an AB-PKC appr
 In contrast to cryptography-dependent but scheme-agnostic ABAC, as we proposed it in CASC-SAS, the AB-PKC approach could allow the accomplishment of additional security objectives, including privacy and anonymity.
 
 % Encryption \& Decryption
-In addition to the changes in the approach paradigm, further research might investigate whether the existing CASC-SAS approach could be expanded to encompass encryption and decryption in conjunction with its signing and verification operations.
+In addition to the changes in the approach paradigm, further research might investigate whether the CASA approach could be expanded to encompass encryption and decryption in conjunction with its signing and verification operations.
 While confidentiality for power systems via encryption is explicitly non-recommended for time-critical communication in the IEC standards \cite{IEC62351P6}, further research might elucidate how confidentiality can be achieved even in such time-critical systems.
 
 % Hardware Cryptography Accelerators
@@ -38,7 +38,7 @@ To this end, CASC-SAS could be deployed and assessed in systems utilizing the Pa
 
 % Implementation of CASC-SAS in Switch/SDN Controller
 To simplify the architectural complexity of CASC-SAS, reduce the overall costs of deployment, and enable processing of the above-mentioned network protocols, we propose the integration of CASC-SAS into network switches as an alternative realization approach.
-For this purpose, further research could investigate the potential of realizing CASC-SAS through the use of Software-Defined Networking (SDN) solutions.
+For this purpose, further research could investigate the potential benefits of realizing CASC-SAS through the use of Software-Defined Networking (SDN) solutions.
 This SDN-based CASC-SAS could aggregate the tasks of multiple PEPs by deploying a virtual PEP for each port of a network switch.
 Furthermore, distributed SDN controllers might provide the PAP, PSP, PDP, and CAPP services.
 
@@ -51,30 +51,34 @@ In addition to the deployment in a SAS, further research is required to evaluate
 Therefore, we propose the evaluation of our approach in time-critical systems that have similar requirements as a SAS.
 Systems that might potentially benefit from the enhanced communication security provided by our approach include industry 4.0, robotics, avionics, and medical systems.
 
-%intra \& inter SAS communication
-%\section{Limitations}
-%\label{sec:approach:limitations}
-\todo{TODO Limitations: Clarify limitations to motivate future work. Ideas -> No intrusion detection but prevention/mitigation, might not be usable for fast messages, not every crypto for every message type, possible new attack vectors by adding new components, applicability to other ics domains, time protocol interference, physical access control}
 \section{Summary}
 \label{sec:conclusion:summary}
-To address the increasing relevance of cybersecurity for smart grid systems and to overcome the limitations of existing standards like IEC 62351, we proposed CASC-SAS, a novel cryptography and cybersecurity approach for SASs compliant with IEC 61850.
-The two attribute-based and server-aided core concepts CASA and SABAAC represent the central parts of the four-layer dual-path CASC-SAS security architecture.
+To address the increasing relevance of cybersecurity for smart grid systems and to overcome the limitations of existing standards like IEC 61850 and IEC 62351, we presented CASC-SAS, a novel cryptography and cybersecurity approach for the enhancement of SAS security.
+The two attribute-based and server-aided approaches CASA and SABAAC represent the central parts of the four-layered dual-path CASC-SAS security architecture.
 
-CASA provides protocols, algorithms, and schemes for PKC-based authentication, to safeguard the integrity, authenticity, and non-repudiation of SAS communication.
-As a central component of the CASA approach, we proposed an algorithm-agnostic administration and processing platform, that provides key generation, key distribution, key revocation, and server-aided computation services via the proposed APEX protocol to resource-constrained devices of a SAS.
+CASA provides algorithm-agnostic cryptographic protocols and services that serve as a foundation for the employment of other cryptography and cybersecurity mechanisms in a SAS.
+The main objective of CASA is to enable and support secure authentication procedures that safeguard the integrity, authenticity, and non-repudiation of SAS communication.
+As a central component of the CASA approach we presented the CAPP, an algorithm-agnostic administration and processing platform that provides key generation, key distribution, key revocation, and server-aided computation services via our APEX protocol to resource-constrained devices of a SAS.
+Furthermore, in order to take the time-criticality of communication in a SAS into account, we discussed the importance and advantages of precomputation and server-aided computation for cryptographic procedures.
+We demonstrated the viability of these computation techniques by presenting our server-aided AB-PKC signature scheme $S_{CASA}$.
+
 SABAAC enables the administration and enforcement of ABAC policies for time-critical and time-variable environments.
 We introduced the concept of time-dependency for attributes and ABAC policies, and discussed methods to manage, distribute, and enforce such expressive and flexible yet computationally expensive access control policies.
-With regard to the management and evaluation of access control policies, this thesis proposed a delegated attribute-based authorization protocol responsible for the policy creation, management, storage, and distribution.
+With regard to the management and evaluation of access control policies, we proposed a delegated attribute-based authorization protocol responsible for the policy creation, management, storage, and distribution.
 With regard to the enforcement of policies, we introduced a delegated attribute-based access control protocol.
-To facilitate the enforcement of policies in time-critical systems, we proposed a novel policy enforcement strategy, which combines server-sided precomputation and client-sided caching of access decisions.
+To facilitate the enforcement of policies in time-critical systems, we presented novel policy enforcement strategies, which combine server-side precomputation and client-side caching of access decisions.
 
-We implemented CASC-SAS using the object-oriented programming paradigm and the programming language Java.
-The implementation is published open source on GitHub under the European Union Public Licence (EUPL).
-To assess the applicability of our approach for SAS environments, we conducted a theoretical and experimental evaluation based on the implementation.
-The experiments and evaluation results were published open source alongside the implementation.
-Based on formal methods, the evaluation has shown that CASC-SAS is capable of enhancing the communication security of a SAS.
-While SAS-typical cyberattacks can be mitigated by employing the approach, we also discussed the changed attack surface, leading to an increased risk of DoS attacks.
-The evaluation demonstrated that our approach is a feasible solution for SAS environments not only security-wise but also cost-wise and due to its highly-compatible BITW concept, that allows retrofitting of existing systems.
-Moreover, based on testbed-based and lab-based experiments, the evaluation demonstrated the ability of the approach to secure time-critical message exchanges.
-Accordingly, CASC-SAS is capable of securing low-latency MMS, GOOSE, and SV message exchanges between the IEDs and MUs of a SAS.
-\todo{TODO: Add evaluation results}
+We implemented CASA and SABAAC in software and deployed it to a hardware testbed.
+The software is implemented component-wise using primarily the object-oriented high-level programming languages Java and Kotlin.
+The software implementation of our approach is published open source on GitHub \cite{gitcasc} under the European Union Public Licence (EUPL) \cite{eupl}.
+To assess the applicability of our approach for SAS environments, we conducted a theoretical and experimental evaluation.
+%The experiments and evaluation results were published open source alongside the implementation.
+The theorem-based theoretical security analysis has shown that CASC-SAS is capable of enhancing the communication security of a SAS by mitigating domain-typical adversarial attacks performed by a Dolev-Yao-like adversary.
+Among others, we demonstrated that our approach mitigates message forgery, modification, replay, and time-delay attacks.
+While SAS-typical cyberattacks can be mitigated by employing our approach, we also discussed the changed attack surface, leading to an increased risk of DoS as a result of the additional components and protocols deployed in a SAS.
+Based on the testbed implementation, the performance analysis demonstrated the ability of the approach to secure time-critical message exchanges.
+Furthermore, the performance analysis identified the advantages and disadvantages of different authentication schemes with regard to satisfied time constraints.
+In accordance with the related literature, we identified the strict time constraints of low latency communication in a SAS as a key challenge for information security.
+The compatibility analysis demonstrated that our approach is a feasible solution for SAS environments not only security-wise and performance-wise but also cost-wise and due to its highly-compatible BITW concept, which allows retrofitting of existing systems.
+As we conducted a laboratory-based demonstration of applicability, our evaluation demonstrated the ability of our approach to secure time-critical message exchanges of the GOOSE and SV protocol between an IED of ABB, a MU of General Electric, and an I/O box of Siemens.
+Accordingly, the results of the evaluation of our approach indicate that CASA and SABAAC are viable solutions to enhance the communication security in a newly constructed or retrofitted substation.
