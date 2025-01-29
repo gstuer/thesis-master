@@ -48,7 +48,8 @@ The three areas of interest, i.e., questions to be answered, and their correspon
 \subsection{Testbed}
 To analyze and evaluate the integration of our approach into the SAS architecture, as discussed in \autoref{sec:approach:realization}, we implemented the approach in hardware and software as a testbed.
 The software is implemented component-wise using object-oriented high-level programming languages.
-The implementation of the components is mainly based on the programming languages Java and Kotlin.
+The components are primarily implemented using the programming languages Java and Kotlin.
+The software implementation of our approach is published open source on GitHub \cite{gitcasc} under the European Union Public Licence (EUPL) \cite{eupl}.
 The implementation is divided into three main packages.
 These packages, their sub-packages, and the package interrelationships are shown in \autoref{fig:casc_package_structure}.
 The common package contains functionalities that are required by all other parts of the implementation.
@@ -74,7 +75,7 @@ The specific hardware used for the experiments is discussed for each experiment 
 \begin{figure}
     \centering
     \includegraphics[width=0.8\linewidth]{figures/network_testbed_color.drawio.pdf}
-    \caption{Topology of the CASC-SAS testbed network.}
+    \caption{Network topology of the CASC-SAS testbed.}
     \label{fig:evaluation_test_bed}
 \end{figure}
 %The specific hardware used for the experiments is shown in \autoref{tab:testbed_hardware}.
@@ -252,7 +253,10 @@ As the security analysis is performed theoretically, proofs will be provided dem
 \end{description}
 
 \section{Performance Analysis}
-\todo{TODO: Performance analysis of CASC-SAS}
+\subsection{Experimental Setup}
+\todo{TODO: Experimental Setup}
+\subsection{Procedure \& Results}
+\todo{TODO: Procedure \& Results}
 \begin{figure}
     \centering
     \includegraphics[width=1.0\linewidth]{figures/rtt-estimation-results.pdf}
@@ -261,8 +265,73 @@ As the security analysis is performed theoretically, proofs will be provided dem
 \end{figure}
 
 \section{Compatibility Analysis}
-\todo{TODO: Demonstration of applicability and compatibility analysis of CASC-SAS}
-Maybe physical compatibility, communication compatibility, economy ("price compatibility")\dots
+In this section, an analysis of the compatibility aspects of our approaches CASA and SABAAC will be conducted.
+The objective of the compatibility analysis is to demonstrate that our approach is a viable solution to enhance the communication security in a newly constructed or retrofitted substation.
+Accordingly, the compatibility analysis serves the purpose of demonstrating that the SAS behavior and functionality is not influenced by our approach and that SAS devices protected by CASA and SABAAC are able to provide their services and exchange information.
+For this purpose, we conducted a laboratory-based experimental demonstration of applicability with industrial SAS devices.
+In \autoref{sec:evaluation:compatibility:setup} the setup of the experiment is discussed.
+In \autoref{sec:evaluation:compatibility:procedure} we describe the procedure and results of the experiment.
+
+\subsection{Experimental Setup}
+\label{sec:evaluation:compatibility:setup}
+In total twelve devices were used to set up the experiment.
+The hardware devices used for the experiment are listed in \autoref{tab:lab_hardware}.
+Four of these devices were industrial SAS devices, including a MU from General Electric, an IED from ABB, an I/O box from Siemens, and a circuit breaker.
+Additionally, a relay test device from Omicron was used to generate three-phase electric power, which was measured by the MU to generate SV frames.
+Besides these five SAS-related devices, two Raspberry Pi 5 were used as PEPs.
+A ThinkPad T480 provided the services of the PAP, PSP, PDP, and CAPP.
+\begin{table}
+    \centering
+    \small
+    \caption{Hardware used for the laboratory-based experimental demonstration of applicability.}
+    \label{tab:lab_hardware}
+    \begin{tabular}{c c c c c c}
+    \toprule
+    Manufacturer & Device & Task & SAS & CASC-SAS\\
+    \midrule
+    % SAS Devices
+    General Electric & Reason MU320 & Process Bus Merging Unit & X & & \\
+    ABB & REL670 & Intelligent Electronic Device & X & \\
+    Siemens & SIPROTEC 5 6MD84 & Input/Output Box & X & \\
+    Hirschmann & MACH & Managed Ethernet Switch & X & \\
+    Hirschmann & RSP35 & Managed Ethernet Switch & X & \\
+    OMICRON & CMC 356 & Universal Relay Test Set & X & \\
+    % CASA & SABAAC
+    Raspberry Pi Ltd & Raspberry Pi 5 8GB & PEP & & X \\
+    Lenovo & ThinkPad T480 & PDP/PAP/PSP/CAPP & & X \\
+    Bechtle & ARTICONA Adapter & USB-A to RJ45 Adapter & & X \\
+    \bottomrule
+    \end{tabular}
+\end{table}
+
+The network topology of the devices used for the experiment is shown in \autoref{fig:lab_topology}.
+In accordance with the layered SAS architecture shown in \autoref{fig:substation_architecture}, we introduced a layering of devices for the setup of the experiment.
+The PAP, PSP, PDP, and CAPP were located at the bay level together with the PEP-protected IED.
+As the IED only supported fiber optic network connections, we employed a Hirschmann RSP35 switch as a protocol converter.
+With the protocol converter in place, the IED was connected to its PEP using Ethernet over twisted-pair.
+The PEP was then connected to a Hirschmann MACH switch representing the process bus switch.
+Since the Raspberry Pi 5 PEPs only possessed a single on-board RJ45 Ethernet connector, a USB-A to RJ45 Ethernet adapter had to be used for both PEPs.
+
+At the process level of the experiment's network topology the MU was located.
+The MU was connected to the relay test device using an analog connection, and was connected to the process bus switch using a fiber optic connection.
+Consequently, the MU was not PEP-protected.
+In addition to the MU, the PEP-protected I/O box was located at the process level, and was connected to the circuit breaker via an analog connection.
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\linewidth]{figures/lab_evaluation_topology.drawio.pdf}
+    \caption{Network topology of the laboratory-based experimental demonstration of applicability.}
+    \label{fig:lab_topology}
+\end{figure}
+
+\subsection{Procedure \& Results}
+\label{sec:evaluation:compatibility:procedure}
+\todo{TODO: Procedure \& Results}
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\linewidth]{figures/lab_evaluation_steps.drawio.pdf}
+    \caption{Sequence of events of the laboratory-based experimental demonstration of applicability.}
+    \label{fig:lab_steps}
+\end{figure}
 
 \section{Discussion \& Comparison}
 \todo{TODO: Discussion of results and comparison to different approaches}
