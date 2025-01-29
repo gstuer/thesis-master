@@ -223,7 +223,9 @@ As the security analysis is performed theoretically, proofs will be provided dem
     \end{figure}
 
     \item[Definition.] Time-Delay Attack.\\
-    \todo{TODO: Define Time-Delay Attack.}
+    A time-delay attack is the intentional delaying of time-critical messages in a network.
+    To perform a time-delay attack, a man in the middle adversary captures a message sent by a network device, and waits a certain time before forwarding it to the message receiver.
+    By maliciously delaying exchanged messages, the adversary may either inject outdated data into the system or disrupt the operation of devices.
 
     \item[Theorem.] CASC-SAS protects SAS devices against time-delay attacks.\\
     \textit{Proof.} Suppose two SAS devices, $Alice$ and $Bob$, exchange messages over a network in the presence of an adversary $\mathcal{A}$, which performs a time-delay attack using a man in the middle approach.
@@ -245,10 +247,8 @@ As the security analysis is performed theoretically, proofs will be provided dem
         \caption{Malicious delaying of a message exchanged between two PEP-protected SAS devices.}
         \label{fig:attack_time_delay}
     \end{figure}
-
-    \item[Theorem.] CASC-SAS protects SAS devices against flooding attacks.\\
-    \textit{Proof.}
-    \todo{TODO: Add proof.}
+    %\item[Theorem.] CASC-SAS protects SAS devices against flooding attacks.\\
+    %\textit{Proof.}
 \end{description}
 
 \section{Performance Analysis}
