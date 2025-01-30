@@ -234,7 +234,7 @@ As the security analysis is performed theoretically, proofs will be provided dem
     To carry out a message modification attack, $\mathcal{A}$ has to perform the following steps:
     \begin{itemize}
         \item $Alice$ sends the message $m$ to $PEP_{Alice}$.
-        \item To satisfy the security policies I and IV of CASC-SAS, $PEP_{Alice}$ encapsulates $m$ with a timestamp-based sequence number $seq_m$ in a packet $m' = (Alice, Bob, m, seq_m)$ and signs $m'$ to get $m'' = (m', \sigma_{m'})$.
+        \item To satisfy the security policies I and IV of CASC-SAS, $PEP_{Alice}$ encapsulates $m$ with a timestamp-based sequence number $seq_m$ in a packet $m' = (Alice,\allowbreak Bob,\allowbreak m,\allowbreak seq_m)$ and signs $m'$ to get $m'' = (m', \sigma_{m'})$.
         \item $PEP_{Alice}$ sends $m''$ unintentionally to $\mathcal{A}$ using the network.
         \item $\mathcal{A}$ receives $m''$ and waits a certain time before sending it to $PEP_{Bob}$.
         \item $PEP_{Bob}$ discards $m''$ and does not deliver $m$ to $Bob$, as the sequence number $seq_m$ indicates that the packet was maliciously or accidentally delayed.
