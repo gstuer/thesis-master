@@ -236,7 +236,7 @@ The requirement categories consist of security (RQ.SEC), safety (RQ.SAF), availa
 \subsection{Performance}
 \begin{description}
     \item[RQ.PER.1] Constrained Data Frame Delivery Time\\
-    The latency constraints for network communication defined in \autoref{sec:approach:system_model:communication:message_types} must be satisfied.
+    The latency constraints for network communication, as defined in \autoref{sec:approach:system_model:communication:message_types}, must be satisfied.
     To support Ethernet-based SAS protocols, the approach must be able to satisfy time constraints for each individual data frame of the data link layer.
     \item[RQ.PER.2] Constrained Computational Performance\\
     The limited performance of resource-constrained devices of an SAS must be taken into account.
@@ -318,7 +318,7 @@ In order to achieve this objective by compromising the communication integrity, 
 While replaying only requires the adversary to be able to eavesdrop on communication, message modification additionally requires the adversary to masquerade as a legitimate subject.
 This can be achieved by either breaking authenticity and integrity protection mechanisms, such as digital signatures, or colluding with other adversaries, such as infiltrated system devices.
 Furthermore, an adversary may disrupt communication via (distributed) denial of service (DoS) attacks.
-Examples of such DoS attacks in a SAS include the intentional delay of time-critical messages, also known as time-delay attacks \cite{Bianchin2018}, and dropping of messages.
+Examples of DoS attacks in a SAS include the intentional delay of time-critical messages, also known as time-delay attacks \cite{Bianchin2018}, and dropping of messages.
 \begin{figure}
     \centering
     \includegraphics[width=1.0\linewidth]{figures/attack_tree_communication.drawio.pdf}
@@ -329,7 +329,7 @@ Examples of such DoS attacks in a SAS include the intentional delay of time-crit
 The second attack tree, as illustrated in \autoref{fig:attack_tree_device}, represents an adversary with the objective of compromising the system by directly attacking the system devices.
 An adversary may seek to either disrupt the device's availability or compromise its integrity.
 An adversary may achieve disruption of the device's availability via the deployment of malware or (distributed) DoS attacks, such as flooding attacks.
-A device's integrity can be compromised by modifying its state via accessible service interfaces.
+A device's integrity can be compromised by modifying its state using accessible service interfaces.
 Consequently, an adversary may either create a legitimate request, in case of an unsecured service, or forge a request.
 As discussed above with regard to message modification, request forgery might require an adversary to masquerade as a legitimate subject to circumvent authenticity and integrity protection mechanisms.
 \begin{figure}
@@ -351,10 +351,10 @@ Moreover, the security requirements, as introduced in \autoref{sec:approach:requ
 
 \begin{description}
     \item[Policy I:] Data Frame Signing and Verification\\%SEC 1/2/3
-    The authenticity, integrity, and non-repudiation of exchanged messages on SAS networks are safeguarded by employing cryptographic mechanisms for signing and verification, i.e., digital signatures if PKC is used or Message Authentication Codes (MAC) if SKC is used.
+    The authenticity, integrity, and non-repudiation of exchanged messages on SAS networks are safeguarded by employing cryptographic mechanisms for signing and verification, i.e., digital signatures if PKC is used or MAC if SKC is used.
     This security policy is enforced for each individual data frame of the data link layer to support Ethernet-based SAS protocols such as GOOSE and SV.
     The integration of signing and verification into the OSI protocol stack of two generic Ethernet-based SAS applications within a switched LAN is visualized in \autoref{fig:ethernet_app_protocol_stack}.
-    In the shown protocol stack, signing and verification reside within the presentation layer just below an Ethernet-based application, e.g., a GOOSE or SV application.
+    In the shown protocol stack, signing and verification reside within the presentation layer directly below an Ethernet-based application, e.g., a GOOSE or SV application.
     \begin{figure}
         \centering
         \includegraphics[width=0.7\linewidth]{figures/signed_ethernet_app_protocol_stack.drawio.pdf}
@@ -448,7 +448,7 @@ Moreover, the two paths of the architecture are further discussed in \autoref{se
 The CASC-SAS architecture is non-strictly layered and consists of four open layers.
 The goal of the layered architecture is the separation of different domains and levels of abstraction within the CASC-SAS approach.
 An upper layer may use services provided by a lower layer but not vice versa.
-Moreover, since the layering is non-strict, an upper layer is not restricted to the services provided by its direct predecessor, but may rather bypass lower layers.
+Moreover, since the layering is non-strict, an upper layer is not restricted to the services provided by its direct predecessor, but may bypass lower layers.
 The four layers of the CASC-SAS architecture and their provided services are defined in the following sections.
 
 \subsubsection{Layer 3: Domain}
@@ -523,7 +523,7 @@ As a result, the communication occurring on the control path is less traffic-int
 In the following section, we present the \textbf{C}ertificateless \textbf{A}ttribute-Based \textbf{S}erver-Aided \textbf{A}uthentication (CASA) concept.
 CASA is a CL-PKC approach.
 Consequently, neither certificates nor key escrow are required~\cite{AlRiyami2003}.
-The goal of CASA is to provide cryptographic protocols, algorithms, and schemes for key generation, key distribution, key revocation, signing, and verification.
+The goal of CASA is to provide cryptographic protocols, algorithms, and schemes for key generation, distribution, and revocation as well as signing and verification.
 Moreover, the goal of CASA is to enable and support more abstract cybersecurity mechanisms like authorization and access control of the CASC-SAS approach.
 Therefore, CASA represents the foundation of the employed CASC-SAS cybersecurity mechanisms.
 
@@ -539,12 +539,12 @@ Therefore, CASA represents the foundation of the employed CASC-SAS cybersecurity
 The CASA Administration and Processing Platform (CAPP) represents the central component of the CASA approach.
 The main objective of the CAPP is the provisioning of services required for the realization of cryptographic protocols.
 While CASA also provides its own signature scheme $\mathcal{S}_{CASA}$, which is further discussed in \autoref{sec:casa:scheme}, the CAPP and its protocols are algorithm-agnostic.
-The concept of an algorithm-agnostic central component of the CASA approach is based on the idea, that different cryptographic algorithms and schemes might be optimal solutions for different problems.
-This idea is inspired by the cipher suites and cipher transitioning of the Transport Layer Security (TLS) protocol \cite{rfc8446}.
+The use of an algorithm-agnostic central component in the CASA approach is based on the idea, that different cryptographic algorithms and schemes might be optimal solutions for different problems.
+This idea is inspired by the cipher suites and cipher transitioning of the TLS protocol \cite{rfc8446}.
 The support of different algorithms and schemes enables devices to choose the cryptographic approach, that fits their security requirements and performance constraints best.
 
 \subsubsection{Server-Aided Cryptography}
-As PKC mechanisms may consist of computationally complex algorithms and operations such as bilinear pairing, a core task of the CAPP is the support of server-aided PKC.
+As PKC mechanisms may consist of computationally complex algorithms and operations, a core task of the CAPP is to enable and support server-aided PKC.
 By supporting server-aided PKC, CASA encourages the utilization of server-aided CL-PKC schemes for time-critical applications.
 To make CASA server-aided, the CAPP supports devices by handling computationally expensive algorithms instead of executing them locally on resource-constrained devices.
 To minimize the required trust, the CAPP may only handle certain computations, e.g., partially sign or verify a request of a device.
@@ -582,7 +582,7 @@ The transactions of the protocol are defined as follows:
     For this purpose, the device encapsulates its public key and its identifying attributes in the registration request.
     \item[Transaction II:] Re-Registration\\
     The process of linking a new public key to existing attributes, or modifying an already registered public key is referred to as re-registration. 
-    By issuing a re-registration, devices may register multiple public keys, e.g., for different cryptographic algorithms supported.
+    By issuing a re-registration, devices may register multiple public keys, e.g., for different cryptographic algorithms.
     A re-registration request has to be verifiable with one of the registered public keys of a device.
     If the re-registration request cannot be verified, it is rejected by the CAPP.
     \item[Transaction III:] Revocation\\
@@ -732,7 +732,7 @@ The approach enables CASC-SAS to satisfy the access control, PoLP, and SoD secur
 Moreover, the expressive and flexible yet computationally expensive ABAC policies are handled in a server-aided manner to satisfy the strict time constraints of the SAS domain.
 
 Our authorization and access control approach represents a security concept that is located on the cybersecurity layer of the CASC-SAS architecture.
-Since the approach is located on the cybersecurity layer, it relies on secure authentication services provided by CASA.
+Thus, it relies on secure authentication services provided by CASA.
 As a consequence, the approach assumes that efficient and secure signing and verification algorithms are available.
 In other words, CASA provides secure cryptographic algorithms and schemes that enable SABAAC to realize secure authorization and access control.
 
@@ -741,7 +741,7 @@ The architecture and components are further discussed in \autoref{sec:approach:s
 Furthermore, the approach is divided into two central tasks.
 The first task is referred to as delegated attribute-based authorization.
 The delegated attribute-based authorization is responsible for the access control policy creation, management, storage, and distribution.
-This task partially takes place prior to occurring access requests and corresponding access decisions.
+This task partially takes place prior to access requests and corresponding access decisions.
 The delegated attribute-based authorization protocol is further discussed in \autoref{sec:approach:sabaac:authorization}.
 The second central task is referred to as delegated ABAC.
 The delegated ABAC is responsible for the policy decision exchange and policy enforcement.
@@ -776,14 +776,14 @@ The four components of the architecture are defined below:
     \item[Policy Decision Point (PDP)] The PDP takes access control decisions by evaluating policies.
     The PDP takes decision on request of a PEP and provides the access control decision to the requesting PEP.
     As a consequence, the PDP is part of the delegated ABAC task of SABAAC.
-    Furthermore, in the SABAAC architecture the PDP incorporates the services provided by the context handler which was introduced by \citeauthor{Hu2014} \cite{Hu2014}.
-    Therefore, the PDP not only takes access control decision on request but is rather responsible for the policy and attribute evaluation workflow.
+    Furthermore, in the SABAAC architecture the PDP incorporates the services provided by the context handler, which was introduced by \citeauthor{Hu2014} \cite{Hu2014}.
+    Therefore, the PDP not only takes access control decisions on request but is responsible for the policy and attribute evaluation workflow.
     This workflow includes the retrieval of required attributes and speedup techniques such as access decision caching and policy evaluation precomputation.
     \item[Policy Enforcement Point (PEP)] The PEP enforces access control decisions by controlling access to protected objects.
     As a consequence, the PEP is part of the delegated ABAC task of SABAAC.
     The services provided by the PEP rely on access control decisions taken by the PDP.
     % To reduce the required trust in the PDP decision, the PEP can query multiple PDPs to validate the access control decision taken.
-    Moreover, in the SABAAC architecture the PEP incorporates the services provided by the Policy Information Point (PIP) introduced by \citeauthor{Hu2014} \cite{Hu2014}.
+    Moreover, in the SABAAC architecture the PEP incorporates the services provided by the Policy Information Point (PIP), which was introduced by \citeauthor{Hu2014} \cite{Hu2014}.
     Accordingly, the SABAAC PEP provides attributes related to its protected objects to the PDP.
 \end{description}
 
@@ -791,7 +791,7 @@ The four components of the architecture are defined below:
 \label{sec:approach:sabaac:policy}
 According to \citeauthor{Hu2014} \cite{Hu2014}, ABAC is an access control model that enables access decisions based on attributes associated with subjects, objects, actions, and the environment of a system.
 An ABAC policy represents a set of rules that describe under which environmental conditions a certain subject is granted to perform certain actions on a specific protected object.
-The SABAAC approach relies on the concept of attribute-based policies and access control due to the following benefits:
+The SABAAC approach relies on the concept of attribute-based policies and access control due to the following benefit:
 ABAC enables multifactor policy expression, while RBAC and IBAC limit the policy expressiveness by only relying on either roles or identities.
 Consequently, the multifactor policy expression enables fine-grained and flexible access control.
 
@@ -801,7 +801,7 @@ In this section we introduce the structure of the policies and define the differ
 % Moreover, we introduce the SABAAC Policy Specification Language (SPSL) that is used by human operators to specify access control policies.
 As defined by the second and third security policy of CASC-SAS in \autoref{sec:approach:security_policies}, the policies are enforced for data frame flows, i.e., sets of data frames with common properties passing through the SAS network.
 Accordingly, the objective of an access control policy is twofold.
-On the one hand, a policy has to contain information that specifies whether the policy is applicable to a certain data frame flow.
+On the one hand, a policy has to contain information that specifies if the policy is applicable to a certain data frame flow.
 On the other hand, a policy must specify which actions should be taken for a matching data frame flow.
 
 \paragraph{Access Control Policy:} $\rho = (action_{\rho}, flow_{\rho}, auxiliary_{\rho})$.\\
@@ -897,7 +897,7 @@ At the PEPs the decision enforcement for a decision $d_{\rho} = \{flow_\rho, act
         (DENY, \emptyset) & \text{, otherwise.}
     \end{cases}
 \]
-Thus, if the flow predicates of a decision match a data frame, and the decision is still valid, the decision enforcement function returns the action to be taken and the PEPs the frame has to be forwarded to.
+Thus, if the flow predicates match a data frame, and the decision is still valid, the decision enforcement function returns the action to be taken and the PEPs the frame has to be forwarded to.
 Two cases have to be distinguished, if $E_{DEC}(d_{\rho}, f) = (action_\rho, nexthop)$:
 \begin{itemize}
     \item \textbf{Outgoing Data Frame:} An outgoing data frame $f$ is forwarded to each $PEP \in nexthop$, if $action_\rho = GRANT$.
@@ -929,7 +929,7 @@ The SABAAC approach distinguishes between three evaluation strategies shown in \
     The precomputation strategy results in an increased policy evaluation speed, increased data frame throughput, and decreased network jitter sensitivity.
     The a priori strategy is particularly suitable for periodic message exchanges, such as messages exchanges of the SV protocol.
     However, precomputation and caching of access decisions leads to increased memory utilization.
-    Furthermore, periodic refreshing of unused or rarely used access decision results in non-optimal power efficiency.
+    Furthermore, periodic refreshing of unused or rarely used access decisions results in non-optimal power efficiency.
     
     \item \textbf{A Posteriori:} The a posteriori or ad-hoc evaluation aims to minimize the memory utilization.
     A finite-state machine representing the a posteriori evaluation strategy at a PDP and PEP is shown in \autoref{fig:aposteriori_policy_evaluation_strategy}.
@@ -998,12 +998,12 @@ For this purpose, the authorization protocol consists of three parts or sub-prot
     The static authorization is initiated by a human operator or an external system responsible for the management of policies.
     When a policy CRUD request arrives at a PAP, it is processed by the PAP according to the requested action.
     In case of a read request, the PAP fetches the requested access control policy from its PSP and returns it to the requestor.
-    Create, updated, and delete requests are processed by computing a set of changes to be made to the persistent set of access control policies.
+    Create, update, and delete requests are processed by computing a set of changes to be made to the persistent set of access control policies.
     These changes are sent to the PSP via persistence requests.
     As soon as all changes are made to the access control policies, the PSP sends a persistence acknowledgement to the PAP and the PAP acknowledges the initial policy CRUD request.
     \begin{figure}
         \centering
-        \includegraphics[width=0.9\linewidth]{figures/SABAAC_protocols_authorization_static.drawio.pdf}
+        \includegraphics[width=0.75\linewidth]{figures/SABAAC_protocols_authorization_static.drawio.pdf}
         \caption{Exchanged messages of the static authorization process.
         % The process is initiated by a policy modification request of a human operator at a HMI. The involved PAP instance relies on a PSP to persist static authorizations or SABAAC policies. Requests to persist changes to static authorizations are communicated in the form of CRUD requests between the PAP and PSP.
         }
@@ -1162,7 +1162,7 @@ The phases of the access control protocol are defined as follows:
     \end{figure}
     \item[Access Decision Verification] The optional server-aided access decision verification enables a PEP to verify received access decisions.
     This optional step is used to reduce the trust in a single PDP instance.
-    To initiate the verification process, a PEP appends a PDP-signed access decision to an access decision verification request, and send the request to another PDP.
+    To initiate the verification process, a PEP appends a PDP-signed access decision to an access decision verification request, and sends the request to another PDP.
     The PDP verifies the access decision and sends a positive or negative access decision verification response back to the PEP.
     \item[Payload Exchange] The payload exchange phase is the final phase of the access control protocol.
     The goal of the payload exchange phase is to securely exchange domain-specific requests or data between a sending and a receiving domain entity, i.e., between two SAS devices, such as IEDs or MUs.
@@ -1185,7 +1185,7 @@ The phases of the access control protocol are defined as follows:
     The shown procedure relies solely on the interaction of PEP instances, with the exception of a computation request for server-aided cryptography on message receipt.
     \begin{figure}
         \centering
-        \includegraphics[width=1.0\linewidth]{figures/SABAAC_protocols_accesscontrol_payloadexchange.drawio.pdf}
+        \includegraphics[width=0.9\linewidth]{figures/SABAAC_protocols_accesscontrol_payloadexchange.drawio.pdf}
         \caption{Exchanged messages of a unidirectional payload exchange procedure.
         % The procedure relies solely on the interaction of PEP instances, with the exception of a single server-aided CASA verification on message receipt.
         }
