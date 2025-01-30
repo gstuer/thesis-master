@@ -11,7 +11,6 @@ In \autoref{sec:conclusion:summary} we provide a summary of the contributions an
 \label{sec:conclusion:future_work}
 % AB-PKC - Pure Cryptography
 Our findings indicate that the CASC-SAS approach, its cryptographic approach CASA, and its authorization and access control approach SABAAC serve to enhance the communication security of a SAS.
-In the CASC-SAS approach, the enhancement of communication security was achieved by combining cryptographic services provided by CASA with authorization and access control services provided by SABAAC.
 Further research could be conducted to determine, whether this enhancement of security is also achievable by employing a purely cryptographic approach.
 To answer this question, we propose the design and realization of an AB-PKC approach that satisfies the requirements of the SAS domain.
 In contrast to cryptography-dependent but scheme-agnostic ABAC, as we proposed it in CASC-SAS, the AB-PKC approach could allow the accomplishment of additional security objectives, including privacy and anonymity.
@@ -28,7 +27,7 @@ However, factors such as algorithm compatibility, costs per acceleration unit, a
 % NTP/PTP/ARP Support \& Time Consistency
 The evaluation demonstrated that CASC-SAS is capable of securing application protocols of a SAS, as well as multipurpose transport protocols.
 However, network time protocols, such as the Network Time Protocol (NTP) and the Precision Time Protocol (PTP), were bypassed by the PEP entities, as the operation of these protocols is susceptible to temporal inconsistencies resulting from authentication and access control.
-Further research could investigate how network time protocols could benefit from being processed by a PEP and what additional requirement and constraints have to be satisfied with regard to computation performance and time consistency.
+Further research could investigate how network time protocols could benefit from being processed by a PEP and what additional requirements and constraints have to be satisfied with regard to computation performance and time consistency.
 Moreover, lower-layer network management protocols, such as the Address Resolution Protocol (ARP), were bypassed since these protocols provide services not only to SAS devices but also to auxiliary intermediate devices, including network switches and routers.
 Future studies could evaluate the feasibility of CASC-SAS to process these network management protocols and mitigate attacks related to them.
 
@@ -74,11 +73,11 @@ The software implementation of our approach is published open source on GitHub \
 To assess the applicability of our approach for SAS environments, we conducted a theoretical and experimental evaluation.
 %The experiments and evaluation results were published open source alongside the implementation.
 The theorem-based theoretical security analysis has shown that CASC-SAS is capable of enhancing the communication security of a SAS by mitigating domain-typical adversarial attacks performed by a Dolev-Yao-like adversary.
-Among others, we demonstrated that our approach mitigates message forgery, modification, replay, and time-delay attacks.
-While SAS-typical cyberattacks can be mitigated by employing our approach, we also discussed the changed attack surface, leading to an increased risk of DoS as a result of the additional components and protocols deployed in a SAS.
+We demonstrated that our approach mitigates, among others, message forgery, modification, replay, and time-delay attacks.
+While SAS-typical cyberattacks can be mitigated by employing our approach, we also discussed the change of the attack surface, leading to an increased risk of DoS as a result of the additional components and protocols deployed in a SAS.
 Based on the testbed implementation, the performance analysis demonstrated the ability of the approach to secure time-critical message exchanges.
 Furthermore, the performance analysis identified the advantages and disadvantages of different authentication schemes with regard to satisfied time constraints.
 In accordance with the related literature, we identified the strict time constraints of low latency communication in a SAS as a key challenge for information security.
 The compatibility analysis demonstrated that our approach is a feasible solution for SAS environments not only security-wise and performance-wise but also cost-wise and due to its highly-compatible BITW concept, which allows retrofitting of existing systems.
-As we conducted a laboratory-based demonstration of applicability, our evaluation demonstrated the ability of our approach to secure time-critical message exchanges of the GOOSE and SV protocol between an IED of ABB, a MU of General Electric, and an I/O box of Siemens.
+As we conducted a laboratory-based demonstration of applicability, our evaluation demonstrated the ability of our approach to secure time-critical message exchanges of the GOOSE and SV protocol between an IED made by ABB, a MU made by General Electric, and an I/O box made by Siemens.
 Accordingly, the results of the evaluation of our approach indicate that CASA and SABAAC are viable solutions to enhance the communication security in a newly constructed or retrofitted substation.
