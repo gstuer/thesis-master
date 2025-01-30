@@ -67,16 +67,16 @@ Therefore, the following research questions are going to be answered in the cour
 \section{Contribution}
 \label{sec:introduction:contribution}
 With the aim of providing means to enhance the information security in a SAS, we propose a \textbf{C}ertificateless \textbf{A}ttribute-Based \textbf{S}erver-Aided \textbf{C}ryptosystem for \textbf{S}ubstation \textbf{A}utomation \textbf{S}ystems (CASC-SAS).
-The main objective of the proposed approach is to provide secure protocols, algorithms, and schemes for SAS communication based on asymmetric cryptography.
+The main objective of the proposed approach is to provide secure protocols, algorithms, and schemes for SAS communication.
 The provided protocols, algorithms, and schemes aim to satisfy SAS security requirements such as integrity, authenticity, access control, and non-repudiation.
 Furthermore, the approach takes the specific characteristics, risks, and priorities of OT, ICS, and SAS into account.
 To address the aforementioned objectives and considerations, this thesis comprises the following contributions:
 \begin{itemize}
     \item Identification of security, safety, availability, performance, and compatibility requirements of the proposed approach, and development of a system model, which represents the corresponding field of application.
-    \item Design of a server-aided attribute-based authorization and access control approach called SABAAC, which relies on speedup techniques such as access decision caching and policy evaluation precomputation.
-    \item Design of a certificateless attribute-based PKC approach for digital signatures called CASA, which features server-aided verification and online/offline cryptography.
-    \item Design of a certificateless attribute-based server-aided cryptosystem for SAS called CASC-SAS, which integrates SABAAC and CASA into a dual-path four-layered system architecture.
-    \item Implementation of the proposed approach using high-level programming languages, and deployment of the implementation to a fully functional test bed that mimics the behavior of an interconnected OT system.
+    \item Design of a server-aided attribute-based authorization and access control approach, which relies on speedup techniques such as access decision caching and policy evaluation precomputation.
+    \item Design of a certificateless attribute-based server-aided authentication approach, which provides algorithm-agnostic cryptographic protocols and services as well as an AB-PKC signature scheme.
+    \item Design of a certificateless attribute-based server-aided cryptosystem for SAS, which integrates authentication, authorization, and access control into a dual-path four-layered system architecture.
+    \item Implementation of the proposed approach using high-level programming languages, and deployment of the implementation to a test bed that mimics the behavior of an interconnected OT system.
     \item Security evaluation to prove the security characteristics of the approach.
     \item Performance evaluation to demonstrate the applicability of the approach in an OT environment with strict time and resource constraints.
     \item Compatibility evaluation to demonstrate the feasibility of the approach for the construction and retrofitting of a SAS.
