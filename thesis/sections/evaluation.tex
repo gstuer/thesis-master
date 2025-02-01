@@ -66,7 +66,7 @@ To avoid circular dependencies between the packages and achieve loose coupling o
 
 To be able to conduct experiments while taking the behavior of physical network communication into account, we transformed the software implementation into a physical system by deploying the SABAAC and CASA components to hardware.
 In contrast to deterministic software-based analysis, the testbed evaluation results are practice-oriented and transferable to the SAS domain.
-The topology of our testbed network is visualized in \autoref{fig:evaluation_test_bed}.
+The conceptual topology of our testbed network is visualized in \autoref{fig:evaluation_test_bed}.
 The components depicted in blue represent domain-specific devices of an SAS, including IEDs and MUs.
 %and computers that mimic the behavior of domain-specific devices of an SAS
 The components depicted in yellow represent intermediate network devices for frame and datagram forwarding on the data link layer and network layer.
@@ -75,7 +75,7 @@ The specific hardware used for the experiments is discussed for each experiment 
 \begin{figure}
     \centering
     \includegraphics[width=0.8\linewidth]{figures/network_testbed_color.drawio.pdf}
-    \caption{Network topology of the CASC-SAS testbed.}
+    \caption{Conceptual network topology of the CASC-SAS testbed.}
     \label{fig:evaluation_test_bed}
 \end{figure}
 %The specific hardware used for the experiments is shown in \autoref{tab:testbed_hardware}.
@@ -253,16 +253,115 @@ As the security analysis is performed theoretically, proofs will be provided dem
 \end{description}
 
 \section{Performance Analysis}
+In this section, an analysis of the performance aspects of our approaches CASA and SABAAC will be conducted.
+The objective of the performance analysis is to demonstrate that our approach is a viable solution to secure message exchanges, taking the strict time and resource constraints of a SAS into account.
+For this purpose, we conducted an experimental estimation of message exchange latencies using our testbed implementation and off-the-shelf hardware.
+In \autoref{sec:evaluation:performance:setup} the setup of the experiment is discussed in detail.
+In \autoref{sec:evaluation:performance:procedure} we describe the procedure and results of the experiment.
 \subsection{Experimental Setup}
-\todo{TODO: Experimental Setup}
-\subsection{Procedure \& Results}
-\todo{TODO: Procedure \& Results}
+\label{sec:evaluation:performance:setup}
+The testbed of the performance analysis consists of eight devices.
+The hardware devices used for the experiment are listed in \autoref{tab:performance_analysis_hardware}.
+Two Raspberry Pi 5 were deployed to mimic domain entities that communicate with each other.
+Another two Raspberry Pi 5 were used as PEPs protecting the domain entities.
+A ThinkPad T480 provided the services of the PAP, PSP, PDP, and CAPP.
+\begin{table}
+    \centering
+    \small
+    \caption{Hardware used for the performance analysis testbed.}
+    \label{tab:performance_analysis_hardware}
+    \begin{tabular}{c c c c}
+    \toprule
+    Manufacturer & Device & Task & Amount\\
+    \midrule
+    % SAS Devices
+    TP-Link & Omada ER605 & Gigabit Router & 1\\
+    % CASA & SABAAC
+    Raspberry Pi Ltd & Raspberry Pi 5 8GB & PEP \& Domain Entity & 4\\
+    Lenovo & ThinkPad T480 & PDP/PAP/PSP/CAPP & 1\\
+    Bechtle & ARTICONA Adapter & USB-A to RJ45 Adapter & 2\\
+    \bottomrule
+    \end{tabular}
+\end{table}
+
+The network topology of the devices used for the performance analysis is shown in \autoref{fig:performance_analysis_topology}.
+The PAP, PSP, PDP, CAPP, and PEPs were connected to an industrial grade router from TP-Link Omada using Ethernet over twisted-pair.
+Each domain entity was connected to its corresponding PEP using Ethernet over twisted-pair, i.e., by using the on-board RJ45 Ethernet connector of the Raspberry Pi 5 domain entity.
+However, since the Raspberry Pi 5 only possesses a single on-board RJ45 Ethernet connector, an additional USB-A to RJ45 Ethernet adapter had to be used for both PEPs in order to connect them to the router and to the domain entities.
 \begin{figure}
     \centering
-    \includegraphics[width=1.0\linewidth]{figures/rtt-estimation-results.pdf}
-    \caption{Impact of authentication schemes on the round-trip latency of packets.}
-    \label{fig:rtt_estimation_results}
+    \includegraphics[width=1.0\linewidth]{figures/performance_evaluation_topology.drawio.pdf}
+    \caption{Network topology of the performance analysis testbed.}
+    \label{fig:performance_analysis_topology}
 \end{figure}
+
+\subsection{Procedure \& Results}
+\label{sec:evaluation:performance:procedure}
+To demonstrate the viability of our approach with regard to securing time critical message exchanges, we aimed to evaluate to what extent our approach was capable of handling different message types.
+For this purpose, we conducted an experiment to estimate the end-to-end communication latency of a message exchange between two domain entities.
+The three message types that were considered for the evaluation are discussed in \autoref{sec:approach:system_model:communication:message_types} and listed in \autoref{tab:message_types}.
+
+We realized the message exchange latency estimation by implementing a benchmark program and deploying it to the domain entities.
+The benchmark program was implemented in Python.
+The program and the benchmark results are published open source on GitHub \cite{gitcasc} alongside the implementation of our approach.
+The program estimated the end-to-end latency between the two domain entities based on the RTT of a bidirectional message exchange.
+We chose UDP as a message exchange protocol for the experiment in order to avoid external latency influences, such as the flow control and congestion control of the Transmission Control Protocol (TCP).
+To measure the RTT, the so-called active benchmark entity sent a timestamp to the passive benchmark entity.
+The passive entity replied to the message with the received timestamp.
+Thus, after receiving the response from the passive entity, the active entity was able to calculate the RTT by subtracting the received timestamp from the current timestamp.
+As a consequence, no time synchronization was required between the domain entities.
+Furthermore, under the assumption of symmetric transmission times, the accuracy of the RTT measurements only depended on the accuracy of the active entity's system clock.
+To avoid RTT fluctuations or an offset caused by the router's buffering and forwarding strategy, messages were sent sequentially, i.e., the active entity waited for the arrival of a response before sending another timestamp message.
+
+The procedure of the experimental latency estimation consisted of ten key events or steps.
+The sequence of events and the corresponding messages exchanged between the devices are shown in \autoref{fig:performance_analysis_latency_steps}.
+To improve the readability of the shown message exchanges, the USB-A to RJ45 Ethernet adapters were omitted from the figure.
+The steps of the experiment procedure are defined in the following:
+\begin{description}
+    \item[Step 1: Send Request]~\\
+    At the initial state of the experiment, no domain-specific messages were exchanged between the devices.
+    The necessary key material for signing and verification was already exchanged prior to the experiment.
+    The PDP used the precomputed evaluation strategy for access policies, i.e., the access decisions were periodically refreshed and cached.
+    The PEPs used a hybrid access decision evaluation strategy, i.e., access decisions were requested and cached as soon as they were needed.
+    To initiate the end-to-end latency estimation, the active domain entity sent a UDP packet with its current system clock timestamp to the passive domain entity.
+
+    \item[Step 2: Request Access]~\\
+    As the active entity was protected by a PEP, the outgoing UDP packet was captured by the active entity's PEP.
+    The PEP checked if an applicable and valid access decision for the packet-related data frames was available in its cache.
+    If no applicable or valid access decision was available, the PEP sent an access request to the PDP.
+
+    \item[Step 3: Exchange Request Payload]~\\
+    As soon as an applicable and valid access decision was available, the active entity's PEP processed the UDP packet as discussed in \autoref{sec:approach:sabaac:accesscontrol} and sent a payload exchange request to the passive entity's PEP.
+
+    \item[Step 4: Forward Request]~\\
+    On receipt of a payload exchange request, the passive entity's PEP verified the request.
+    After the request verification, the contained UDP packet was forwarded to the passive domain entity.
+
+    \item[Step 5: Send Response]~\\
+    On receipt of the UDP packet, the benchmark program of the passive domain entity extracted the timestamp, created a new UDP packet containing the same timestamp, and sent the new UDP packet to the active domain entity.
+
+    \item[Step 6: Request Access]~\\
+    As the passive entity was protected by a PEP, the outgoing UDP packet was captured by the passive entity's PEP.
+    The PEP requested and enforced the access decision for the packet as discussed in the second step.
+
+    \item[Step 7: Exchange Response Payload]~\\
+    As soon as an applicable and valid access decision was available, the passive entity's PEP processed the UDP response packet and sent a payload exchange request to the active entity's PEP.
+
+    \item[Step 8: Forward Response]~\\
+    On receipt of a payload exchange request, the active entity's PEP verified the request and forwarded the contained UDP response packet to the active entity.
+
+    \item[Step 9: Estimate RTT]~\\
+    The benchmark program of the active domain entity extracted the timestamp from the response packet and calculated the RTT of the packet by subtracting the received timestamp from the current system clock timestamp.
+    To compensate for fluctuations in the RTT measurements and to increase the confidence in the RTT estimation, the active entity repeated the RTT measurement procedure.
+\end{description}
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\linewidth]{figures/performance_evaluation_steps.drawio.pdf}
+    \caption{Sequence of events of the experimental message exchange latency estimation.}
+    \label{fig:performance_analysis_latency_steps}
+\end{figure}
+\todo{TODO: Present results of latency estimation}
+\todo{TODO: Present results of S-CASA computation}
 
 \section{Compatibility Analysis}
 In this section, an analysis of the compatibility aspects of our approaches CASA and SABAAC will be conducted.
@@ -310,7 +409,7 @@ The PAP, PSP, PDP, and CAPP were located at the bay level together with the PEP-
 As the IED only supported fiber optic network connections, we employed a Hirschmann RSP35 switch as a protocol converter.
 With the protocol converter in place, the IED was connected to its PEP using Ethernet over twisted-pair.
 The PEP was then connected to a Hirschmann MACH switch representing the process bus switch.
-Since the Raspberry Pi 5 PEPs only possessed a single on-board RJ45 Ethernet connector, a USB-A to RJ45 Ethernet adapter had to be used for both PEPs.
+Since the Raspberry Pi 5 only possesses a single on-board RJ45 Ethernet connector, a USB-A to RJ45 Ethernet adapter had to be used for both PEPs.
 
 At the process level of the experiment's network topology the MU was located.
 The MU was connected to the relay test device using an analog connection, and was connected to the process bus switch using a fiber optic connection.
