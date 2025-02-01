@@ -87,24 +87,28 @@ The specific hardware used for the experiments is discussed for each experiment 
 %On the one hand, the simulation strategy has the advantage of repeatability and reproducibility due to deterministic behavior, whereas the behavior of the testbed is non-deterministic.
 
 \section{Security Analysis}
-In this section, an analysis of the security of the CASC-SAS approach and its core concepts CASA and SABAAC will be conducted.
+In this section, we conduct an analysis of the security of the CASC-SAS approach and its core concepts CASA and SABAAC.
 The primary objective of the security analysis is to demonstrate and guarantee certain security-related characteristics of the approach.
 As the security analysis is performed theoretically, proofs will be provided demonstrating that the approach is able to mitigate adversarial attacks that endanger these security-related characteristics.
 \begin{description}
     \item[Definition.] Unforgeability.\\
     Unforgeability ensures that no adversary can create a valid signature for a message under a policy unless their set of attributes satisfies the policy.
-    Unforgeability is defined using a game between a challenger and an adversary:
+    Unforgeability is defined by using a game between a challenger and an adversary $\mathcal{A}$:
     \begin{itemize}
-        \item Setup: The challenger runs the \texttt{Setup} algorithm to generate the public parameters $PK$ and the master secret key $MSK$. The public parameters are given to the adversary, while the $MSK$ is kept secret.
+        \item Setup: The challenger runs the \texttt{Setup} algorithm to generate the public parameters $PK$ and the master secret key $MSK$.
+        The public parameters are given to $\mathcal{A}$, while the $MSK$ is kept secret.
 
-        \item KeyGen: The adversary can query the \texttt{KeyGen} oracle to obtain private keys for sets of attributes of its choice. The challenger responds with the corresponding private keys.
+        \item KeyGen: $\mathcal{A}$ can query the \texttt{KeyGen} oracle to obtain private keys for sets of attributes of its choice.
+        The challenger responds with the corresponding private keys.
 
-        \item SignQueries: The adversary can request signatures for messages and policies from the \texttt{Sign} oracle. The oracle returns valid signatures if the queried attributes satisfy the signing policy.
+        \item SignQueries: $\mathcal{A}$ can request signatures for messages and policies from the \texttt{Sign} oracle.
+        The oracle returns valid signatures if the queried attributes satisfy the signing policy.
 
-        \item Forgery: The adversary outputs a forged signature $(M^*, T^*, \sigma^*)$ for a message $M^*$ and policy $T^*$. The adversary wins if the following conditions hold:
+        \item Forgery: $\mathcal{A}$ outputs a forged signature $(M^*, T^*, \sigma^*)$ for a message $M^*$ and policy $T^*$.
+        $\mathcal{A}$ wins if the following conditions hold:
         \begin{itemize}
-            \item The adversary did not request a signature on $(M^*, T^*)$ from the \texttt{Sign} oracle.
-            \item The adversary does not possess a private key whose attributes satisfy the policy $T^*$.
+            \item $\mathcal{A}$ did not request a signature on $(M^*, T^*)$ from the \texttt{Sign} oracle.
+            \item $\mathcal{A}$ does not possess a private key whose attributes satisfy the policy $T^*$.
             \item The verification algorithm accepts $\sigma^*$ as a valid signature under $T^*$.
         \end{itemize}
     \end{itemize}
@@ -112,7 +116,7 @@ As the security analysis is performed theoretically, proofs will be provided dem
     \item[Definition.] Existential Unforgeability under Chosen-Message Attacks (EU-CMA).\\
     An adversary $\mathcal{A}$ is given access to public parameters, hash oracles, and a signing oracle.
     A scheme is secure if $\mathcal{A}$ cannot forge a valid signature $\sigma^*$ for a new message $M^*$ without knowing the signer's full private key.
-    In other words, to create an existential forgery, i.e., output a valid pair of message and signature for a new message, an adversary carrying out a CMA can request valid signatures for any message of his choice \cite{Goldwasser1988}.
+    In other words, to create an existential forgery, i.e., create a valid pair of message and signature for a new message, an adversary carrying out a CMA can request valid signatures for any message of his choice \cite{Goldwasser1988}.
     The adversary's advantage in this game is its probability of generating a valid forgery.
     We say the ABS scheme is \textit{existentially unforgeable} if the adversary's advantage is negligible.
 
@@ -253,11 +257,12 @@ As the security analysis is performed theoretically, proofs will be provided dem
 \end{description}
 
 \section{Performance Analysis}
-In this section, an analysis of the performance aspects of our approaches CASA and SABAAC will be conducted.
+In this section, we conduct an analysis of the performance aspects of our approaches CASA and SABAAC.
 The objective of the performance analysis is to demonstrate that our approach is a viable solution to secure message exchanges, taking the strict time and resource constraints of a SAS into account.
 For this purpose, we conducted an experimental estimation of message exchange latencies using our testbed implementation and off-the-shelf hardware.
 In \autoref{sec:evaluation:performance:setup} the setup of the experiment is discussed in detail.
 In \autoref{sec:evaluation:performance:procedure} we describe the procedure and results of the experiment.
+
 \subsection{Experimental Setup}
 \label{sec:evaluation:performance:setup}
 The testbed of the performance analysis consists of eight devices.
@@ -285,7 +290,7 @@ A ThinkPad T480 provided the services of the PAP, PSP, PDP, and CAPP.
 \end{table}
 
 The network topology of the devices used for the performance analysis is shown in \autoref{fig:performance_analysis_topology}.
-The PAP, PSP, PDP, CAPP, and PEPs were connected to an industrial grade router from TP-Link Omada using Ethernet over twisted-pair.
+The PAP, PSP, PDP, CAPP, and PEPs were connected to an industrial grade TP-Link Omada router using Ethernet over twisted-pair.
 Each domain entity was connected to its corresponding PEP using Ethernet over twisted-pair, i.e., by using the on-board RJ45 Ethernet connector of the Raspberry Pi 5 domain entity.
 However, since the Raspberry Pi 5 only possesses a single on-board RJ45 Ethernet connector, an additional USB-A to RJ45 Ethernet adapter had to be used for both PEPs in order to connect them to the router and to the domain entities.
 \begin{figure}
@@ -297,7 +302,7 @@ However, since the Raspberry Pi 5 only possesses a single on-board RJ45 Ethernet
 
 \subsection{Procedure \& Results}
 \label{sec:evaluation:performance:procedure}
-To demonstrate the viability of our approach with regard to securing time critical message exchanges, we aimed to evaluate to what extent our approach was capable of handling different message types.
+To demonstrate the viability of our approach with regard to securing time critical message exchanges, we aimed to evaluate the extent to which our approach was capable of handling different message types.
 For this purpose, we conducted an experiment to estimate the end-to-end communication latency of a message exchange between two domain entities.
 The three message types that were considered for the evaluation are discussed in \autoref{sec:approach:system_model:communication:message_types} and listed in \autoref{tab:message_types}.
 
@@ -364,9 +369,9 @@ The steps of the experiment procedure are defined in the following:
 \todo{TODO: Present results of S-CASA computation}
 
 \section{Compatibility Analysis}
-In this section, an analysis of the compatibility aspects of our approaches CASA and SABAAC will be conducted.
+In this section, we conduct an analysis of the compatibility aspects of our approaches CASA and SABAAC.
 The objective of the compatibility analysis is to demonstrate that our approach is a viable solution to enhance the communication security in a newly constructed or retrofitted substation.
-Accordingly, the compatibility analysis serves the purpose of demonstrating that the SAS behavior and functionality is not influenced by our approach and that SAS devices protected by CASA and SABAAC are able to provide their services and exchange information.
+Accordingly, the compatibility analysis serves the purpose of demonstrating that the SAS behavior and functionality is not influenced by our approach, and that SAS devices protected by CASA and SABAAC are able to provide their services and exchange information.
 For this purpose, we conducted a laboratory-based experimental demonstration of applicability with industrial SAS devices.
 In \autoref{sec:evaluation:compatibility:setup} the setup of the experiment is discussed.
 In \autoref{sec:evaluation:compatibility:procedure} we describe the procedure and results of the experiment.
@@ -425,11 +430,11 @@ In addition to the MU, the PEP-protected I/O box was located at the process leve
 
 \subsection{Procedure \& Results}
 \label{sec:evaluation:compatibility:procedure}
-The procedure of the experiment comprised four key events or steps.
+The procedure of the experiment comprised four key events.
 The sequence of events and the corresponding messages exchanged between the devices are shown in \autoref{fig:lab_steps} and are discussed in the following:
 \begin{description}
     \item[Step 1: Generate Overcurrent]~\\
-    At the initial state of the experiment, the voltages and currents of all three phases generated by the Omicron CMC 356 were within certain boundaries to be detected as a normal grid situation.
+    At the initial state of the experiment, the voltages and currents of all three phases generated by the Omicron CMC 356 were within certain boundaries to be detected as normal grid situation.
     Accordingly, the circuit breaker connected to the IED was closed and allowed power to flow through the grid.
     To start the experiment, we manually adjusted the generated three-phase electric power.
     The current was set to a higher level to simulate an overcurrent situation in the grid.
@@ -450,7 +455,7 @@ The sequence of events and the corresponding messages exchanged between the devi
 
     \item[Step 4: Trigger Circuit Breaker]~\\
     The I/O box received the original GOOSE frame, which was sent by the IED.
-    As the GOOSE frame was signalling the I/O box to open the circuit breaker, the I/O box used an analog signal to open the circuit breaker.
+    As the GOOSE frame signalled to the I/O box to open the circuit breaker, the I/O box used an analog signal to open the circuit breaker.
     At the end of the experiment, we were able to visually verify that the circuit breaker had opened successfully.
 \end{description}
 \begin{figure}
@@ -462,7 +467,7 @@ The sequence of events and the corresponding messages exchanged between the devi
 
 The simulated exception in the grid was successfully propagated through the SAS network during the experiment.
 Consequently, the experiment demonstrated that the operation of the MU, IED, and I/O box was not disrupted by the employment of CASA and SABAAC.
-Since we deployed the security-related components onto inexpensive off-the-shelf hardware, we were able to demonstrate that our approach is a feasible solution for SAS environments not only security-wise and performance-wise but also cost-wise.
+Since we deployed the security-related components to inexpensive off-the-shelf hardware, we were able to demonstrate that our approach is a feasible solution for SAS environments not only security-wise and performance-wise but also cost-wise.
 Due to the BITW concept of our approach, no adaptations had to be made to the SAS devices.
 This indicates that our approach is a viable solution for the retrofitting of existing substations.
 Furthermore, the usage of a static bypass rule in one of the PEPs suggests that incompatible or legacy devices could continue their operation in a retrofitted SAS.
