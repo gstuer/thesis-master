@@ -370,7 +370,7 @@ The results of the latency estimation experiment are shown in \autoref{tab:rtt_m
 The results are published open source on GitHub \cite{gitcasc} alongside the implementation of our approach.
 Since CASA is an algorithm-agnostic approach, we conducted the message exchange latency estimation procedure for six different authentication algorithms.
 For each of the authentication algorithms, the benchmark program sent 1000 sequential packets to estimate the RTT.
-Based on the measurements, we calculated the arithmetic mean, median, standard deviation, and extrema-related values of each estimation procedure.
+Based on the measurements, we calculated the arithmetic mean, median, standard deviation, and extrema-related values for each experiment.
 Furthermore, we calculated the throughput of the PEPs in Packets Per Second (PPS), and the cumulative share of the 1000 packets in the three message types listed in \autoref{tab:message_types}.
 
 To measure the latency offset caused by packet capturing and forwarding, we performed the initial latency estimation without authorizations, i.e., neither access control nor authentication were used.
@@ -391,7 +391,7 @@ To evaluate the performance of our approach in combination with PKC, we conducte
 For the latency estimations we chose the Ed25519 algorithm, which is an elliptic-curve digital signature algorithm, RSA-2048, and our $S_{CASA}$ signature scheme.
 All three PKC approaches did not satisfy the time constraint of the low latency message type.
 Ed25519 and RSA satisfied the time constraint of the medium latency message type.
-$S_{CASA}$ was able to finish 99.8 \% of the message exchanges in less than 500 ms, i.e., within the time constraints of the high latency message type.
+$S_{CASA}$ was able to finish 99.8 \% of the message exchanges within the time constraints of the high latency message type, i.e., in less than 500 ms.
 The data indicates that the RTTs of the PKC approaches are subject to fluctuations with higher magnitude compared to the fluctuations caused by SABAAC and symmetric cryptography.
 Furthermore, the throughput of the PEPs was reduced by more than 70 \% compared to the HMAC authentication.
 \begin{table}
@@ -542,4 +542,27 @@ Furthermore, the usage of a static bypass rule in one of the PEPs suggests that 
 Thus, the interoperability and interchangeability requirements of an IEC 61850 substation remain satisfied, while the communication security is increased by the enforcement of the CASC-SAS security policies.
 
 \section{Discussion \& Comparison}
-\todo{TODO: Discussion of results and comparison to different approaches}
+In this section we provide a summary of the findings of the evaluation, we contextualize our approach within the existing literature, and we describe the limitations and constraints inherent to the evaluation and our approach.
+The conducted evaluation covered security, performance, and compatibility aspects of CASC-SAS, CASA, and SABAAC.
+By performing a theoretical analysis of the security aspects of CASA and SABAAC, we demonstrated that our approaches are able to mitigate a set of adversarial attacks.
+We proved that our signature scheme $S_{CASA}$ is existentially unforgeable under chosen-message attacks and that it resists collusion attacks under the DLP.
+Furthermore, we provided definitions for message replay, forgery, modification, and time-delay attacks, and demonstrated how CASA and SABAAC interact to mitigate these attacks.
+Our findings indicate that SAS devices benefit from being PEP-protected, as domain-typical DoS and false data injection attacks can be mitigated by the employment of our approach.
+However, by employing CASA and SABAAC the attack surface of an SAS changes.
+While IEDs, MUs, and other SAS devices benefit from being protected by using our BITW approach, the increased total number of devices in the SAS and their communication relations lead to an increased risk of DoS attacks.
+In particular, the dependence on certain centralized components, such as the PDP, PAP, PSP, and CAPP, introduces new attack vectors for SAS adversaries.
+Furthermore, as we conducted the security analysis theoretically, our findings might not be transferable to real SAS environments, and the behavior of CASA and SABAAC components under attack may be different from what we discussed theoretically.
+
+In contrast to the security analysis, the performance and compatibility evaluations of our approach were conducted experimentally.
+The results of both experimental evaluations suggest that CASA and SABAAC are able to secure time-critical communication in a SAS.
+As we conducted the experiments using inexpensive off-the-shelf-hardware to deploy the CASC-SAS components, we demonstrated that our approach is lightweight and efficient with regard to its hardware requirements and corresponding deployment costs.
+Nevertheless, the results of the performance evaluation indicate that computational performance is the primary challenge for the deployment of information security approaches in a SAS.
+The findings demonstrate that lightweight yet inflexible symmetric cryptography approaches seem to be the only viable solution to secure low latency message exchanges.
+However, the performance evaluation also revealed that the attribute-based authorization and access control workflows of SABAAC have only a limited impact on the overall message exchange latency.
+Accordingly, the results emphasize the appropriateness of expressive and flexible yet computationally expensive access control approaches, such as ABAC, even in time and resource constrained environments.
+
+Furthermore, the findings of the security, performance, and compatibility analysis indicate that authentication, authorization, and access control benefit from the consolidation of competencies.
+Related approaches that we discussed in \autoref{ch:relatedwork}, focus on either secure communication or access control in substations.
+While existing approaches for the security of SAS communication, including the BITW security filter by \citeauthor{Ishchenko2018} \cite{Ishchenko2018}, and the FPGA-based GOOSE and SV hardware encryption by \citeauthor{Rodriguez2021} \cite{Rodriguez2021}, are optimal solutions under certain circumstances, we emphasize the advantages of malleable security systems.
+By integrating CASA and SABAAC into a cybersecurity and cryptography architecture for SAS, our approach enables adaption to future requirements, while it maintains a well-defined set of provided services.
+In particular, our algorithm-agnostic CASA approach demonstrated the advantages of a malleable cryptography platform by supporting the employment of different algorithms for different use cases within a single SAS.
