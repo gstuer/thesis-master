@@ -258,7 +258,7 @@ As the security analysis is performed theoretically, proofs will be provided dem
 
 \section{Performance Analysis}
 In this section, we conduct an analysis of the performance aspects of our approaches CASA and SABAAC.
-The objective of the performance analysis is to demonstrate that our approach is a viable solution to secure message exchanges, taking the strict time and resource constraints of a SAS into account.
+The objective of the performance analysis is to demonstrate that our approaches are viable solutions to secure message exchanges, taking the strict time and resource constraints of a SAS into account.
 For this purpose, we conducted an experimental estimation of message exchange latencies using our testbed implementation and off-the-shelf hardware.
 In \autoref{sec:evaluation:performance:setup} the setup of the experiment is discussed in detail.
 In \autoref{sec:evaluation:performance:procedure} we describe the procedure and results of the experiment.
@@ -308,7 +308,7 @@ The three message types that were considered for the evaluation are discussed in
 
 We realized the message exchange latency estimation by implementing a benchmark program and deploying it to the domain entities.
 The benchmark program was implemented in Python.
-The program and the benchmark results are published open source on GitHub \cite{gitcasc} alongside the implementation of our approach.
+The program is published open source on GitHub \cite{gitcasc} alongside the implementation of our approach.
 The program estimated the end-to-end latency between the two domain entities based on the RTT of a bidirectional message exchange.
 We chose UDP as a message exchange protocol for the experiment in order to avoid external latency influences, such as the flow control and congestion control of the Transmission Control Protocol (TCP).
 To measure the RTT, the so-called active benchmark entity sent a timestamp to the passive benchmark entity.
@@ -318,7 +318,7 @@ As a consequence, no time synchronization was required between the domain entiti
 Furthermore, under the assumption of symmetric transmission times, the accuracy of the RTT measurements only depended on the accuracy of the active entity's system clock.
 To avoid RTT fluctuations or an offset caused by the router's buffering and forwarding strategy, messages were sent sequentially, i.e., the active entity waited for the arrival of a response before sending another timestamp message.
 
-The procedure of the experimental latency estimation consisted of ten key events or steps.
+The procedure of the experimental latency estimation consisted of ten key events.
 The sequence of events and the corresponding messages exchanged between the devices are shown in \autoref{fig:performance_analysis_latency_steps}.
 To improve the readability of the shown message exchanges, the USB-A to RJ45 Ethernet adapters were omitted from the figure.
 The steps of the experiment procedure are defined in the following:
@@ -365,8 +365,76 @@ The steps of the experiment procedure are defined in the following:
     \caption{Sequence of events of the experimental message exchange latency estimation.}
     \label{fig:performance_analysis_latency_steps}
 \end{figure}
-\todo{TODO: Present results of latency estimation}
-\todo{TODO: Present results of S-CASA computation}
+
+The results of the latency estimation experiment are shown in \autoref{tab:rtt_metrics} and \autoref{tab:rtt_share}.
+The results are published open source on GitHub \cite{gitcasc} alongside the implementation of our approach.
+Since CASA is an algorithm-agnostic approach, we conducted the message exchange latency estimation procedure for six different authentication algorithms.
+For each of the authentication algorithms, the benchmark program sent 1000 sequential packets to estimate the RTT.
+Based on the measurements, we calculated the arithmetic mean, median, standard deviation, and extrema-related values of each estimation procedure.
+Furthermore, we calculated the throughput of the PEPs in Packets Per Second (PPS), and the cumulative share of the 1000 packets in the three message types listed in \autoref{tab:message_types}.
+
+To measure the latency offset caused by packet capturing and forwarding, we performed the initial latency estimation without authorizations, i.e., neither access control nor authentication were used.
+From this data, we can see that a bidirectional message exchange between two domain entities requires 1.809 ms on average, which leads to a PEP throughput of 528.2 sequential PPS.
+Without authentication, authorization, and access control in place, the measured RTTs are consistent, and each bidirectional message exchange was finished in less than 6 ms RTT, which is required to support the low latency message type.
+
+To measure the influence of the authorization and access control, we performed a latency estimation with authorization and access control but without authentication.
+For this purpose, we implemented a so-called no-operation authenticator, which processed the packets without signing or verifying them.
+The measurements of the RTTs with the no-operation authenticator show that the authorization and access control workflow of SABAAC leads to an RTT increase of 1.1 ms on average.
+Moreover, the increased range of minimum and maximum time indicates that SABAAC leads to an increase in RTT fluctuation.
+
+In order to evaluate the performance of our approach in combination with symmetric cryptography, we performed a latency estimation for HMAC authentication based on SHA-512.
+The results show that 99.8 \% of the message exchanges were finished in less than 6 ms RTT.
+The remaining two packets or 0.2 \% of the 1000 packets satisfied the 20 ms time constraint of the medium latency message type.
+By employing HMAC authentication, CASA and SABAAC achieved a throughput of 289.1 PPS at the PEPs.
+
+To evaluate the performance of our approach in combination with PKC, we conducted latency estimations for three PKC algorithms.
+For the latency estimations we chose the Ed25519 algorithm, which is an elliptic-curve digital signature algorithm, RSA-2048, and our $S_{CASA}$ signature scheme.
+All three PKC approaches did not satisfy the time constraint of the low latency message type.
+Ed25519 and RSA satisfied the time constraint of the medium latency message type.
+$S_{CASA}$ was able to finish 99.8 \% of the message exchanges in less than 500 ms, i.e., within the time constraints of the high latency message type.
+The data indicates that the RTTs of the PKC approaches are subject to fluctuations with higher magnitude compared to the fluctuations caused by SABAAC and symmetric cryptography.
+Furthermore, the throughput of the PEPs was reduced by more than 70 \% compared to the HMAC authentication.
+\begin{table}
+    \centering
+    \small
+    \caption{Results of the RTT estimation based on 1000 measurements per authentication algorithm.}
+    \label{tab:rtt_metrics}
+    \begin{tabular}{c c c c c c c c}
+    \toprule
+    Authentication & Mean & Median & Deviation & \multicolumn{4}{c}{Extrema}\\
+    \cmidrule(lr){5-8}
+    & $\bar{x}$ & $\widetilde{x}$ & $\sigma$ & Min & Max & Range & Mid-Range\\
+    \midrule
+    Unauthorized    & 1.809 & 1.799 & 0.067 & 1.704 & 2.400 & 0.696 & 2.052 \\
+    Unauthenticated & 2.937 & 2.924 & 0.146 & 2.808 & 4.213 & 1.405 & 3.511 \\
+    HMAC            & 3.342 & 3.279 & 0.507 & 2.779 & 6.695 & 3.915 & 4.736 \\
+    Ed25519        & 11.096 & 11.224& 1.591 & 9.537 & 31.971& 22.434 & 20.754 \\
+    RSA-2048       & 12.703 & 12.034& 1.179 & 11.741& 16.804& 5.063 & 14.273 \\
+    $S_{CASA}$    & 119.851 &113.127&28.534 &111.385&509.392&398.007&310.389\\
+    \bottomrule
+    \end{tabular}
+\end{table}
+\begin{table}
+    \centering
+    \small
+    \caption{Throughput and cumulative message type share of the analyzed authentication algorithms.}
+    \label{tab:rtt_share}
+    \begin{tabular}{c c c c c}
+    \toprule
+    Authentication & Throughput & \multicolumn{3}{c}{Cumulative Share in Message Types}\\
+    \cmidrule(lr){3-5}
+     & & Low Latency & Medium Latency & High Latency\\
+     & & $\leq 6~ms$ & $\leq 20~ms$ & $\leq 500~ms$\\
+    \midrule
+    Unauthorized    & 528.2 PPS & 1000 (100 \%) & 1000 (100 \%) & 1000 (100 \%) \\
+    Unauthenticated & 328.2 PPS & 1000 (100 \%) & 1000 (100 \%) & 1000 (100 \%) \\
+    HMAC            & 289.1 PPS &  998 (99.8 \%)& 1000 (100 \%) & 1000 (100 \%) \\
+    Ed25519         &  88.9 PPS &    0 (0 \%)   &  998 (99.8 \%)& 1000 (100 \%) \\
+    RSA-2048        &  77.4 PPS &    0 (0 \%)   & 1000 (100 \%) & 1000 (100 \%)\\
+    $S_{CASA}$      &   8.2 PPS &    0 (0 \%)   &    0 (0 \%)   &  998 (99.8 \%)\\
+    \bottomrule
+    \end{tabular}
+\end{table}
 
 \section{Compatibility Analysis}
 In this section, we conduct an analysis of the compatibility aspects of our approaches CASA and SABAAC.
