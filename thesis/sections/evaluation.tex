@@ -121,19 +121,23 @@ As the security analysis is performed theoretically, proofs will be provided dem
     We say the ABS scheme is \textit{existentially unforgeable} if the adversary's advantage is negligible.
 
     \item[Theorem.] $\mathcal{S}_{CASA}$ is EU-CMA secure under the Computational Diffie-Hellman (CDH) assumption in the random oracle model.\\
-    \textit{Proof.} After querying the signing oracle, assume $\mathcal{A}$ forges a signature $\sigma^*$ for $M^*$. The challenger interacts with $\mathcal{A}$ as follows:
+    \textit{Proof.} After querying the signing oracle, assume $\mathcal{A}$ forges a signature $\sigma^*$ for $M^*$.
+    The challenger interacts with $\mathcal{A}$ as follows:
     \begin{itemize}
-        \item \textit{Setup}: The challenger generates $ppk_i$, $p$, and hash oracles \( H_1, H_2, H_3 \) for \( \mathcal{A} \).
+        \item \textit{Setup}: The challenger generates the public system parameters $\rho$ and the hash oracles \( H_1, H_2, H_3 \) for \( \mathcal{A} \).
+        The challenger also programs the random oracles \( H_1, H_2, H_3 \) to embed a CDH instance \( g_1^a \) and \( g_1^b \), where \( a, b \) are random exponents.
         \item \textit{HashQueries}: The challenger responds to \( H_1, H_2, H_3 \) queries with random values, ensuring consistency.
-        \item \textit{SigningQueries}: For $M$ and $\mathsf{Att}_{i}$, the challenger computes:
+        \item \textit{SignQueries}: When $\mathcal{A}$ requests a signature on a message \( M \) under an access policy \( T \), the challenger computes the signature as:
         \[
-        \sigma_i = \big(ppk_{i} \cdot H_3(h)\big)^{\chi_i},
+            \sigma_i = ppk_i \cdot H_3(h)^{\chi_i},
         \]
-        where $h = H_2(M || \mathsf{Att}_{i})$.
-        \item \textit{Forgery}: If \( \mathcal{A} \) outputs \( \sigma^* \) for \( M^* \), the challenger extracts \( g^{ab} \) from \( g, g^a, g^b \), solving the CDH problem.
+        where $h = H_2(M || T)$.
+        \item \textit{Forgery}: Eventually, the adversary outputs a forged signature $\sigma^*$ on a message $M^*$ under an access policy $T^*$.
+        The challenger extracts the solution to the CDH problem $g_1^{ab}$ from the forged signature by exploiting the structure of the random oracle responses.
     \end{itemize}
-    Thus, $\mathcal{A}$'s advantage is negligible under the CDH assumption.
-    The $\mathcal{S}_{CASA}$ scheme is secure against EU-CMA attacks.
+    $\mathcal{A}$'s success in forging a signature implies the ability to solve the CDH problem.
+    Since the CDH problem is assumed to be hard, $\mathcal{A}$'s advantage in breaking the scheme is negligible.
+    Thus, the $\mathcal{S}_{CASA}$ scheme is secure under the EU-CMA model and under the assumption of the hardness of the CDH problem in the random oracle model.
 
     \item[Definition.] Collusion Attack.\\
     An adversary $\mathcal{A}$ colludes with a TTP and corrupted signers to derive private keys or forge valid signatures.
@@ -142,11 +146,11 @@ As the security analysis is performed theoretically, proofs will be provided dem
     \item[Theorem.] $\mathcal{S}_{CASA}$ resists collusion attacks under the Discrete Logarithm Problem (DLP).\\
     \textit{Proof.} Suppose $\mathcal{A}$ colludes with the CAPP to derive $sk_i = (ppk_i, \chi_i)$, then the following steps are performed:
     \begin{itemize}
-        \item The CAPP knows $ppk_i = H_1(\mathsf{ID}_i || \mathsf{ATT}_i)^{s}$.
-        \item The signer independently chooses $\chi_i$ and the DLP ensures $\mathcal{A}$ cannot derive $\chi_i$ from $y_i = g^{\chi_i}$.
+        \item The CAPP knows $ppk_i = H_1(ID_i || ATT_i)^{s}$.
+        \item The signer independently chooses $\chi_i$ and the DLP ensures $\mathcal{A}$ cannot derive $\chi_i$.
         \item Without $\chi_i$, $\mathcal{A}$ cannot compute:
         \[
-        \sigma_i = \big(ppk_i \cdot H_3(h)\big)^{\chi_i}.
+            \sigma_i = ppk_i \cdot H_3(h)^{\chi_i}.
         \]
     \end{itemize}
     Thus, collusion cannot compromise security.
