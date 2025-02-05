@@ -246,16 +246,48 @@
 
 \section{Evaluation}
 \begin{frame}{Evaluation: Overview}
-    TODO
+    \begin{greenblock}{Goal of Approach}
+        Protect substation against domain-typical adversaries \& attacks
+        \\\textbf{Communication:} Time-constrained \& traffic-intensive
+        \\\textbf{Deployment:} Construction \& Retrofitting
+    \end{greenblock}
+    \begin{blueblock}{Approach}
+        Theoretically \& experimentally performed evaluation
+        \begin{itemize}
+            \item Security Analysis $\rightarrow$ Theorems
+            \item Performance Analysis $\rightarrow$ Testbed-based experiments
+            \item Compatibility Analysis $\rightarrow$ Laboratory-based experiments
+        \end{itemize}
+    \end{blueblock}
 \end{frame}
 \begin{frame}{Security Analysis}
-    TODO
+    \begin{greenblock}{Central Question}
+        Does CASC-SAS provide security against typical SAS adversaries and attacks?
+        \\\textbf{Metrics:} Satisfied requirements, assumed adversary, mitigated attacks, \& change of substation attack surface
+    \end{greenblock}
+    \begin{blueblock}{Theorems}
+        Theorems to demonstrate \& prove mitigation strategies against six attacks:
+        \begin{itemize}
+            \item Message Forgery
+            \item Message Modification
+            \item Message Replay
+            \item Time-Delay
+            \item Chosen-Message
+            \item Collusion
+        \end{itemize}
+    \end{blueblock}
 \end{frame}
-\begin{frame}{Performance Analysis}
-    TODO
+\begin{frame}{Performance Analysis I}
+    \centering
+    \includegraphics[height=0.75\textheight]{./figures/boxplot_without_casa.pdf}
+\end{frame}
+\begin{frame}{Performance Analysis II}
+    \centering
+    \includegraphics[height=0.75\textheight]{./figures/boxplot_with_casa.pdf}
 \end{frame}
 \begin{frame}{Compatibility Analysis}
-    TODO
+    \centering
+    \includegraphics[height=0.75\textheight]{./figures/lab_evaluation_steps.drawio.pdf}
 \end{frame}
 
 \section{Future Work}
@@ -276,11 +308,16 @@
 \end{frame}
 \begin{frame}{Future Work II}
     \begin{blueblock}{AI for Policy Management}
-        Integration of CASC-SAS with AI-based intrusion detection for security policy creation and modification
+        Integration of CASC-SAS with AI-based intrusion detection for security policy creation \& modification
         \\$\rightarrow$ \textbf{Advantage:} Mitigation of a wider range of cyberattacks in a timelier manner
     \end{blueblock}
     \begin{blueblock}{SDN-Based Realization}
         Aggregation of PEPs by deploying a virtual PEP for each port of a Software-Defined Networking (SDN) switch
+        \\$\rightarrow$ \textbf{Advantage:} Reduced costs of deployment \& reduced architectural complexity
+    \end{blueblock}
+    \begin{blueblock}{Extended Demonstration of Applicability}
+        Employment in time-critical systems with similar requirements \& constraints
+        \\$\rightarrow$ \textbf{Examples:} Industry 4.0, robotics, avionics, \& medical systems
         \\$\rightarrow$ \textbf{Advantage:} Reduced costs of deployment \& reduced architectural complexity
     \end{blueblock}
 \end{frame}
@@ -288,7 +325,7 @@
 \section{Conclusion}
 \begin{frame}{Conclusion}
     \begin{redblock}{Problem}
-        Expressive \& flexible access control, \& malleable PKC: Not applicable to the SAS domain!
+        Expressive \& flexible access control, \& malleable PKC: Applicable to the SAS domain?
         \\$\rightarrow$ Constrained resources \& communication time
     \end{redblock}
     \begin{blueblock}{Contribution}
@@ -323,6 +360,19 @@
             \end{itemize}
             % $\rightarrow$ Authentication, Authorization, Access Control, \& Encryption of Substation Communication
         \end{redblock}
+    \end{columns}
+\end{frame}
+\begin{frame}{System Model: Adversarial Attacks}
+    \begin{columns}
+        \column{.38\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/attacks_availability.drawio.pdf}
+        \column{.295\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/attacks_integrity.drawio.pdf}
+        \column{.30\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/attacks_authenticity.drawio.pdf}
     \end{columns}
 \end{frame}
 \begin{frame}{System Model: Substation Automation System (SAS)}
