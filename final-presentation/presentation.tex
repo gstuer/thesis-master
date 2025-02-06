@@ -32,9 +32,8 @@
 
 \date[12.\,02.\,2025]{12. February 2025}
 
-% Literatur 
- 
-\usepackage[citestyle=authoryear,bibstyle=numeric,hyperref,backend=biber]{biblatex}
+% Literatur
+\usepackage[citestyle=authoryear,bibstyle=numeric,hyperref,maxcitenames=2,backend=biber]{biblatex}
 \addbibresource{../bibliography/masterthesis.bib}
 \bibhang1em
 
@@ -44,9 +43,9 @@
 \KITtitleframe
 
 %Inhaltsverzeichnis
-\begin{frame}{Agenda}
-\tableofcontents
-\end{frame}
+%\begin{frame}{Agenda}
+%\tableofcontents
+%\end{frame}
 
 \section{Motivation}
 \begin{frame}{Motivation}
@@ -67,14 +66,14 @@
     \nonumberfootnote{IED\dots Intelligent Electronic Device | MU\dots Merging Unit | RTU\dots Remote Terminal Unit}
     \nonumberfootnote{MTU\dots Master Terminal Unit | ICT\dots Information and Communications Technology}
 \end{frame}
-\begin{frame}{SAS Communication: Requirements \& Constraints}
+\begin{frame}{Substation Communication}
     \begin{blueblock}{Requirements}
         \begin{itemize}
             \item Integrity
             \item Authenticity
             \item Non-Repudiation
-            \item Least Privilege Principle (PoLP)
-            \item Separation of Duties (SoD)
+            \item Least Privilege Principle
+            \item Separation of Duties
         \end{itemize}
         $\rightarrow$ Authentication, Authorization, \& Access Control
     \end{blueblock}
@@ -86,7 +85,7 @@
 \begin{frame}{Research Questions}
     \begin{greenblock}{Authorization \& Access Control in SAS}
         How can expressive and flexible yet computationally expensive access control be employed in a SAS?
-        \\$\rightarrow$ Real-Time Attributes, Ad-Hoc Policy Evaluation, \& Speedup Solutions
+        \\$\rightarrow$ Policy Evaluation \& Enforcement Strategies
     \end{greenblock}
 
     \begin{greenblock}{Public-Key Cryptography in SAS}
@@ -111,22 +110,8 @@
             \item Dynamic Policy Evaluation $\rightarrow$ Dynamic Authorization \& Real-Time Attributes
         \end{itemize}
     \end{blueblock}
-    \begin{grayblock}{Architecture \parencite{Hu2014,Oasis2013}}
-        \begin{itemize}
-            \item Policy Decision Point (PDP) $\rightarrow$ Computes access decisions by evaluating policies
-            \item Policy Enforcement Point (PEP) $\rightarrow$ Enforces access decisions by controlling access to protected objects
-        \end{itemize}
-    \end{grayblock}
 \end{frame}
-\begin{frame}{Authentication, Authorization, \& Access Control}
-    \centering
-	\includegraphics[width=0.9\textwidth]{./figures/access_control_request_traditional.drawio.pdf}
-    \begin{redblock}{Problem}
-        Too many provider responsibilities
-        \\$\rightarrow$ Policy Management/Decisions/Enforcement, Request Verification, \& Response Creation
-    \end{redblock}
-\end{frame}
-\begin{frame}{Cryptography in SAS}
+\begin{frame}{Public-Key Cryptography in SAS}
     \begin{blueblock}{Key Distribution \& Identity Verification}
         Unsecure Network \& Untrusted Network Participants
         \\$\rightarrow$ Asymmetric: Lightweight \& Secure Key Distribution
@@ -135,10 +120,6 @@
         Example: 1024-Bit RSA Digital Signature vs. 128-Bit HMAC/GMAC
         \\$\rightarrow$ 10 ms vs. 50 µs on RPi2 (1 GHz quad-core)
         \\$\rightarrow$ 0.3 ms vs. 4 µs on Xeon X3440 (2.53 GHz quad-core) 
-    \end{blueblock}
-    \begin{blueblock}{Ethernet-Based Multicast Communication in SAS}
-        Message verification at subscribers requires shared private keys in symmetric cryptography.
-        \\$\rightarrow$ Alternative: Transform unsecure multicast into secure unicast messages
     \end{blueblock}
 \end{frame}
 
@@ -160,29 +141,38 @@
         \end{itemize}
     \end{blueblock}
 
-    \begin{blueblock}{Role-Based Access Control (RBAC) in Substations}
+    \begin{blueblock}{Access Control in Substations}
         \begin{itemize}
             \item XACML-Based RBAC Approach for IEC 61850 \& IEC 62351 compliant SAS \parencite{Lee2015}
             \item Distributed RBAC for Subscription-Based Remote Network Services \parencite{Ma2006} % Constraint-Enabled 
             \item Rule-Based RBAC Policy Enforcement Architecture \parencite{Alcaraz2016} % for Smart Grid Systems
+            \item Firewall for ABAC in Smart Grids \parencite{Ruland2018}
+            \item ABAC for Real-Time Availability in Highly Dynamic Systems \parencite{Burmester2013}
         \end{itemize}
     \end{blueblock}
 \end{frame}
-\begin{frame}{Related Work}
-    \begin{blueblock}{Attribute-Based Access Control (ABAC) in Substations}
-        \begin{itemize}
-            \item Firewall for Attribute-Based Access Control in Smart Grids \parencite{Ruland2018}
-            \\$\rightarrow$ Firewall with XACML-Based ABAC Policies
-            \\$\rightarrow$ Outer \& Inner Station Bus
-            \\$\rightarrow$ Unobstructed Fast Messages (e.g. GOOSE)
-            \item T-ABAC: An attribute-based access control model for real-time availability in highly dynamic systems \parencite{Burmester2013}
-            \\$\rightarrow$ Real-Time Attribute Values
-            \\$\rightarrow$ Labeling of High Priority Packets
-            \\$\rightarrow$ Domain-Based Congestion Avoidance
-        \end{itemize}
-    \end{blueblock}
-    % Message Authentication, Asym. Performance Evaluation, BitW- \& HW-Solutions, Access Control
-\end{frame}
+% \begin{frame}{Related Work}
+% \begin{table}
+%     \centering
+%     \begin{tabular}{c c}
+%     \toprule
+%     %Adversarial Attack & \multicolumn{2}{c |}{Classification} & \multicolumn{5}{c}{Policy}\\
+%     %\midrule
+%     % Secure Communication in Substations
+%     \parencite{Ishchenko2018} & Bump-in-the-Wire Security Filter for GOOSE/SV MAC Tagging \& Verification\\
+%     \parencite{Hong2019} & Domain-Based Collaborative Cyberattack Mitigation Approach\\
+%     \parencite{Rodriguez2021} & Fixed-Latency Hardware Architecture for GOOSE/SV Encryption \& Authentication\\
+%     % Role-Based Access Control (RBAC) in Substations
+%     \parencite{Ma2006} & Distributed RBAC for Subscription-Based Remote Network Services\\% Constraint-Enabled
+%     \parencite{Lee2015} & XACML-Based RBAC Approach for IEC 61850 \& IEC 62351 compliant SAS\\
+%     \parencite{Alcaraz2016} & Rule-Based RBAC Policy Enforcement Architecture\\% for Smart Grid Systems
+%     %Attribute-Based Access Control (ABAC) in Substations
+%     \parencite{Burmester2013} & T-ABAC: An attribute-based access control model for real-time availability in highly dynamic systems\\
+%     \parencite{Ruland2018} & Firewall for Attribute-Based Access Control in Smart Grids\\
+%     \bottomrule
+%     \end{tabular}
+% \end{table}
+% \end{frame}
 
 \section{Approach}
 \begin{frame}{CASC-SAS Approach}
@@ -208,7 +198,7 @@
 \end{frame}
 \begin{frame}{SABAAC: Authorization \& Access Control}
     \begin{greenblock}{\textbf{S}erver-Aided \textbf{A}ttribute-\textbf{B}ased \textbf{A}uthorization \& \textbf{A}ccess \textbf{C}ontrol (SABAAC)}
-        Delegation of authorization \& access policy evaluation to semi-trusted server (PDP)
+        Delegation of access policy evaluation to semi-trusted server (PDP)
         \\$\rightarrow$ Enforcement of access control decisions via bump-in-the-wire device (PEP)
     \end{greenblock}
     \begin{blueblock}{Protocol: Delegated Attribute-Based Authorization}
@@ -227,7 +217,7 @@
 \end{frame}
 \begin{frame}{Delegated Access Control: Payload Exchange}
     \centering
-    \includegraphics[width=0.90\textwidth]{./figures/SABAAC_protocols_accesscontrol_payloadexchange.drawio.pdf}
+    \includegraphics[width=1.0\textwidth]{./figures/SABAAC_protocols_accesscontrol_payloadexchange.drawio.pdf}
 \end{frame}
 \begin{frame}{CASC-SAS Architecture: Function-Oriented}
     \centering
@@ -247,11 +237,11 @@
 \section{Evaluation}
 \begin{frame}{Evaluation: Overview}
     \begin{greenblock}{Goal of Approach}
-        Protect substation against domain-typical adversaries \& attacks
+        Protect substations against domain-typical adversaries \& attacks
         \\\textbf{Communication:} Time-constrained \& traffic-intensive
         \\\textbf{Deployment:} Construction \& Retrofitting
     \end{greenblock}
-    \begin{blueblock}{Approach}
+    \begin{blueblock}{Evaluation}
         Theoretically \& experimentally performed evaluation
         \begin{itemize}
             \item Security Analysis $\rightarrow$ Theorems
@@ -266,7 +256,7 @@
         \\\textbf{Metrics:} Satisfied requirements, assumed adversary, mitigated attacks, \& change of substation attack surface
     \end{greenblock}
     \begin{blueblock}{Theorems}
-        Theorems to demonstrate \& prove mitigation strategies against six attacks:
+        Theorems to demonstrate mitigation strategies for six attacks:
         \begin{itemize}
             \item Message Forgery
             \item Message Modification
@@ -318,7 +308,6 @@
     \begin{blueblock}{Extended Demonstration of Applicability}
         Employment in time-critical systems with similar requirements \& constraints
         \\$\rightarrow$ \textbf{Examples:} Industry 4.0, robotics, avionics, \& medical systems
-        \\$\rightarrow$ \textbf{Advantage:} Reduced costs of deployment \& reduced architectural complexity
     \end{blueblock}
 \end{frame}
 
@@ -379,6 +368,33 @@
     \centering
     \includegraphics[width=0.7\textwidth]{./figures/substation_architecture.drawio.pdf}
     \nonumberfootnote{IED\dots Intelligent Electronic Device | MU\dots Merging Unit | HMI\dots Human-Machine Interface}
+\end{frame}
+
+\section{Fundamentals}
+\begin{frame}{Authentication, Authorization, \& Access Control}
+    \centering
+	\includegraphics[width=0.9\textwidth]{./figures/access_control_request_traditional.drawio.pdf}
+    \begin{redblock}{Problem}
+        Too many provider responsibilities
+        \\$\rightarrow$ Policy Management/Decisions/Enforcement, Request Verification, \& Response Creation
+    \end{redblock}
+\end{frame}
+
+\section{Related Work}
+\begin{frame}{Related Work}
+    \begin{blueblock}{Attribute-Based Access Control (ABAC) in Substations}
+        \begin{itemize}
+            \item Firewall for Attribute-Based Access Control in Smart Grids \parencite{Ruland2018}
+            \\$\rightarrow$ Firewall with XACML-Based ABAC Policies
+            \\$\rightarrow$ Outer \& Inner Station Bus
+            \\$\rightarrow$ Unobstructed Fast Messages (e.g. GOOSE)
+            \item T-ABAC: An attribute-based access control model for real-time availability in highly dynamic systems \parencite{Burmester2013}
+            \\$\rightarrow$ Real-Time Attribute Values
+            \\$\rightarrow$ Labeling of High Priority Packets
+            \\$\rightarrow$ Domain-Based Congestion Avoidance
+        \end{itemize}
+    \end{blueblock}
+    % Message Authentication, Asym. Performance Evaluation, BitW- \& HW-Solutions, Access Control
 \end{frame}
 
 \section{Approach}
