@@ -6,6 +6,8 @@
 %% Beispiel-Präsentation
 \documentclass[en]{sdqbeamer} 
 
+\usepackage[svgnames]{xcolor}
+
 %% Footnote without numbering
 \newcommand\nonumberfootnote[1]{%
   \begingroup
@@ -13,7 +15,7 @@
   \addtocounter{footnote}{-1}%
   \endgroup
 }
- 
+
 %% Titelbild
 \titleimage{banner_2020_kit}
 
@@ -54,7 +56,7 @@
         \centering
         \includegraphics[width=1.0\textwidth]{./figures/sas_intrusion.drawio.pdf}
         \column{.45\textwidth}
-        \begin{redblock}{Adversarial Attacks}
+        \begin{redblock}{Cyberattacks}
             \begin{itemize}
                 \item \textbf{Availability-Focused:} Denial-of-Service\\$\rightarrow$ Malware, Flooding, \& Time-Delay
                 \item \textbf{Integrity-Focused:} False Data Injection\\$\rightarrow$ Message Forgery, Modification, \& Replay
@@ -63,39 +65,47 @@
             % $\rightarrow$ Authentication, Authorization, Access Control, \& Encryption of Substation Communication
         \end{redblock}
     \end{columns}
-    \nonumberfootnote{IED\dots Intelligent Electronic Device | MU\dots Merging Unit | RTU\dots Remote Terminal Unit}
-    \nonumberfootnote{MTU\dots Master Terminal Unit | ICT\dots Information and Communications Technology}
+    \nonumberfootnote{\color{SteelBlue} IED\dots Intelligent Electronic Device \color{black}| \color{SteelBlue} RTU\dots Remote Terminal Unit \color{black}| \color{SteelBlue} MTU\dots Master Terminal Unit \color{black}| \color{SteelBlue} MU\dots Merging Unit}
+    \nonumberfootnote{ICT\dots Information and Communications Technology}
 \end{frame}
 \begin{frame}{Substation Communication}
     \begin{blueblock}{Requirements}
-        \begin{itemize}
-            \item Integrity
-            \item Authenticity
-            \item Non-Repudiation
-            \item Least Privilege Principle
-            \item Separation of Duties
-        \end{itemize}
-        $\rightarrow$ Authentication, Authorization, \& Access Control
+        \begin{columns}[T, onlytextwidth]
+            \column{.50\textwidth}
+            \begin{itemize}
+                \setlength{\itemindent}{-1em}
+                \item Integrity
+                \item Authenticity
+                \item Non-Repudiation
+            \end{itemize}
+            $\rightarrow$ \textbf{Authentication}
+            \column{.50\textwidth}
+            \begin{itemize}
+                \setlength{\itemindent}{-1em}
+                \item Prevention of Unauthorized Access
+                \item Least Privilege Principle
+                \item Separation of Duties
+            \end{itemize}
+            $\rightarrow$ \textbf{Authorization \& Access Control}
+        \end{columns}
     \end{blueblock}
     \begin{grayblock}{Constraints: IEC 61850 Message Types \& Performance Classes \parencite*{IEC61850P5,IEC61850P8}}
         Client-Server (Unicast) \& Publisher-Subscriber (Broadcast/Multicast) \\$\rightarrow$ Resource \& Time Constraints!
         \\Examples: GOOSE (Type 1A, 3 ms), SV (Type 4, 3 ms), MMS (Type 2/3/5, 100-10000 ms)
     \end{grayblock}
+    \nonumberfootnote{GOOSE\dots Generic Object Oriented Substation Event | SV\dots Sampled Values | MMS\dots Manufacturing Message Specification}
 \end{frame}
 \begin{frame}{Research Questions}
-    \begin{greenblock}{Authorization \& Access Control in SAS}
-        How can expressive and flexible yet computationally expensive access control be employed in a SAS?
-        \\$\rightarrow$ Policy Evaluation \& Enforcement Strategies
+    \begin{greenblock}{\textbf{RQ 1:} Authorization \& Access Control in Substation Automation System}
+        How can \textbf{expressive} and \textbf{flexible} yet computationally expensive \textbf{access control} be employed in a SAS?
     \end{greenblock}
 
-    \begin{greenblock}{Public-Key Cryptography in SAS}
-        How can a secure and lightweight public-key approach be designed, implemented, \& employed in a SAS?
-        \\$\rightarrow$ (Dis-)Advantages, \& Speedup Solutions
+    \begin{greenblock}{\textbf{RQ 2:} Public-Key Cryptography in Substation Automation System}
+        How can a \textbf{secure} and \textbf{lightweight} \textbf{public-key approach} be designed, implemented, \& employed in a SAS?
     \end{greenblock}
 
-    \begin{greenblock}{Security Architecture for Time-Critical Communication}
-        How can authentication, authorization, and access control be integrated into a malleable, scalable, and lightweight cryptosystem for time-critical SAS communication?
-        \\$\rightarrow$ System Model, Domain Requirements, Architecture, \& Protocols
+    \begin{greenblock}{\textbf{RQ 3:} Security Architecture for Time-Critical Communication}
+        How can \textbf{authentication}, \textbf{authorization}, and \textbf{access control} be integrated into a malleable, scalable, and lightweight \textbf{cryptosystem for time-critical SAS communication}?
     \end{greenblock}
 \end{frame}
 
@@ -125,11 +135,11 @@
 
 \section{Related Work}
 \begin{frame}{Related Work}
-    \begin{blueblock}{IEC 62351 \parencite*{IEC62351P6,IEC62351P8}}
+    \begin{blueblock}{IEC 62351: Part 6 \& Part 8 \parencite*{IEC62351P6,IEC62351P8}}
         Standard for Cybersecurity: Energy-Related Systems \& Communication Networks
-        \\$\rightarrow$ Authenticity \& Integrity: Mandatory Symmetric Authentication
-        \\$\rightarrow$ Confidentiality: Optional (Non-Recommended) Symmetric Encryption
-        \\$\rightarrow$ Access Control: Role-Based Access Control (RBAC) (Access-Token-Driven, 7 Mandatory Roles)
+        \\$\rightarrow$ \textbf{Authenticity \& Integrity:} Mandatory Symmetric Authentication
+        \\$\rightarrow$ \textbf{Confidentiality:} Optional (Non-Recommended) Symmetric Encryption
+        \\$\rightarrow$ \textbf{Access Control:} Role-Based Access Control (RBAC) (Access-Token-Driven, 7 Mandatory Roles)
     \end{blueblock}
 \end{frame}
 \begin{frame}{Related Work}
@@ -151,39 +161,28 @@
         \end{itemize}
     \end{blueblock}
 \end{frame}
-% \begin{frame}{Related Work}
-% \begin{table}
-%     \centering
-%     \begin{tabular}{c c}
-%     \toprule
-%     %Adversarial Attack & \multicolumn{2}{c |}{Classification} & \multicolumn{5}{c}{Policy}\\
-%     %\midrule
-%     % Secure Communication in Substations
-%     \parencite{Ishchenko2018} & Bump-in-the-Wire Security Filter for GOOSE/SV MAC Tagging \& Verification\\
-%     \parencite{Hong2019} & Domain-Based Collaborative Cyberattack Mitigation Approach\\
-%     \parencite{Rodriguez2021} & Fixed-Latency Hardware Architecture for GOOSE/SV Encryption \& Authentication\\
-%     % Role-Based Access Control (RBAC) in Substations
-%     \parencite{Ma2006} & Distributed RBAC for Subscription-Based Remote Network Services\\% Constraint-Enabled
-%     \parencite{Lee2015} & XACML-Based RBAC Approach for IEC 61850 \& IEC 62351 compliant SAS\\
-%     \parencite{Alcaraz2016} & Rule-Based RBAC Policy Enforcement Architecture\\% for Smart Grid Systems
-%     %Attribute-Based Access Control (ABAC) in Substations
-%     \parencite{Burmester2013} & T-ABAC: An attribute-based access control model for real-time availability in highly dynamic systems\\
-%     \parencite{Ruland2018} & Firewall for Attribute-Based Access Control in Smart Grids\\
-%     \bottomrule
-%     \end{tabular}
-% \end{table}
-% \end{frame}
 
 \section{Approach}
-\begin{frame}{CASC-SAS Approach}
-    \begin{greenblock}{\textbf{C}ertificateless \textbf{A}ttribute-Based \textbf{S}erver-Aided \textbf{C}ryptosystem for \textbf{S}ubstation \textbf{A}utomation \textbf{S}ystems (CASC-SAS)}
-        \textbf{Objective:} Fine-grained \& flexible access control relying on dynamic authorization \& authentication
-        \\\textbf{Central Concepts:}
-        \begin{itemize}
-            \item Authentication $\rightarrow$ CASA
-            \item Authorization \& Access Control $\rightarrow$ SABAAC
-        \end{itemize}
-    \end{greenblock}
+\begin{frame}{Approach: Overview}
+    \begin{columns}[T, onlytextwidth]
+        \column{.60\textwidth}
+        \begin{greenblock}{Approach}
+            \textbf{C}ertificateless \textbf{A}ttribute-Based \textbf{S}erver-Aided \textbf{C}ryptosystem for \textbf{S}ubstation \textbf{A}utomation \textbf{S}ystems (CASC-SAS)\\
+            \vspace{1em}
+            \textbf{Objective:} Fine-grained \& flexible access control relying on dynamic authorization \& authentication
+            \vspace{1em}
+            \\\textbf{Central Concepts:}
+            \begin{itemize}
+                \item Authentication $\rightarrow$ CASA
+                \item Authorization \& Access Control $\rightarrow$ SABAAC
+            \end{itemize}
+        \end{greenblock}
+        \column{.40\textwidth}
+        \centering
+        \includegraphics[width=0.80\textwidth]{./figures/layers_request_example_shortened.drawio.pdf}
+    \end{columns}
+    \nonumberfootnote{CASA\dots Certificateless Attribute-Based Server-Aided Authentication}
+    \nonumberfootnote{SABAAC\dots Server-Aided Attribute-Based Authorization \& Access Control}
 \end{frame}
 \begin{frame}{CASA: Authentication}
     \begin{greenblock}{\textbf{C}ertificateless \textbf{A}ttribute-Based \textbf{S}erver-Aided \textbf{A}uthentication (CASA)}
@@ -214,23 +213,34 @@
 \begin{frame}{Delegated Access Control: Session Initialization}
     \centering
     \includegraphics[width=1.0\textwidth]{./figures/SABAAC_protocols_accesscontrol_initialization_shortened.drawio.pdf}
+    \nonumberfootnote{\color{IndianRed} PDP\dots Policy Decision Point}
+    \nonumberfootnote{\color{IndianRed} PEP\dots Policy Enforcement Point}
 \end{frame}
 \begin{frame}{Delegated Access Control: Payload Exchange}
     \centering
-    \includegraphics[width=1.0\textwidth]{./figures/SABAAC_protocols_accesscontrol_payloadexchange.drawio.pdf}
+    \includegraphics[width=1.0\textwidth]{./figures/SABAAC_protocols_accesscontrol_payloadexchange_with_pdp.drawio.pdf}
+    \nonumberfootnote{\color{Grey} PDP\dots Policy Decision Point}
+    \nonumberfootnote{\color{IndianRed} PEP\dots Policy Enforcement Point}
 \end{frame}
-\begin{frame}{CASC-SAS Architecture: Function-Oriented}
-    \centering
-    \includegraphics[height=0.75\textheight]{./figures/layers_request_example_shortened.drawio.pdf}
-\end{frame}
-\begin{frame}{CASC-SAS Architecture: Component-Oriented}
+\begin{frame}{CASC-SAS: Component-Oriented Architecture}
     \begin{columns}
         \column{.65\textwidth}
         \centering
         \includegraphics[height=0.75\textheight]{./figures/casc_architecture_color_shortened.drawio.pdf}
         \column{.35\textwidth}
         \footnotesize
-        CAPP\dots CASA Administration\\\qquad\qquad\& Processing Platform\\HMI\dots Human-Machine Interface\\IED\dots Intelligent Electronic Device\\MU\dots Merging Unit\\PDP\dots Policy Decision Point\\PEP\dots Policy Enforcement Point\\WAN\dots Wide Area Network
+        \begin{center}
+            \begin{tabular}{r l}
+                \color{IndianRed} CAPP & \color{IndianRed} CASA Administration \\
+                     & \color{IndianRed} \& Processing Platform \\
+                \color{IndianRed} PDP & \color{IndianRed} Policy Decision Point \\
+                \color{IndianRed} PEP & \color{IndianRed} Policy Enforcement Point \vspace{1em}\\
+                \color{SteelBlue} HMI & \color{SteelBlue} Human-Machine Interface \\
+                \color{SteelBlue} IED & \color{SteelBlue} Intelligent Electronic Device \\
+                \color{SteelBlue} MU & \color{SteelBlue} Merging Unit \\
+                \color{SteelBlue} WAN & \color{SteelBlue} Wide Area Network
+            \end{tabular}
+        \end{center}
     \end{columns}
 \end{frame}
 
@@ -244,59 +254,93 @@
     \begin{blueblock}{Evaluation}
         Theoretically \& experimentally performed evaluation
         \begin{itemize}
-            \item Security Analysis $\rightarrow$ Theorems
-            \item Performance Analysis $\rightarrow$ Testbed-based experiments
-            \item Compatibility Analysis $\rightarrow$ Laboratory-based experiments
+            \item Security Analysis
+            \item Performance Analysis
+            \item Compatibility Analysis
         \end{itemize}
     \end{blueblock}
 \end{frame}
 \begin{frame}{Security Analysis}
     \begin{greenblock}{Central Question}
-        Does CASC-SAS provide security against typical SAS adversaries and attacks?
+        To what extent does CASC-SAS provide security against typical SAS adversaries and attacks?
         \\\textbf{Metrics:} Satisfied requirements, assumed adversary, mitigated attacks, \& change of substation attack surface
     \end{greenblock}
     \begin{blueblock}{Theorems}
-        Theorems to demonstrate mitigation strategies for six attacks:
-        \begin{itemize}
-            \item Message Forgery
-            \item Message Modification
-            \item Message Replay
-            \item Time-Delay
-            \item Chosen-Message
-            \item Collusion
-        \end{itemize}
+        Demonstration of the reduced likelihood and impact of six attacks:
+        \vspace{1em}
+        \begin{columns}[T, onlytextwidth]
+            \column{.40\textwidth}
+            \textbf{Integrity-Focused Attacks}
+            \begin{itemize}
+                \item Message Creation
+                \item Message Modification
+                \item Message Replay
+                \item Message Delay
+            \end{itemize}
+            \column{.60\textwidth}
+            \textbf{Authenticity-Focused Attacks}
+            \begin{itemize}
+                \item Collusion
+                \item Existential Unforgeability under Chosen-Message Attacks
+            \end{itemize}
+        \end{columns}
     \end{blueblock}
 \end{frame}
-\begin{frame}{Performance Analysis I}
+\begin{frame}{Performance Analysis}
     \centering
     \includegraphics[height=0.75\textheight]{./figures/boxplot_without_casa.pdf}
 \end{frame}
-\begin{frame}{Performance Analysis II}
+\begin{frame}{Performance Analysis}
     \centering
     \includegraphics[height=0.75\textheight]{./figures/boxplot_with_casa.pdf}
 \end{frame}
-\begin{frame}{Compatibility Analysis}
-    \centering
-    \includegraphics[height=0.75\textheight]{./figures/lab_evaluation_steps_simplified.drawio.pdf}
-\end{frame}
-
-\section{Future Work}
-\begin{frame}{Future Work I}
+\begin{frame}{Performance Analysis: $S_{CASA}$}
+    \begin{redblock}{Message Exchange Round-Trip Time}
+        \begin{center}
+            \begin{tabular*}{0.8\linewidth}{@{\extracolsep{\fill}} c c c c }
+                \textbf{Minimum} & \textbf{Average} & \textbf{Maximum} & \textbf{Deviation}\\
+                $\approx$ 111 ms & $\approx$ 120 ms & $\approx$ 510 ms & $\approx$ 29 ms
+            \end{tabular*}
+        \end{center}
+    \end{redblock}
+    \begin{greenblock}{Speedup Solutions}
+        \begin{itemize}
+            \item Optimization of implementation
+            \item Hardware acceleration
+        \end{itemize}
+    \end{greenblock}
     \begin{blueblock}{Cryptography-Driven Authentication, Authorization, \& Access Control}
         Authentication, authorization, \& access control integrated into a single attribute-based PKC scheme
         \\$\rightarrow$ \textbf{Advantage:} Privacy \& Anonymity
     \end{blueblock}
-    \begin{blueblock}{Encryption \& Decryption}
-        Encryption \& decryption in conjunction with signing \& verification operations
-        \\$\rightarrow$ \textbf{Advantage:} Confidentiality
-    \end{blueblock}
-    \begin{blueblock}{Hardware Acceleration}
-        Evaluation of hardware-based cryptography acceleration in a SAS
-        \\$\rightarrow$ \textbf{Advantage:} Decreased computation time \& increased message throughput
-        \\$\rightarrow$ \textbf{Risk:} Algorithm compatibility, costs per acceleration unit, \& computation time consistency
-    \end{blueblock}
 \end{frame}
-\begin{frame}{Future Work II}
+\begin{frame}{Compatibility Analysis}
+    \centering
+    \includegraphics<1>[height=0.70\textheight]{./figures/lab_evaluation_steps_simplified_step0.drawio.pdf}%
+    \includegraphics<2>[height=0.70\textheight]{./figures/lab_evaluation_steps_simplified_step1.drawio.pdf}%
+    \includegraphics<3>[height=0.70\textheight]{./figures/lab_evaluation_steps_simplified_step2.drawio.pdf}%
+    \includegraphics<4>[height=0.70\textheight]{./figures/lab_evaluation_steps_simplified_step3.drawio.pdf}%
+    \includegraphics<5>[height=0.70\textheight]{./figures/lab_evaluation_steps_simplified.drawio.pdf}%
+    \nonumberfootnote{\color{IndianRed} PDP\dots Policy Decision Point \color{black}| \color{IndianRed} PEP\dots Policy Enforcement Point}
+\end{frame}
+
+\section{Future Work}
+% \begin{frame}{Future Work I}
+%     \begin{blueblock}{Cryptography-Driven Authentication, Authorization, \& Access Control}
+%         Authentication, authorization, \& access control integrated into a single attribute-based PKC scheme
+%         \\$\rightarrow$ \textbf{Advantage:} Privacy \& Anonymity
+%     \end{blueblock}
+%     \begin{blueblock}{Encryption \& Decryption}
+%         Encryption \& decryption in conjunction with signing \& verification operations
+%         \\$\rightarrow$ \textbf{Advantage:} Confidentiality
+%     \end{blueblock}
+%     \begin{blueblock}{Hardware Acceleration}
+%         Evaluation of hardware-based cryptography acceleration in a SAS
+%         \\$\rightarrow$ \textbf{Advantage:} Decreased computation time \& increased message throughput
+%         \\$\rightarrow$ \textbf{Risk:} Algorithm compatibility, costs per acceleration unit, \& computation time consistency
+%     \end{blueblock}
+% \end{frame}
+\begin{frame}{Future Work}
     \begin{blueblock}{AI for Policy Management}
         Integration of CASC-SAS with AI-based intrusion detection for security policy creation \& modification
         \\$\rightarrow$ \textbf{Advantage:} Mitigation of a wider range of cyberattacks in a timelier manner
