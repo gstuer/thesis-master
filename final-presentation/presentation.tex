@@ -439,6 +439,22 @@
     \end{redblock}
 \end{frame}
 
+\section{Approach}
+\begin{frame}{CASC-SAS Architecture: Function-Oriented}
+    \centering
+    \includegraphics[height=0.75\textheight]{./figures/layers_request_example.drawio.pdf}
+\end{frame}
+\begin{frame}{CASC-SAS Architecture: Component-Oriented}
+    \begin{columns}
+        \column{.65\textwidth}
+        \centering
+        \includegraphics[height=0.75\textheight]{./figures/casc_architecture_color.drawio.pdf}
+        \column{.35\textwidth}
+        \footnotesize
+        CAPP\dots CASA Administration\\\qquad\qquad\& Processing Platform\\HMI\dots Human-Machine Interface\\IED\dots Intelligent Electronic Device\\MTU\dots Master Terminal Unit\\MU\dots Merging Unit\\PAP\dots Policy Administration Point\\PDP\dots Policy Decision Point\\PEP\dots Policy Enforcement Point\\PSP\dots Policy Storage Point\\RTU\dots Remote Terminal Unit\\WAN\dots Wide Area Network
+    \end{columns}
+\end{frame}
+
 \section{Related Work}
 \begin{frame}{Related Work: ABAC}
     \begin{blueblock}{Attribute-Based Access Control (ABAC)}
@@ -454,20 +470,19 @@
     % Message Authentication, Asym. Performance Evaluation, BitW- \& HW-Solutions, Access Control
 \end{frame}
 
-\section{Approach}
-\begin{frame}{CASC-SAS Architecture: Function-Oriented}
-    \centering
-    \includegraphics[height=0.75\textheight]{./figures/layers_request_example.drawio.pdf}
-\end{frame}
-\begin{frame}{CASC-SAS Architecture: Component-Oriented}
-    \begin{columns}
-        \column{.65\textwidth}
-        \centering
-        \includegraphics[height=0.75\textheight]{./figures/casc_architecture_color.drawio.pdf}
-        \column{.35\textwidth}
-        \footnotesize
-        CAPP\dots CASA Administration\\\qquad\qquad\& Processing Platform\\HMI\dots Human-Machine Interface\\IED\dots Intelligent Electronic Device\\MTU\dots Master Terminal Unit\\MU\dots Merging Unit\\PAP\dots Policy Administration Point\\PDP\dots Policy Decision Point\\PEP\dots Policy Enforcement Point\\PSP\dots Policy Storage Point\\RTU\dots Remote Terminal Unit\\WAN\dots Wide Area Network
-    \end{columns}
+\section{Paper}
+\begin{frame}{Paper: ABS-SAS}
+    \begin{greenblock}{Concept}
+        Attribute-based signature (ABS) scheme for substation automation systems (SAS)
+        \\$\rightarrow$ \textbf{Authentication \& authorization} via cryptographic scheme
+    \end{greenblock}
+    \begin{blueblock}{Work Plan}
+        \textbf{Currently:} \textbf{Implementation} in C++, \& \textbf{evaluation} of the scheme with regard to security \& performance aspects\\
+        \textbf{Soon:} \textbf{Discussion} of evaluation findings, \textbf{finalization} of paper, \& \textbf{proofreading}
+    \end{blueblock}
+    \begin{grayblock}{Submission (Planned)}
+        \textbf{Workshop} @ 23rd International Conference on Applied Cryptography and Network Security (\textbf{ACNS}) in Munich
+    \end{grayblock}
 \end{frame}
 
 \begin{frame}[allowframebreaks]{References}
