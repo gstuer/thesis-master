@@ -390,27 +390,13 @@
 
 \appendix
 \beginbackup
-\section{System Model}
-\begin{frame}{Motivation}
-    \begin{columns}
-        \column{.4\textwidth}
-        \centering
-        \includegraphics[width=1.0\textwidth]{./figures/sas_intrusion.drawio.pdf}
-        \column{.6\textwidth}
-        \begin{redblock}{Substation Threats \& Attacks}
-            \begin{itemize}
-                \item Eavesdropping
-                \item Man-in-the-Middle
-                \item Spoofing/Masquerading
-                \item Replay
-                \item Denial of Service\\$\rightarrow$ Flooding, Broadcast/Multicast Storm, \& Poisoning
-                \item False Data Injection\\$\rightarrow$ Forged Sensor Data \& Commands, \& Configuration Tampering
-            \end{itemize}
-            % $\rightarrow$ Authentication, Authorization, Access Control, \& Encryption of Substation Communication
-        \end{redblock}
-    \end{columns}
+\begin{frame}{~}
+    \centering
+    \Huge
+    Appendix
 \end{frame}
-\begin{frame}{System Model: Adversarial Attacks}
+\section{System Model}
+\begin{frame}{Adversarial Attacks}
     \begin{columns}
         \column{.38\textwidth}
         \centering
@@ -423,7 +409,7 @@
         \includegraphics[width=\linewidth]{figures/attacks_authenticity.drawio.pdf}
     \end{columns}
 \end{frame}
-\begin{frame}{System Model: Substation Automation System (SAS)}
+\begin{frame}{Substation Automation System (SAS)}
     \centering
     \includegraphics[width=0.7\textwidth]{./figures/substation_architecture.drawio.pdf}
     \nonumberfootnote{IED\dots Intelligent Electronic Device | MU\dots Merging Unit | HMI\dots Human-Machine Interface}
@@ -451,7 +437,22 @@
         \includegraphics[height=0.75\textheight]{./figures/casc_architecture_color.drawio.pdf}
         \column{.35\textwidth}
         \footnotesize
-        CAPP\dots CASA Administration\\\qquad\qquad\& Processing Platform\\HMI\dots Human-Machine Interface\\IED\dots Intelligent Electronic Device\\MTU\dots Master Terminal Unit\\MU\dots Merging Unit\\PAP\dots Policy Administration Point\\PDP\dots Policy Decision Point\\PEP\dots Policy Enforcement Point\\PSP\dots Policy Storage Point\\RTU\dots Remote Terminal Unit\\WAN\dots Wide Area Network
+        \begin{center}
+            \begin{tabular}{r l}
+                \color{IndianRed} CAPP & \color{IndianRed} CASA Administration \\
+                     & \color{IndianRed} \& Processing Platform \\
+                \color{IndianRed} PAP & \color{IndianRed} Policy Administration Point\\
+                \color{IndianRed} PDP & \color{IndianRed} Policy Decision Point \\
+                \color{IndianRed} PEP & \color{IndianRed} Policy Enforcement Point\\
+                \color{IndianRed} PSP & \color{IndianRed} Policy Storage Point \vspace{1em}\\
+                %
+                \color{SteelBlue} HMI & \color{SteelBlue} Human-Machine Interface \\
+                \color{SteelBlue} IED & \color{SteelBlue} Intelligent Electronic Device \\
+                \color{SteelBlue} MTU & \color{SteelBlue} Master Terminal Unit\\
+                \color{SteelBlue} MU & \color{SteelBlue} Merging Unit \\
+                \color{SteelBlue} WAN & \color{SteelBlue} Wide Area Network
+            \end{tabular}
+        \end{center}
     \end{columns}
 \end{frame}
 
